@@ -1,0 +1,96 @@
+{
+  "columnHierarchy": {
+    "epochs": [
+      {
+        "id": "epoch_1",
+        "name": "Study Period",
+        "instanceType": "StudyEpoch",
+        "type": {
+          "id": "2cb10a11-e414-47a7-963a-0f94574dfac1",
+          "code": "C98780",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Treatment Epoch",
+          "instanceType": "Code"
+        }
+      }
+    ],
+    "encounters": [
+      {
+        "id": "enc_1",
+        "name": "Study Period",
+        "instanceType": "Encounter",
+        "type": {
+          "id": "7b0df79f-3a3a-499d-96dc-1552d4b644a9",
+          "code": "C99156",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Scheduled Visit",
+          "instanceType": "Code"
+        },
+        "epochId": "epoch_1"
+      }
+    ],
+    "plannedTimepoints": [
+      {
+        "id": "pt_1",
+        "visit": "Study Period",
+        "epoch": "",
+        "epochId": "",
+        "day": "",
+        "window": null,
+        "encounterId": "enc_1",
+        "instanceType": "Timing"
+      }
+    ]
+  },
+  "rowGroups": [
+    {
+      "id": "grp_1",
+      "name": "CAMPFIRE Master Protocol",
+      "description": null,
+      "childIds": [],
+      "instanceType": "Activity",
+      "activityNames": [
+        "Synopsis",
+        "Introduction, including the master protocol rationale, and background information about unmet need in pediatric oncology",
+        "General inclusion and exclusion criteria",
+        "General Discontinuation criteria",
+        "Reporting of AEs, SAEs, and SUSARs",
+        "General assessment of efficacy, PK, genetics, and biomarkers",
+        "Data management methods",
+        "Study governance, regulatory requirements, and ethics, including informed consent/assent",
+        "List of references cited in the master protocol",
+        "List of abbreviations and definitions used in the master protocol"
+      ]
+    },
+    {
+      "id": "grp_2",
+      "name": "Addenda",
+      "description": null,
+      "childIds": [],
+      "instanceType": "Activity",
+      "activityNames": [
+        "Investigation-specific synopsis",
+        "Background information about the investigation treatment(s) under evaluation",
+        "Investigation-specific objectives, endpoints, study design, and statistical plan",
+        "Investigation-specific inclusion and exclusion criteria",
+        "Study drug administration and dosage modifications for agents under evaluation",
+        "Safety lead-in criteria and associated terms (if applicable)",
+        "Investigation-specific discontinuation criteria",
+        "AEs of special interest",
+        "Safety information specific to investigation treatment(s) and/or indication(s) under evaluation (if applicable)",
+        "Schedule of activities and schedule for collection of samples for PK, genetics, and biomarker research",
+        "Investigation-specific data management methods",
+        "List of restricted and prohibited concomitant therapy",
+        "List of references cited in the addendum",
+        "List of abbreviations and definitions used in the addendum"
+      ]
+    }
+  ],
+  "footnotes": [
+    "a. Lilly will notify sites when the continued access period begins and ends.",
+    "b. Final analysis. Lilly will notify sites when completion of investigation occurs.",
+    "c. End of study occurs at the last visit or last scheduled procedure for the last patient."
+  ]
+}

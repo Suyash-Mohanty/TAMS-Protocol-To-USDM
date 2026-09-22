@@ -1,0 +1,34 @@
+{
+  "status": "FAILED",
+  "duration_seconds": 806.1,
+  "total_tokens": 128749,
+  "total_api_calls": 63,
+  "total_agents": 21,
+  "succeeded_agents": 17,
+  "failed_agents": [
+    {
+      "id": "soa_vision_agent",
+      "error": "Failed after 4 attempts: Extraction returned no data"
+    },
+    {
+      "id": "docstructure_agent",
+      "error": "Timed out after 420s"
+    },
+    {
+      "id": "soa_text_agent",
+      "error": "Failed after 4 attempts: Extraction returned no data"
+    },
+    {
+      "id": "biomedical_concept_agent",
+      "error": "Failed after 4 attempts: Extraction returned no data"
+    }
+  ],
+  "entity_count": 373,
+  "models": {
+    "model": "cortex",
+    "fast_model": null,
+    "vision_model": null
+  },
+  "started": "2026-09-02T12:25:22",
+  "finished": "2026-09-02T12:38:48"
+}

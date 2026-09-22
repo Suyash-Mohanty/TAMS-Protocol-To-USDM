@@ -1,0 +1,193 @@
+{
+  "agent_id": "objectives_agent",
+  "timestamp": "2026-09-02T12:36:48.849017",
+  "confidence": 0.85,
+  "entity_count": 4,
+  "entities": [
+    {
+      "id": "obj_1",
+      "entity_type": "objective",
+      "data": {
+        "id": "obj_1",
+        "name": "Master Protocol Framework Objective",
+        "text": "The main purpose of the CAMPFIRE Master Protocol is to create a framework to seamlessly evaluate the efficacy and safety of each investigational agent or study drug regimen eligible for development in specified populations of pediatric and young adult patients.",
+        "level": {
+          "code": "C85826",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Trial Primary Objective",
+          "instanceType": "Code"
+        },
+        "endpointIds": [
+          "ep_1"
+        ],
+        "instanceType": "Objective"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "ep_1",
+      "entity_type": "endpoint",
+      "data": {
+        "id": "ep_1",
+        "name": "Investigation-Specific Endpoints",
+        "text": "The clinical research objectives and endpoints for specific investigations are detailed in each individual addendum.",
+        "level": {
+          "code": "C98772",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Primary Outcome Measure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Endpoint",
+        "purpose": "Efficacy"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "est_1",
+      "entity_type": "estimand",
+      "data": {
+        "id": "est_1",
+        "name": "Investigation-Specific Efficacy Estimand (Master Protocol Framework)",
+        "populationSummary": "Pediatric and young adult patients with cancer meeting investigation-specific eligibility criteria as defined in each individual addendum (Investigation-specific analysis population as defined in each addendum (e.g., Intent-to-Treat or modified Intent-to-Treat population)) Summary measure: Investigation-specific summary measure as defined in each addendum statistical analysis plan (e.g., objective response rate, hazard ratio, difference in means).",
+        "analysisPopulationId": "ap_1",
+        "variableOfInterestId": "ep_1",
+        "interventionIds": [
+          "int_1",
+          "int_2"
+        ],
+        "intercurrentEvents": [
+          {
+            "id": "ice_1",
+            "name": "Discontinuation of study treatment",
+            "text": "Patient discontinues investigational study treatment prior to the planned end of treatment as defined in the addendum, due to adverse events, disease progression, withdrawal of consent, or investigator decision",
+            "strategy": "Treatment Policy",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_2",
+            "name": "Use of prohibited concomitant therapy",
+            "text": "Patient initiates prohibited or restricted concomitant therapy as specified in the addendum-specific list of restricted and prohibited concomitant therapies",
+            "strategy": "Hypothetical",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_3",
+            "name": "Death",
+            "text": "Patient dies prior to the planned efficacy assessment timepoint as defined in the addendum",
+            "strategy": "Composite",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_4",
+            "name": "Disease progression requiring alternative therapy",
+            "text": "Patient experiences disease progression and initiates alternative anticancer therapy outside of the study treatment regimen prior to the planned efficacy assessment",
+            "strategy": "Treatment Policy",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_5",
+            "name": "Dose modification",
+            "text": "Patient undergoes dose reduction or dose interruption of the investigational agent as specified in the addendum-specific dose modification guidelines",
+            "strategy": "Treatment Policy",
+            "instanceType": "IntercurrentEvent"
+          }
+        ],
+        "instanceType": "Estimand",
+        "treatment": "Lilly investigational drug(s) alone or in combination with available treatments or other investigational agents vs. comparator/control arm as specified in each individual addendum",
+        "analysisPopulation": "Investigation-specific analysis population as defined in each addendum (e.g., Intent-to-Treat or modified Intent-to-Treat population)",
+        "variableOfInterest": "Investigation-specific efficacy and safety endpoints as defined in each individual addendum",
+        "summaryMeasure": "Investigation-specific summary measure as defined in each addendum statistical analysis plan (e.g., objective response rate, hazard ratio, difference in means)"
+      },
+      "confidence": 0.75,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "ap_1",
+      "entity_type": "analysis_population",
+      "data": {
+        "id": "ap_1",
+        "name": "Investigation-specific analysis population as defined in each addendum (e.g., Intent-to-Treat or modified Intent-to-Treat population)",
+        "instanceType": "AnalysisPopulation",
+        "description": "Analysis population referenced by estimand: Investigation-Specific Efficacy Estimand (Master Protocol Framework)",
+        "level": "ITT"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  ],
+  "objectives_summary": {
+    "primary_count": 1,
+    "secondary_count": 0,
+    "exploratory_count": 0,
+    "endpoint_count": 1,
+    "estimand_count": 1
+  }
+}
