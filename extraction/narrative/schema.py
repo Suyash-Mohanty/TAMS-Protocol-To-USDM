@@ -148,9 +148,9 @@ class StudyDefinitionDocument:
     version_date: Optional[str] = None
     document_type: str = "Protocol"
     language: str = "en"
-    content_ids: List[str] = field(default_factory=list)  # NarrativeContent IDs
+    template_name: Optional[str] = None
     instance_type: str = "StudyDefinitionDocument"
-    
+
     def to_dict(self) -> Dict[str, Any]:
         result = {
             "id": self.id,
@@ -159,12 +159,12 @@ class StudyDefinitionDocument:
             "language": self.language,
             "instanceType": self.instance_type,
         }
+        if self.template_name:
+            result["templateName"] = self.template_name
         if self.version:
             result["version"] = self.version
         if self.version_date:
             result["versionDate"] = self.version_date
-        if self.content_ids:
-            result["contentIds"] = self.content_ids
         return result
 
 

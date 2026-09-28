@@ -60,6 +60,8 @@ Analyze the provided protocol content and extract the section structure.
 - Protocol title
 - Version number
 - Version date
+- Document language — use the language explicitly stated on the title/cover page if present (e.g., "Language: French"). If it is not stated, detect it yourself from the actual protocol content provided below and report that language (e.g., "French", "German", "Japanese") — do not assume English
+- Template/authoring name (e.g., "Sponsor", "ICH", a CRO name — only if explicitly stated on the title/cover page)
 
 ### 2. Major Sections
 For each section extract:
@@ -76,7 +78,9 @@ Return a JSON object with this exact structure:
   "document": {
     "title": "A Phase 2, Open-Label Study...",
     "version": "3.0",
-    "versionDate": "2020-06-15"
+    "versionDate": "2020-06-15",
+    "language": "English",
+    "templateName": "Sponsor"
   },
   "sections": [
     {

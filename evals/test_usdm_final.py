@@ -68,6 +68,110 @@ class TestRequiredSections:
         assert section in pipeline_design, f"Section '{section}' missing from studyDesign"
 
 
+class TestDocumentedBy:
+    """Verify study.documentedBy[] (StudyDefinitionDocument) is populated."""
+
+    def test_has_documented_by(self, pipeline_usdm):
+        documents = pipeline_usdm["study"].get("documentedBy", [])
+        assert len(documents) >= 1, "study.documentedBy must have at least one document"
+
+    def test_document_required_fields(self, pipeline_usdm):
+        doc = pipeline_usdm["study"]["documentedBy"][0]
+        assert doc.get("name"), "StudyDefinitionDocument.name is required"
+        assert doc.get("templateName"), "StudyDefinitionDocument.templateName is required"
+        language = doc.get("language") or {}
+        assert language.get("code"), "StudyDefinitionDocument.language must be a Code with a code"
+        doc_type = doc.get("type") or {}
+        assert doc_type.get("code"), "StudyDefinitionDocument.type must be a Code with a code"
+
+    def test_document_version_fields(self, pipeline_usdm):
+        doc = pipeline_usdm["study"]["documentedBy"][0]
+        versions = doc.get("versions", [])
+        if not versions:
+            pytest.skip("No StudyDefinitionDocumentVersion extracted for this protocol")
+        version = versions[0]
+        assert version.get("version"), "StudyDefinitionDocumentVersion.version is required"
+        status = version.get("status") or {}
+        assert status.get("code"), "StudyDefinitionDocumentVersion.status must be a Code with a code"
+
+
+class TestMasking:
+    """Verify StudyRole.masking (isMasked/text) is well-formed when present.
+
+    maskedRoles only maps onto existing StudyRole entries (e.g. Sponsor,
+    Investigator) by name — protocols whose masked parties are all
+    non-organizational (e.g. only "Subject") legitimately have no
+    StudyRole.masking set, so this test skips rather than fails when none
+    are found.
+    """
+
+    def test_masking_fields_well_formed(self, pipeline_version):
+        roles = pipeline_version.get("roles", [])
+        masked = [r for r in roles if r.get("masking")]
+        if not masked:
+            pytest.skip("No StudyRole.masking set for this protocol")
+        for role in masked:
+            masking = role["masking"]
+            assert isinstance(masking.get("isMasked"), bool), \
+                "Masking.isMasked is required and must be boolean"
+            assert masking.get("text"), "Masking.text is required"
+            assert masking.get("instanceType") == "Masking"
+
+
+class TestStrength:
+    """Verify Substance.strengths[].numerator is well-formed when present.
+
+    AdministrableProduct.ingredients[] is only built when the extraction
+    captured both a strength value and a matching substance for a product —
+    protocols where products/substances weren't extracted (or extracted
+    without a strength) legitimately have no ingredients, so this test
+    skips rather than fails when none are found.
+    """
+
+    def test_strength_numerator_well_formed(self, pipeline_version):
+        products = pipeline_version.get("administrableProducts", [])
+        ingredients = [i for p in products for i in p.get("ingredients", [])]
+        if not ingredients:
+            pytest.skip("No AdministrableProduct.ingredients set for this protocol")
+        for ingredient in ingredients:
+            role = ingredient.get("role") or {}
+            assert role.get("code"), "Ingredient.role is required and must be a Code"
+            substance = ingredient.get("substance") or {}
+            assert substance.get("name"), "Substance.name is required"
+            strengths = substance.get("strengths", [])
+            assert len(strengths) >= 1, "Substance.strengths must have at least one entry"
+            for strength in strengths:
+                numerator = strength.get("numerator") or {}
+                assert isinstance(numerator.get("value"), (int, float)), \
+                    "Strength.numerator.value is required and must be numeric"
+                assert numerator.get("instanceType") in ("Quantity", "Range"), \
+                    "Strength.numerator must be a Quantity or Range"
+
+
+class TestPlannedAge:
+    """Verify StudyDesignPopulation.plannedAge (Range) is well-formed when present.
+
+    plannedAge is only built when both a minimum AND maximum age were
+    extracted (Range.minValue/maxValue are both required) — protocols that
+    only state one bound, or no age range at all, legitimately have no
+    plannedAge, so this test skips rather than fails when none is found.
+    """
+
+    def test_planned_age_range_well_formed(self, pipeline_design):
+        population = pipeline_design.get("population") or {}
+        planned_age = population.get("plannedAge")
+        if not planned_age:
+            pytest.skip("No StudyDesignPopulation.plannedAge set for this protocol")
+        assert planned_age.get("instanceType") == "Range"
+        assert isinstance(planned_age.get("isApproximate"), bool), \
+            "Range.isApproximate is required and must be boolean"
+        for bound in ("minValue", "maxValue"):
+            quantity = planned_age.get(bound) or {}
+            assert isinstance(quantity.get("value"), (int, float)), \
+                f"Range.{bound}.value is required and must be numeric"
+            assert quantity.get("instanceType") == "Quantity"
+
+
 class TestIDIntegrity:
     """Verify internal ID references are consistent."""
 

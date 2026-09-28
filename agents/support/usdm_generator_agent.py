@@ -13,9 +13,10 @@ import re
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 from agents.base import AgentCapabilities, AgentResult, AgentState, AgentTask, BaseAgent
+from core.evs_client import find_ct_entry
 
 logger = logging.getLogger(__name__)
 
@@ -74,8 +75,11 @@ _ENTITY_EXTRA_PROPERTIES: Dict[str, set] = {
     "analysis_population": {"level"},
     # MedicalDevice: extra properties not in USDM 4.0 schema (DDF00125)
     "medical_device": {"codes", "deviceType", "manufacturer", "modelNumber"},
-    # AdministrableProduct: extra properties not in USDM 4.0 schema (DDF00125)
-    "administrable_product": {"manufacturer", "strength", "substanceIds"},
+    # AdministrableProduct: extra properties not in USDM 4.0 schema (DDF00125).
+    # strengthValue/strengthUnit/substanceIds are staging keys popped by the
+    # custom administrable_product handling below (used to build
+    # ingredients[] via _link_substances_to_products), not stripped here.
+    "administrable_product": {"manufacturer", "strength"},
 }
 
 
@@ -121,6 +125,150 @@ def _ensure_code_id(d: Dict[str, Any]) -> Dict[str, Any]:
     if "decode" not in d:
         d["decode"] = d.get("code", "")
     return d
+
+
+# ISO 639-1 language codes/names accepted for StudyDefinitionDocument.language.
+# This is a small, fixed vocabulary — not a CDISC/NCI codelist — so it is
+# resolved locally rather than via the NCI EVS lookup used for `type`/`status`.
+_ISO_LANGUAGE_CODES = {
+    "en": "English", "fr": "French", "de": "German", "es": "Spanish",
+    "it": "Italian", "pt": "Portuguese", "nl": "Dutch", "ja": "Japanese",
+    "zh": "Chinese", "ko": "Korean", "ru": "Russian", "pl": "Polish",
+}
+_ISO_LANGUAGE_NAME_TO_CODE = {name.lower(): code for code, name in _ISO_LANGUAGE_CODES.items()}
+
+
+def _build_language_code(lang: Optional[str]) -> Dict[str, Any]:
+    """Build a USDM Code object for StudyDefinitionDocument.language.
+
+    Accepts either an ISO 639-1 code ("en") or an English language name
+    ("English") — the LLM extraction prompt may return either.
+    """
+    raw = (lang or "en").strip()
+    code = raw.lower() if raw.lower() in _ISO_LANGUAGE_CODES else _ISO_LANGUAGE_NAME_TO_CODE.get(raw.lower(), "en")
+    return {
+        "id": str(uuid.uuid4()),
+        "code": code,
+        "codeSystem": "ISO",
+        "codeSystemVersion": "639-1",
+        "decode": _ISO_LANGUAGE_CODES.get(code, "English"),
+        "instanceType": "Code",
+    }
+
+
+def _resolve_ct_code(term: str) -> Dict[str, Any]:
+    """Resolve a CDISC Controlled Terminology term to a USDM Code object.
+
+    Uses a live NCI EVS lookup (``core.evs_client.find_ct_entry``), which is
+    cached to disk after the first successful call. If the term can't be
+    resolved (no network / not found), a degraded placeholder Code is
+    returned with the raw term as the decode and code "UNK" — the value is
+    never fabricated, since these are CDISC-controlled codes.
+    """
+    entry = None
+    try:
+        entry = find_ct_entry(term)
+    except Exception as e:
+        logger.warning(f"NCI EVS lookup failed for CT term '{term}': {e}")
+
+    if entry:
+        return {
+            "id": str(uuid.uuid4()),
+            "code": entry.get("code", "UNK"),
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": entry.get("codeSystemVersion", "2024-09-27"),
+            "decode": entry.get("preferredName") or entry.get("decode") or term,
+            "instanceType": "Code",
+        }
+
+    logger.warning(f"NCI EVS lookup returned no result for CT term '{term}'; using placeholder code")
+    return {
+        "id": str(uuid.uuid4()),
+        "code": "UNK",
+        "codeSystem": "http://www.cdisc.org",
+        "codeSystemVersion": "2024-09-27",
+        "decode": term,
+        "instanceType": "Code",
+    }
+
+
+def _build_unit_alias_code(unit: str) -> Dict[str, Any]:
+    """Wrap a resolved CT code for a unit (e.g. "mg") in an AliasCode.
+
+    Quantity.unit is typed AliasCode, not a bare Code — reuses the same
+    non-fabricating NCI EVS lookup as other CT-controlled fields.
+    """
+    return {
+        "id": str(uuid.uuid4()),
+        "instanceType": "AliasCode",
+        "standardCode": _resolve_ct_code(unit),
+        "standardCodeAliases": [],
+    }
+
+
+_ISO_DURATION_UNITS = {"Y": "Year", "M": "Month", "W": "Week", "D": "Day"}
+
+
+def _parse_age_duration(raw: Optional[str]) -> Optional[Tuple[float, str]]:
+    """Parse an age bound into (numeric value, unit string).
+
+    Accepts ISO 8601 durations (e.g. "P18Y", "P6M") per the eligibility
+    extraction prompt, with a regex fallback for descriptive strings (e.g.
+    "18 years") in case the LLM doesn't follow the ISO format.
+    """
+    if not raw or not isinstance(raw, str):
+        return None
+    raw = raw.strip()
+
+    iso_match = re.match(r'^P(\d+(?:\.\d+)?)([YMWD])$', raw, re.IGNORECASE)
+    if iso_match:
+        return float(iso_match.group(1)), _ISO_DURATION_UNITS[iso_match.group(2).upper()]
+
+    desc_match = re.match(r'^([\d.]+)\s*(year|month|week|day)s?', raw, re.IGNORECASE)
+    if desc_match:
+        return float(desc_match.group(1)), desc_match.group(2).capitalize()
+
+    return None
+
+
+def _build_planned_age_range(min_raw: Optional[str], max_raw: Optional[str],
+                              is_approximate: Optional[bool]) -> Optional[Dict[str, Any]]:
+    """Build a USDM Range for StudyDesignPopulation.plannedAge.
+
+    Range.minValue/maxValue are both required (cardinality '1') — if either
+    bound can't be parsed, the whole Range is skipped and logged rather
+    than fabricating the missing bound.
+    """
+    min_parsed = _parse_age_duration(min_raw)
+    max_parsed = _parse_age_duration(max_raw)
+    if not min_parsed or not max_parsed:
+        if min_raw or max_raw:
+            logger.warning(
+                "Could not build plannedAge Range from minAge=%r maxAge=%r "
+                "(Range requires both minValue and maxValue); skipping rather "
+                "than fabricating the missing bound", min_raw, max_raw,
+            )
+        return None
+
+    min_value, min_unit = min_parsed
+    max_value, max_unit = max_parsed
+    return {
+        "id": str(uuid.uuid4()).replace("-", "_"),
+        "minValue": {
+            "id": str(uuid.uuid4()).replace("-", "_"),
+            "value": min_value,
+            "unit": _build_unit_alias_code(min_unit),
+            "instanceType": "Quantity",
+        },
+        "maxValue": {
+            "id": str(uuid.uuid4()).replace("-", "_"),
+            "value": max_value,
+            "unit": _build_unit_alias_code(max_unit),
+            "instanceType": "Quantity",
+        },
+        "isApproximate": bool(is_approximate) if is_approximate is not None else False,
+        "instanceType": "Range",
+    }
 
 
 def _sanitize_entity_data(entity_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -188,7 +336,7 @@ ENTITY_TYPE_PLACEMENT = {
     "encounter": "study.versions[0].studyDesigns[0].encounters",
     "intervention": "study.versions[0].studyDesigns[0].studyInterventions",
     "study_intervention": "study.versions[0].studyDesigns[0].studyInterventions",  # alias
-    "substance": "study.versions[0].studyDesigns[0].studyInterventions[].substances",
+    "substance": "study._pendingSubstances",  # staged, linked into administrableProducts[].ingredients[] post-placement
     "administrable_product": "study.versions[0].administrableProducts",
     "medical_device": "study.versions[0].medicalDevices",
     "study_element": "study.versions[0].studyDesigns[0].elements",
@@ -211,6 +359,8 @@ ENTITY_TYPE_PLACEMENT = {
     "study_role": "study.versions[0].roles",
     "schedule_exit": "study.versions[0].studyDesigns[0]._pendingExits",
     "comment_annotation": "study.versions[0].studyDesigns[0].notes",
+    "study_definition_document": "study.documentedBy",
+    "document_version": "study._pendingDocumentVersions",  # staged, linked into documentedBy[0].versions post-placement
 }
 
 # Entity types that go into list containers
@@ -218,7 +368,7 @@ LIST_ENTITY_TYPES = {
     "study_identifier", "study_title", "indication", "objective",
     "endpoint", "estimand", "study_arm", "study_epoch", "epoch", "study_cell",
     "eligibility_criterion", "criterion_item", "activity", "encounter",
-    "intervention", "study_intervention", "substance", "timing",
+    "intervention", "study_intervention", "timing",
     "schedule_timeline", "narrative_content", "narrative_content_item",
     "abbreviation", "amendment", "study_amendment",
     "geographic_scope", "country", "document_section",
@@ -230,6 +380,8 @@ LIST_ENTITY_TYPES = {
     "biomedical_concept", "biomedical_concept_category",
     # SoA tick data
     "scheduled_instance",
+    # Protocol document versions (staged; linked into documentedBy post-placement)
+    "document_version",
 }
 
 
@@ -331,6 +483,7 @@ def _build_empty_usdm_skeleton() -> Dict[str, Any]:
                     "sections": [],
                 }
             ],
+            "documentedBy": [],
         }
     }
 
@@ -355,7 +508,30 @@ def _place_entity(usdm: Dict[str, Any], entity_type: str,
             return True
         elif entity_type == "study_population":
             pop = usdm["study"]["versions"][0]["studyDesigns"][0]["population"]
-            pop.update({k: v for k, v in entity_data.items() if k != "criteria"})
+            # plannedMinimumAge/plannedMaximumAge/plannedAgeIsApproximate are
+            # staging keys (see extraction/eligibility/schema.py) — build the
+            # real plannedAge Range from them instead of passing them through.
+            planned_age = _build_planned_age_range(
+                entity_data.get("plannedMinimumAge"),
+                entity_data.get("plannedMaximumAge"),
+                entity_data.get("plannedAgeIsApproximate"),
+            )
+            skip_keys = {"criteria", "plannedMinimumAge", "plannedMaximumAge", "plannedAgeIsApproximate"}
+            pop.update({k: v for k, v in entity_data.items() if k not in skip_keys})
+            if planned_age:
+                pop["plannedAge"] = planned_age
+            return True
+        elif entity_type == "study_definition_document":
+            _place_study_definition_document(usdm, entity_data)
+            return True
+        elif entity_type == "substance":
+            # Substance has no top-level container in USDM 4.0 — it's only
+            # reachable via AdministrableProduct.ingredients[].substance.
+            # Stage it here and resolve it in _link_substances_to_products()
+            # once administrable_product entities (same wave) are placed.
+            sub_id = entity_data.get("id")
+            if sub_id:
+                usdm["study"].setdefault("_pendingSubstances", {})[sub_id] = entity_data
             return True
         elif entity_type in LIST_ENTITY_TYPES:
             container = _resolve_list_container(usdm, entity_type)
@@ -379,6 +555,28 @@ def _place_metadata(usdm: Dict[str, Any], data: Dict[str, Any]) -> None:
     # Propagate versionIdentifier to StudyVersion
     if data.get("versionIdentifier") and study.get("versions"):
         study["versions"][0]["versionIdentifier"] = str(data["versionIdentifier"])
+
+
+def _place_study_definition_document(usdm: Dict[str, Any], data: Dict[str, Any]) -> None:
+    """Place a StudyDefinitionDocument entity into study.documentedBy[].
+
+    Builds the required `language` and `type` Code objects and defaults
+    `templateName` to "SPONSOR" when the protocol doesn't state one.
+    """
+    doc = {
+        "id": data.get("id") or str(uuid.uuid4()),
+        "name": data.get("name") or "Protocol",
+        "language": _build_language_code(data.get("language")),
+        "type": _resolve_ct_code(data.get("documentType") or "Protocol"),
+        "templateName": data.get("templateName") or "SPONSOR",
+        "versions": [],
+        "instanceType": "StudyDefinitionDocument",
+    }
+    if data.get("label"):
+        doc["label"] = data["label"]
+    if data.get("description"):
+        doc["description"] = data["description"]
+    usdm["study"].setdefault("documentedBy", []).append(doc)
 
 
 def _resolve_list_container(usdm: Dict[str, Any],
@@ -428,6 +626,9 @@ def _resolve_list_container(usdm: Dict[str, Any],
         # Phase 3 additions
         "biomedical_concept": version.setdefault("biomedicalConcepts", []),
         "biomedical_concept_category": version.setdefault("bcCategories", []),
+        # Staged document versions — linked into documentedBy[0].versions
+        # by _link_document_versions() after all entities are placed.
+        "document_version": study.setdefault("_pendingDocumentVersions", []),
     }
     return mapping.get(entity_type)
 
@@ -1821,6 +2022,164 @@ def _extract_footnotes_from_pdf_text(design: Dict[str, Any]) -> Dict[str, str]:
     return label_to_text
 
 
+def _ensure_study_definition_document(usdm: Dict[str, Any]) -> None:
+    """Ensure study.documentedBy has at least one StudyDefinitionDocument.
+
+    Every protocol has exactly one governing document. If narrative_agent
+    didn't extract one (e.g. title page wasn't recognized), synthesize a
+    default one from the study name so `documentedBy` — and its required
+    `language`/`type`/`templateName` fields — are never left empty.
+    """
+    study = usdm.get("study", {})
+    if study.get("documentedBy"):
+        return
+    _place_study_definition_document(usdm, {
+        "name": study.get("name") or "Protocol",
+        "documentType": "Protocol",
+        "language": "en",
+    })
+
+
+def _link_document_versions(usdm: Dict[str, Any]) -> None:
+    """Attach staged `document_version` entities to documentedBy[0].versions.
+
+    document_version entities come from docstructure_agent, which runs in
+    parallel with narrative_agent (the source of study_definition_document),
+    so they're staged in study._pendingDocumentVersions during placement and
+    linked here, after _ensure_study_definition_document guarantees a parent
+    document exists.
+    """
+    study = usdm.get("study", {})
+    pending = study.pop("_pendingDocumentVersions", [])
+    if not pending:
+        return
+
+    documents = study.get("documentedBy") or []
+    if not documents:
+        return
+    versions = documents[0].setdefault("versions", [])
+
+    for raw in pending:
+        version = {
+            "id": raw.get("id") or str(uuid.uuid4()),
+            "version": raw.get("version") or raw.get("versionNumber") or "1.0",
+            "status": _resolve_ct_code(raw.get("status") or "Final"),
+            "instanceType": "StudyDefinitionDocumentVersion",
+        }
+        versions.append(version)
+
+
+def _link_masking_to_roles(usdm: Dict[str, Any]) -> None:
+    """Attach staged maskedRoles names to matching existing StudyRole entries.
+
+    maskedRoles (staged in study._pendingMaskedRoles by the study_design
+    branch above) lists masking participants such as "Subject",
+    "Investigator", "Outcome Assessor" — a different taxonomy from the
+    CDISC C215480 organizational StudyRole codelist (Sponsor, CRO,
+    Investigator, Statistician, ...). Per user decision, only names that
+    match an existing StudyRole by name/label get StudyRole.masking set;
+    unmatched names (e.g. "Subject") are skipped and logged rather than
+    fabricating a new StudyRole or CDISC code.
+    """
+    study = usdm.get("study", {})
+    pending = study.pop("_pendingMaskedRoles", [])
+    if not pending:
+        return
+
+    try:
+        roles = study["versions"][0]["roles"]
+    except (KeyError, IndexError):
+        return
+
+    for name in pending:
+        matched = False
+        for role in roles:
+            role_name = role.get("name") or role.get("label") or ""
+            if role_name.lower() == str(name).lower():
+                role["masking"] = {
+                    "id": str(uuid.uuid4()).replace("-", "_"),
+                    "text": "Masked",
+                    "isMasked": True,
+                    "instanceType": "Masking",
+                }
+                matched = True
+        if not matched:
+            logger.warning(
+                "maskedRoles entry %r has no matching StudyRole; skipping "
+                "masking rather than fabricating a new StudyRole", name,
+            )
+
+
+def _link_substances_to_products(usdm: Dict[str, Any]) -> None:
+    """Build Ingredient/Substance/Strength.numerator from staged data.
+
+    administrable_product and substance entities may be emitted in the same
+    interventions-extraction wave, so placement order between them isn't
+    guaranteed — both are staged during placement (._pendingProductStrengths
+    / ._pendingSubstances) and resolved here. A link only produces an
+    Ingredient when both a real strength value AND a matching Substance are
+    present; otherwise it's skipped and logged rather than fabricated.
+    """
+    study = usdm.get("study", {})
+    pending_links = study.pop("_pendingProductStrengths", [])
+    pending_substances = study.pop("_pendingSubstances", {})
+    if not pending_links:
+        return
+
+    try:
+        products = study["versions"][0]["administrableProducts"]
+    except (KeyError, IndexError):
+        return
+    products_by_id = {p.get("id"): p for p in products}
+
+    for link in pending_links:
+        product = products_by_id.get(link.get("productId"))
+        substance_data = pending_substances.get(link.get("substanceId"))
+        value = link.get("value")
+        if product is None or substance_data is None or value is None:
+            logger.warning(
+                "Skipping Strength.numerator for product %r: missing product, "
+                "substance, or strength value rather than fabricating one",
+                link.get("productId"),
+            )
+            continue
+
+        substance_name = substance_data.get("name") or "Substance"
+        quantity = {
+            "id": str(uuid.uuid4()).replace("-", "_"),
+            "value": float(value),
+            "instanceType": "Quantity",
+        }
+        unit = link.get("unit")
+        if unit:
+            quantity["unit"] = _build_unit_alias_code(unit)
+
+        strength = {
+            "id": str(uuid.uuid4()).replace("-", "_"),
+            "name": f"{substance_name} Strength",
+            "numerator": quantity,
+            "instanceType": "Strength",
+        }
+        substance = {
+            "id": substance_data.get("id") or str(uuid.uuid4()).replace("-", "_"),
+            "name": substance_name,
+            "strengths": [strength],
+            "instanceType": "Substance",
+        }
+        if substance_data.get("description"):
+            substance["description"] = substance_data["description"]
+        if substance_data.get("codes"):
+            substance["codes"] = substance_data["codes"]
+
+        ingredient = {
+            "id": str(uuid.uuid4()).replace("-", "_"),
+            "role": _resolve_ct_code("Active Ingredient"),
+            "substance": substance,
+            "instanceType": "Ingredient",
+        }
+        product.setdefault("ingredients", []).append(ingredient)
+
+
 def _post_normalize_cleanup(usdm: Dict[str, Any]) -> None:
     """
     Final cleanup pass after normalize_usdm_data().
@@ -1838,6 +2197,13 @@ def _post_normalize_cleanup(usdm: Dict[str, Any]) -> None:
     # Strip documentVersions from Study (extra property — DDF00125)
     # documentedBy is the correct USDM 4.0 field; documentVersions is legacy.
     study.pop("documentVersions", None)
+
+    # Remove internal staging list (should already be consumed by
+    # _link_document_versions during _generate; defensive cleanup only)
+    study.pop("_pendingDocumentVersions", None)
+    study.pop("_pendingMaskedRoles", None)
+    study.pop("_pendingProductStrengths", None)
+    study.pop("_pendingSubstances", None)
 
     # Strip 'type' from all StudyIdentifiers (not in USDM 4.0 — DDF00125)
     for sid in version.get("studyIdentifiers", []):
@@ -2595,6 +2961,19 @@ class USDMGeneratorAgent(BaseAgent):
                     if sd_data.get("blindingSchema") and not design.get("blindingSchema"):
                         design["blindingSchema"] = sd_data["blindingSchema"]
 
+                    # maskedRoles (e.g. "Subject", "Investigator", "Outcome
+                    # Assessor") don't live on StudyDesign in USDM 4.0 — they
+                    # map to StudyRole.masking on matching StudyRole entries.
+                    # study_role entities may not be placed yet (different
+                    # wave), so stage the names and resolve them once all
+                    # entities are placed, in _link_masking_to_roles().
+                    masked_roles = sd_data.get("maskedRoles")
+                    if masked_roles:
+                        pending = usdm["study"].setdefault("_pendingMaskedRoles", [])
+                        for name in masked_roles:
+                            if name and name not in pending:
+                                pending.append(name)
+
                     # trialIntentTypes → intentTypes (schema property name)
                     intent = sd_data.get("trialIntentTypes")
                     if intent and not design.get("intentTypes"):
@@ -2771,6 +3150,26 @@ class USDMGeneratorAgent(BaseAgent):
                 if not entity_data.get("instanceType"):
                     entity_data["instanceType"] = "StudyRole"
 
+            # AdministrableProduct: strengthValue/strengthUnit/substanceIds
+            # are staging keys (see extraction/interventions/schema.py) —
+            # pop them here and record a pending link, resolved once the
+            # matching Substance entity is placed, in
+            # _link_substances_to_products(). Only stage when there's a
+            # real strength value and a substance to attach it to; never
+            # fabricate either.
+            if etype == "administrable_product":
+                strength_value = entity_data.pop("strengthValue", None)
+                strength_unit = entity_data.pop("strengthUnit", None)
+                substance_ids = entity_data.pop("substanceIds", None) or []
+                if strength_value is not None and substance_ids:
+                    pending = usdm["study"].setdefault("_pendingProductStrengths", [])
+                    pending.append({
+                        "productId": entity_data.get("id"),
+                        "substanceId": substance_ids[0],
+                        "value": strength_value,
+                        "unit": strength_unit,
+                    })
+
             placed = _place_entity(usdm, etype, entity_data)
             if placed:
                 result.entity_count += 1
@@ -2807,6 +3206,22 @@ class USDMGeneratorAgent(BaseAgent):
 
         # Ensure primary objective exists and links to primary endpoints
         _ensure_primary_objective(usdm)
+
+        # Ensure study.documentedBy has a StudyDefinitionDocument, then
+        # attach any staged document_version entities to it
+        _ensure_study_definition_document(usdm)
+        _link_document_versions(usdm)
+
+        # Attach staged maskedRoles (from study_design) to matching
+        # StudyRole entries — must run after _ensure_sponsor_identifier
+        # and _normalize_codelists so role names/codes are finalized.
+        _link_masking_to_roles(usdm)
+
+        # Build Ingredient/Substance/Strength.numerator from staged
+        # administrable_product + substance entities — run after all
+        # entities are placed since the two types may arrive in the same
+        # extraction wave with no guaranteed order.
+        _link_substances_to_products(usdm)
 
         _fix_required_fields(usdm)
         result.validation_issues = _validate_usdm_structure(usdm)

@@ -102,7 +102,7 @@ class StudyDefinitionDocumentVersion:
     def to_dict(self) -> Dict[str, Any]:
         result = {
             "id": self.id,
-            "versionNumber": self.version_number,
+            "version": self.version_number,
             "status": self.status,
             "instanceType": self.instance_type,
         }

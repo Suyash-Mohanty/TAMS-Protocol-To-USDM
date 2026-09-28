@@ -116,10 +116,11 @@ class StudyDesignPopulation:
     planned_enrollment_number: Optional[int] = None
     planned_maximum_age: Optional[str] = None  # ISO 8601 duration or description
     planned_minimum_age: Optional[str] = None
+    planned_age_is_approximate: Optional[bool] = None  # whether the age range is stated as approximate
     planned_sex: Optional[List[str]] = None  # ["Male", "Female", "Both"]
     criterion_ids: List[str] = field(default_factory=list)  # References to EligibilityCriterion
     instance_type: str = "StudyDesignPopulation"
-    
+
     def to_dict(self) -> Dict[str, Any]:
         result = {
             "id": self.id,
@@ -137,10 +138,17 @@ class StudyDesignPopulation:
                 "maxValue": self.planned_enrollment_number,
                 "instanceType": "Range",
             }
+        # plannedMinimumAge/plannedMaximumAge/plannedAgeIsApproximate aren't
+        # real StudyDesignPopulation fields in USDM 4.0 (the real field is
+        # plannedAge, a single Range with minValue/maxValue as Quantity) —
+        # these are staging keys the generator reads to build that Range,
+        # then strips.
         if self.planned_maximum_age:
             result["plannedMaximumAge"] = self.planned_maximum_age
         if self.planned_minimum_age:
             result["plannedMinimumAge"] = self.planned_minimum_age
+        if self.planned_age_is_approximate is not None:
+            result["plannedAgeIsApproximate"] = self.planned_age_is_approximate
         if self.planned_sex:
             result["plannedSex"] = [
                 {"code": s, "codeSystem": "USDM", "decode": s} for s in self.planned_sex

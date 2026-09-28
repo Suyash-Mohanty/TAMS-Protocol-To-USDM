@@ -388,16 +388,14 @@ def _build_narrative_data(
     # Process sections - accept multiple key names
     sections = []
     items = []
-    section_ids = []
-    
+
     for i, sec in enumerate(sections_raw):
         if not isinstance(sec, dict):
             continue
-        
+
         # Use provided ID or generate one
         section_id = sec.get('id', f"nc_{i+1}")
-        section_ids.append(section_id)
-        
+
         # Process subsections
         child_ids = []
         for j, sub in enumerate(sec.get('subsections', [])):
@@ -433,7 +431,8 @@ def _build_narrative_data(
             name=document_raw.get('title', 'Clinical Protocol'),
             version=document_raw.get('version'),
             version_date=document_raw.get('versionDate'),
-            content_ids=section_ids,
+            language=document_raw.get('language') or 'en',
+            template_name=document_raw.get('templateName'),
         )
     
     return NarrativeData(

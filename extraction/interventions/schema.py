@@ -135,7 +135,8 @@ class AdministrableProduct:
     name: str
     description: Optional[str] = None
     dose_form: Optional[DoseForm] = None
-    strength: Optional[str] = None  # e.g., "15 mg", "100 mg/mL"
+    strength_value: Optional[float] = None  # numerator value, e.g. 15.0 for "15 mg"
+    strength_unit: Optional[str] = None  # numerator unit, e.g. "mg"
     substance_ids: List[str] = field(default_factory=list)
     manufacturer: Optional[str] = None
     instance_type: str = "AdministrableProduct"
@@ -194,8 +195,15 @@ class AdministrableProduct:
         }
         if self.description:
             result["description"] = self.description
-        if self.strength:
-            result["strength"] = self.strength
+        # strengthValue/strengthUnit and substanceIds aren't real
+        # AdministrableProduct fields in USDM 4.0 (strength lives on
+        # Substance.strengths[].numerator, reached via ingredients[]) —
+        # the generator reads these staging keys to build ingredients[]
+        # and strips them afterward.
+        if self.strength_value is not None:
+            result["strengthValue"] = self.strength_value
+            if self.strength_unit:
+                result["strengthUnit"] = self.strength_unit
         if self.substance_ids:
             result["substanceIds"] = self.substance_ids
         if self.manufacturer:

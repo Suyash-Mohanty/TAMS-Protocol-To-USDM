@@ -549,8 +549,9 @@ def _parse_eligibility_response(raw: Dict[str, Any]) -> Optional[EligibilityData
                 name="Study Population",
                 includes_healthy_subjects=pop_data.get('includesHealthySubjects', False),
                 planned_enrollment_number=pop_data.get('plannedEnrollment'),
-                planned_minimum_age=pop_data.get('minimumAge'),
-                planned_maximum_age=pop_data.get('maximumAge'),
+                planned_minimum_age=pop_data.get('plannedMinimumAge') or pop_data.get('minimumAge'),
+                planned_maximum_age=pop_data.get('plannedMaximumAge') or pop_data.get('maximumAge'),
+                planned_age_is_approximate=pop_data.get('plannedAgeIsApproximate'),
                 planned_sex=sex_list if sex_list else None,
                 criterion_ids=criterion_ids,
             )

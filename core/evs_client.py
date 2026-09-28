@@ -5,8 +5,11 @@ Retrieves controlled terminology codes from the NCI Thesaurus via EVS REST APIs.
 Maintains a local cache for offline operation and performance.
 
 API References:
-- EVS CT API (CDISC CT): https://evs.nci.nih.gov/swagger-ui.html#/ct
 - EVS REST API (NCIt): https://api-evsrest.nci.nih.gov/
+
+Note: the legacy EVS CT API (https://evs.nci.nih.gov/ctapi) no longer serves
+JSON (it now redirects to an HTML FTP-downloads page), so CDISC CT terms are
+resolved via NCIt concept search on the REST API instead.
 """
 from __future__ import annotations
 
@@ -30,7 +33,6 @@ CACHE_FILE = CACHE_DIR / "nci_codes.json"
 CACHE_TTL_SECONDS = 60 * 60 * 24 * 30  # 30 days
 
 # API endpoints
-EVS_CT_BASE = os.getenv("EVS_API_BASE", "https://evs.nci.nih.gov/ctapi/v1")
 EVS_REST_BASE = "https://api-evsrest.nci.nih.gov/api/v1"
 
 
@@ -119,32 +121,39 @@ class EVSClient:
             if cached and self._is_fresh(cached):
                 return cached.get("data")
         
-        # Query EVS CT API
+        # Query EVS via the NCIt concept search REST API. The legacy CT API
+        # (EVS_CT_BASE / "/ct/term") no longer returns JSON — it now serves
+        # an HTML "EVS FTP Downloads" page — so CDISC CT terms are resolved
+        # against the NCI Thesaurus directly instead.
         for cand in ordered_candidates:
-            data = self._http_get(f"{EVS_CT_BASE}/ct/term", {"term": cand})
-            if not data:
+            data = self._http_get(
+                f"{EVS_REST_BASE}/concept/ncit/search",
+                {"term": cand, "type": "contains", "pageSize": "10"},
+            )
+            concepts = (data or {}).get("concepts") or []
+            if not concepts:
                 continue
-            
+
             term_lower = cand.lower()
-            for entry in data:
-                if (
-                    entry.get("code", "").lower() == term_lower
-                    or entry.get("preferredName", "").lower() == term_lower
-                ):
-                    # Cache and return exact match
-                    cache_key = f"ct:{term_lower}"
-                    self.cache[cache_key] = {"_cached_at": time.time(), "data": entry}
-                    self._save_cache()
-                    return entry
-            
-            # Return first result if no exact match
-            if data:
-                entry = data[0]
-                cache_key = f"ct:{term_lower}"
-                self.cache[cache_key] = {"_cached_at": time.time(), "data": entry}
-                self._save_cache()
-                return entry
-        
+            match = next(
+                (
+                    c for c in concepts
+                    if (c.get("code") or "").lower() == term_lower
+                    or (c.get("name") or "").lower() == term_lower
+                    or (c.get("preferredName") or "").lower() == term_lower
+                ),
+                concepts[0],
+            )
+            entry = {
+                "code": match.get("code"),
+                "preferredName": match.get("name") or match.get("preferredName"),
+                "codeSystemVersion": match.get("version"),
+            }
+            cache_key = f"ct:{term_lower}"
+            self.cache[cache_key] = {"_cached_at": time.time(), "data": entry}
+            self._save_cache()
+            return entry
+
         return None
     
     def fetch_ncit_code(self, code: str) -> Optional[Dict[str, Any]]:

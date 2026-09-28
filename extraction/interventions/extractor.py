@@ -254,13 +254,15 @@ def _parse_interventions_response(raw: Dict[str, Any]) -> Optional[Interventions
                 continue
             
             dose_form = _map_dose_form(prod_data.get('doseForm', ''))
-            
+            strength_value, strength_unit = _extract_strength(prod_data)
+
             products.append(AdministrableProduct(
                 id=prod_data.get('id', f"prod_{i+1}"),
                 name=prod_data.get('name', f'Product {i+1}'),
                 description=prod_data.get('description'),
                 dose_form=dose_form,
-                strength=prod_data.get('strength'),
+                strength_value=strength_value,
+                strength_unit=strength_unit,
                 manufacturer=prod_data.get('manufacturer'),
             ))
         
@@ -348,6 +350,32 @@ def _map_intervention_role(role_str: str) -> InterventionRole:
     elif 'investigational' in role_lower or 'study drug' in role_lower:
         return InterventionRole.INVESTIGATIONAL
     return InterventionRole.UNKNOWN  # Return UNKNOWN for unrecognized
+
+
+def _extract_strength(prod_data: Dict[str, Any]) -> tuple:
+    """Get (value, unit) for a product's strength numerator.
+
+    Prefers the structured strengthValue/strengthUnit fields; falls back to
+    parsing the legacy composite "strength" string (e.g. "15 mg") for
+    responses that don't follow the current prompt format.
+    """
+    value = prod_data.get('strengthValue')
+    if value is not None:
+        try:
+            return float(value), (prod_data.get('strengthUnit') or None)
+        except (TypeError, ValueError):
+            pass
+
+    raw = prod_data.get('strength')
+    if isinstance(raw, str):
+        match = re.match(r'^\s*([\d.]+)\s*([^/]*)', raw)
+        if match:
+            try:
+                return float(match.group(1)), (match.group(2).strip() or None)
+            except ValueError:
+                pass
+
+    return None, None
 
 
 def _map_dose_form(form_str: str) -> Optional[DoseForm]:

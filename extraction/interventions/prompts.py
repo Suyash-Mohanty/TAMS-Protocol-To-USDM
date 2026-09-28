@@ -23,7 +23,7 @@ Analyze the provided protocol section and extract ALL study interventions, produ
 For each product extract:
 - Product name (generic and/or trade name)
 - Dose form (tablet, capsule, injection, etc.)
-- Strength (e.g., "15 mg", "100 mg/mL")
+- Strength as a separate numeric value and unit — e.g. for "15 mg" use strengthValue: 15, strengthUnit: "mg". Do not combine them into one string.
 - Manufacturer (if mentioned)
 
 ### 3. Active Substances
@@ -68,7 +68,8 @@ Return a JSON object with this exact structure:
     {
       "name": "ALXN1840 tablets",
       "doseForm": "Tablet",
-      "strength": "15 mg",
+      "strengthValue": 15,
+      "strengthUnit": "mg",
       "manufacturer": "Alexion Pharmaceuticals"
     }
   ],

@@ -91,6 +91,7 @@ Every entity MUST have `id` and `instanceType` fields.
     },
     "plannedMinimumAge": "P18Y",
     "plannedMaximumAge": "P75Y",
+    "plannedAgeIsApproximate": false,
     "plannedSex": [
       {"code": "Male", "codeSystem": "http://www.cdisc.org/USDM/sex", "decode": "Male"},
       {"code": "Female", "codeSystem": "http://www.cdisc.org/USDM/sex", "decode": "Female"}
@@ -111,6 +112,7 @@ Every entity MUST have `id` and `instanceType` fields.
 
 ## Age Format
 - Use ISO 8601 duration: P18Y = 18 years, P6M = 6 months
+- Set plannedAgeIsApproximate to true only if the protocol states the age bound with approximation wording (e.g. "approximately 18 years", "around 65 years"). Default to false when the age is stated as an exact cutoff (e.g. "18 years or older").
 
 ## Rules
 
