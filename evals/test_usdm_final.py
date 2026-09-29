@@ -141,6 +141,7 @@ class TestStrength:
             strengths = substance.get("strengths", [])
             assert len(strengths) >= 1, "Substance.strengths must have at least one entry"
             for strength in strengths:
+                assert strength.get("name"), "Strength.name is required"
                 numerator = strength.get("numerator") or {}
                 assert isinstance(numerator.get("value"), (int, float)), \
                     "Strength.numerator.value is required and must be numeric"
@@ -170,6 +171,53 @@ class TestPlannedAge:
             assert isinstance(quantity.get("value"), (int, float)), \
                 f"Range.{bound}.value is required and must be numeric"
             assert quantity.get("instanceType") == "Quantity"
+
+
+class TestGeographicScope:
+    """Verify StudyAmendment/GovernanceDate.geographicScopes is well-formed when present.
+
+    geographic_scope is only wired up when the Advanced Agent actually
+    extracted a geographic scope statement AND (for Country scope) matching
+    Country entities resolved to a known ISO 3166-1 alpha-3 code — protocols
+    without either legitimately fall back to the synthesized/defaulted
+    placeholder, so this test skips rather than fails when none are found.
+    """
+
+    def test_geographic_scopes_well_formed(self, pipeline_version):
+        amendments = pipeline_version.get("amendments", [])
+        scopes = [gs for a in amendments for gs in (a.get("geographicScopes") or [])]
+        if not scopes:
+            pytest.skip("No StudyAmendment.geographicScopes set for this protocol")
+        for scope in scopes:
+            assert scope.get("instanceType") == "GeographicScope"
+            gs_type = scope.get("type") or {}
+            assert gs_type.get("code"), "GeographicScope.type is required and must be a Code"
+            if gs_type.get("code") == "C25464":  # Country
+                code = scope.get("code") or {}
+                standard_code = code.get("standardCode") or {}
+                assert len(standard_code.get("code") or "") == 3, \
+                    "Country GeographicScope.code.standardCode.code must be an ISO 3166-1 alpha-3 code"
+
+
+class TestBiospecimenRetention:
+    """Verify StudyDesign.biospecimenRetentions is well-formed when present.
+
+    biospecimen_retention is only extracted when the protocol actually
+    states a retention statement (and the LLM includes a boolean
+    isRetained) — protocols silent on specimen retention legitimately have
+    an empty biospecimenRetentions list, so this test skips rather than
+    fails when none are found.
+    """
+
+    def test_biospecimen_retentions_well_formed(self, pipeline_design):
+        retentions = pipeline_design.get("biospecimenRetentions", [])
+        if not retentions:
+            pytest.skip("No StudyDesign.biospecimenRetentions set for this protocol")
+        for retention in retentions:
+            assert retention.get("name"), "BiospecimenRetention.name is required"
+            assert isinstance(retention.get("isRetained"), bool), \
+                "BiospecimenRetention.isRetained is required and must be boolean"
+            assert retention.get("instanceType") == "BiospecimenRetention"
 
 
 class TestIDIntegrity:

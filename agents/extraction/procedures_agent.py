@@ -30,6 +30,7 @@ class ProceduresAgent(BaseExtractionAgent):
             input_types=["pdf"],
             output_types=[
                 "procedure", "medical_device", "ingredient", "strength",
+                "biospecimen_retention",
             ],
             dependencies=["metadata_extraction", "soa_vision_extraction"],
             supports_parallel=True,
@@ -88,6 +89,15 @@ class ProceduresAgent(BaseExtractionAgent):
                 "source_pages": result.pages_used,
             })
 
+        for b in data.biospecimen_retentions:
+            entities.append({
+                "id": b.id,
+                "entity_type": "biospecimen_retention",
+                "data": b.to_dict(),
+                "confidence": result.confidence,
+                "source_pages": result.pages_used,
+            })
+
         return {
             "entities": entities,
             "confidence": result.confidence,
@@ -96,5 +106,6 @@ class ProceduresAgent(BaseExtractionAgent):
                 "device_count": len(data.devices),
                 "ingredient_count": len(data.ingredients),
                 "strength_count": len(data.strengths),
+                "biospecimen_retention_count": len(data.biospecimen_retentions),
             },
         }

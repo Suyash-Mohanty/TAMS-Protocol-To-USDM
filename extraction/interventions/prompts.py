@@ -24,6 +24,7 @@ For each product extract:
 - Product name (generic and/or trade name)
 - Dose form (tablet, capsule, injection, etc.)
 - Strength as a separate numeric value and unit — e.g. for "15 mg" use strengthValue: 15, strengthUnit: "mg". Do not combine them into one string.
+- Strength name/label — ONLY if the protocol itself gives this specific strength a distinct designation (e.g., "Low Dose Tablet", "High Dose Tablet", "Formulation A") use strengthName for that exact text. Do not invent one if the protocol doesn't name it; omit strengthName entirely in that case.
 - Manufacturer (if mentioned)
 
 ### 3. Active Substances
@@ -109,7 +110,8 @@ Return a JSON object with this exact structure:
    - Routes: "Oral", "Intravenous", "Subcutaneous", "Intramuscular", "Topical", "Inhalation"
    - Forms: "Tablet", "Capsule", "Solution", "Injection", "Cream", "Patch"
 5. **Be precise with doses** - Include units (mg, mg/kg, mg/m2, etc.)
-6. **Return ONLY valid JSON** - no markdown, no explanations
+6. **Only set strengthName when the protocol names the strength distinctly** - most protocols don't; leave it unset rather than fabricating a label
+7. **Return ONLY valid JSON** - no markdown, no explanations
 
 Now analyze the protocol content and extract the interventions:
 """

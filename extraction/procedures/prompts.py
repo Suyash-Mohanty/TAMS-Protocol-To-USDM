@@ -38,6 +38,15 @@ PROCEDURES_USER_PROMPT = """Extract all Procedures, Medical Devices, and Drug In
 - Excipients if mentioned
 - Drug strengths and concentrations
 
+**Biospecimen Retention to extract:**
+- Statements about whether collected biospecimens (blood, tissue, urine, etc.) are
+  retained after their initial use, or destroyed
+- Retention duration (e.g. "up to 15 years")
+- Whether retained specimens may be used for future research
+- Genetic/DNA testing consent language, and whether retained specimens include DNA
+- If the protocol is silent on specimen retention, do not include this key at all —
+  do not invent a statement
+
 Return JSON in this exact format:
 ```json
 {{
@@ -90,6 +99,15 @@ Return JSON in this exact format:
       "numeratorUnit": "mg",
       "denominatorValue": 1,
       "denominatorUnit": "mL"
+    }}
+  ],
+  "biospecimenRetentions": [
+    {{
+      "id": "bior_1",
+      "name": "Retained Biospecimens for Future Research",
+      "isRetained": true,
+      "description": "Residual blood and tissue samples will be retained for up to 15 years for future exploratory research.",
+      "includesDNA": true
     }}
   ]
 }}

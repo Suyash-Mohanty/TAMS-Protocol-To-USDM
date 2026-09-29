@@ -73,6 +73,7 @@ from extraction.objectives.schema import (
     Objective,
     ObjectiveLevel,
 )
+from extraction.procedures.schema import BiospecimenRetention
 from extraction.scheduling.schema import ScheduleTimelineExit
 from extraction.studydesign.schema import (
     ArmType,
@@ -201,7 +202,8 @@ def build_store() -> ContextStore:
     _entity(store, "substance", Substance(id="sub_1", name="Sample Active Ingredient").to_dict())
     _entity(store, "administrable_product", AdministrableProduct(
         id="prod_1", name="Study Drug A Tablet", dose_form=DoseForm.TABLET,
-        strength_value=100.0, strength_unit="mg", substance_ids=["sub_1"],
+        strength_value=100.0, strength_unit="mg", strength_name="High Dose",
+        substance_ids=["sub_1"],
     ).to_dict())
     _entity(store, "medical_device", MedicalDevice(id="dev_1", name="Sample Injector Device").to_dict())
     _entity(store, "study_intervention", StudyIntervention(
@@ -265,8 +267,16 @@ def build_store() -> ContextStore:
 
     # -- Amendments / geographic scope ----------------------------------------------
     _entity(store, "study_amendment", StudyAmendment(id="amend_1", number="1").to_dict())
+    _entity(store, "country", {"id": "country_1", "name": "United States", "code": "US", "instanceType": "Country"})
     _entity(store, "geographic_scope", GeographicScope(
-        id="geo_1", name="Global Scope", scope_type="Global",
+        id="geo_1", name="Country Scope", scope_type="Country", country_ids=["country_1"],
+    ).to_dict())
+
+    # -- Biospecimen retention ---------------------------------------------------
+    _entity(store, "biospecimen_retention", BiospecimenRetention(
+        id="bior_1", name="Retained Biospecimens for Future Research",
+        is_retained=True, includes_dna=False,
+        description="Residual blood samples will be retained for future exploratory research.",
     ).to_dict())
 
     return store

@@ -119,6 +119,37 @@ class Procedure:
 
 
 @dataclass
+class BiospecimenRetention:
+    """
+    USDM BiospecimenRetention entity.
+    Represents whether collected biospecimens are retained beyond their
+    initial use (e.g. for future research), and under what terms.
+    """
+    id: str
+    name: str
+    is_retained: bool
+    label: Optional[str] = None
+    description: Optional[str] = None
+    includes_dna: Optional[bool] = None
+    instance_type: str = "BiospecimenRetention"
+
+    def to_dict(self) -> Dict[str, Any]:
+        result = {
+            "id": self.id,
+            "name": self.name,
+            "isRetained": self.is_retained,
+            "instanceType": self.instance_type,
+        }
+        if self.label:
+            result["label"] = self.label
+        if self.description:
+            result["description"] = self.description
+        if self.includes_dna is not None:
+            result["includesDNA"] = self.includes_dna
+        return result
+
+
+@dataclass
 class MedicalDeviceIdentifier:
     """
     USDM MedicalDeviceIdentifier entity.
@@ -251,7 +282,8 @@ class ProceduresDevicesData:
     device_identifiers: List[MedicalDeviceIdentifier] = field(default_factory=list)
     ingredients: List[Ingredient] = field(default_factory=list)
     strengths: List[Strength] = field(default_factory=list)
-    
+    biospecimen_retentions: List[BiospecimenRetention] = field(default_factory=list)
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "procedures": [p.to_dict() for p in self.procedures],
@@ -259,10 +291,12 @@ class ProceduresDevicesData:
             "medicalDeviceIdentifiers": [i.to_dict() for i in self.device_identifiers],
             "ingredients": [i.to_dict() for i in self.ingredients],
             "strengths": [s.to_dict() for s in self.strengths],
+            "biospecimenRetentions": [b.to_dict() for b in self.biospecimen_retentions],
             "summary": {
                 "procedureCount": len(self.procedures),
                 "deviceCount": len(self.devices),
                 "ingredientCount": len(self.ingredients),
+                "biospecimenRetentionCount": len(self.biospecimen_retentions),
             }
         }
 

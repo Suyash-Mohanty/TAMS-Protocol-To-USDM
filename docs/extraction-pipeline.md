@@ -79,7 +79,7 @@ The orchestrator builds a dependency graph from each agent's `get_capabilities()
 | Agent | Agent ID | Dependencies | Protocol Section | Entity Types Produced |
 |-------|----------|-------------|------------------|-----------------------|
 | Interventions | `interventions_agent` | `metadata_extraction`, `studydesign_extraction` | Investigational product, dosing sections | `study_intervention`, `administrable_product`, `administration`, `substance`, `medical_device` |
-| Procedures | `procedures_agent` | `metadata_extraction`, `soa_vision_extraction` | Procedures, lab tests, assessments sections | `procedure`, `medical_device`, `ingredient`, `strength` |
+| Procedures | `procedures_agent` | `metadata_extraction`, `soa_vision_extraction` | Procedures, lab tests, assessments sections | `procedure`, `medical_device`, `ingredient`, `strength`, `biospecimen_retention` |
 | Execution | `execution_agent` | `soa_vision_extraction`, `soa_text_extraction` | Visit windows, dosing regimens, footnotes | `time_anchor`, `repetition`, `execution_type`, `traversal_constraint`, `footnote_condition`, `state_machine`, `dosing_regimen`, `visit_window` |
 
 ### Wave 3 — Depends on Execution + All Prior
@@ -126,11 +126,12 @@ Every entity extracted by agents is placed into the USDM v4.0 JSON hierarchy by 
 | `activity` | `study.versions[0].studyDesigns[0].activities[]` |
 | `encounter` | `study.versions[0].studyDesigns[0].encounters[]` |
 | `study_intervention` / `intervention` | `study.versions[0].studyDesigns[0].studyInterventions[]` |
-| `substance` | `study.versions[0].studyDesigns[0].studyInterventions[].substances[]` |
-| `administrable_product` | `study.versions[0].administrableProducts[]` |
+| `substance` | Not placed directly — staged in `study._pendingSubstances` (keyed by id) and consumed by `_link_substances_to_products()` to build `administrableProducts[].ingredients[].substance` (with `strengths[].numerator`/`.name`). A link only produces an `Ingredient` when the matching `administrable_product` carried a real strength value and substance reference; otherwise the substance is dropped rather than fabricating a link |
+| `administrable_product` | `study.versions[0].administrableProducts[]` — `strengthValue`/`strengthUnit`/`strengthName`/`substanceIds` are staging keys (not real USDM 4.0 fields) consumed by `_link_substances_to_products()`; `Strength.name` uses `strengthName` verbatim when the protocol names the strength distinctly, else a generated `"<substance> Strength"` fallback |
 | `medical_device` | `study.versions[0].medicalDevices[]` |
 | `study_element` | `study.versions[0].studyDesigns[0].elements[]` |
 | `analysis_population` | `study.versions[0].studyDesigns[0].analysisPopulations[]` |
+| `biospecimen_retention` | `study.versions[0].studyDesigns[0].biospecimenRetentions[]` |
 | `governance_date` | `study.versions[0].dateValues[]` |
 | `biomedical_concept` | `study.versions[0].biomedicalConcepts[]` |
 | `biomedical_concept_category` | `study.versions[0].bcCategories[]` |
@@ -140,8 +141,8 @@ Every entity extracted by agents is placed into the USDM v4.0 JSON hierarchy by 
 | `narrative_content` / `narrative_content_item` | `study.versions[0].narrativeContentItems[]` |
 | `abbreviation` | `study.versions[0].abbreviations[]` |
 | `amendment` / `study_amendment` | `study.versions[0].amendments[]` |
-| `geographic_scope` | `study.versions[0].studyDesigns[0].geographicScopes[]` |
-| `country` | `study.versions[0].studyDesigns[0].geographicScopes[].countries[]` |
+| `geographic_scope` | `study.versions[0].amendments[].geographicScopes[]` and `study.versions[0].dateValues[].geographicScopes[]` — staged in `study._pendingGeographicScopes` during placement, resolved into real `GeographicScope` objects by `_link_geographic_scopes()` (`type` Code Global/Country/Region; for Country, one object per resolvable country with an ISO 3166-1 alpha-3 `AliasCode`). Region scope and unresolvable countries are skipped and logged rather than fabricated |
+| `country` | Not placed directly — staged in `study._pendingCountries` (keyed by id) and consumed by `_link_geographic_scopes()` to resolve each `geographic_scope` entity's `countryIds` into `AliasCode` objects |
 | `document_section` | `study.documentVersions[0].sections[]` |
 | `organization` | `study.versions[0].organizations[]` |
 | `study_role` | `study.versions[0].roles[]` |
@@ -313,7 +314,7 @@ These USDM skeleton arrays/fields are initialized but may remain empty if the pr
 | `study.versions[0].studyDesigns[0].elements[]` | Only if study design agent extracts study elements |
 | `study.versions[0].studyDesigns[0].scheduleTimelines[]` | Only if scheduling agent successfully extracts timing rules |
 | `study.versions[0].amendments[]` | Only if protocol contains amendment history |
-| `study.versions[0].studyDesigns[0].geographicScopes[]` | Only if advanced agent finds geographic scope information |
+| `study.versions[0].amendments[].geographicScopes[]` / `study.versions[0].dateValues[].geographicScopes[]` | Only if advanced agent finds geographic scope information; falls back to synthesized/defaulted placeholders otherwise |
 | `study.documentVersions[0].sections[]` | Only if doc structure agent extracts document sections |
 | `study.versions[0].studyDesigns[0].notes[]` | Only if doc structure agent extracts comment annotations |
 
@@ -351,7 +352,7 @@ python build_usdm_full_coverage_example.py
 ```
 
 Entity types that are declared in `ENTITY_TYPE_PLACEMENT`/`LIST_ENTITY_TYPES` but have no
-working placement path today (`country`, `timing`) and `procedure` (only ever synthesized
+working placement path today (`timing`) and `procedure` (only ever synthesized
 via activity-name matching, never placed from a standalone entity) are intentionally
 omitted from the example, since a hand-added entity of those types would never appear in
 the output anyway.

@@ -21,6 +21,7 @@ from .schema import (
     MedicalDeviceIdentifier,
     Ingredient,
     Strength,
+    BiospecimenRetention,
     ProcedureType,
     DeviceType,
 )
@@ -66,6 +67,11 @@ def find_procedure_pages(
         r'infusion\s+pump',
         r'inhaler',
         r'nebulizer',
+        r'retain',
+        r'future\s+research',
+        r'residual\s+sample',
+        r'genetic\s+testing',
+        r'destroy.*specimen',
     ]
     
     pattern = re.compile('|'.join(procedure_keywords), re.IGNORECASE)
@@ -284,13 +290,32 @@ def extract_procedures_devices(
                 denominator_unit=s.get('denominatorUnit'),
             )
             strengths.append(strength)
-        
+
+        # Parse biospecimen retentions — isRetained has no safe default to
+        # fabricate, so skip (log) entries missing it rather than guessing.
+        biospecimen_retentions = []
+        for b in raw_data.get('biospecimenRetentions', []):
+            if not isinstance(b, dict) or 'isRetained' not in b or b.get('isRetained') is None:
+                logger.warning(
+                    "Skipping biospecimenRetention entry with no isRetained value: %r", b,
+                )
+                continue
+            biospecimen_retentions.append(BiospecimenRetention(
+                id=b.get('id', f"bior_{len(biospecimen_retentions)+1}"),
+                name=b.get('name', 'Biospecimen Retention'),
+                is_retained=bool(b.get('isRetained')),
+                label=b.get('label'),
+                description=b.get('description'),
+                includes_dna=b.get('includesDNA'),
+            ))
+
         data = ProceduresDevicesData(
             procedures=procedures,
             devices=devices,
             device_identifiers=device_identifiers,
             ingredients=ingredients,
             strengths=strengths,
+            biospecimen_retentions=biospecimen_retentions,
         )
         
         # Calculate confidence
@@ -313,7 +338,7 @@ def extract_procedures_devices(
                 json.dump(result.to_dict(), f, indent=2, ensure_ascii=False)
             logger.info(f"Saved procedures/devices to {output_path}")
         
-        logger.info(f"Extracted {len(procedures)} procedures, {len(devices)} devices, {len(ingredients)} ingredients")
+        logger.info(f"Extracted {len(procedures)} procedures, {len(devices)} devices, {len(ingredients)} ingredients, {len(biospecimen_retentions)} biospecimen retentions")
         
         return result
         

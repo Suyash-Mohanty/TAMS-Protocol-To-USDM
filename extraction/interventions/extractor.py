@@ -255,6 +255,7 @@ def _parse_interventions_response(raw: Dict[str, Any]) -> Optional[Interventions
             
             dose_form = _map_dose_form(prod_data.get('doseForm', ''))
             strength_value, strength_unit = _extract_strength(prod_data)
+            strength_name = prod_data.get('strengthName') or prod_data.get('strength_name')
 
             products.append(AdministrableProduct(
                 id=prod_data.get('id', f"prod_{i+1}"),
@@ -263,6 +264,7 @@ def _parse_interventions_response(raw: Dict[str, Any]) -> Optional[Interventions
                 dose_form=dose_form,
                 strength_value=strength_value,
                 strength_unit=strength_unit,
+                strength_name=strength_name,
                 manufacturer=prod_data.get('manufacturer'),
             ))
         

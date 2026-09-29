@@ -138,6 +138,206 @@ _ISO_LANGUAGE_CODES = {
 _ISO_LANGUAGE_NAME_TO_CODE = {name.lower(): code for code, name in _ISO_LANGUAGE_CODES.items()}
 
 
+# ISO 3166-1 alpha-2 -> (alpha-3, English short name) for common clinical-trial
+# countries. Like _ISO_LANGUAGE_CODES, this is a small, fixed vocabulary
+# resolved locally rather than via a live lookup — countries not in this map
+# are skipped (logged) rather than fabricated.
+_ISO_COUNTRY_CODES = {
+    "US": ("USA", "United States of America"),
+    "CA": ("CAN", "Canada"),
+    "MX": ("MEX", "Mexico"),
+    "GB": ("GBR", "United Kingdom of Great Britain and Northern Ireland"),
+    "IE": ("IRL", "Ireland"),
+    "FR": ("FRA", "France"),
+    "DE": ("DEU", "Germany"),
+    "ES": ("ESP", "Spain"),
+    "IT": ("ITA", "Italy"),
+    "PT": ("PRT", "Portugal"),
+    "NL": ("NLD", "Netherlands"),
+    "BE": ("BEL", "Belgium"),
+    "CH": ("CHE", "Switzerland"),
+    "AT": ("AUT", "Austria"),
+    "SE": ("SWE", "Sweden"),
+    "NO": ("NOR", "Norway"),
+    "DK": ("DNK", "Denmark"),
+    "FI": ("FIN", "Finland"),
+    "PL": ("POL", "Poland"),
+    "CZ": ("CZE", "Czechia"),
+    "HU": ("HUN", "Hungary"),
+    "RO": ("ROU", "Romania"),
+    "GR": ("GRC", "Greece"),
+    "RU": ("RUS", "Russian Federation"),
+    "UA": ("UKR", "Ukraine"),
+    "TR": ("TUR", "Turkiye"),
+    "JP": ("JPN", "Japan"),
+    "CN": ("CHN", "China"),
+    "KR": ("KOR", "Korea, Republic of"),
+    "IN": ("IND", "India"),
+    "AU": ("AUS", "Australia"),
+    "NZ": ("NZL", "New Zealand"),
+    "BR": ("BRA", "Brazil"),
+    "AR": ("ARG", "Argentina"),
+    "CL": ("CHL", "Chile"),
+    "CO": ("COL", "Colombia"),
+    "ZA": ("ZAF", "South Africa"),
+    "IL": ("ISR", "Israel"),
+    "SG": ("SGP", "Singapore"),
+    "TW": ("TWN", "Taiwan, Province of China"),
+}
+_ISO_COUNTRY_NAME_TO_ENTRY = {
+    name.lower(): entry for code, entry in _ISO_COUNTRY_CODES.items() for name in (entry[1], code)
+}
+
+
+def _build_country_alias_code(country: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    """Build a USDM AliasCode for GeographicScope.code from a Country entity.
+
+    Resolves via the alpha-2 `code` field first, falling back to matching by
+    `name`. Returns None (caller logs and skips) if the country isn't in the
+    fixed vocabulary above — never fabricates an ISO code.
+    """
+    code2 = str(country.get("code") or "").upper()
+    entry = _ISO_COUNTRY_CODES.get(code2)
+    if entry is None:
+        name = str(country.get("name") or "").lower()
+        entry = _ISO_COUNTRY_NAME_TO_ENTRY.get(name)
+    if entry is None:
+        return None
+    alpha3, full_name = entry
+    return {
+        "id": str(uuid.uuid4()),
+        "standardCode": {
+            "id": str(uuid.uuid4()),
+            "code": alpha3,
+            "codeSystem": "ISO 3166 1 alpha3",
+            "codeSystemVersion": "2020-08",
+            "decode": full_name,
+            "instanceType": "Code",
+        },
+        "standardCodeAliases": [],
+        "instanceType": "AliasCode",
+    }
+
+
+_GEO_SCOPE_TYPE_CODES = {
+    "global": ("C68846", "Global"),
+    "country": ("C25464", "Country"),
+    "region": ("C41129", "Region"),
+}
+
+
+def _resolve_geographic_scope(raw: Dict[str, Any],
+                               countries_by_id: Dict[str, Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Build real USDM GeographicScope object(s) from a staged geographic_scope entity.
+
+    Global -> one object with no code. Country (or any scope naming specific
+    countries, e.g. "Multi-national") -> one object per resolvable country
+    (unresolvable countries are skipped and logged). Region with no countries
+    -> no authoritative region-code source exists today, so it's skipped and
+    logged rather than fabricated, matching the masking-link "don't invent
+    codes" rule.
+    """
+    scope_type = str(raw.get("scopeType") or "Global").strip().lower()
+    country_ids = raw.get("countryIds") or []
+
+    if country_ids:
+        # The LLM's scope-type label varies ("Country", "Multi-national",
+        # "Multinational", etc.) but a non-empty countryIds list is the real
+        # signal — that's the only way to carry the actual extracted country
+        # data into valid USDM, so it takes priority over the label.
+        code, decode = _GEO_SCOPE_TYPE_CODES["country"]
+        type_obj = {
+            "id": str(uuid.uuid4()),
+            "code": code,
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": decode,
+            "instanceType": "Code",
+        }
+        resolved = []
+        for country_id in country_ids:
+            country = countries_by_id.get(country_id)
+            if country is None:
+                logger.warning(
+                    "geographic_scope references countryId %r with no matching "
+                    "country entity; skipping", country_id,
+                )
+                continue
+            alias = _build_country_alias_code(country)
+            if alias is None:
+                logger.warning(
+                    "Country %r has no resolvable ISO 3166-1 alpha-3 code; "
+                    "skipping rather than fabricating one", country.get("name"),
+                )
+                continue
+            resolved.append({
+                "id": str(uuid.uuid4()),
+                "type": type_obj,
+                "code": alias,
+                "instanceType": "GeographicScope",
+            })
+        return resolved
+
+    if scope_type == "region":
+        logger.warning(
+            "geographic_scope type 'Region' has no authoritative region-code "
+            "source; skipping rather than fabricating one",
+        )
+        return []
+
+    code, decode = _GEO_SCOPE_TYPE_CODES.get(scope_type, _GEO_SCOPE_TYPE_CODES["global"])
+    type_obj = {
+        "id": str(uuid.uuid4()),
+        "code": code,
+        "codeSystem": "http://www.cdisc.org",
+        "codeSystemVersion": "2024-09-27",
+        "decode": decode,
+        "instanceType": "Code",
+    }
+    return [{
+        "id": str(uuid.uuid4()),
+        "type": type_obj,
+        "code": None,
+        "instanceType": "GeographicScope",
+    }]
+
+
+def _link_geographic_scopes(usdm: Dict[str, Any]) -> None:
+    """Attach staged geographic_scope/country entities to the real v4.0
+    GeographicScope locations: StudyAmendment.geographicScopes[] (including
+    each amendment's own embedded dateValues[]) and study.versions[0].dateValues[].
+
+    geographic_scope is extracted once per protocol, not per-amendment/date,
+    so the same resolved list is attached uniformly to every amendment and
+    governance date. If nothing resolves (e.g. Country scope with no matching
+    Country entity), the existing synthesized/defaulted placeholder behavior
+    in _fix_required_fields()/_fix_governance_dates() is left untouched.
+    """
+    study = usdm.get("study", {})
+    pending_scopes = study.pop("_pendingGeographicScopes", [])
+    countries_by_id = study.pop("_pendingCountries", {})
+    if not pending_scopes:
+        return
+
+    resolved: List[Dict[str, Any]] = []
+    for raw in pending_scopes:
+        resolved.extend(_resolve_geographic_scope(raw, countries_by_id))
+    if not resolved:
+        return
+
+    try:
+        version = study["versions"][0]
+    except (KeyError, IndexError):
+        return
+
+    for amend in version.get("amendments", []):
+        amend["geographicScopes"] = resolved
+        for dv in amend.get("dateValues", []):
+            dv["geographicScopes"] = resolved
+    for gd in version.get("dateValues", []):
+        gd["geographicScopes"] = resolved
+
+
 def _build_language_code(lang: Optional[str]) -> Dict[str, Any]:
     """Build a USDM Code object for StudyDefinitionDocument.language.
 
@@ -352,8 +552,8 @@ ENTITY_TYPE_PLACEMENT = {
     "abbreviation": "study.versions[0].abbreviations",
     "amendment": "study.versions[0].amendments",
     "study_amendment": "study.versions[0].amendments",  # alias
-    "geographic_scope": "study.versions[0].studyDesigns[0].geographicScopes",
-    "country": "study.versions[0].studyDesigns[0].geographicScopes[].countries",
+    "geographic_scope": "study._pendingGeographicScopes",  # staged, linked into amendments[]/dateValues[] post-placement
+    "country": "study._pendingCountries",  # staged dict keyed by id, resolved alongside geographic_scope
     "document_section": "study.documentVersions[0].sections",
     "organization": "study.versions[0].organizations",
     "study_role": "study.versions[0].roles",
@@ -361,6 +561,7 @@ ENTITY_TYPE_PLACEMENT = {
     "comment_annotation": "study.versions[0].studyDesigns[0].notes",
     "study_definition_document": "study.documentedBy",
     "document_version": "study._pendingDocumentVersions",  # staged, linked into documentedBy[0].versions post-placement
+    "biospecimen_retention": "study.versions[0].studyDesigns[0].biospecimenRetentions",
 }
 
 # Entity types that go into list containers
@@ -371,7 +572,7 @@ LIST_ENTITY_TYPES = {
     "intervention", "study_intervention", "timing",
     "schedule_timeline", "narrative_content", "narrative_content_item",
     "abbreviation", "amendment", "study_amendment",
-    "geographic_scope", "country", "document_section",
+    "geographic_scope", "document_section",
     "organization", "study_role", "schedule_exit", "comment_annotation",
     # Phase 1 additions — wired entities
     "administrable_product", "medical_device", "study_element",
@@ -382,6 +583,7 @@ LIST_ENTITY_TYPES = {
     "scheduled_instance",
     # Protocol document versions (staged; linked into documentedBy post-placement)
     "document_version",
+    "biospecimen_retention",
 }
 
 
@@ -473,6 +675,7 @@ def _build_empty_usdm_skeleton() -> Dict[str, Any]:
                                 "instanceType": "StudyDesignPopulation",
                             },
                             "geographicScopes": [],
+                            "biospecimenRetentions": [],
                         }
                     ],
                 }
@@ -532,6 +735,15 @@ def _place_entity(usdm: Dict[str, Any], entity_type: str,
             sub_id = entity_data.get("id")
             if sub_id:
                 usdm["study"].setdefault("_pendingSubstances", {})[sub_id] = entity_data
+            return True
+        elif entity_type == "country":
+            # Country has no top-level container in USDM 4.0 — it's only
+            # reachable via GeographicScope.code (per-country AliasCode).
+            # Stage it here and resolve it in _link_geographic_scopes()
+            # once geographic_scope entities (same wave) are placed.
+            country_id = entity_data.get("id")
+            if country_id:
+                usdm["study"].setdefault("_pendingCountries", {})[country_id] = entity_data
             return True
         elif entity_type in LIST_ENTITY_TYPES:
             container = _resolve_list_container(usdm, entity_type)
@@ -610,7 +822,9 @@ def _resolve_list_container(usdm: Dict[str, Any],
         "abbreviation": version["abbreviations"],
         "amendment": version["amendments"],
         "study_amendment": version["amendments"],
-        "geographic_scope": design["geographicScopes"],
+        # Staged geographic scope — linked into amendments[]/dateValues[]
+        # by _link_geographic_scopes() after all entities are placed.
+        "geographic_scope": study.setdefault("_pendingGeographicScopes", []),
         "document_section": study["documentVersions"][0]["sections"],
         "organization": version["organizations"],
         "study_role": version["roles"],
@@ -629,6 +843,7 @@ def _resolve_list_container(usdm: Dict[str, Any],
         # Staged document versions — linked into documentedBy[0].versions
         # by _link_document_versions() after all entities are placed.
         "document_version": study.setdefault("_pendingDocumentVersions", []),
+        "biospecimen_retention": design.setdefault("biospecimenRetentions", []),
     }
     return mapping.get(entity_type)
 
@@ -2119,6 +2334,11 @@ def _link_substances_to_products(usdm: Dict[str, Any]) -> None:
     / ._pendingSubstances) and resolved here. A link only produces an
     Ingredient when both a real strength value AND a matching Substance are
     present; otherwise it's skipped and logged rather than fabricated.
+
+    Strength.name is required by USDM 4.0 but the protocol rarely names a
+    strength distinctly — when the extractor did capture a real strengthName
+    it's used verbatim, otherwise a generic "<substance> Strength" label is
+    synthesized to satisfy the required field.
     """
     study = usdm.get("study", {})
     pending_links = study.pop("_pendingProductStrengths", [])
@@ -2156,7 +2376,7 @@ def _link_substances_to_products(usdm: Dict[str, Any]) -> None:
 
         strength = {
             "id": str(uuid.uuid4()).replace("-", "_"),
-            "name": f"{substance_name} Strength",
+            "name": link.get("name") or f"{substance_name} Strength",
             "numerator": quantity,
             "instanceType": "Strength",
         }
@@ -3150,8 +3370,8 @@ class USDMGeneratorAgent(BaseAgent):
                 if not entity_data.get("instanceType"):
                     entity_data["instanceType"] = "StudyRole"
 
-            # AdministrableProduct: strengthValue/strengthUnit/substanceIds
-            # are staging keys (see extraction/interventions/schema.py) —
+            # AdministrableProduct: strengthValue/strengthUnit/strengthName/
+            # substanceIds are staging keys (see extraction/interventions/schema.py) —
             # pop them here and record a pending link, resolved once the
             # matching Substance entity is placed, in
             # _link_substances_to_products(). Only stage when there's a
@@ -3160,6 +3380,7 @@ class USDMGeneratorAgent(BaseAgent):
             if etype == "administrable_product":
                 strength_value = entity_data.pop("strengthValue", None)
                 strength_unit = entity_data.pop("strengthUnit", None)
+                strength_name = entity_data.pop("strengthName", None)
                 substance_ids = entity_data.pop("substanceIds", None) or []
                 if strength_value is not None and substance_ids:
                     pending = usdm["study"].setdefault("_pendingProductStrengths", [])
@@ -3168,6 +3389,7 @@ class USDMGeneratorAgent(BaseAgent):
                         "substanceId": substance_ids[0],
                         "value": strength_value,
                         "unit": strength_unit,
+                        "name": strength_name,
                     })
 
             placed = _place_entity(usdm, etype, entity_data)
@@ -3222,6 +3444,12 @@ class USDMGeneratorAgent(BaseAgent):
         # entities are placed since the two types may arrive in the same
         # extraction wave with no guaranteed order.
         _link_substances_to_products(usdm)
+
+        # Attach staged geographic_scope/country entities to real v4.0
+        # locations (StudyAmendment/GovernanceDate.geographicScopes) — must
+        # run before _fix_required_fields() so its geographicScopes
+        # normalization/default logic sees real data when available.
+        _link_geographic_scopes(usdm)
 
         _fix_required_fields(usdm)
         result.validation_issues = _validate_usdm_structure(usdm)
