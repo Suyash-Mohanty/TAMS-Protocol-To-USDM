@@ -309,6 +309,26 @@ class TestOpenItems:
         cells = {c["epochId"]: c["elementIds"] for c in design["studyCells"]}
         assert cells == {"E0": ["el0"], "E1": ["el1", "el2"], "E2": ["el3"], "E3": ["el4", "el5"], "E4": ["el6"]}
 
+    def test_epoch_match_ignores_spacing(self):
+        from agents.support.usdm_generator_agent import _remap_study_cells
+        epochs = [{"id": "E1", "name": "Period 1"}, {"id": "E2", "name": "Wash out"}, {"id": "E3", "name": "Period 2"}]
+        design = {"arms": [{"id": "A"}],
+                  "elements": [{"id": "a", "name": "Seq A - Period 1 Treatment"}, {"id": "b", "name": "Seq A - Washout"},
+                               {"id": "c", "name": "Seq A - Period 2 Treatment"}],
+                  "studyCells": [{"id": str(i), "armId": "A", "epochId": f"epoch_{i + 3}", "elementIds": [e]}
+                                 for i, e in enumerate("abc")]}
+        _remap_study_cells(design, epochs)
+        assert {c["epochId"]: c["elementIds"] for c in design["studyCells"]} == {"E1": ["a"], "E2": ["b"], "E3": ["c"]}
+
+    def test_generator_admin_fallback_tie_break(self):
+        usdm = {"study": {"versions": [{"studyInterventions": [
+                    {"id": "i3", "name": "Human regular insulin (IV infusion)"}, {"id": "i4", "name": "IV glucose"}],
+                    "administrableProducts": []}],
+                "_pendingAdministrations": [{"id": "a4", "name": "IV glucose rescue infusion"}]}}
+        _link_administrations_to_interventions(usdm)
+        owners = [i["id"] for i in usdm["study"]["versions"][0]["studyInterventions"] if i.get("administrations")]
+        assert owners == ["i4"]
+
     def test_section_text_from_protocol(self):
         import glob
         from core.pdf_utils import extract_numbered_sections

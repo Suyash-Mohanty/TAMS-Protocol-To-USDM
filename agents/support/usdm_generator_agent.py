@@ -2608,10 +2608,16 @@ def _link_administrations_to_interventions(usdm: Dict[str, Any]) -> None:
             admin.pop("administrableProductId", None)
         intervention = by_id.get(owner_of.get(admin.get("id")))
         if intervention is None:
+            # Most shared words; ties go to the intervention whose name is most
+            # fully covered ("IV glucose rescue infusion" -> "IV glucose")
             words = _name_words(admin.get("name", ""))
-            scored = [(len(words & _name_words(i.get("name", ""))), i) for i in interventions]
-            best = max(scored, key=lambda s: s[0], default=(0, None))
-            intervention = best[1] if best[0] > 0 else None
+            scored = []
+            for inv in interventions:
+                inv_words = _name_words(inv.get("name", ""))
+                overlap = len(words & inv_words)
+                scored.append(((overlap, overlap / len(inv_words) if inv_words else 0.0), inv))
+            best = max(scored, key=lambda s: s[0], default=((0, 0.0), None))
+            intervention = best[1] if best[0][0] > 0 else None
         if intervention is None:
             logger.warning(f"Administration {admin.get('name')!r} matches no study intervention; dropped")
             continue
@@ -2860,10 +2866,11 @@ def _remap_study_cells(design: Dict[str, Any], epochs: List[Dict[str, Any]]) -> 
         or the epoch name contains the phase ("TE ADA" vs footnoted "TE ADAa")."""
         for eid in cell.get("elementIds") or []:
             full = elements.get(eid, {}).get("name", "")
-            phase = _normalize_epoch_name(full.rsplit(" - ", 1)[-1])
+            # Spaces/punctuation ignored: "Washout" == "Wash out"
+            phase = re.sub(r"[^a-z0-9]", "", _normalize_epoch_name(full.rsplit(" - ", 1)[-1]))
             # Longest epoch name first so "follow up for te ada" beats "follow up"
             for ep_id in sorted(norm_epoch, key=lambda k: -len(norm_epoch[k])):
-                ep_name = norm_epoch[ep_id]
+                ep_name = re.sub(r"[^a-z0-9]", "", norm_epoch[ep_id])
                 if ep_name and phase and (ep_name in phase or phase in ep_name):
                     return ep_id
         return None
@@ -3873,6 +3880,13 @@ class USDMGeneratorAgent(BaseAgent):
             # Strip internal/debug properties not in USDM schema
             entity_data = _sanitize_entity_data(entity_data)
 
+            # StudyIntervention.administrationIds is not a USDM attribute and is
+            # stripped below — record it first so administrations can be
+            # nested under the right intervention after placement
+            if etype in ("study_intervention", "intervention") and entity_data.get("administrationIds"):
+                usdm["study"].setdefault("_pendingInterventionAdmins", {})[entity_data.get("id")] = \
+                    list(entity_data.get("administrationIds") or [])
+
             # Strip entity-specific extra properties not in USDM v4.0
             extras = _ENTITY_EXTRA_PROPERTIES.get(etype)
             if extras:
@@ -3954,13 +3968,9 @@ class USDMGeneratorAgent(BaseAgent):
                         "name": strength_name,
                     })
 
-            # StudyIntervention.administrationIds (stripped as non-USDM on
-            # placement) and Administration entities (nested in USDM 4.0,
-            # not a list container) are staged and linked by
+            # Administration entities (nested in USDM 4.0, not a list
+            # container) are staged and linked by
             # _link_administrations_to_interventions() after placement.
-            if etype in ("study_intervention", "intervention") and entity_data.get("administrationIds"):
-                usdm["study"].setdefault("_pendingInterventionAdmins", {})[entity_data.get("id")] = \
-                    list(entity_data.get("administrationIds") or [])
             if etype == "administration":
                 usdm["study"].setdefault("_pendingAdministrations", []).append(entity_data)
                 result.entity_count += 1
