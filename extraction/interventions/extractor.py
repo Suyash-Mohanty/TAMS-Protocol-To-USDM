@@ -316,10 +316,11 @@ def _parse_interventions_response(raw: Dict[str, Any]) -> Optional[Interventions
             if i < len(administrations):
                 intervention.administration_ids.append(administrations[i].id)
         
-        # Link substances to products
-        for i, product in enumerate(products):
-            if i < len(substances):
-                product.substance_ids.append(substances[i].id)
+        # Link substances to products by name — one substance is typically
+        # shared by several products (one per strength), so positional
+        # pairing would leave every product after the first unlinked.
+        for product in products:
+            product.substance_ids.extend(_match_substances(product.name, substances))
         
         return InterventionsData(
             interventions=interventions,
@@ -332,6 +333,27 @@ def _parse_interventions_response(raw: Dict[str, Any]) -> Optional[Interventions
     except Exception as e:
         logger.error(f"Failed to parse interventions response: {e}")
         return None
+
+
+def _match_substances(product_name: str, substances: List[Substance]) -> List[str]:
+    """Return ids of the substances a product contains, matched by name.
+
+    A substance matches when its name (or its name without a parenthetical
+    code, e.g. "eloralintide" from "Eloralintide (LY3841136)") appears in the
+    product name. When nothing matches and the protocol has exactly one
+    substance, every non-placebo product is assumed to contain it.
+    """
+    name = (product_name or "").lower()
+    matched = []
+    for sub in substances:
+        sub_name = (sub.name or "").lower()
+        variants = {sub_name, re.sub(r"\s*\([^)]*\)", "", sub_name).strip()}
+        variants |= set(re.findall(r"\(([^)]+)\)", sub_name))  # e.g. "ly3841136"
+        if any(v and re.search(rf"\b{re.escape(v)}\b", name) for v in variants):
+            matched.append(sub.id)
+    if not matched and len(substances) == 1 and "placebo" not in name:
+        matched.append(substances[0].id)
+    return matched
 
 
 def _map_intervention_role(role_str: str) -> InterventionRole:

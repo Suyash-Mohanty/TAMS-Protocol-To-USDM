@@ -811,20 +811,25 @@ class TestSoAConflictResolution:
         return entities, expected_agreements
 
     def test_agreement_rate_above_90_percent(self, agent):
-        """SoA reconciliation should achieve >= 90% agreement rate."""
+        """Every agreeing cell is boosted and every deliberate conflict reduced.
+
+        "Activity 1".."Activity 7" are distinct activities (they differ by
+        number), so they must not be merged — merging them used to hide the
+        two deliberate conflicts (scenarios 5 and 6) and inflate the rate.
+        """
         entities, expected_agreements = self._soa_scenarios()
         task = _task(entities)
         result = agent.execute(task)
 
         assert result.success
         report = result.data["report"]
-        total_cells = report["confidence_boosts"] + report["confidence_reductions"]
-        if total_cells > 0:
-            agreement_rate = (report["confidence_boosts"] / total_cells) * 100
-            assert agreement_rate >= 90.0, (
-                f"Agreement rate {agreement_rate:.1f}% is below 90% threshold. "
-                f"Boosts: {report['confidence_boosts']}, Reductions: {report['confidence_reductions']}"
-            )
+        assert report["duplicates_merged"] == 0
+        assert report["confidence_boosts"] == expected_agreements, (
+            f"Boosts: {report['confidence_boosts']}, expected {expected_agreements}"
+        )
+        assert report["confidence_reductions"] == 2, (
+            f"Reductions: {report['confidence_reductions']}, expected 2 (scenarios 5 and 6)"
+        )
 
     def test_tick_mark_agreement_detected(self, agent):
         """Different tick mark representations should be recognized as agreement."""

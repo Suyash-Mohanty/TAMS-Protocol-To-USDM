@@ -54,6 +54,11 @@ class StudyRoleCode(Enum):
     STATISTICIAN = "Statistician"
     MEDICAL_EXPERT = "Medical Expert"
     PROJECT_MANAGER = "Project Manager"
+    DATA_MONITORING_COMMITTEE = "Data Monitoring Committee"
+    INDEPENDENT_DMC = "Independent Data Monitoring Committee"
+    ADJUDICATION_COMMITTEE = "Adjudication Committee"
+    DOSE_ESCALATION_COMMITTEE = "Dose Escalation Committee"
+    LABORATORY = "Laboratory"
 
 
 @dataclass
@@ -202,18 +207,27 @@ class StudyRole:
     instance_type: str = "StudyRole"
     
     def to_dict(self) -> Dict[str, Any]:
-        # CDISC C215480 codelist for StudyRole.code
+        # CDISC DDF Study Role codelist (C215480)
         _ROLE_CODES = {
-            StudyRoleCode.SPONSOR: ("C70793", "Sponsor"),
-            StudyRoleCode.CO_SPONSOR: ("C70793", "Sponsor"),  # no distinct code — use Sponsor
-            StudyRoleCode.LOCAL_SPONSOR: ("C70793", "Sponsor"),
-            StudyRoleCode.CRO: ("C54499", "Contract Research Organization"),
-            StudyRoleCode.REGULATORY: ("C25461", "Regulatory Agency"),
-            StudyRoleCode.INVESTIGATOR: ("C25936", "Principal Investigator"),
-            StudyRoleCode.PRINCIPAL_INVESTIGATOR: ("C25936", "Principal Investigator"),
-            StudyRoleCode.STATISTICIAN: ("C25943", "Statistician"),
+            StudyRoleCode.SPONSOR: ("C70793", "Clinical Study Sponsor"),
+            StudyRoleCode.CO_SPONSOR: ("C215669", "Study Co-Sponsor"),
+            StudyRoleCode.LOCAL_SPONSOR: ("C215670", "Local Legal Sponsor"),
+            StudyRoleCode.CRO: ("C215662", "Contract Research"),
+            StudyRoleCode.REGULATORY: ("C188863", "Regulatory Agency"),
+            StudyRoleCode.INVESTIGATOR: ("C25936", "Investigator"),
+            StudyRoleCode.PRINCIPAL_INVESTIGATOR: ("C19924", "Principal Investigator"),
+            StudyRoleCode.STATISTICIAN: ("C51877", "Statistician"),
+            StudyRoleCode.MANUFACTURER: ("C25392", "Manufacturer"),
+            StudyRoleCode.STUDY_SITE: ("C80403", "Study Site"),
+            StudyRoleCode.MEDICAL_EXPERT: ("C51876", "Sponsor Medical Expert"),
+            StudyRoleCode.PROJECT_MANAGER: ("C51851", "Project Coordinator"),
+            StudyRoleCode.DATA_MONITORING_COMMITTEE: ("C142489", "Data Monitoring Committee"),
+            StudyRoleCode.INDEPENDENT_DMC: ("C142578", "Independent Data Monitoring Committee"),
+            StudyRoleCode.ADJUDICATION_COMMITTEE: ("C78726", "Adjudication Committee"),
+            StudyRoleCode.DOSE_ESCALATION_COMMITTEE: ("C215671", "Dose Escalation Committee"),
+            StudyRoleCode.LABORATORY: ("C37984", "Laboratory"),
         }
-        code_val, decode_val = _ROLE_CODES.get(self.code, ("C70793", "Sponsor"))
+        code_val, decode_val = _ROLE_CODES.get(self.code, ("C70793", "Clinical Study Sponsor"))
         result = {
             "id": self.id,
             "name": self.name,

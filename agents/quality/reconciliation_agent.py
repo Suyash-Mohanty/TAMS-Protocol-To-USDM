@@ -38,7 +38,7 @@ FOOTNOTE_PATTERNS = [
     r"\s*[\*†‡§¶#]+\s*$",          # trailing symbols
     r"\s*\[\d+\]\s*$",              # trailing [1], [2]
     r"\s*\(\d+\)\s*$",              # trailing (1), (2)
-    r"\s*[a-z]\)\s*$",              # trailing a), b)
+    r"\s+[a-z]\)\s*$",              # trailing a), b) — must be a separate token, not the end of "(rescue)"
     r"[\*†‡§¶#]+",                  # inline footnote symbols
 ]
 
@@ -162,6 +162,19 @@ def fuzzy_match_score(name_a: str, name_b: str) -> float:
     if a == b:
         return 1.0
     return SequenceMatcher(None, a, b).ratio()
+
+
+_NUMBER_RE = re.compile(r"\d+(?:\.\d+)?")
+
+
+def numbers_differ(name_a: str, name_b: str) -> bool:
+    """True when two names carry different numeric tokens.
+
+    Names such as "Eloralintide 1.5 mg injection" and "Eloralintide 3 mg
+    injection" score above the fuzzy threshold but are distinct entities
+    (different strengths, doses, steps), so they must never be merged.
+    """
+    return set(_NUMBER_RE.findall(name_a)) != set(_NUMBER_RE.findall(name_b))
 
 
 def get_source_priority(source: str) -> int:
@@ -532,7 +545,7 @@ class ReconciliationAgent(BaseAgent):
                     else:
                         # Existing logic for all other entity types
                         score = fuzzy_match_score(name_a, name_b)
-                        is_duplicate = score >= threshold
+                        is_duplicate = score >= threshold and not numbers_differ(name_a, name_b)
                     
                     if is_duplicate:
                         group_ids.append(eid_b)

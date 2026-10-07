@@ -143,6 +143,27 @@ class TestIdStandardization:
         result, _ = agent._standardize_all_ids(entities)
         assert result[0]["data"]["encounterId"] == "enc_1"
 
+    def test_rewrites_id_lists_and_nested_ids(self, agent):
+        entities = [_make_entity("administrable_product", {
+            "substanceIds": ["sub-1"], "code": {"id": "code-1", "decode": "Pre-filled"},
+        }, "prod_1")]
+        result, _ = agent._standardize_all_ids(entities)
+        assert result[0]["data"]["substanceIds"] == ["sub_1"]
+        assert result[0]["data"]["code"] == {"id": "code_1", "decode": "Pre-filled"}
+
+    def test_text_fields_keep_hyphens(self, agent):
+        entities = [_make_entity("study_intervention", {
+            "name": "Short-term insulin (rescue)",
+            "description": "GLP-1 receptor agonists; Double-Blind",
+            "cells": [{"text": "Follow-up"}],
+        }, "int-1")]
+        result, _ = agent._standardize_all_ids(entities)
+        data = result[0]["data"]
+        assert result[0]["id"] == "int_1"
+        assert data["name"] == "Short-term insulin (rescue)"
+        assert data["description"] == "GLP-1 receptor agonists; Double-Blind"
+        assert data["cells"] == [{"text": "Follow-up"}]
+
 
 # ---------------------------------------------------------------------------
 # Step 2: Name normalization

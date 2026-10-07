@@ -13,7 +13,7 @@ import re
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from agents.base import AgentCapabilities, AgentResult, AgentState, AgentTask, BaseAgent
 from core.evs_client import find_ct_entry
@@ -936,31 +936,74 @@ _TITLE_TYPE_MAP = {
     "Brief Study Title": ("C207617", "Brief Study Title"),
 }
 
-# StudyRole.code → CDISC role codes
-_STUDY_ROLE_CODE_MAP = {
-    "Sponsor": ("C70793", "Sponsor"),
-    "sponsor": ("C70793", "Sponsor"),
-    "Registry": ("C93453", "Registry"),
-    "registry": ("C93453", "Registry"),
+# CDISC DDF Study Role codelist (C215480): code → preferred term
+_STUDY_ROLE_CODES = {
+    "C78726": "Adjudication Committee",
+    "C17445": "Caregiver",
+    "C215672": "Clinical Trial Physician",
+    "C215669": "Study Co-Sponsor",
+    "C215662": "Contract Research",
+    "C142489": "Data Monitoring Committee",
+    "C215671": "Dose Escalation Committee",
+    "C142578": "Independent Data Monitoring Committee",
+    "C25936": "Investigator",
+    "C37984": "Laboratory",
+    "C215670": "Local Legal Sponsor",
+    "C25392": "Manufacturer",
+    "C51876": "Sponsor Medical Expert",
+    "C207599": "Outcomes Assessor",
+    "C215673": "Pharmacovigilance Group",
+    "C19924": "Principal Investigator",
+    "C51851": "Project Coordinator",
+    "C188863": "Regulatory Agency",
+    "C70793": "Clinical Study Sponsor",
+    "C51877": "Statistician",
+    "C80403": "Study Site",
+    "C41189": "Study Subject",
 }
 
-# StudyRole name → CDISC C215480 codelist codes
-# Only roles present in C215480 are valid; others default to Sponsor
-_STUDY_ROLE_NAME_MAP = {
-    "Sponsor": ("C70793", "Sponsor"),
-    "sponsor": ("C70793", "Sponsor"),
-    "Co-Sponsor": ("C70793", "Sponsor"),
-    "CRO": ("C54499", "Contract Research Organization"),
-    "Contract Research": ("C54499", "Contract Research Organization"),
-    "Investigator": ("C25936", "Principal Investigator"),
-    "Principal investigator": ("C25936", "Principal Investigator"),
-    "PrincipalInvestigator": ("C25936", "Principal Investigator"),
-    "Statistician": ("C25943", "Statistician"),
-    # Registry and Regulatory are NOT valid StudyRole values in CDISC C215480.
-    # They are Organization types, not roles. Remove them to avoid duplicate Sponsor codes.
-    # "Registry": removed (not a study role)
-    # "Regulatory Authority": removed (not a study role)
-}
+# Role name keywords → C215480 code. Order matters: specific before generic
+# (e.g. "co-sponsor" before "sponsor", "principal investigator" before
+# "investigator"). Registry is an Organization type, not a study role, so it
+# has no entry and such roles are dropped.
+_STUDY_ROLE_KEYWORDS = [
+    (r"independent data monitoring|\bidmc\b", "C142578"),
+    (r"data (safety )?monitoring (committee|board)|\bdmc\b|\bdsmb\b", "C142489"),
+    (r"adjudicat|endpoint committee|events? committee|\bcec\b", "C78726"),
+    (r"dose[\s-]escalation committee", "C215671"),
+    (r"co-?\s?sponsor", "C215669"),
+    (r"local (legal )?sponsor|legal representative", "C215670"),
+    (r"medical monitor|sponsor medical|medical expert", "C51876"),
+    (r"sponsor", "C70793"),
+    (r"contract research|\bcro\b", "C215662"),
+    (r"principal investigator|\bpi\b", "C19924"),
+    (r"investigator", "C25936"),
+    (r"pharmacovigilance", "C215673"),
+    (r"laborator", "C37984"),
+    (r"statistic", "C51877"),
+    (r"regulatory", "C188863"),
+    (r"manufactur", "C25392"),
+    (r"project (coordinat|manag)", "C51851"),
+    (r"clinical trial physician", "C215672"),
+    (r"outcomes? assessor", "C207599"),
+    (r"study site|^site$", "C80403"),
+    (r"caregiver", "C17445"),
+]
+
+
+def _map_study_role(name: str, code_val: str = "") -> Optional[Tuple[str, str]]:
+    """Map a StudyRole to its C215480 (code, decode), or None if not a study role.
+
+    The role name is the primary signal (extraction may set a wrong code);
+    a code already in C215480 is the fallback.
+    """
+    name_lower = (name or "").strip().lower()
+    for pattern, code in _STUDY_ROLE_KEYWORDS:
+        if name_lower and re.search(pattern, name_lower):
+            return code, _STUDY_ROLE_CODES[code]
+    if code_val in _STUDY_ROLE_CODES:
+        return code_val, _STUDY_ROLE_CODES[code_val]
+    return None
 
 # Organization type → CDISC codelist C188724
 _ORG_TYPE_MAP = {
@@ -1071,13 +1114,7 @@ def _normalize_codelists(usdm: Dict[str, Any]) -> None:
     for role in version.get("roles", []):
         code_obj = role.get("code")
         if isinstance(code_obj, dict):
-            role_name = role.get("name", "")
-            # Use role name as primary signal (extraction may set wrong code)
-            mapped = _STUDY_ROLE_NAME_MAP.get(role_name)
-            if not mapped:
-                # Fallback: try mapping by code value
-                code_val = code_obj.get("code", "")
-                mapped = _STUDY_ROLE_CODE_MAP.get(code_val)
+            mapped = _map_study_role(role.get("name", ""), code_obj.get("code", ""))
             if mapped:
                 code_obj["code"] = mapped[0]
                 code_obj["decode"] = mapped[1]
@@ -1197,9 +1234,11 @@ def _normalize_codelists(usdm: Dict[str, Any]) -> None:
             if isinstance(code_obj, dict):
                 code_obj["codeSystem"] = cdisc_sys
                 code_obj["codeSystemVersion"] = cdisc_ver
-                # Map extraction codes to C207415 terms
+                # Map legacy extraction codes to C207415 terms. C98782
+                # ("Protocol Amendment") carries no reason, so it becomes
+                # Other (with otherReason) rather than a guessed reason.
                 _AMEND_REASON_MAP = {
-                    "C98782": ("C207603", "Inconsistency And/or Error In The Protocol"),
+                    "C98782": ("C17649", "Other"),
                 }
                 old_code = code_obj.get("code", "")
                 mapped = _AMEND_REASON_MAP.get(old_code)
@@ -1362,23 +1401,28 @@ def _normalize_codelists(usdm: Dict[str, Any]) -> None:
             role["appliesToIds"] = [version_id] if version_id else []
 
     # DDF00201: Ensure exactly one Sponsor role (C70793).
-    # Remove roles whose names don't map to any valid C215480 code
-    # (e.g. "Registry", "Regulatory Authority" are org types, not roles).
+    # Remove roles that don't map to any valid C215480 code (e.g. "Registry"
+    # is an Organization type, not a role) and keep one role per code,
+    # merging organizationIds of duplicates.
     valid_roles = []
-    has_sponsor = False
+    roles_by_code: Dict[str, Dict[str, Any]] = {}
     for role in version.get("roles", []):
-        code_obj = role.get("code", {})
-        role_name = role.get("name", "")
-        mapped = _STUDY_ROLE_NAME_MAP.get(role_name)
-        if mapped:
-            valid_roles.append(role)
-            if mapped[0] == "C70793":
-                has_sponsor = True
-        elif isinstance(code_obj, dict) and code_obj.get("code") == "C70793":
-            if not has_sponsor:
-                valid_roles.append(role)
-                has_sponsor = True
-            # Skip duplicate sponsor roles
+        code_obj = role.get("code")
+        if not isinstance(code_obj, dict):
+            continue
+        mapped = _map_study_role(role.get("name", ""), code_obj.get("code", ""))
+        if not mapped:
+            continue
+        code_obj["code"], code_obj["decode"] = mapped
+        if mapped[0] in roles_by_code:
+            kept = roles_by_code[mapped[0]]
+            for org_id in role.get("organizationIds", []):
+                if org_id not in kept.setdefault("organizationIds", []):
+                    kept["organizationIds"].append(org_id)
+            continue
+        roles_by_code[mapped[0]] = role
+        valid_roles.append(role)
+    has_sponsor = "C70793" in roles_by_code
     # If no sponsor role exists, create one
     if not has_sponsor:
         valid_roles.insert(0, {
@@ -1389,7 +1433,7 @@ def _normalize_codelists(usdm: Dict[str, Any]) -> None:
                 "code": "C70793",
                 "codeSystem": cdisc_sys,
                 "codeSystemVersion": cdisc_ver,
-                "decode": "Sponsor",
+                "decode": "Clinical Study Sponsor",
                 "instanceType": "Code",
             },
             "appliesToIds": [version_id] if version_id else [],
@@ -2284,6 +2328,25 @@ def _link_document_versions(usdm: Dict[str, Any]) -> None:
         versions.append(version)
 
 
+def _link_change_sections_to_document(usdm: Dict[str, Any]) -> None:
+    """Point StudyChange.changedSections[].appliesToId at the protocol document.
+
+    USDM 4.0 DocumentContentReference.appliesTo references a
+    StudyDefinitionDocument; the document id isn't known when amendments
+    are extracted, so it's wired here once documentedBy exists.
+    """
+    study = usdm.get("study", {})
+    documents = study.get("documentedBy") or []
+    if not documents or not documents[0].get("id"):
+        return
+    doc_id = documents[0]["id"]
+    for version in study.get("versions", []):
+        for amend in version.get("amendments", []):
+            for change in amend.get("changes", []):
+                for section in change.get("changedSections", []):
+                    section["appliesToId"] = doc_id
+
+
 def _link_masking_to_roles(usdm: Dict[str, Any]) -> None:
     """Attach staged maskedRoles names to matching existing StudyRole entries.
 
@@ -2337,8 +2400,12 @@ def _link_substances_to_products(usdm: Dict[str, Any]) -> None:
 
     Strength.name is required by USDM 4.0 but the protocol rarely names a
     strength distinctly — when the extractor did capture a real strengthName
-    it's used verbatim, otherwise a generic "<substance> Strength" label is
-    synthesized to satisfy the required field.
+    it's used verbatim, otherwise "<substance> <value> <unit>" (e.g.
+    "Eloralintide 1.5 mg") is built from the protocol's own dosage level.
+
+    USDM 4.0 nests Substance by value inside each Ingredient, so a substance
+    shared by several products (one per strength) is emitted once per product
+    with its own id — reusing the extracted id would duplicate ids.
     """
     study = usdm.get("study", {})
     pending_links = study.pop("_pendingProductStrengths", [])
@@ -2351,6 +2418,7 @@ def _link_substances_to_products(usdm: Dict[str, Any]) -> None:
     except (KeyError, IndexError):
         return
     products_by_id = {p.get("id"): p for p in products}
+    used_substance_ids: Set[str] = set()
 
     for link in pending_links:
         product = products_by_id.get(link.get("productId"))
@@ -2374,14 +2442,33 @@ def _link_substances_to_products(usdm: Dict[str, Any]) -> None:
         if unit:
             quantity["unit"] = _build_unit_alias_code(unit)
 
+        # "Eloralintide (LY3841136)" -> "Eloralintide"; 3.0 -> "3"
+        base_name = re.sub(r"\s*\([^)]*\)", "", substance_name).strip() or substance_name
+        # Prefer the protocol's casing as written in the product name
+        # ("Eloralintide 1.5 mg prefilled syringe" over "eloralintide") for
+        # both Substance.name and Strength.name; a parenthetical code such as
+        # "(LY3841136)" in the substance name is kept
+        in_product = re.search(re.escape(base_name), product.get("name") or "", re.I)
+        if in_product:
+            substance_name = re.sub(
+                re.escape(base_name), lambda _: in_product.group(0), substance_name, count=1, flags=re.I
+            )
+            base_name = in_product.group(0)
+        value_text = f"{float(value):g}"
+        default_name = " ".join(p for p in (base_name, value_text, unit) if p)
+
         strength = {
             "id": str(uuid.uuid4()).replace("-", "_"),
-            "name": link.get("name") or f"{substance_name} Strength",
+            "name": link.get("name") or default_name,
             "numerator": quantity,
             "instanceType": "Strength",
         }
+        substance_id = substance_data.get("id")
+        if not substance_id or substance_id in used_substance_ids:
+            substance_id = str(uuid.uuid4()).replace("-", "_")
+        used_substance_ids.add(substance_id)
         substance = {
-            "id": substance_data.get("id") or str(uuid.uuid4()).replace("-", "_"),
+            "id": substance_id,
             "name": substance_name,
             "strengths": [strength],
             "instanceType": "Substance",
@@ -3433,6 +3520,7 @@ class USDMGeneratorAgent(BaseAgent):
         # attach any staged document_version entities to it
         _ensure_study_definition_document(usdm)
         _link_document_versions(usdm)
+        _link_change_sections_to_document(usdm)
 
         # Attach staged maskedRoles (from study_design) to matching
         # StudyRole entries — must run after _ensure_sponsor_identifier

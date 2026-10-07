@@ -19,12 +19,39 @@ For EACH amendment in the history, extract:
 - `approvalDate` — date the amendment was approved/signed (if distinct from effectiveDate; null if unknown)
 - **Summary**: The "Overall Rationale for the Amendment" paragraph that describes WHY the amendment was made. **Extract the EXACT text from the protocol — do NOT rephrase, summarize, or paraphrase. Use the original wording verbatim.**
 - Previous and new version numbers
-- Reasons for amendment (e.g., Safety, Efficacy, Regulatory, Operational)
+- `primaryReason` — the main reason for the amendment, chosen from the CDISC Amendment Reason list below (use the term EXACTLY as written)
+- `secondaryReasons` — any additional reasons from the same list (empty list if none)
+- `otherReason` — ONLY when primaryReason is "Other": the protocol's own wording of the reason; otherwise null
+- `changes` — one entry per row of the amendment's "Summary of Changes" / "Changes to the Protocol" table (see below)
+
+**CDISC Amendment Reason list (C207415)** — pick the term that best matches the stated rationale:
+- "New Safety Information Available" — new safety data, safety committee/DMC feedback, updated safety guidance or risk mitigation
+- "New Data Available (Other Than Safety Data)" — new efficacy, PK, scientific or nonclinical data
+- "New Regulatory Guidance" — new or changed regulations/guidance
+- "Regulatory Agency Request To Amend" — a health authority (FDA, EMA, PMDA, ...) asked for the change
+- "IRB/IEC Feedback" — ethics committee or IRB requested the change
+- "Investigator/Site Feedback" — feedback from investigators or sites
+- "Inconsistency and/or Error In The Protocol" — corrections, clarifications, typos, internal inconsistencies
+- "Protocol Design Error" — a flaw in the study design itself
+- "Change In Strategy" — sponsor's development/operational strategy changed
+- "Change In Standard Of Care" — clinical practice or standard of care changed
+- "Recruitment Difficulty" — enrollment problems
+- "Manufacturing Change" — drug product manufacturing/formulation change
+- "IMP Addition" — a new investigational product is added
+- "Not Applicable"
+- "Other" — none of the above fit; then fill `otherReason`
 
 **IMPORTANT**: Each amendment should have its own summary text. Look for sections like:
 - "Overall Rationale for the Amendment"
 - "The main reason for preparation of this amendment was..."
 - Summary text appears BEFORE the "Changes to the Protocol" table for each amendment
+
+**Amendment changes**: The "Summary of Changes" table usually has the columns "Section # and Name", "Description of Change" and "Brief Rationale". Create one `changes` entry per table row:
+- `sectionNumber` — the section number only (e.g., "5.2"); use "Multiple" if the row covers several sections
+- `sectionTitle` — the section name (e.g., "Exclusion Criteria")
+- `description` — the "Description of Change" text, VERBATIM; if a row's text continues onto the next page, join it into one entry
+- `rationale` — the "Brief Rationale" text, VERBATIM
+If the protocol has no changes table for an amendment, return an empty `changes` list — do NOT invent changes.
 
 **CRITICAL**: Do NOT skip Amendment 1. Many protocols have an "Amendment 1" (or "Protocol Amendment 1") that is the first change from the original protocol. If the Protocol Amendment Summary of Changes Table lists Amendment 1 with a date and summary, you MUST include it. Start from the very first amendment listed.
 
@@ -51,7 +78,23 @@ Return a JSON object with this exact structure:
       "summary": "The main reason for preparation of this amendment was to update procedures outlined in the Schedule of Activities, remove contradictory text on the reporting of serious adverse events, and add details of an interim analysis.",
       "previousVersion": "Original Protocol",
       "newVersion": "1",
-      "reasons": ["Operational", "Administrative"]
+      "primaryReason": "Inconsistency and/or Error In The Protocol",
+      "secondaryReasons": ["Change In Strategy"],
+      "otherReason": null,
+      "changes": [
+        {
+          "sectionNumber": "1.3",
+          "sectionTitle": "Schedule of Activities",
+          "description": "Added an ECG assessment at Visit 4.",
+          "rationale": "Alignment with safety monitoring plan."
+        },
+        {
+          "sectionNumber": "8.3.1",
+          "sectionTitle": "Time Period and Frequency for Collecting AE and SAE Information",
+          "description": "Removed contradictory text on SAE reporting timelines.",
+          "rationale": "Correction of inconsistency."
+        }
+      ]
     },
     {
       "number": "2",
@@ -60,7 +103,17 @@ Return a JSON object with this exact structure:
       "summary": "The main reason for preparation of this amendment was to revise the exclusion criterion for a urine drug screen and incorporate COVID vaccination guidance.",
       "previousVersion": "1",
       "newVersion": "2",
-      "reasons": ["Regulatory", "Safety"]
+      "primaryReason": "Regulatory Agency Request To Amend",
+      "secondaryReasons": ["New Safety Information Available"],
+      "otherReason": null,
+      "changes": [
+        {
+          "sectionNumber": "5.2",
+          "sectionTitle": "Exclusion Criteria",
+          "description": "Revised exclusion criterion #12 for urine drug screen.",
+          "rationale": "Per FDA request."
+        }
+      ]
     }
   ],
   "geographicScope": {
@@ -83,8 +136,9 @@ Return a JSON object with this exact structure:
 3. **Check amendment history section** - Usually in Section 10.x near end of document
 4. **Check title page** - May contain current version and date
 5. **Standard country codes** - Use ISO 3166-1 alpha-2 codes when possible
-6. **Amendment reasons** - Common: Safety, Efficacy, Regulatory, Administrative, Operational, Scientific
-7. **Return ONLY valid JSON** - no markdown, no explanations
+6. **Amendment reasons** - primaryReason/secondaryReasons MUST be terms from the CDISC Amendment Reason list above, spelled exactly
+7. **Amendment changes** - one entry per row of the Summary of Changes table, text copied verbatim; empty list if there is no table
+8. **Return ONLY valid JSON** - no markdown, no explanations
 
 Now analyze the protocol content and extract the advanced entities:
 """

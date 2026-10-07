@@ -284,16 +284,23 @@ class SoAPostProcessingAgent(BaseAgent):
     def _standardize_all_ids(
         entities: List[Dict[str, Any]],
     ) -> Tuple[List[Dict[str, Any]], List[PostProcessingFix]]:
-        """Replace hyphens with underscores in all entity IDs and references."""
+        """Replace hyphens with underscores in all entity IDs and references.
+
+        Only id fields (`id`, `*Id`, `*Ids`) are rewritten — names, text and
+        descriptions keep their hyphens ("Short-term", "Double-Blind").
+        """
         fixes: List[PostProcessingFix] = []
 
-        def _rewrite_id(value: Any) -> Any:
-            if isinstance(value, str) and "-" in value:
-                return standardize_id(value)
+        def _is_id_key(key: str) -> bool:
+            return key == "id" or key.endswith("Id") or key.endswith("Ids")
+
+        def _rewrite_id(value: Any, is_id: bool = False) -> Any:
+            if isinstance(value, str):
+                return standardize_id(value) if is_id and "-" in value else value
             if isinstance(value, list):
-                return [_rewrite_id(v) for v in value]
+                return [_rewrite_id(v, is_id) for v in value]
             if isinstance(value, dict):
-                return {k: _rewrite_id(v) for k, v in value.items()}
+                return {k: _rewrite_id(v, _is_id_key(k)) for k, v in value.items()}
             return value
 
         for entity in entities:
@@ -314,7 +321,7 @@ class SoAPostProcessingAgent(BaseAgent):
             # Rewrite references in data
             data = entity.get("data", {})
             for key in list(data.keys()):
-                new_val = _rewrite_id(data[key])
+                new_val = _rewrite_id(data[key], _is_id_key(key))
                 if new_val != data[key]:
                     data[key] = new_val
 

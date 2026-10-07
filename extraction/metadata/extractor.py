@@ -101,7 +101,13 @@ def extract_study_metadata(
         if result.raw_response:
             result.metadata = _parse_metadata_response(result.raw_response)
             result.success = result.metadata is not None
-            
+
+        # Governance roles (DMC, adjudication committee, medical monitor, ...)
+        # are described deep in the protocol body, outside the title pages
+        # sent to the LLM — detect them from the full text.
+        if result.metadata is not None:
+            _add_governance_roles(result.metadata, pdf_path)
+
         if not result.success:
             result.error = "Failed to extract metadata from protocol"
             
@@ -455,20 +461,108 @@ def _map_org_type(type_str: str) -> OrganizationType:
     return OrganizationType.PHARMACEUTICAL_COMPANY
 
 
+# Governance roles detected from the full protocol text. Each rule is
+# (pattern, fallback name, role code); the role name is the protocol's own
+# long-form wording when the pattern matched it, else the fallback name.
+_GOVERNANCE_ROLE_RULES: List[Tuple[re.Pattern, str, StudyRoleCode]] = [
+    (re.compile(r"\bindependent,?\s+(?:external\s+)?(?:data\s+(?:safety\s+)?monitoring\s+committee|DMC|IDMC)\b", re.I),
+     "Independent Data Monitoring Committee", StudyRoleCode.INDEPENDENT_DMC),
+    (re.compile(r"\bdata\s+(?:safety\s+)?monitoring\s+(?:committee|board)\b|\bDSMB\b|\bDMC\b"),
+     "Data Monitoring Committee", StudyRoleCode.DATA_MONITORING_COMMITTEE),
+    (re.compile(r"\b(?:clinical\s+(?:endpoint|events?)\s+committee|adjudication\s+committee)\b", re.I),
+     "Adjudication Committee", StudyRoleCode.ADJUDICATION_COMMITTEE),
+    (re.compile(r"\bdose[\s-]+escalation\s+committee\b", re.I),
+     "Dose Escalation Committee", StudyRoleCode.DOSE_ESCALATION_COMMITTEE),
+    (re.compile(r"\bmedical\s+monitor\b", re.I),
+     "Medical Monitor", StudyRoleCode.MEDICAL_EXPERT),
+    (re.compile(r"\bcentral\s+laborator(?:y|ies)\b", re.I),
+     "Central Laboratory", StudyRoleCode.LABORATORY),
+    (re.compile(r"\bstatistical\s+analysis\s+cent(?:er|re)\b", re.I),
+     "Statistical Analysis Center", StudyRoleCode.STATISTICIAN),
+    (re.compile(r"\bprincipal\s+investigator\b", re.I),
+     "Principal Investigator", StudyRoleCode.PRINCIPAL_INVESTIGATOR),
+    (re.compile(r"\binvestigators?\b", re.I),
+     "Investigator", StudyRoleCode.INVESTIGATOR),
+]
+
+
+def detect_governance_roles(text: str) -> List[Tuple[str, StudyRoleCode]]:
+    """Return (name, code) for each governance role mentioned in the text.
+
+    An independent DMC supersedes a plain DMC so the committee isn't
+    reported twice.
+    """
+    found: List[Tuple[str, StudyRoleCode]] = []
+    codes: set = set()
+    for pattern, fallback, code in _GOVERNANCE_ROLE_RULES:
+        if code in codes:
+            continue
+        if code == StudyRoleCode.DATA_MONITORING_COMMITTEE and StudyRoleCode.INDEPENDENT_DMC in codes:
+            continue
+        match = pattern.search(text)
+        if not match:
+            continue
+        matched = " ".join(match.group(0).split())
+        # Abbreviations (DMC, CEC, ...) and plurals fall back to the canonical name
+        name = matched.title() if " " in matched and not matched.lower().endswith("s") else fallback
+        if code == StudyRoleCode.INDEPENDENT_DMC:
+            name = fallback
+        found.append((name, code))
+        codes.add(code)
+    return found
+
+
+def _add_governance_roles(metadata: StudyMetadata, pdf_path: str) -> None:
+    """Append governance StudyRoles found in the full protocol text."""
+    try:
+        from core.pdf_utils import extract_text_from_pages, get_page_count
+        page_count = get_page_count(pdf_path)
+        if not page_count:
+            return
+        text = extract_text_from_pages(pdf_path, list(range(page_count))) or ""
+    except Exception as e:
+        logger.warning(f"Governance role detection skipped: {e}")
+        return
+
+    existing = {r.code for r in metadata.roles}
+    for name, code in detect_governance_roles(text):
+        if code in existing:
+            continue
+        metadata.roles.append(StudyRole(
+            id=f"role_gov_{len(metadata.roles) + 1}",
+            name=name,
+            code=code,
+        ))
+        existing.add(code)
+        logger.info(f"Detected governance role from protocol text: {name}")
+
+
 def _map_role_code(role_str: str) -> StudyRoleCode:
     """Map string to StudyRoleCode enum."""
     if not role_str:
         return StudyRoleCode.SPONSOR
     role_lower = str(role_str).lower()
-    if 'co-sponsor' in role_lower or 'cosponsor' in role_lower:
+    if 'independent data monitoring' in role_lower or re.search(r'\bidmc\b', role_lower):
+        return StudyRoleCode.INDEPENDENT_DMC
+    elif 'monitoring committee' in role_lower or 'monitoring board' in role_lower or re.search(r'\b(dmc|dsmb)\b', role_lower):
+        return StudyRoleCode.DATA_MONITORING_COMMITTEE
+    elif 'adjudicat' in role_lower or 'endpoint committee' in role_lower or 'events committee' in role_lower:
+        return StudyRoleCode.ADJUDICATION_COMMITTEE
+    elif 'dose escalation committee' in role_lower:
+        return StudyRoleCode.DOSE_ESCALATION_COMMITTEE
+    elif 'medical monitor' in role_lower:
+        return StudyRoleCode.MEDICAL_EXPERT
+    elif 'laborator' in role_lower:
+        return StudyRoleCode.LABORATORY
+    elif 'co-sponsor' in role_lower or 'cosponsor' in role_lower:
         return StudyRoleCode.CO_SPONSOR
     elif 'local sponsor' in role_lower:
         return StudyRoleCode.LOCAL_SPONSOR
     elif 'sponsor' in role_lower:
         return StudyRoleCode.SPONSOR
-    elif 'cro' in role_lower or 'contract' in role_lower:
+    elif re.search(r'\bcro\b', role_lower) or 'contract' in role_lower:
         return StudyRoleCode.CRO
-    elif 'principal' in role_lower or 'pi' in role_lower:
+    elif 'principal' in role_lower or re.search(r'\bpi\b', role_lower):
         return StudyRoleCode.PRINCIPAL_INVESTIGATOR
     elif 'investigator' in role_lower:
         return StudyRoleCode.INVESTIGATOR

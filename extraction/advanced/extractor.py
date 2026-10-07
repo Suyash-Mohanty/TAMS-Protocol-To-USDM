@@ -22,6 +22,7 @@ from .schema import (
     Country,
     StudySite,
     AmendmentScope,
+    resolve_amendment_reason,
 )
 from .prompts import build_advanced_extraction_prompt
 
@@ -276,7 +277,25 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
                 code=reason.upper() if isinstance(reason, str) else "OTHER",
                 description=reason if isinstance(reason, str) else str(reason),
             ))
-        
+
+        # Resolve C207415 reason terms; fall back to the legacy free-text
+        # `reasons` list (first = primary) when the new keys are absent
+        primary_raw = amend.get('primaryReason')
+        if isinstance(primary_raw, dict):
+            primary_raw = primary_raw.get('decode') or primary_raw.get('code')
+        secondary_raw = amend.get('secondaryReasons') or []
+        if not primary_raw and reasons_raw:
+            primary_raw, secondary_raw = reasons_raw[0], list(reasons_raw[1:])
+        primary_reason = resolve_amendment_reason(primary_raw)
+        secondary_reasons = [
+            t for t in (resolve_amendment_reason(r) for r in secondary_raw if isinstance(r, str)) if t
+        ]
+        other_reason = amend.get('otherReason')
+        if primary_reason == "Other" and not other_reason and isinstance(primary_raw, str):
+            other_reason = primary_raw if primary_raw.strip().lower() != "other" else None
+
+        changes = [c for c in (amend.get('changes') or []) if isinstance(c, dict)]
+
         # Build dateValues list for this amendment
         date_values = []
         effective_date_str = amend.get('effectiveDate')
@@ -308,6 +327,10 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
             new_version=amend.get('newVersion'),
             reason_ids=reason_ids,
             date_values=date_values,
+            primary_reason=primary_reason,
+            secondary_reasons=secondary_reasons,
+            other_reason=other_reason,
+            changes=changes,
         ))
     
     # Process geographic scope - also check for top-level 'countries' key

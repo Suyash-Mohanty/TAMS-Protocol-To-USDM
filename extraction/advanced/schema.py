@@ -15,6 +15,88 @@ from enum import Enum
 from core.usdm_types import generate_uuid, Code
 
 
+CDISC_CODE_SYSTEM = "http://www.cdisc.org"
+CDISC_CODE_SYSTEM_VERSION = "2024-09-27"
+
+# CDISC DDF Study Amendment Reason codelist (C207415): preferred term -> code
+AMENDMENT_REASON_CODES: Dict[str, str] = {
+    "Change In Standard Of Care": "C207600",
+    "Change In Strategy": "C207601",
+    "IMP Addition": "C207602",
+    "Inconsistency and/or Error In The Protocol": "C207603",
+    "Investigator/Site Feedback": "C207604",
+    "IRB/IEC Feedback": "C207605",
+    "Manufacturing Change": "C207606",
+    "New Data Available (Other Than Safety Data)": "C207607",
+    "New Regulatory Guidance": "C207608",
+    "New Safety Information Available": "C207609",
+    "Not Applicable": "C48660",
+    "Other": "C17649",
+    "Protocol Design Error": "C207610",
+    "Recruitment Difficulty": "C207611",
+    "Regulatory Agency Request To Amend": "C207612",
+}
+
+# Keyword fallback for free-text reasons (e.g. legacy "Safety", "Regulatory").
+# Order matters: more specific phrases first.
+_REASON_KEYWORDS = [
+    (("agency request", "health authority", "fda request", "ema request"), "Regulatory Agency Request To Amend"),
+    (("irb", "iec", "ethics"), "IRB/IEC Feedback"),
+    (("investigator", "site feedback"), "Investigator/Site Feedback"),
+    (("safety",), "New Safety Information Available"),
+    (("regulat", "guidance"), "New Regulatory Guidance"),
+    (("efficacy", "scientific", "new data", "pharmacokinetic"), "New Data Available (Other Than Safety Data)"),
+    (("design error",), "Protocol Design Error"),
+    (("error", "inconsisten", "clarif", "administrative", "typo", "correction"), "Inconsistency and/or Error In The Protocol"),
+    (("strategy", "operational", "business"), "Change In Strategy"),
+    (("standard of care",), "Change In Standard Of Care"),
+    (("recruit", "enrol"), "Recruitment Difficulty"),
+    (("manufactur", "formulation"), "Manufacturing Change"),
+    (("imp addition", "new investigational", "add investigational"), "IMP Addition"),
+    (("not applicable",), "Not Applicable"),
+]
+
+_TERMS_BY_LOWER = {term.lower(): term for term in AMENDMENT_REASON_CODES}
+
+
+def resolve_amendment_reason(text: Optional[str]) -> Optional[str]:
+    """Map a reason string to a C207415 preferred term (None if blank).
+
+    Exact terms (case-insensitive) win; otherwise keywords are matched;
+    anything unmatched becomes "Other" so the caller keeps the text as
+    otherReason.
+    """
+    if not text or not str(text).strip():
+        return None
+    lower = str(text).strip().lower()
+    if lower in _TERMS_BY_LOWER:
+        return _TERMS_BY_LOWER[lower]
+    for keywords, term in _REASON_KEYWORDS:
+        if any(k in lower for k in keywords):
+            return term
+    return "Other"
+
+
+def build_amendment_reason(term: str, other_text: Optional[str] = None) -> Dict[str, Any]:
+    """Build a USDM StudyAmendmentReason dict for a C207415 term."""
+    reason: Dict[str, Any] = {
+        "id": generate_uuid(),
+        "code": {
+            "id": generate_uuid(),
+            "code": AMENDMENT_REASON_CODES[term],
+            "codeSystem": CDISC_CODE_SYSTEM,
+            "codeSystemVersion": CDISC_CODE_SYSTEM_VERSION,
+            "decode": term,
+            "instanceType": "Code",
+        },
+        "instanceType": "StudyAmendmentReason",
+    }
+    # DDF00020: otherReason only (and always) when the code is "Other"
+    if term == "Other":
+        reason["otherReason"] = other_text or "Other"
+    return reason
+
+
 class AmendmentScope(Enum):
     """Scope of a protocol amendment."""
     GLOBAL = "Global"
@@ -60,10 +142,49 @@ class StudyAmendment:
     previous_version: Optional[str] = None
     new_version: Optional[str] = None
     date_values: List[Dict[str, Any]] = field(default_factory=list)  # GovernanceDate dicts
+    # C207415 preferred terms (see AMENDMENT_REASON_CODES); other_reason is the
+    # protocol's wording, used only when primary_reason is "Other"
+    primary_reason: Optional[str] = None
+    secondary_reasons: List[str] = field(default_factory=list)
+    other_reason: Optional[str] = None
+    # One dict per Summary of Changes row: sectionNumber, sectionTitle,
+    # description, rationale
+    changes: List[Dict[str, Any]] = field(default_factory=list)
     instance_type: str = "StudyAmendment"
-    
+
+    def _changes_to_dict(self) -> List[Dict[str, Any]]:
+        """Build USDM StudyChange objects from the extracted table rows.
+
+        changedSections[].appliesToId must reference the StudyDefinitionDocument,
+        which isn't known at extraction time — the generator rewires it.
+        """
+        result = []
+        for change in self.changes:
+            number = (change.get("sectionNumber") or "").strip()
+            title = (change.get("sectionTitle") or "").strip()
+            description = (change.get("description") or "").strip()
+            if not description:
+                continue
+            name = " ".join(p for p in (f"Section {number}" if number else "", title) if p)
+            result.append({
+                "id": generate_uuid(),
+                "name": name or f"Amendment {self.number} Change",
+                "summary": description,
+                "rationale": (change.get("rationale") or "").strip() or self.summary or description,
+                "changedSections": [{
+                    "id": generate_uuid(),
+                    "sectionNumber": number or "NA",
+                    "sectionTitle": title or "NA",
+                    "appliesToId": "",
+                    "instanceType": "DocumentContentReference",
+                }],
+                "instanceType": "StudyChange",
+            })
+        return result
+
     def to_dict(self) -> Dict[str, Any]:
         # USDM requires: name, primaryReason, geographicScopes
+        primary_term = self.primary_reason or "Other"
         result = {
             "id": self.id,
             "number": self.number,
@@ -76,19 +197,10 @@ class StudyAmendment:
                 "decode": self.scope.value,
                 "instanceType": "Code",
             },
-            "primaryReason": {  # Required field - Code object with nested standardCode
-                "id": generate_uuid(),
-                "code": {  # Nested Code object
-                    "id": generate_uuid(),
-                    "code": "C98782",
-                    "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
-                    "codeSystemVersion": "25.01d",
-                    "decode": "Protocol Amendment",
-                    "instanceType": "Code",
-                },
-                "otherReason": "Protocol Amendment",
-                "instanceType": "StudyAmendmentReason",
-            },
+            # Required field — StudyAmendmentReason coded from C207415
+            "primaryReason": build_amendment_reason(
+                primary_term, self.other_reason or self.summary
+            ),
             "geographicScopes": [{  # Required field - at least one
                 "id": generate_uuid(),
                 "type": {
@@ -110,6 +222,14 @@ class StudyAmendment:
         # USDM 4.0 dateValues — structured governance dates for this amendment
         if self.date_values:
             result["dateValues"] = self.date_values
+        secondary = [t for t in self.secondary_reasons if t and t != primary_term]
+        if secondary:
+            result["secondaryReasons"] = [
+                build_amendment_reason(t, self.other_reason) for t in dict.fromkeys(secondary)
+            ]
+        changes = self._changes_to_dict()
+        if changes:
+            result["changes"] = changes
         if self.reason_ids:
             result["reasonIds"] = self.reason_ids
         if self.previous_version:
