@@ -60,6 +60,12 @@ def find_advanced_pages(
         r'changes\s+to\s+the\s+protocol',
         r'summary\s+of\s+changes',
         r'document\s+history',
+        # Lilly clinical-pharmacology appendix wording, e.g. "Appendix 9.
+        # Protocol Amendment I8R-JE-IGBJ(a) Summary ... The overall changes
+        # and rationale for the changes ... Revised Protocol Sections"
+        r'overall\s+changes\s+and\s+rationale',
+        r'revised\s+protocol\s+sections',
+        r'protocol\s+amendment\s+\S+\s+summary',
     ]
     
     other_keywords = [
@@ -304,16 +310,16 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
         if effective_date_str:
             date_values.append(_make_governance_date_dict(
                 date_str=effective_date_str,
-                type_code="C99904",
-                type_decode="Protocol Effective Date",
+                type_code="C215663",
+                type_decode="Effective Date",
                 name=f"Amendment {amend_number} Effective Date",
                 gd_id=f"gd_amend_{amend_idx}_eff",
             ))
         if approval_date_str:
             date_values.append(_make_governance_date_dict(
                 date_str=approval_date_str,
-                type_code="C99903",
-                type_decode="Protocol Approved Date",
+                type_code="C71476",
+                type_decode="Approval Date",
                 name=f"Amendment {amend_number} Approval Date",
                 gd_id=f"gd_amend_{amend_idx}_app",
             ))

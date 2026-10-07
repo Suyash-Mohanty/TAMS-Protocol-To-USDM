@@ -1,0 +1,144 @@
+{
+  "agent_id": "advanced_agent",
+  "timestamp": "2026-10-07T16:11:44.723455",
+  "confidence": 0.85,
+  "entity_count": 3,
+  "entities": [
+    {
+      "id": "amend_1",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_1",
+        "number": "a",
+        "name": "Amendment a",
+        "scope": {
+          "id": "653b382a-ab62-4822-a592-03403c170ebb",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "fbe53bd4-be10-46b2-a948-93c1a9dd37ca",
+          "code": {
+            "id": "f7b45188-145d-457b-9e26-caf0fb276f33",
+            "code": "C207603",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Inconsistency and/or Error In The Protocol",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "5b40dc87-1644-4cd0-b27f-dc33e8c9617d",
+            "type": {
+              "id": "139eb950-2baa-4fac-8eda-bb69225a82b2",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "Amendment a to the protocol",
+        "effectiveDate": "2017-12-05",
+        "dateValues": [
+          {
+            "id": "gd_amend_1_eff",
+            "name": "Amendment a Effective Date",
+            "dateValue": "2017-12-05",
+            "geographicScopes": [],
+            "type": {
+              "id": "ddc0ab7a-24d4-41c9-9f9d-12711759b0ff",
+              "code": "C99904",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Protocol Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          },
+          {
+            "id": "gd_amend_1_app",
+            "name": "Amendment a Approval Date",
+            "dateValue": "2017-12-05",
+            "geographicScopes": [],
+            "type": {
+              "id": "3fd48e4d-88eb-4762-93f5-a3e18c592bf6",
+              "code": "C99903",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Protocol Approved Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "previousVersion": "Original Protocol (26 October 2017)",
+        "newVersion": "I8R-JE-IGBJ(a)"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "geo_1",
+      "entity_type": "geographic_scope",
+      "data": {
+        "id": "geo_1",
+        "name": "Study Geographic Scope",
+        "scopeType": "National",
+        "instanceType": "GeographicScope",
+        "countryIds": [
+          "country_1"
+        ]
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "country_1",
+      "entity_type": "country",
+      "data": {
+        "id": "country_1",
+        "name": "Japan",
+        "instanceType": "Country",
+        "code": "JP"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        9
+      ]
+    }
+  ],
+  "advanced_summary": {
+    "amendment_count": 1,
+    "country_count": 1,
+    "site_count": 0,
+    "has_geographic_scope": true
+  }
+}

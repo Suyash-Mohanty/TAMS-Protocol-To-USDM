@@ -19,6 +19,8 @@ SCHEDULING_USER_PROMPT = """Extract all Scheduling Logic from the following prot
 - Visit windows (e.g., "Day 1 ± 3 days")
 - Intervals between visits (e.g., "4 weeks after previous visit")
 - Time relative to events (e.g., "within 7 days of screening")
+For every timing give `visit`: the visit it applies to, using the visit/encounter label exactly as written in the Schedule of Activities column header (e.g., "Period 1 Day -1", "V4 (Week 4)", "Follow-up/ED"), and `relativeToVisit`: the visit it is measured from (e.g. the dosing or randomization visit), also as written in the SoA; use null when not tied to a specific visit.
+Only extract timings of scheduled visits and assessments. Do NOT extract eligibility look-back or washout periods (e.g., "no insulin within 90 days before screening") — those belong to the eligibility criteria.
 
 **Transition Rules to extract:**
 - Criteria for epoch transitions (e.g., screening to treatment)
@@ -44,6 +46,8 @@ Return JSON in this exact format:
     {{
       "id": "timing_1",
       "name": "Screening Window",
+      "visit": "Screening (Day -28 to -1)",
+      "relativeToVisit": "Day 1",
       "timingType": "Within",
       "value": 28,
       "unit": "days",
@@ -54,6 +58,8 @@ Return JSON in this exact format:
     {{
       "id": "timing_2",
       "name": "Week 4 Visit Window",
+      "visit": "Week 4",
+      "relativeToVisit": "Day 1",
       "timingType": "At",
       "value": 28,
       "unit": "days",

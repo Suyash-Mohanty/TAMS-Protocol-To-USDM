@@ -8,11 +8,16 @@ For official USDM types, see: core/usdm_types.py
 Schema source: https://github.com/cdisc-org/DDF-RA/blob/main/Deliverables/UML/dataStructure.yml
 """
 
+import re
 from dataclasses import dataclass, field
 from typing import List, Optional, Dict, Any
 from enum import Enum
 
 from core.usdm_types import generate_uuid, Code
+from core.cdisc_codelists import (
+    DOSE_FORM, FREQUENCY, INTERVENTION_TYPE, PRODUCT_DESIGNATION, ROUTE, STUDY_INTERVENTION_ROLE, UNIT,
+    lookup as cdisc_lookup, to_code,
+)
 
 
 class RouteOfAdministration(Enum):
@@ -49,14 +54,21 @@ class DoseForm(Enum):
 
 
 class InterventionRole(Enum):
-    """USDM intervention role codes."""
+    """Study intervention roles; values are CDISC C207417 submission values.
+
+    CONCOMITANT has no C207417 term: permitted/prohibited concomitant
+    medications are not study interventions and are not emitted as such.
+    """
     UNKNOWN = ""  # Not extracted from source
-    INVESTIGATIONAL = "Investigational Product"
-    COMPARATOR = "Comparator"
+    INVESTIGATIONAL = "Experimental Intervention"
+    COMPARATOR = "Active Comparator"
     PLACEBO = "Placebo"
-    RESCUE = "Rescue Medication"
+    RESCUE = "Rescue Medicine"
+    BACKGROUND = "Background Treatment"
+    CHALLENGE = "Challenge Agent"
+    ADDITIONAL_REQUIRED = "Additional Required Treatment"
+    DIAGNOSTIC = "Diagnostic"
     CONCOMITANT = "Concomitant Medication"
-    BACKGROUND = "Background Therapy"
 
 
 @dataclass
@@ -89,39 +101,98 @@ class Substance:
 class Administration:
     """
     USDM Administration entity.
-    
-    Describes how a product is administered.
+
+    Describes how a product is administered (dose, route, frequency,
+    duration) within a StudyIntervention.
     """
     id: str
     name: str
     dose: Optional[str] = None  # e.g., "15 mg", "100 mg/m2"
     dose_frequency: Optional[str] = None  # e.g., "once daily", "twice daily"
     route: Optional[RouteOfAdministration] = None
+    route_text: Optional[str] = None  # protocol wording, resolved against CDISC C66729
     duration: Optional[str] = None  # e.g., "24 weeks", "Until disease progression"
     description: Optional[str] = None
+    product_id: Optional[str] = None  # AdministrableProduct administered
     instance_type: str = "Administration"
-    
+
     def to_dict(self) -> Dict[str, Any]:
         result = {
             "id": self.id,
             "name": self.name,
+            "duration": _duration(self.duration),  # required in USDM 4.0
             "instanceType": self.instance_type,
         }
-        if self.dose:
-            result["dose"] = self.dose
-        if self.dose_frequency:
-            result["doseFrequency"] = self.dose_frequency
-        if self.route:
-            result["route"] = {
-                "code": self.route.value,
-                "codeSystem": "USDM",
-                "decode": self.route.value,
-            }
-        if self.duration:
-            result["duration"] = self.duration
-        if self.description:
-            result["description"] = self.description
+        dose = _quantity(self.dose)
+        if dose:
+            result["dose"] = dose
+        # CDISC lists e.g. "Intranasal Route of Administration" as a NASAL synonym
+        route = (cdisc_lookup(ROUTE, self.route_text)
+                 or (cdisc_lookup(ROUTE, f"{self.route_text} Route of Administration") if self.route_text else None)
+                 or (cdisc_lookup(ROUTE, self.route.value) if self.route else None))
+        if route:
+            result["route"] = _alias_code(route, ROUTE)
+        frequency = cdisc_lookup(FREQUENCY, self.dose_frequency)
+        if frequency:
+            result["frequency"] = _alias_code(frequency, FREQUENCY)
+        if self.product_id:
+            result["administrableProductId"] = self.product_id
+        # Keep the protocol's own wording for anything not structured above
+        # (titration rules, "1 mg reconstituted in 1.1 mL", "once daily", ...)
+        details = [self.description]
+        match = _QUANTITY_RE.match(self.dose or "")
+        if self.dose and (not dose or self.dose[match.end():].strip()):
+            details.append(f"Dose: {self.dose}")
+        if self.dose_frequency and not frequency:
+            details.append(f"Frequency: {self.dose_frequency}")
+        text = "; ".join(d for d in details if d)
+        if text:
+            result["description"] = text
         return result
+
+
+_QUANTITY_RE = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*([A-Za-zµμ%/][^\s,;()]*)?")
+
+
+def _alias_code(term: Dict[str, Any], codelist_id: str) -> Dict[str, Any]:
+    return {
+        "id": generate_uuid(),
+        "standardCode": {"id": generate_uuid(), **to_code(term, codelist_id), "instanceType": "Code"},
+        "standardCodeAliases": [],
+        "instanceType": "AliasCode",
+    }
+
+
+def _quantity(text: Optional[str]) -> Optional[Dict[str, Any]]:
+    """Quantity from a leading "<number> <CDISC unit>" ("1 mg (reconstituted...)");
+    None when the text doesn't start with a number or the unit isn't a CDISC unit."""
+    match = _QUANTITY_RE.match(text or "")
+    if not match:
+        return None
+    quantity: Dict[str, Any] = {"id": generate_uuid(), "value": float(match.group(1)), "instanceType": "Quantity"}
+    if match.group(2):
+        unit = cdisc_lookup(UNIT, match.group(2))
+        if not unit:
+            return None
+        quantity["unit"] = _alias_code(unit, UNIT)
+    return quantity
+
+
+def _duration(text: Optional[str]) -> Dict[str, Any]:
+    """USDM Duration: structured quantity when the text is "<number> <time unit>",
+    otherwise the protocol text with durationWillVary set."""
+    quantity = _quantity(text)
+    duration: Dict[str, Any] = {
+        "id": generate_uuid(),
+        "text": text or "Not specified in protocol",
+        "durationWillVary": quantity is None,
+        "instanceType": "Duration",
+    }
+    if quantity:
+        duration["quantity"] = quantity
+    else:
+        duration["reasonDurationWillVary"] = text or "Not specified in protocol"
+    return duration
 
 
 @dataclass
@@ -137,59 +208,50 @@ class AdministrableProduct:
     dose_form: Optional[DoseForm] = None
     strength_value: Optional[float] = None  # numerator value, e.g. 15.0 for "15 mg"
     strength_unit: Optional[str] = None  # numerator unit, e.g. "mg"
+    strength_denominator_value: Optional[float] = None  # e.g. 1.0 for "1 mg/mL"
+    strength_denominator_unit: Optional[str] = None  # e.g. "mL"
     strength_name: Optional[str] = None  # distinct strength label if the protocol names one, e.g. "High Dose"
+    dose_form_text: Optional[str] = None  # protocol wording, resolved against CDISC C66726
+    designation: Optional[str] = None  # "IMP" or "NIMP" (CDISC C207418)
+    active_ingredients: List[str] = field(default_factory=list)  # LLM-listed ingredient names (linking only)
     substance_ids: List[str] = field(default_factory=list)
     manufacturer: Optional[str] = None
     instance_type: str = "AdministrableProduct"
     
+    def _dose_form_code(self) -> Dict[str, Any]:
+        """Resolve the dose form against CDISC codelist C66726.
+
+        The protocol's own wording is tried first (most specific, e.g.
+        "Lyophilized powder for solution for injection"), falling back to a
+        broader term of the same wording ("nasal powder" -> POWDER), then the
+        coarse enum value; a product whose form isn't stated is UNKNOWN.
+        """
+        term = (
+            cdisc_lookup(DOSE_FORM, self.dose_form_text)
+            or cdisc_lookup(DOSE_FORM, self.dose_form_text, allow_broader=True)
+            or (cdisc_lookup(DOSE_FORM, self.dose_form.value) if self.dose_form and self.dose_form != DoseForm.OTHER else None)
+            or cdisc_lookup(DOSE_FORM, "UNKNOWN")
+        )
+        return {"id": generate_uuid(), **to_code(term, DOSE_FORM), "instanceType": "Code"}
+
     def to_dict(self) -> Dict[str, Any]:
-        # Map dose forms to NCI codes
-        dose_form_codes = {
-            DoseForm.TABLET: ("C42998", "Tablet"),
-            DoseForm.CAPSULE: ("C25158", "Capsule"),
-            DoseForm.SOLUTION: ("C42986", "Solution"),
-            DoseForm.SUSPENSION: ("C42993", "Suspension"),
-            DoseForm.INJECTION: ("C42945", "Injection"),
-            DoseForm.CREAM: ("C28944", "Cream"),
-            DoseForm.OINTMENT: ("C42966", "Ointment"),
-            DoseForm.GEL: ("C42906", "Gel"),
-            DoseForm.PATCH: ("C42968", "Patch"),
-            DoseForm.POWDER: ("C42970", "Powder"),
-            DoseForm.SPRAY: ("C42989", "Spray"),
-            DoseForm.INHALER: ("C42940", "Inhaler"),
-            DoseForm.OTHER: ("C17998", "Unknown"),
-        }
-        
-        if self.dose_form:
-            code, decode = dose_form_codes.get(self.dose_form, ("C17998", "Unknown"))
-        else:
-            code, decode = "C17998", "Unknown"
-        
+        dose_form = self._dose_form_code()
+        designation = cdisc_lookup(PRODUCT_DESIGNATION, self.designation) or cdisc_lookup(PRODUCT_DESIGNATION, "IMP")
+
         result = {
             "id": self.id,
             "name": self.name,
-            "administrableDoseForm": {  # Required field
+            "administrableDoseForm": {  # Required field (AliasCode)
                 "id": generate_uuid(),
-                "code": code,
-                "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
-                "codeSystemVersion": "25.01d",
-                "decode": decode,
-                "standardCode": {  # Required nested Code
-                    "id": generate_uuid(),
-                    "code": code,
-                    "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
-                    "codeSystemVersion": "25.01d",
-                    "decode": decode,
-                    "instanceType": "Code",
-                },
-                "instanceType": "Code",
+                "standardCode": dose_form,
+                "standardCodeAliases": [],
+                "instanceType": "AliasCode",
             },
-            "productDesignation": {  # Required field
+            # Required field — IMP (investigational or reference/comparator)
+            # vs NIMP/AxMP (auxiliary: challenge agent, rescue, background)
+            "productDesignation": {
                 "id": generate_uuid(),
-                "code": "C54121",
-                "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
-                "codeSystemVersion": "25.01d",
-                "decode": "Investigational Product",
+                **to_code(designation, PRODUCT_DESIGNATION),
                 "instanceType": "Code",
             },
             "instanceType": self.instance_type,
@@ -205,6 +267,10 @@ class AdministrableProduct:
             result["strengthValue"] = self.strength_value
             if self.strength_unit:
                 result["strengthUnit"] = self.strength_unit
+            if self.strength_denominator_value is not None:
+                result["strengthDenominatorValue"] = self.strength_denominator_value
+                if self.strength_denominator_unit:
+                    result["strengthDenominatorUnit"] = self.strength_denominator_unit
             if self.strength_name:
                 result["strengthName"] = self.strength_name
         if self.substance_ids:
@@ -254,6 +320,7 @@ class StudyIntervention:
     name: str
     description: Optional[str] = None
     role: InterventionRole = InterventionRole.INVESTIGATIONAL
+    intervention_type: Optional[str] = None  # e.g. "Drug", "Biologic", "Device" (CDISC C99078)
     label: Optional[str] = None
     product_ids: List[str] = field(default_factory=list)  # Links to AdministrableProduct
     administration_ids: List[str] = field(default_factory=list)  # Links to Administration
@@ -261,36 +328,19 @@ class StudyIntervention:
     instance_type: str = "StudyIntervention"
     
     def to_dict(self) -> Dict[str, Any]:
-        # Map intervention roles to NCI codes
-        role_codes = {
-            InterventionRole.INVESTIGATIONAL: ("C54121", "Investigational Product"),
-            InterventionRole.COMPARATOR: ("C54129", "Comparator"),
-            InterventionRole.PLACEBO: ("C41132", "Placebo"),
-            InterventionRole.RESCUE: ("C54125", "Rescue Medication"),
-            InterventionRole.CONCOMITANT: ("C54126", "Concomitant Medication"),
-            InterventionRole.BACKGROUND: ("C54127", "Background Therapy"),
-        }
-        code, decode = role_codes.get(self.role, ("C54121", "Investigational Product"))
-        
+        role = (
+            (cdisc_lookup(STUDY_INTERVENTION_ROLE, self.role.value) if self.role else None)
+            or cdisc_lookup(STUDY_INTERVENTION_ROLE, InterventionRole.INVESTIGATIONAL.value)
+        )
+        # Intervention type (C99078) is what the intervention is, not its role;
+        # most protocol interventions are drugs
+        itype = cdisc_lookup(INTERVENTION_TYPE, self.intervention_type) or cdisc_lookup(INTERVENTION_TYPE, "DRUG")
+
         result = {
             "id": self.id,
             "name": self.name,
-            "type": {  # Required field
-                "id": generate_uuid(),
-                "code": code,
-                "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
-                "codeSystemVersion": "25.01d",
-                "decode": decode,
-                "instanceType": "Code",
-            },
-            "role": {
-                "id": generate_uuid(),
-                "code": code,
-                "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
-                "codeSystemVersion": "25.01d",
-                "decode": decode,
-                "instanceType": "Code",
-            },
+            "type": {"id": generate_uuid(), **to_code(itype, INTERVENTION_TYPE), "instanceType": "Code"},
+            "role": {"id": generate_uuid(), **to_code(role, STUDY_INTERVENTION_ROLE), "instanceType": "Code"},
             "instanceType": self.instance_type,
         }
         if self.description:

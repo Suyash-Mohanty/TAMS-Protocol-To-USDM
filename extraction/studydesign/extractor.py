@@ -195,6 +195,10 @@ def extract_study_design(
         # Convert to structured data
         result.data = _parse_design_response(raw_response)
         result.success = result.data is not None
+        if result.success and result.data.study_design and not result.data.study_design.model:
+            result.data.study_design.model = infer_intervention_model(protocol_text)
+        if result.success and result.data.study_design:
+            _add_design_sections(result.data.study_design, pdf_path)
         
         if result.success:
             logger.info(
@@ -207,6 +211,44 @@ def extract_study_design(
         result.error = str(e)
         
     return result
+
+
+# Explicit design statements only — a bare "crossover" also appears in
+# unrelated contexts ("no crossover to open-label treatment").
+_CROSSOVER_DESIGN_RE = re.compile(
+    r"\b(?:\d+|two|three|four)[\s-]+(?:period|treatment|sequence|way)\b[^.]{0,80}?\bcross[\s-]?over\b"
+    r"|\bcross[\s-]?over\s+(?:design|study|trial)\b",
+    re.IGNORECASE,
+)
+_FACTORIAL_DESIGN_RE = re.compile(r"\bfactorial\s+(?:design|study|trial)\b", re.IGNORECASE)
+
+
+_RATIONALE_TITLE = r"(scientific\s+)?rationale\s+for\s+(the\s+)?(study|trial)\s+design|(study|trial)\s+design\s+rationale"
+_OVERALL_DESIGN_TITLE = r"overall\s+(study\s+|trial\s+)?design"
+
+
+def _add_design_sections(design, pdf_path: str) -> None:
+    """Fill the design's description and rationale with the protocol's own
+    "Overall Design" and "Scientific Rationale for Study Design" section text
+    (verbatim; left unset when the protocol has no such numbered section)."""
+    from core.pdf_utils import extract_section_text
+    rationale = extract_section_text(pdf_path, _RATIONALE_TITLE)
+    if rationale:
+        design.rationale = rationale
+    overall = extract_section_text(pdf_path, _OVERALL_DESIGN_TITLE)
+    if overall and not design.description:
+        design.description = overall
+
+
+def infer_intervention_model(protocol_text: Optional[str]) -> Optional[str]:
+    """Intervention model stated in the protocol text, when the LLM omitted it."""
+    if not protocol_text:
+        return None
+    if _CROSSOVER_DESIGN_RE.search(protocol_text):
+        return "Crossover"
+    if _FACTORIAL_DESIGN_RE.search(protocol_text):
+        return "Factorial"
+    return None
 
 
 def _parse_json_response(response_text: str) -> Optional[Dict[str, Any]]:
@@ -363,6 +405,7 @@ def _parse_design_response(raw: Dict[str, Any]) -> Optional[StudyDesignData]:
                 arm_ids=[a.id for a in arms],
                 cohort_ids=[c.id for c in cohorts],
                 therapeutic_areas=design_data.get('therapeuticAreas', []),
+                model=design_data.get('model') or design_data.get('interventionModel'),
             )
         
         # Generate cells and elements from arms × epochs if epochs provided

@@ -12,18 +12,27 @@ Analyze the provided protocol section and extract ALL study interventions, produ
 ## Required Information
 
 ### 1. Study Interventions
-- Investigational product(s)
-- Comparator(s) (active, placebo)
-- Rescue medications (if specified)
-- Background therapy (if specified)
-- Concomitant medications (permitted/prohibited/required)
-- Prior medications that must be washed out
+For each intervention give a `role` (CDISC study intervention role) and a `type`:
+- `role` — one of:
+  - "Experimental Intervention" — the investigational product(s) under study
+  - "Active Comparator" — an active reference treatment the investigational product is compared against
+  - "Placebo"
+  - "Challenge Agent" — given per protocol to provoke the condition the study treats or measures (e.g. insulin infused to induce hypoglycemia, an allergen challenge), not as treatment
+  - "Rescue Medicine" — given when the study treatment fails or for safety rescue
+  - "Background Treatment" — standard-of-care treatment all participants continue alongside the study treatment
+  - "Additional Required Treatment" — other treatment the protocol requires participants to receive
+  - "Diagnostic" — an agent used for diagnosis/imaging
+  - "Concomitant Medication" — permitted, restricted or prohibited medications and prior medications to wash out (listed so they are not mistaken for study interventions)
+- `type` — one of "Drug", "Biologic", "Device", "Procedure", "Dietary Supplement", "Behavioral Therapy", "Radiation", "Genetic", "Diagnostic Test", "Combination Product"
 
 ### 2. Products (AdministrableProduct)
 For each product extract:
 - Product name (generic and/or trade name)
-- Dose form (tablet, capsule, injection, etc.)
+- activeIngredients — the active substance name(s) the product contains, matching names in "substances" (e.g. a product "GlucaGen" or "LY900018 nasal powder" contains "glucagon"); empty for placebo
+- Dose form — as the protocol words it, keeping detail (e.g. "film-coated tablet", "lyophilized powder for solution for injection", "nasal powder", "solution for injection"); omit if the protocol doesn't state it
+- designation — "IMP" if the product is being tested or used as a reference in the trial (investigational product, active comparator, placebo); "NIMP" for auxiliary products used per protocol but not under test (challenge agents such as insulin used to induce hypoglycemia, rescue, background or concomitant medication)
 - Strength as a separate numeric value and unit — e.g. for "15 mg" use strengthValue: 15, strengthUnit: "mg". Do not combine them into one string.
+- For a concentration (amount per volume, e.g. "1 mg/mL", "100 U/mL", "0.3 U/mL after dilution"), also give the denominator: strengthDenominatorValue: 1, strengthDenominatorUnit: "mL"
 - Strength name/label — ONLY if the protocol itself gives this specific strength a distinct designation (e.g., "Low Dose Tablet", "High Dose Tablet", "Formulation A") use strengthName for that exact text. Do not invent one if the protocol doesn't name it; omit strengthName entirely in that case.
 - Manufacturer (if mentioned)
 
@@ -51,24 +60,29 @@ Return a JSON object with this exact structure:
   "interventions": [
     {
       "name": "ALXN1840",
-      "role": "Investigational Product",
+      "role": "Experimental Intervention",
+      "type": "Drug",
       "description": "Investigational product for Wilson disease"
     },
     {
       "name": "Placebo",
       "role": "Placebo",
+      "type": "Drug",
       "description": "Matching placebo tablets"
     },
     {
       "name": "Paracetamol/acetaminophen",
       "role": "Concomitant Medication",
+      "type": "Drug",
       "description": "Permitted for mild pain relief"
     }
   ],
   "products": [
     {
       "name": "ALXN1840 tablets",
-      "doseForm": "Tablet",
+      "doseForm": "Film-coated tablet",
+      "designation": "IMP",
+      "activeIngredients": ["bis-choline tetrathiomolybdate"],
       "strengthValue": 15,
       "strengthUnit": "mg",
       "manufacturer": "Alexion Pharmaceuticals"
@@ -106,7 +120,7 @@ Return a JSON object with this exact structure:
 2. **Include all dosing regimens** - Different doses, titration steps, dose escalation
 3. **Extract concomitant medications** - Look in "Concomitant Medications" or "Prior and Concomitant Therapy" sections for permitted/prohibited medications
 4. **Use standard terminology**:
-   - Roles: "Investigational Product", "Comparator", "Placebo", "Rescue Medication", "Concomitant Medication", "Background Therapy"
+   - Roles: exactly as listed in section 1 (CDISC study intervention roles)
    - Routes: "Oral", "Intravenous", "Subcutaneous", "Intramuscular", "Topical", "Inhalation"
    - Forms: "Tablet", "Capsule", "Solution", "Injection", "Cream", "Patch"
 5. **Be precise with doses** - Include units (mg, mg/kg, mg/m2, etc.)

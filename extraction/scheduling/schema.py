@@ -77,6 +77,10 @@ class Timing:
     relative_to_timepoint_id: Optional[str] = None
     window_lower: Optional[float] = None  # e.g., -3 days
     window_upper: Optional[float] = None  # e.g., +3 days
+    # SoA visit labels the timing applies to / is measured from; staging keys
+    # used by the generator to anchor the timing to scheduled instances
+    visit_name: Optional[str] = None
+    relative_to_visit_name: Optional[str] = None
     instance_type: str = "Timing"
     
     def _to_iso8601_duration(self, value: float, unit: str = "days") -> str:
@@ -168,7 +172,11 @@ class Timing:
             result["windowUpper"] = self._to_iso8601_duration(self.window_upper, self.unit)
         else:
             result["windowUpper"] = "P0D"
-        
+
+        if self.visit_name:
+            result["visitName"] = self.visit_name
+        if self.relative_to_visit_name:
+            result["relativeToVisitName"] = self.relative_to_visit_name
         return result
 
 

@@ -312,8 +312,8 @@ def _parse_metadata_response(raw: Dict[str, Any]) -> Optional[StudyMetadata]:
 
         # Also capture explicit approval / effective dates if the LLM returned them
         if isinstance(version_data, dict):
-            _add_governance_date(version_data.get('approvalDate'), "C99903", "Protocol Approved Date")
-            _add_governance_date(version_data.get('effectiveDate'), "C99904", "Protocol Effective Date")
+            _add_governance_date(version_data.get('approvalDate'), "C71476", "Approval Date")
+            _add_governance_date(version_data.get('effectiveDate'), "C215663", "Effective Date")
             _add_governance_date(version_data.get('submissionDate'), "C99905", "Protocol Submission Date")
 
         # Build study name: prefer sponsor protocol number (short code like "ALXN1840-WD-204"),

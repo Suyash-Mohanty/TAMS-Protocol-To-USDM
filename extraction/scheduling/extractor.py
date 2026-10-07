@@ -201,6 +201,8 @@ def extract_scheduling(
                 relative_to_timepoint_id=t.get('relativeToTimepointId'),
                 window_lower=t.get('windowLower'),
                 window_upper=t.get('windowUpper'),
+                visit_name=t.get('visit') or t.get('visitName'),
+                relative_to_visit_name=t.get('relativeToVisit') or t.get('relativeToVisitName'),
             )
             timings.append(timing)
         

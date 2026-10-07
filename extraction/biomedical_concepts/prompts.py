@@ -79,6 +79,7 @@ For each assessment, generate a structured BiomedicalConcept following CDISC USD
   "biomedicalConcepts": [
     {{
       "id": "bc_1",
+      "activity": "Vital Signs (Supine Blood Pressure, Pulse Rate)",
       "name": "Systolic Blood Pressure",
       "label": "Systolic Blood Pressure Measurement",
       "synonyms": ["SBP", "Systolic BP"],
@@ -106,7 +107,7 @@ For each assessment, generate a structured BiomedicalConcept following CDISC USD
 
 ## Rules
 
-1. Create exactly ONE BiomedicalConcept per SoA activity line
+1. Create exactly ONE BiomedicalConcept per SoA activity line, and set `activity` to that line copied exactly from the list below. Do not add concepts for lines not in the list, and do not split one line into several concepts or variants (e.g. no separate "... Safety" copy of a concept)
 2. Use null for nciCode if not known — do not guess codes
 3. Every BC must belong to exactly one category
 4. Include at least one property per BC (the primary result variable)

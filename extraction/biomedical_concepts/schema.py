@@ -100,6 +100,9 @@ class BiomedicalConcept:
     code_decode: Optional[str] = None   # NCI decode
     category_ids: List[str] = field(default_factory=list)   # BiomedicalConceptCategory IDs
     properties: List[BiomedicalConceptProperty] = field(default_factory=list)
+    # The SoA activity line this concept was created for (staging key used to
+    # link Activity.biomedicalConceptIds; not a USDM attribute)
+    source_activity: Optional[str] = None
     instance_type: str = "BiomedicalConcept"
 
     def to_dict(self) -> Dict[str, Any]:
@@ -112,6 +115,8 @@ class BiomedicalConcept:
             "properties": [p.to_dict() for p in self.properties],
             "instanceType": self.instance_type,
         }
+        if self.source_activity:
+            result["sourceActivity"] = self.source_activity
         if self.code:
             result["code"] = {
                 "id": generate_uuid(),
@@ -142,6 +147,6 @@ class BiomedicalConceptCategory:
             "id": self.id,
             "name": self.name,
             "label": self.label,
-            "bcIds": self.bc_ids,
+            "memberIds": self.bc_ids,  # USDM 4.0 BiomedicalConceptCategory.memberIds
             "instanceType": self.instance_type,
         }

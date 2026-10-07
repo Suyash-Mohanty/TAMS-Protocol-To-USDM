@@ -14,6 +14,12 @@ Analyze the provided protocol section and extract the study design structure.
 ### 1. Study Design Type
 - Is this Interventional or Observational?
 - If Interventional: Treatment, Prevention, Diagnostic, Supportive Care, Screening, Health Services Research, Basic Science?
+- Intervention model (`model`) — exactly one of "Parallel", "Crossover", "Single Group", "Factorial", "Sequential":
+  - Crossover: each participant receives more than one treatment in sequence across periods (e.g., "2-period crossover", treatment sequences AB/BA, washout between periods)
+  - Parallel: each participant receives one treatment, groups run side by side
+  - Single Group: all participants receive the same intervention (one arm)
+  - Factorial: two or more interventions evaluated in combination (e.g., 2x2)
+  - Sequential: groups/cohorts enrolled one after another (e.g., dose-escalation cohorts)
 
 ### 2. Blinding
 - Open Label, Single Blind, Double Blind, Triple Blind, or Quadruple Blind?
@@ -61,6 +67,7 @@ Return a JSON object with this exact structure:
 {
   "studyDesign": {
     "type": "Interventional",
+    "model": "Single Group",
     "trialIntentTypes": ["Treatment"],
     "blinding": {
       "schema": "Open Label",

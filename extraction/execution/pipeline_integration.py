@@ -959,7 +959,7 @@ def _add_execution_extensions(
     if execution_data.crossover_design and execution_data.crossover_design.is_crossover:
         design['model'] = {
             "id": "code_model_1",
-            "code": "C49649",  # CDISC code for Crossover Study
+            "code": "C82637",  # CDISC C99076 Crossover Study
             "codeSystem": "http://www.cdisc.org",
             "codeSystemVersion": "2024-09-27",
             "decode": "Crossover Study",

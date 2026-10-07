@@ -17,6 +17,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 from agents.base import AgentCapabilities, AgentResult, AgentState, AgentTask, BaseAgent
 from core.evs_client import find_ct_entry
+from core.cdisc_codelists import UNIT as UNIT_CODELIST, codelist_for, conform_code, lookup as cdisc_lookup, to_code
 
 logger = logging.getLogger(__name__)
 
@@ -68,7 +69,7 @@ _ENTITY_EXTRA_PROPERTIES: Dict[str, set] = {
     # Encounter: "epochId" not in USDM 4.0 Encounter schema (DDF00125)
     "encounter": {"epochId"},
     # BiomedicalConcept: "categories" not in USDM 4.0 (use bcCategories at version level)
-    "biomedical_concept": {"categories"},
+    "biomedical_concept": {"categories", "sourceActivity"},
     # BiomedicalConceptCategory: "bcIds" not in USDM 4.0 schema (DDF00125)
     "biomedical_concept_category": {"bcIds"},
     # AnalysisPopulation: "level" not in USDM 4.0 schema (DDF00125)
@@ -330,12 +331,23 @@ def _link_geographic_scopes(usdm: Dict[str, Any]) -> None:
     except (KeyError, IndexError):
         return
 
+    # Each location gets its own copy with fresh ids — USDM objects are
+    # nested by value, so sharing one list would duplicate ids
     for amend in version.get("amendments", []):
-        amend["geographicScopes"] = resolved
+        amend["geographicScopes"] = _copy_with_new_ids(resolved)
         for dv in amend.get("dateValues", []):
-            dv["geographicScopes"] = resolved
+            dv["geographicScopes"] = _copy_with_new_ids(resolved)
     for gd in version.get("dateValues", []):
-        gd["geographicScopes"] = resolved
+        gd["geographicScopes"] = _copy_with_new_ids(resolved)
+
+
+def _copy_with_new_ids(value: Any) -> Any:
+    """Deep copy of a nested USDM structure with every "id" regenerated."""
+    if isinstance(value, list):
+        return [_copy_with_new_ids(v) for v in value]
+    if isinstance(value, dict):
+        return {k: (str(uuid.uuid4()) if k == "id" else _copy_with_new_ids(v)) for k, v in value.items()}
+    return value
 
 
 def _build_language_code(lang: Optional[str]) -> Dict[str, Any]:
@@ -356,15 +368,23 @@ def _build_language_code(lang: Optional[str]) -> Dict[str, Any]:
     }
 
 
-def _resolve_ct_code(term: str) -> Dict[str, Any]:
+def _resolve_ct_code(term: str, codelist_id: Optional[str] = None) -> Dict[str, Any]:
     """Resolve a CDISC Controlled Terminology term to a USDM Code object.
 
-    Uses a live NCI EVS lookup (``core.evs_client.find_ct_entry``), which is
-    cached to disk after the first successful call. If the term can't be
-    resolved (no network / not found), a degraded placeholder Code is
+    When the governing codelist is known, the term is matched against the
+    local copy of that CDISC codelist first (``core.cdisc_codelists``), so
+    "g" resolves to Gram in the Unit codelist rather than whatever a
+    free-text search ranks first. Otherwise (or with no local match) a live
+    NCI EVS lookup (``core.evs_client.find_ct_entry``) is used, cached to
+    disk. If the term can't be resolved, a degraded placeholder Code is
     returned with the raw term as the decode and code "UNK" — the value is
     never fabricated, since these are CDISC-controlled codes.
     """
+    if codelist_id:
+        term_entry = cdisc_lookup(codelist_id, term)
+        if term_entry:
+            return {"id": str(uuid.uuid4()), **to_code(term_entry, codelist_id), "instanceType": "Code"}
+
     entry = None
     try:
         entry = find_ct_entry(term)
@@ -401,7 +421,7 @@ def _build_unit_alias_code(unit: str) -> Dict[str, Any]:
     return {
         "id": str(uuid.uuid4()),
         "instanceType": "AliasCode",
-        "standardCode": _resolve_ct_code(unit),
+        "standardCode": _resolve_ct_code(unit, UNIT_CODELIST),
         "standardCodeAliases": [],
     }
 
@@ -779,7 +799,7 @@ def _place_study_definition_document(usdm: Dict[str, Any], data: Dict[str, Any])
         "id": data.get("id") or str(uuid.uuid4()),
         "name": data.get("name") or "Protocol",
         "language": _build_language_code(data.get("language")),
-        "type": _resolve_ct_code(data.get("documentType") or "Protocol"),
+        "type": _resolve_ct_code(data.get("documentType") or "Protocol", "C215477"),
         "templateName": data.get("templateName") or "SPONSOR",
         "versions": [],
         "instanceType": "StudyDefinitionDocument",
@@ -1342,57 +1362,8 @@ def _normalize_codelists(usdm: Dict[str, Any]) -> None:
     # actual epochs are "epoch_v_1". Remap by position.
     # Also ensure each cell has at least one elementId (DDF00126).
     epoch_ids = [ep["id"] for ep in epochs]
-    epoch_names = {ep["id"]: ep.get("name", "Element") for ep in epochs}
     if epoch_ids:
-        # Build a StudyElement per epoch (reuse if already present)
-        existing_elements = {e.get("name"): e for e in design.get("elements", [])}
-        epoch_element_map: Dict[str, str] = {}  # epochId -> elementId
-        new_elements = list(design.get("elements", []))
-        for ep_id in epoch_ids:
-            elem_name = epoch_names.get(ep_id, "Element")
-            if elem_name in existing_elements:
-                epoch_element_map[ep_id] = existing_elements[elem_name]["id"]
-            else:
-                elem_id = str(uuid.uuid4()).replace("-", "_")
-                new_elements.append({
-                    "id": elem_id,
-                    "name": elem_name,
-                    "instanceType": "StudyElement",
-                })
-                epoch_element_map[ep_id] = elem_id
-                existing_elements[elem_name] = {"id": elem_id, "name": elem_name}
-        design["elements"] = new_elements
-
-        for arm in design.get("arms", []):
-            arm_id = arm.get("id")
-            arm_cells = [c for c in design.get("studyCells", [])
-                         if c.get("armId") == arm_id]
-            # Check if any cell references an invalid epoch
-            valid_epoch_set = set(epoch_ids)
-            needs_remap = any(c.get("epochId") not in valid_epoch_set
-                              for c in arm_cells)
-            if needs_remap:
-                # Remove old cells for this arm
-                design["studyCells"] = [
-                    c for c in design.get("studyCells", [])
-                    if c.get("armId") != arm_id
-                ]
-                # Create one cell per epoch
-                for ep_id in epoch_ids:
-                    design["studyCells"].append({
-                        "id": str(uuid.uuid4()).replace("-", "_"),
-                        "armId": arm_id,
-                        "epochId": ep_id,
-                        "elementIds": [epoch_element_map[ep_id]],
-                        "instanceType": "StudyCell",
-                    })
-
-        # Also fix existing cells that have empty elementIds
-        for cell in design.get("studyCells", []):
-            if not cell.get("elementIds"):
-                ep_id = cell.get("epochId", "")
-                if ep_id in epoch_element_map:
-                    cell["elementIds"] = [epoch_element_map[ep_id]]
+        _remap_study_cells(design, epochs)
 
     # Fix StudyRole appliesToIds (DDF00189)
     # CORE expects appliesToIds to reference ONLY the version ID
@@ -1994,17 +1965,23 @@ def _ensure_sponsor_identifier(usdm: Dict[str, Any]) -> None:
                         enc_footnote_labels.setdefault(enc_id, set()).update(fn_refs)
 
                 enc_map = {enc.get("id"): enc for enc in design.get("encounters", []) if enc.get("id")}
-                for enc_id, activity_ids in enc_to_activities.items():
+                # One instance per encounter in visit order — including
+                # encounters with no tick data, so a sparse SoA extraction
+                # can't drop visits from the timeline
+                ordered_enc_ids = [e for e in enc_map] + [e for e in enc_to_activities if e not in enc_map]
+                for enc_id in ordered_enc_ids:
                     enc = enc_map.get(enc_id, {})
                     enc_name = enc.get("name", enc_id)
-                    instances.append({
+                    instance = {
                         "id": str(uuid.uuid4()).replace("-", "_"),
                         "name": enc_name,
                         "epochId": _enc_epoch_map.get(enc_id) or enc.get("epochId") or _match_epoch(enc_name),
                         "encounterId": enc_id,
-                        "activityIds": activity_ids,
                         "instanceType": "ScheduledActivityInstance",
-                    })
+                    }
+                    if enc_to_activities.get(enc_id):
+                        instance["activityIds"] = enc_to_activities[enc_id]
+                    instances.append(instance)
             else:
                 # No tick data — create one instance per encounter (no activityIds)
                 for enc in design.get("encounters", []):
@@ -2106,6 +2083,16 @@ def _ensure_sponsor_identifier(usdm: Dict[str, Any]) -> None:
                     "id": str(uuid.uuid4()).replace("-", "_"),
                     "name": f"{inv_name} Administration",
                     "procedureType": "Study Drug Administration",
+                    # Procedure.code is required (1); NCIt C70962 "Agent
+                    # Administration" — administration of a pharmaceutical product
+                    "code": {
+                        "id": str(uuid.uuid4()),
+                        "code": "C70962",
+                        "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+                        "codeSystemVersion": "2024-09-27",
+                        "decode": "Agent Administration",
+                        "instanceType": "Code",
+                    },
                     "studyInterventionIds": [inv_id],
                     "instanceType": "Procedure",
                 })
@@ -2322,7 +2309,7 @@ def _link_document_versions(usdm: Dict[str, Any]) -> None:
         version = {
             "id": raw.get("id") or str(uuid.uuid4()),
             "version": raw.get("version") or raw.get("versionNumber") or "1.0",
-            "status": _resolve_ct_code(raw.get("status") or "Final"),
+            "status": _resolve_ct_code(raw.get("status") or "Final", "C188723"),
             "instanceType": "StudyDefinitionDocumentVersion",
         }
         versions.append(version)
@@ -2463,6 +2450,21 @@ def _link_substances_to_products(usdm: Dict[str, Any]) -> None:
             "numerator": quantity,
             "instanceType": "Strength",
         }
+        if link.get("denominatorValue") is not None:
+            # Concentration, e.g. 0.3 U per 1 mL
+            denominator_value = float(link["denominatorValue"])
+            denominator_unit = link.get("denominatorUnit")
+            denominator = {
+                "id": str(uuid.uuid4()).replace("-", "_"),
+                "value": denominator_value,
+                "instanceType": "Quantity",
+            }
+            if denominator_unit:
+                denominator["unit"] = _build_unit_alias_code(denominator_unit)
+            strength["denominator"] = denominator
+            if not link.get("name"):
+                per = denominator_unit if denominator_value == 1 else f"{denominator_value:g} {denominator_unit or ''}".strip()
+                strength["name"] = f"{default_name}/{per}" if per else default_name
         substance_id = substance_data.get("id")
         if not substance_id or substance_id in used_substance_ids:
             substance_id = str(uuid.uuid4()).replace("-", "_")
@@ -2485,6 +2487,456 @@ def _link_substances_to_products(usdm: Dict[str, Any]) -> None:
             "instanceType": "Ingredient",
         }
         product.setdefault("ingredients", []).append(ingredient)
+
+
+_ROMAN_PHASE = {"iv": "4", "v": "5", "iii": "3", "ii": "2", "i": "1"}
+
+
+def _study_phase_term(text: str) -> Optional[dict]:
+    """Resolve phase text ("Phase 3", "Phase III", "phase 2/3", "Phase 1b",
+    "PHASE 3") to a CDISC Trial Phase (C66737) term via its "Trial Phase N"
+    synonyms (e.g. "Trial Phase 2-3" -> PHASE II/III TRIAL)."""
+    if not text:
+        return None
+    for literal in (text, f"{text} Trial"):  # e.g. "Early Phase 1" -> "Early Phase 1 Trial"
+        term = cdisc_lookup("C66737", literal)
+        if term:
+            return term
+    t = re.sub(r"(trial|phase|study)", " ", text.lower())
+    t = re.sub(r"\b(iv|v|iii|ii|i)(?=[ab]?\b)", lambda m: _ROMAN_PHASE[m.group(1)], t)
+    t = re.sub(r"\s+", "", t).upper()
+    if not t:
+        return None
+    for candidate in dict.fromkeys([t, t.replace("/", "-")]):
+        term = cdisc_lookup("C66737", f"Trial Phase {candidate}") or cdisc_lookup("C66737", candidate)
+        if term:
+            return term
+    return None
+
+
+def _conform_codes_to_codelists(usdm: Dict[str, Any]) -> Dict[str, int]:
+    """Re-resolve every coded attribute that isn't a term of its codelist.
+
+    The attribute -> codelist map comes from the CDISC usdm4 CT config (e.g.
+    StudyDefinitionDocumentVersion.status -> C188723, Quantity.unit ->
+    C71620). Codes from LLM output, hand-maintained tables or a free-text
+    NCIt search can be valid NCIt codes from the wrong codelist ("Approved
+    Protocol" C70745 for a document status) or unrelated concepts ("G Force"
+    for unit "g"); those are re-resolved from their decode. Codes with no
+    matching term are left unchanged and logged.
+    """
+    stats = {"valid": 0, "fixed": 0, "unresolved": 0}
+
+    def _conform(value: Any, codelist_id: str, where: str) -> None:
+        if isinstance(value, list):
+            for item in value:
+                _conform(item, codelist_id, where)
+            return
+        if not isinstance(value, dict):
+            return
+        code_obj = value.get("standardCode") if value.get("instanceType") == "AliasCode" else value
+        if not isinstance(code_obj, dict):
+            return
+        before = (code_obj.get("code"), code_obj.get("decode"))
+        outcome = conform_code(code_obj, codelist_id)
+        if outcome is True:
+            stats["fixed"] += 1
+            logger.info(f"Codelist {codelist_id}: {where} {before} -> ({code_obj['code']}, {code_obj['decode']!r})")
+        elif outcome is False:
+            stats["valid"] += 1
+        elif code_obj.get("code"):
+            stats["unresolved"] += 1
+            logger.warning(f"Codelist {codelist_id}: {where} {before} matches no term; left unchanged")
+
+    def _walk(node: Any) -> None:
+        if isinstance(node, list):
+            for item in node:
+                _walk(item)
+            return
+        if not isinstance(node, dict):
+            return
+        instance_type = node.get("instanceType")
+        if instance_type:
+            for attr, value in node.items():
+                codelist_id = codelist_for(instance_type, attr)
+                if codelist_id and value:
+                    _conform(value, codelist_id, f"{instance_type}.{attr}")
+        for value in node.values():
+            _walk(value)
+
+    _walk(usdm)
+    logger.info(f"Codelist conformance: {stats}")
+    return stats
+
+
+def _name_words(name: str) -> set:
+    return set(re.findall(r"[a-z0-9]+", (name or "").lower()))
+
+
+def _link_administrations_to_interventions(usdm: Dict[str, Any]) -> None:
+    """Nest staged Administration entities under StudyIntervention.administrations.
+
+    USDM 4.0 has no list container for Administration; each belongs to one
+    StudyIntervention. The extractor links them via the intervention's
+    administrationIds (staged before those are stripped); an administration
+    without such a link goes to the intervention sharing the most name words.
+    Unmatched administrations are dropped with a warning rather than
+    attached to an arbitrary intervention. administrableProductId values that
+    don't reference a placed product are removed.
+    """
+    study = usdm.get("study", {})
+    pending = study.pop("_pendingAdministrations", [])
+    links = study.pop("_pendingInterventionAdmins", {})
+    if not pending:
+        return
+    try:
+        version = study["versions"][0]
+    except (KeyError, IndexError):
+        return
+    interventions = version.get("studyInterventions") or []
+    if not interventions:
+        try:
+            interventions = version["studyDesigns"][0].get("studyInterventions") or []
+        except (KeyError, IndexError):
+            interventions = []
+    by_id = {i.get("id"): i for i in interventions}
+    owner_of = {admin_id: int_id for int_id, admin_ids in links.items() for admin_id in admin_ids}
+    product_ids = {p.get("id") for p in version.get("administrableProducts", [])}
+
+    for admin in pending:
+        if admin.get("administrableProductId") not in product_ids:
+            admin.pop("administrableProductId", None)
+        intervention = by_id.get(owner_of.get(admin.get("id")))
+        if intervention is None:
+            words = _name_words(admin.get("name", ""))
+            scored = [(len(words & _name_words(i.get("name", ""))), i) for i in interventions]
+            best = max(scored, key=lambda s: s[0], default=(0, None))
+            intervention = best[1] if best[0] > 0 else None
+        if intervention is None:
+            logger.warning(f"Administration {admin.get('name')!r} matches no study intervention; dropped")
+            continue
+        intervention.setdefault("administrations", []).append(admin)
+
+
+_TIMING_TOKEN_RE = re.compile(r"-?\d+|[a-z]+")
+# Words too generic to identify a visit on their own
+_TIMING_STOPWORDS = {"visit", "window", "period", "the", "of", "and", "to", "from", "for", "a", "an",
+                     "in", "at", "day", "days", "week", "weeks", "study", "summary", "design"}
+
+
+def _timing_tokens(text: str) -> set:
+    return {t for t in _TIMING_TOKEN_RE.findall((text or "").lower()) if t not in _TIMING_STOPWORDS}
+
+
+def _best_instance(text: str, instances: List[Dict[str, Any]],
+                   epoch_names: Optional[Dict[str, str]] = None) -> Optional[Dict[str, Any]]:
+    """The scheduled instance best identified by `text`.
+
+    An instance is described by its name plus its epoch's name (a visit
+    named "Days -28 to -2" in the Screening epoch matches "Screening
+    Window"). Numbers keep their sign ("Day -1" != "Day 1") and every number
+    in the instance name must appear in `text`, so a stray ">2 weeks" can't
+    select "V2 (Week -2)". Instance tokens missing from `text` count
+    against it, so "Day 1 Dosing" prefers "Period 1 Day 1" over
+    "Period 1 Day -1".
+    """
+    tokens = _timing_tokens(text)
+    if not tokens:
+        return None
+    epoch_names = epoch_names or {}
+    text_has_numbers = any(re.fullmatch(r"-?\d+", t) for t in tokens)
+    per_epoch: Dict[Any, int] = {}
+    for inst in instances:
+        per_epoch[inst.get("epochId")] = per_epoch.get(inst.get("epochId"), 0) + 1
+    best, best_score = None, float("-inf")
+    for inst in instances:
+        name_tokens = _timing_tokens(inst.get("name", ""))
+        inst_tokens = name_tokens | _timing_tokens(epoch_names.get(inst.get("epochId"), ""))
+        name_numbers = {t for t in name_tokens if re.fullmatch(r"-?\d+", t)}
+        if text_has_numbers and name_numbers - tokens:
+            continue
+        shared = tokens & inst_tokens
+        if not shared:
+            continue
+        # Matching only on the epoch name identifies a visit only when the
+        # epoch has one visit ("Screening"), not e.g. a 16-visit treatment epoch
+        if not (tokens & name_tokens) and per_epoch.get(inst.get("epochId"), 0) != 1:
+            continue
+        score = len(shared) - 0.5 * len(inst_tokens - tokens)
+        if score > best_score:
+            best, best_score = inst, score
+    return best
+
+
+_VISIT_NUMBER_RE = re.compile(r"\b(?:visit|v)\s*(\d+)\b", re.IGNORECASE)
+
+
+def _instance_by_visit(label: Optional[str], instances: List[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+    """The instance the SoA visit label names.
+
+    Normalised exact match first; otherwise by visit number, since labels and
+    instance names spell it differently ("Visit 1" vs "V1 (Week -5)").
+    """
+    if not label:
+        return None
+    key = re.sub(r"[^a-z0-9-]+", " ", label.lower()).strip()
+    exact = next((i for i in instances
+                  if re.sub(r"[^a-z0-9-]+", " ", (i.get("name") or "").lower()).strip() == key), None)
+    if exact:
+        return exact
+    number = _VISIT_NUMBER_RE.search(label)
+    if number:
+        same = [i for i in instances
+                if any(m == number.group(1) for m in _VISIT_NUMBER_RE.findall(i.get("name") or ""))]
+        if len(same) == 1:
+            return same[0]
+    return None
+
+
+def _link_timings_to_timeline(usdm: Dict[str, Any]) -> None:
+    """Attach staged Timing entities to the main ScheduleTimeline.
+
+    Extracted timings name the visit they describe ("Period 1 Admission
+    (Day -1)", "Screening Window") but their instance references are not
+    resolvable, so each is anchored to the timeline instance sharing the
+    most distinctive name tokens; its anchor ("First Dose", "Last Dose",
+    "Previous Visit") becomes relativeToScheduledInstanceId when an instance
+    matches it. Direction is expressed by the CDISC C201264 type (Before /
+    After / Fixed Reference) with an unsigned ISO 8601 value; free-text
+    types such as "Within"/"Between" are derived from the value's sign.
+    Timings that match no instance (study-level durations such as "Total
+    Treatment Period Duration") are dropped with a log message rather than
+    left with dangling references.
+    """
+    study = usdm.get("study", {})
+    pending = study.pop("_pendingTimings", [])
+    if not pending:
+        return
+    try:
+        design = study["versions"][0]["studyDesigns"][0]
+    except (KeyError, IndexError):
+        return
+    timeline = next((t for t in design.get("scheduleTimelines", []) if t.get("mainTimeline")), None)
+    instances = (timeline or {}).get("instances") or []
+    if not instances:
+        logger.warning(f"{len(pending)} timing(s) dropped: no main timeline instances to anchor them to")
+        return
+
+    epoch_names = {e.get("id"): e.get("name", "") for e in design.get("epochs", [])}
+    timings, dropped = [], []
+    for raw in pending:
+        name = raw.get("name") or ""
+        source = (_instance_by_visit(raw.get("visitName"), instances)
+                  or _best_instance(raw.get("visitName") or "", instances, epoch_names)
+                  or _best_instance(name, instances, epoch_names))
+        if source is None:
+            dropped.append(name)
+            continue
+        value = str(raw.get("value") or "").strip()
+        negative = value.startswith("-")
+        value = value.lstrip("-+") or "P0D"
+        raw_type = raw.get("type")
+        raw_type = (raw_type.get("decode") if isinstance(raw_type, dict) else raw_type) or ""
+        type_term = cdisc_lookup("C201264", raw_type)
+        if not type_term:
+            zero = re.fullmatch(r"P(T)?0+[A-Z]", value) is not None
+            type_term = cdisc_lookup("C201264", "Fixed Reference" if zero else ("Before" if negative else "After"))
+        anchor_text = raw.get("relativeToFrom")
+        anchor_text = anchor_text.get("decode") if isinstance(anchor_text, dict) else anchor_text
+        relative_to_from = cdisc_lookup("C201265", anchor_text) or cdisc_lookup("C201265", "Start to Start")
+        timing = {
+            "id": raw.get("id") or str(uuid.uuid4()),
+            "name": name,
+            "type": {"id": str(uuid.uuid4()), **to_code(type_term, "C201264"), "instanceType": "Code"},
+            "value": value,
+            "valueLabel": raw.get("valueLabel") or value,
+            "relativeToFrom": {"id": str(uuid.uuid4()), **to_code(relative_to_from, "C201265"), "instanceType": "Code"},
+            "relativeFromScheduledInstanceId": source["id"],
+            "instanceType": "Timing",
+        }
+        others = [i for i in instances if i is not source]
+        anchor = (_instance_by_visit(raw.get("relativeToVisitName"), others)
+                  or _best_instance(raw.get("relativeToVisitName") or "", others, epoch_names)
+                  or _best_instance(anchor_text or "", others, epoch_names))
+        if anchor is not None:
+            timing["relativeToScheduledInstanceId"] = anchor["id"]
+        for key in ("description", "label", "windowLower", "windowUpper", "windowLabel"):
+            if raw.get(key):
+                timing[key] = raw[key]
+        timings.append(timing)
+
+    timeline["timings"] = timings
+    if dropped:
+        logger.info(f"{len(dropped)} timing(s) not anchored to a scheduled instance, dropped: {dropped}")
+    logger.info(f"Linked {len(timings)} timing(s) to the main timeline")
+
+
+def _prune_unreferenced_biomedical_concepts(version: Dict[str, Any]) -> None:
+    """Drop BiomedicalConcepts no Activity uses, and categories left empty.
+
+    A BC is used when an Activity lists it in biomedicalConceptIds or lists
+    a category it belongs to in bcCategoryIds. An unused BC (e.g. an extra
+    "Urine Drug Screen Safety" variant of "Urine Drug Screen") triggers no
+    data collection and only confuses consumers. Nothing is pruned when no
+    Activity references any BC, since that means linking failed outright.
+    """
+    activities = [a for d in version.get("studyDesigns", []) for a in d.get("activities", [])]
+    categories = version.get("bcCategories", [])
+    used = {bid for a in activities for bid in a.get("biomedicalConceptIds") or []}
+    if not used:
+        return
+    used_cats = {cid for a in activities for cid in a.get("bcCategoryIds") or []}
+    for cat in categories:
+        if cat.get("id") in used_cats:
+            used.update(cat.get("memberIds") or [])
+    bcs = version.get("biomedicalConcepts", [])
+
+    # Link an unused BC to the activity it was evidently made for: every word
+    # of the BC name (or a synonym) appears in the activity name ("FSH" ->
+    # "FSH (Female patients only)"); the most specific BC wins per activity.
+    def _words(text: str) -> set:
+        return set(re.findall(r"[a-z0-9]+", (text or "").lower()))
+
+    for activity in activities:
+        act_words = _words(activity.get("name", ""))
+        candidates = []
+        for bc in bcs:
+            if bc.get("id") in used:
+                continue
+            for label in [bc.get("name", "")] + list(bc.get("synonyms") or []):
+                if _words(label) and _words(label) <= act_words:
+                    candidates.append((len(_words(label)), bc))
+                    break
+        if candidates:
+            top = max(c[0] for c in candidates)
+            best = [bc for n, bc in candidates if n == top]
+            if len(best) == 1:
+                activity.setdefault("biomedicalConceptIds", []).append(best[0]["id"])
+                used.add(best[0]["id"])
+
+    dropped = [bc.get("name") for bc in bcs if bc.get("id") not in used]
+    if not dropped:
+        return
+    version["biomedicalConcepts"] = [bc for bc in bcs if bc.get("id") in used]
+    for cat in categories:
+        if cat.get("memberIds"):
+            cat["memberIds"] = [m for m in cat["memberIds"] if m in used]
+    version["bcCategories"] = [
+        c for c in categories if c.get("memberIds") or c.get("childIds") or c.get("id") in used_cats
+    ]
+    logger.info(f"Dropped {len(dropped)} BiomedicalConcept(s) not used by any activity: {dropped}")
+
+
+def _remap_study_cells(design: Dict[str, Any], epochs: List[Dict[str, Any]]) -> None:
+    """Point StudyCells at the real epochs while keeping their elements.
+
+    The study-design extraction builds one cell per arm x epoch referencing
+    arm-specific elements ("Sequence A: LY900018 -> IMG - Period 1"), but with
+    provisional epoch ids ("epoch_1") while the USDM epochs come from the SoA
+    with other ids. Each cell is remapped to the epoch named at the end of
+    its element name ("... - Period 1" -> epoch "Period 1"), else to the
+    epoch at the same position as its provisional epoch id; its elementIds
+    are kept. Generic per-epoch elements are created only for arm x epoch
+    combinations no cell covers, and elements referenced by no cell are
+    removed (DDF00126/DDF00243).
+    """
+    epoch_ids = [ep["id"] for ep in epochs]
+    valid_epochs = set(epoch_ids)
+    norm_epoch = {ep["id"]: _normalize_epoch_name(ep.get("name", "")) for ep in epochs}
+    elements = {e.get("id"): e for e in design.get("elements", [])}
+    cells = design.get("studyCells", [])
+
+    # Provisional epoch ids in first-appearance order ("epoch_1", "epoch_2", ...)
+    def _order_key(eid: str):
+        m = re.search(r"(\d+)$", eid or "")
+        return (0, int(m.group(1))) if m else (1, eid or "")
+    provisional = sorted({c.get("epochId") for c in cells if c.get("epochId") not in valid_epochs},
+                         key=_order_key)
+    by_position = {old: epoch_ids[i] for i, old in enumerate(provisional) if i < len(epoch_ids)}
+
+    def _epoch_from_elements(cell: Dict[str, Any]) -> Optional[str]:
+        """Epoch named by the element's phase (text after the last " - "):
+        the phase contains the epoch name ("Period 1 Treatment" -> "Period 1")
+        or the epoch name contains the phase ("TE ADA" vs footnoted "TE ADAa")."""
+        for eid in cell.get("elementIds") or []:
+            full = elements.get(eid, {}).get("name", "")
+            phase = _normalize_epoch_name(full.rsplit(" - ", 1)[-1])
+            # Longest epoch name first so "follow up for te ada" beats "follow up"
+            for ep_id in sorted(norm_epoch, key=lambda k: -len(norm_epoch[k])):
+                ep_name = norm_epoch[ep_id]
+                if ep_name and phase and (ep_name in phase or phase in ep_name):
+                    return ep_id
+        return None
+
+    for cell in cells:
+        if cell.get("epochId") not in valid_epochs:
+            target = _epoch_from_elements(cell) or by_position.get(cell.get("epochId"))
+            if target:
+                cell["epochId"] = target
+        cell["elementIds"] = [e for e in cell.get("elementIds") or [] if e in elements]
+    cells = [c for c in cells if c.get("epochId") in valid_epochs]
+
+    # Several design phases can fall in one SoA epoch ("Dose Escalation" and
+    # "Maintenance" in "Treatment"): one cell per arm x epoch holds their
+    # elements in order
+    merged: Dict[tuple, Dict[str, Any]] = {}
+    for cell in cells:
+        key = (cell.get("armId"), cell.get("epochId"))
+        if key in merged:
+            merged[key]["elementIds"] += [e for e in cell["elementIds"] if e not in merged[key]["elementIds"]]
+        else:
+            merged[key] = cell
+    cells = list(merged.values())
+
+    # One cell per arm x epoch; fill gaps (and empty cells) with a generic
+    # per-epoch element, created only when needed
+    generic: Dict[str, str] = {}
+
+    def _generic_element(ep_id: str) -> str:
+        if ep_id not in generic:
+            name = next((ep.get("name", "Element") for ep in epochs if ep["id"] == ep_id), "Element")
+            existing = next((e for e in elements.values() if e.get("name") == name), None)
+            if existing:
+                generic[ep_id] = existing["id"]
+            else:
+                elem_id = str(uuid.uuid4()).replace("-", "_")
+                elements[elem_id] = {"id": elem_id, "name": name, "instanceType": "StudyElement"}
+                generic[ep_id] = elem_id
+        return generic[ep_id]
+
+    covered = {(c.get("armId"), c.get("epochId")) for c in cells}
+    for arm in design.get("arms", []):
+        for ep_id in epoch_ids:
+            if (arm.get("id"), ep_id) not in covered:
+                cells.append({
+                    "id": str(uuid.uuid4()).replace("-", "_"),
+                    "armId": arm.get("id"),
+                    "epochId": ep_id,
+                    "elementIds": [],
+                    "instanceType": "StudyCell",
+                })
+    for cell in cells:
+        if not cell["elementIds"]:
+            cell["elementIds"] = [_generic_element(cell["epochId"])]
+
+    used = {e for c in cells for e in c["elementIds"]}
+    design["studyCells"] = cells
+    design["elements"] = [e for eid, e in elements.items() if eid in used]
+
+
+def _set_version_rationale(usdm: Dict[str, Any]) -> None:
+    """StudyVersion.rationale from the protocol: the latest amendment's stated
+    rationale when the version is an amendment, else "Original protocol
+    version" — replacing the generic "Protocol version" placeholder."""
+    try:
+        version = usdm["study"]["versions"][0]
+    except (KeyError, IndexError):
+        return
+    if version.get("rationale") and version["rationale"] != "Protocol version":
+        return
+    summaries = [a.get("summary") for a in version.get("amendments", [])
+                 if a.get("summary") and not re.fullmatch(r"Amendment \S+ to the protocol", a["summary"])]
+    version["rationale"] = summaries[-1] if summaries else "Original protocol version"
 
 
 def _post_normalize_cleanup(usdm: Dict[str, Any]) -> None:
@@ -2511,6 +2963,9 @@ def _post_normalize_cleanup(usdm: Dict[str, Any]) -> None:
     study.pop("_pendingMaskedRoles", None)
     study.pop("_pendingProductStrengths", None)
     study.pop("_pendingSubstances", None)
+    study.pop("_pendingAdministrations", None)
+    study.pop("_pendingInterventionAdmins", None)
+    study.pop("_pendingTimings", None)
 
     # Strip 'type' from all StudyIdentifiers (not in USDM 4.0 — DDF00125)
     for sid in version.get("studyIdentifiers", []):
@@ -2619,8 +3074,11 @@ def _post_normalize_cleanup(usdm: Dict[str, Any]) -> None:
         sc = sp.get("standardCode") if sp.get("instanceType") == "AliasCode" else sp
         if isinstance(sc, dict):
             raw_code = sc.get("code", sc.get("decode", "")).lower()
+            phase_term = _study_phase_term(sc.get("decode") or "") or _study_phase_term(raw_code)
             mapped = _PHASE_CODE_MAP.get(raw_code)
-            if mapped:
+            if phase_term:
+                sc.update(to_code(phase_term, "C66737"))
+            elif mapped:
                 sc["code"] = mapped[0]
                 sc["decode"] = mapped[1]
                 sc["codeSystem"] = "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl"
@@ -2709,16 +3167,12 @@ def _ensure_study_design_type(usdm: Dict[str, Any]) -> None:
             "instanceType": "Code",
         }
 
-    # ``model`` is required for InterventionalStudyDesign
+    # ``model`` is required for InterventionalStudyDesign. Normally extracted
+    # (studydesign prompt / crossover text fallback); when absent, a one-arm
+    # study is Single Group, otherwise Parallel.
     if design["instanceType"] == "InterventionalStudyDesign" and not design.get("model"):
-        design["model"] = {
-            "id": str(uuid.uuid4()),
-            "code": "C82639",
-            "codeSystem": "http://www.cdisc.org",
-            "codeSystemVersion": "2024-09-27",
-            "decode": "Parallel Study",
-            "instanceType": "Code",
-        }
+        default_model = "Single Group" if len(design.get("arms", [])) == 1 else "Parallel"
+        design["model"] = _resolve_ct_code(default_model, "C99076")
 
     # ``rationale`` is required
     if not design.get("rationale"):
@@ -3026,10 +3480,11 @@ def _fix_required_fields(usdm: Dict[str, Any]) -> None:
                 bid for bname, bid in bc_name_to_id.items()
                 if cat_name and (cat_name in bname.lower() or bname.lower() in cat_name)
             ]
-            if not matched_ids:
-                matched_ids = list(bc_name_to_id.values())
+            # No fallback to "all BCs": a category without identified members
+            # is left empty (memberIds is 0..*) rather than claiming every BC
             if matched_ids:
                 cat["memberIds"] = matched_ids
+    _prune_unreferenced_biomedical_concepts(version)
 
     # ── AnalysisPopulations ─────────────────────────────────────────────────
     designs = version.get("studyDesigns", [])
@@ -3162,6 +3617,13 @@ class USDMGeneratorAgent(BaseAgent):
             except Exception as e:
                 self._logger.debug(f"[{self.agent_id}] Post-normalize cleanup skipped: {e}")
 
+            # Post-assembly step 1c: every coded attribute must use a term
+            # of its CDISC codelist (runs last so it sees final values)
+            try:
+                _conform_codes_to_codelists(result.usdm_json)
+            except Exception as e:
+                self._logger.warning(f"[{self.agent_id}] Codelist conformance skipped: {e}")
+
             # Post-assembly step 2: convert simple IDs to UUID format
             id_map: dict = {}
             output_path = task.input_data.get("output_path")
@@ -3267,6 +3729,15 @@ class USDMGeneratorAgent(BaseAgent):
                     # for InterventionalStudyDesign.
                     if sd_data.get("blindingSchema") and not design.get("blindingSchema"):
                         design["blindingSchema"] = sd_data["blindingSchema"]
+                    # Intervention model (C99076), e.g. Crossover — otherwise
+                    # _ensure_study_design_type falls back to Parallel/Single Group
+                    if isinstance(sd_data.get("model"), dict) and not design.get("model"):
+                        design["model"] = sd_data["model"]
+                    # Protocol's own "Overall Design" / "Scientific Rationale
+                    # for Study Design" text (otherwise placeholders are used)
+                    for key in ("description", "rationale"):
+                        if isinstance(sd_data.get(key), str) and sd_data[key].strip() and not design.get(key):
+                            design[key] = sd_data[key]
 
                     # maskedRoles (e.g. "Subject", "Investigator", "Outcome
                     # Assessor") don't live on StudyDesign in USDM 4.0 — they
@@ -3415,10 +3886,10 @@ class USDMGeneratorAgent(BaseAgent):
                 if "dataOriginType" not in entity_data:
                     entity_data["dataOriginType"] = {
                         "id": str(uuid.uuid4()).replace("-", "_"),
-                        "code": "C142493",
+                        "code": "C188866",
                         "codeSystem": "http://www.cdisc.org",
                         "codeSystemVersion": "2024-09-27",
-                        "decode": "Collected",
+                        "decode": "Data Generated Within Study",
                         "instanceType": "Code",
                     }
 
@@ -3467,6 +3938,8 @@ class USDMGeneratorAgent(BaseAgent):
             if etype == "administrable_product":
                 strength_value = entity_data.pop("strengthValue", None)
                 strength_unit = entity_data.pop("strengthUnit", None)
+                denominator_value = entity_data.pop("strengthDenominatorValue", None)
+                denominator_unit = entity_data.pop("strengthDenominatorUnit", None)
                 strength_name = entity_data.pop("strengthName", None)
                 substance_ids = entity_data.pop("substanceIds", None) or []
                 if strength_value is not None and substance_ids:
@@ -3476,8 +3949,30 @@ class USDMGeneratorAgent(BaseAgent):
                         "substanceId": substance_ids[0],
                         "value": strength_value,
                         "unit": strength_unit,
+                        "denominatorValue": denominator_value,
+                        "denominatorUnit": denominator_unit,
                         "name": strength_name,
                     })
+
+            # StudyIntervention.administrationIds (stripped as non-USDM on
+            # placement) and Administration entities (nested in USDM 4.0,
+            # not a list container) are staged and linked by
+            # _link_administrations_to_interventions() after placement.
+            if etype in ("study_intervention", "intervention") and entity_data.get("administrationIds"):
+                usdm["study"].setdefault("_pendingInterventionAdmins", {})[entity_data.get("id")] = \
+                    list(entity_data.get("administrationIds") or [])
+            if etype == "administration":
+                usdm["study"].setdefault("_pendingAdministrations", []).append(entity_data)
+                result.entity_count += 1
+                types_seen.add(etype)
+                continue
+            # Timings reference ScheduledActivityInstances that only exist once
+            # the main timeline is built; staged for _link_timings_to_timeline()
+            if etype == "timing":
+                usdm["study"].setdefault("_pendingTimings", []).append(entity_data)
+                result.entity_count += 1
+                types_seen.add(etype)
+                continue
 
             placed = _place_entity(usdm, etype, entity_data)
             if placed:
@@ -3532,6 +4027,17 @@ class USDMGeneratorAgent(BaseAgent):
         # entities are placed since the two types may arrive in the same
         # extraction wave with no guaranteed order.
         _link_substances_to_products(usdm)
+
+        # Nest staged Administration entities under their StudyIntervention
+        # (dose, route, frequency, duration, administered product)
+        _link_administrations_to_interventions(usdm)
+
+        # Anchor extracted visit timings/windows to the main timeline's
+        # scheduled instances (relative day offsets, visit windows)
+        _link_timings_to_timeline(usdm)
+
+        # StudyVersion.rationale: why this version exists
+        _set_version_rationale(usdm)
 
         # Attach staged geographic_scope/country entities to real v4.0
         # locations (StudyAmendment/GovernanceDate.geographicScopes) — must

@@ -177,6 +177,107 @@ def numbers_differ(name_a: str, name_b: str) -> bool:
     return set(_NUMBER_RE.findall(name_a)) != set(_NUMBER_RE.findall(name_b))
 
 
+_WORD_RE = re.compile(r"[a-z0-9]+")
+_STOPWORDS = {"a", "an", "and", "the", "of", "for", "in", "to", "with", "on", "at", "by", "or"}
+
+
+def _words_are_variants(a: str, b: str) -> bool:
+    """True when two words are spelling/inflection variants of each other.
+
+    "draw"/"draws", "screen"/"screening" (prefix) and "haematology"/
+    "hematology" (near-identical) are variants; "inclusion"/"exclusion",
+    "pharmacokinetic"/"pharmacodynamic" and "pre"/"post" are not.
+    """
+    if a.startswith(b) or b.startswith(a):
+        return True
+    return SequenceMatcher(None, a, b).ratio() >= 0.85
+
+
+def words_differ(name_a: str, name_b: str) -> bool:
+    """True when two names differ by at least one distinct word.
+
+    Character-level fuzzy scores are high for names that differ by one
+    meaningful word ("Inclusion Criteria" vs "Exclusion Criteria" scores
+    0.89; "Urine Drug Screen" vs "Urine Drug Screen Safety" 0.83), so every
+    word present in only one name must pair with a variant word in the other.
+    """
+    words_a = [w for w in _WORD_RE.findall(clean_entity_name(name_a).lower()) if w not in _STOPWORDS]
+    words_b = [w for w in _WORD_RE.findall(clean_entity_name(name_b).lower()) if w not in _STOPWORDS]
+    only_a = [w for w in words_a if w not in words_b]
+    only_b = [w for w in words_b if w not in words_a]
+    if len(only_a) != len(only_b):
+        return True
+    for word in only_a:
+        match = next((w for w in only_b if _words_are_variants(word, w)), None)
+        if match is None:
+            return True
+        only_b.remove(match)
+    return False
+
+
+# Generic device nouns that don't identify a device
+_DEVICE_GENERIC = {"device", "devices", "machine", "system", "equipment", "unit", "instrument",
+                   "scanner", "monitor", "meter", "kit", "single", "use", "study", "intervention"}
+
+
+def _device_words(text: str) -> set:
+    return {w for w in _WORD_RE.findall((text or "").lower()) if w not in _STOPWORDS}
+
+
+def _acronyms(data: Dict[str, Any]) -> set:
+    """Acronyms a device is known by: parenthesised ("(CGM)"), all-caps words
+    in its name/label ("DXA"), and initials of its multi-word name."""
+    found = set()
+    for text in (data.get("name"), data.get("label")):
+        text = text or ""
+        found |= {a.lower() for a in re.findall(r"\(([A-Za-z]{2,6})\)", text)}
+        found |= {w.lower() for w in re.findall(r"\b[A-Z]{2,6}\b", text)}
+        words = [w for w in re.findall(r"[A-Za-z]+", re.sub(r"\([^)]*\)", " ", text))
+                 if w.lower() not in _STOPWORDS and w.lower() not in _DEVICE_GENERIC]
+        if len(words) >= 2:
+            found.add("".join(w[0] for w in words).lower())
+    return found
+
+
+def devices_duplicate(a: Dict[str, Any], b: Dict[str, Any]) -> bool:
+    """True when two medical device entities describe the same device.
+
+    Agents name the same device differently ("Single-Use Nasal Dosing Device"
+    vs "LY900018 single-use nasal dosing device"; "DXA scanner" vs
+    "Dual-Energy X-Ray Absorptiometry Machine" labelled "DXA Machine"). They
+    match when every distinctive (non-generic) word of one name appears in
+    the other's name or label, or when they share an acronym. Different
+    variants stay apart ("12-Lead ECG (Local)" vs "(Central)").
+    """
+    name_a, name_b = a.get("name") or "", b.get("name") or ""
+    if not name_a or not name_b:
+        return False
+    # Standalone numbers only — digits inside codes ("LY900018") don't count
+    standalone = re.compile(r"(?<![A-Za-z0-9-])\d+(?:\.\d+)?(?![A-Za-z0-9-])")
+    if set(standalone.findall(name_a)) != set(standalone.findall(name_b)):
+        return False
+    # Different parenthesised qualifiers are variants: "(Local)" vs "(Central)"
+    qual_a = {q.lower() for q in re.findall(r"\(([^)]*)\)", name_a)}
+    qual_b = {q.lower() for q in re.findall(r"\(([^)]*)\)", name_b)}
+    if qual_a and qual_b and not (qual_a & qual_b):
+        return False
+    distinct_a = _device_words(name_a) - _DEVICE_GENERIC
+    distinct_b = _device_words(name_b) - _DEVICE_GENERIC
+    all_a = _device_words(f"{name_a} {a.get('label') or ''}")
+    all_b = _device_words(f"{name_b} {b.get('label') or ''}")
+    # Containment needs >= 2 distinctive words: a bare "KwikPen" could be the
+    # pen or the demo pen
+    if len(distinct_a) >= 2 and distinct_a <= all_b:
+        return True
+    if len(distinct_b) >= 2 and distinct_b <= all_a:
+        return True
+    if distinct_a and distinct_a == distinct_b:
+        return True
+    # Acronyms of 3+ letters only: "IV" or "CT" alone are too generic
+    # ("IV infusion pump" vs "IV cannula", "PET/CT" vs "CT" scanner)
+    return bool({x for x in _acronyms(a) & _acronyms(b) if len(x) >= 3})
+
+
 def get_source_priority(source: str) -> int:
     """Return the priority for a given source agent id."""
     return SOURCE_PRIORITY.get(source, DEFAULT_SOURCE_PRIORITY)
@@ -513,6 +614,9 @@ class ReconciliationAgent(BaseAgent):
             "objective", "endpoint", "procedure",
             "epoch", "study_epoch",
             "encounter",
+            # Document sections are distinct by section number even when
+            # titles repeat (e.g. "Rationale" under several sections)
+            "narrative_content", "narrative_content_item",
         }
 
         for etype, type_entities in by_type.items():
@@ -542,10 +646,16 @@ class ReconciliationAgent(BaseAgent):
                     # Use encounter-specific logic for encounter entities
                     if etype == "encounter":
                         is_duplicate = _are_encounters_duplicates(name_a, name_b, threshold)
+                    elif etype == "medical_device":
+                        is_duplicate = devices_duplicate(ea.get("data", {}), eb.get("data", {}))
                     else:
                         # Existing logic for all other entity types
                         score = fuzzy_match_score(name_a, name_b)
-                        is_duplicate = score >= threshold and not numbers_differ(name_a, name_b)
+                        is_duplicate = (
+                            score >= threshold
+                            and not numbers_differ(name_a, name_b)
+                            and not words_differ(name_a, name_b)
+                        )
                     
                     if is_duplicate:
                         group_ids.append(eid_b)

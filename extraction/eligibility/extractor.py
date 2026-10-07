@@ -36,6 +36,60 @@ class EligibilityExtractionResult:
     model_used: Optional[str] = None
 
 
+# A numbered criterion line: "[34] ...", "34. ...", "12) ...", "E12 ...", "a) ..."
+_CRITERION_LINE_RE = re.compile(r"^\s*(?:\[\d{1,3}\]|\(?\d{1,3}[.)]|[IE]\d{1,3}[.:)]?|[a-z][.)])\s+\S")
+# Section headings: a multi-level number ("6.3.", "6.3.1 Meals ..."), a bare
+# number ("7."), or a short title-case heading ("7. Study Interventions").
+# Single-level "N. Sentence ..." lines are criteria, not headings.
+_MULTILEVEL_HEADING_RE = re.compile(r"^\s*\d{1,2}(?:\.\d{1,2})+\.?(?:\s+[A-Z][^\n]{0,80})?\s*$")
+_BARE_NUMBER_RE = re.compile(r"^\s*\d{1,2}\.\s*$")
+_TITLE_HEADING_RE = re.compile(r"^\s*\d{1,2}\.?\s+((?:[A-Z][\w/&,()-]*|and|or|of|for|the|to|in)(?:\s+(?:[A-Z][\w/&,()-]*|and|or|of|for|the|to|in)){0,6})\s*$")
+_ELIGIBILITY_WORDS_RE = re.compile(r"inclusion|exclusion|eligib|criteri", re.IGNORECASE)
+
+
+def _is_section_heading(line: str) -> bool:
+    return bool(_MULTILEVEL_HEADING_RE.match(line) or _BARE_NUMBER_RE.match(line) or _TITLE_HEADING_RE.match(line))
+
+
+def _criteria_continuation_pages(doc, last_page: int, max_extra: int = 5) -> List[int]:
+    """Pages after `last_page` that continue a numbered criteria list.
+
+    A page is included when a numbered criterion appears before the first
+    non-eligibility section heading on it; scanning stops at that heading
+    (the next section, e.g. "6.3. Lifestyle Requirements") or at a page with
+    no criterion items.
+    """
+    pages = []
+    # The list must still be the eligibility list at the end of `last_page`:
+    # if that page's last section heading is a non-eligibility one (e.g.
+    # "6.2 Preparation/Handling" with its own numbered steps), stop.
+    last_lines = doc[last_page].get_text().splitlines()
+    last_heading = max((i for i, l in enumerate(last_lines) if _is_section_heading(l)), default=None)
+    if last_heading is not None:
+        context = last_lines[last_heading] + " " + (
+            last_lines[last_heading + 1] if last_heading + 1 < len(last_lines) else "")
+        if not _ELIGIBILITY_WORDS_RE.search(context):
+            return pages
+    for page_num in range(last_page + 1, min(len(doc), last_page + 1 + max_extra)):
+        lines = doc[page_num].get_text().splitlines()
+        first_item = next(
+            (i for i, l in enumerate(lines) if _CRITERION_LINE_RE.match(l) and not _is_section_heading(l)), None
+        )
+        first_heading = None
+        for i, line in enumerate(lines):
+            if _is_section_heading(line):
+                context = line + " " + (lines[i + 1] if i + 1 < len(lines) else "")
+                if not _ELIGIBILITY_WORDS_RE.search(context):
+                    first_heading = i
+                    break
+        if first_item is None or (first_heading is not None and first_heading < first_item):
+            break
+        pages.append(page_num)
+        if first_heading is not None:
+            break
+    return pages
+
+
 def find_eligibility_pages(
     pdf_path: str,
     max_pages_to_scan: int = 50,
@@ -101,8 +155,6 @@ def find_eligibility_pages(
                 eligibility_pages.append(page_num)
                 logger.debug(f"Found eligibility content on page {page_num + 1}")
         
-        doc.close()
-        
         # If we found pages, also include adjacent pages for context
         if eligibility_pages:
             expanded = set()
@@ -112,8 +164,14 @@ def find_eligibility_pages(
                     expanded.add(p - 1)
                 if p < total_pages - 1:
                     expanded.add(p + 1)
+            # Criteria lists often run onto pages with no heading (e.g. exclusion
+            # criteria [34]-[36] alone at the top of the next page); follow the
+            # list until the next non-eligibility section heading.
+            expanded.update(_criteria_continuation_pages(doc, max(expanded)))
             eligibility_pages = sorted(expanded)
-        
+
+        doc.close()
+
         logger.info(f"Found {len(eligibility_pages)} potential eligibility pages")
         
     except Exception as e:

@@ -415,7 +415,7 @@ class StudyDesign(USDMEntity):
             if len(self.arms) >= 2:
                 result["model"] = Code.make("C82639", "Parallel Study").to_dict()
             else:
-                result["model"] = Code.make("C82638", "Single Group Study").to_dict()
+                result["model"] = Code.make("C82640", "Single Group Study").to_dict()
         
         # Arrays
         if self.arms:

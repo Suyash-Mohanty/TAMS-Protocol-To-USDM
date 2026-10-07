@@ -293,8 +293,8 @@ class GovernanceDate:
     Maps to StudyVersion.dateValues[] in USDM 4.0.
 
     NCI type codes:
-      C99903 = Protocol Approved Date
-      C99904 = Protocol Effective Date
+      C71476 = Approval Date (CDISC C207413)
+      C215663 = Effective Date (CDISC C207413)
       C99905 = Protocol Submission Date
       C99906 = Protocol Version Date
     """

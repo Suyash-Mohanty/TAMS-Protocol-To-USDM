@@ -140,6 +140,13 @@ class BiomedicalConceptAgent(BaseExtractionAgent):
         def _norm(s: str) -> str:
             return re.sub(r'\s+', ' ', s.strip().lower())
 
+        def _words(s: str) -> set:
+            return set(re.findall(r'[a-z0-9]+', s.lower()))
+
+        # The activity line each BC was created for (echoed by the LLM)
+        source_to_bc_id: Dict[str, str] = {
+            _norm(bc.source_activity): bc.id for bc in bcs if getattr(bc, "source_activity", None)
+        }
         # Build normalised name → bc_id lookup
         name_to_bc_id: Dict[str, str] = {_norm(bc.name): bc.id for bc in bcs}
         # Also index synonyms
@@ -147,13 +154,28 @@ class BiomedicalConceptAgent(BaseExtractionAgent):
             for syn in bc.synonyms:
                 name_to_bc_id.setdefault(_norm(syn), bc.id)
 
+        def _contained_bc(act_name: str) -> Optional[str]:
+            """BC whose every name word is in the activity name — the LLM
+            shortens lines ("Vital Signs (Supine Blood Pressure, ...)" ->
+            "Vital Signs"); the most specific (most words) unique match wins."""
+            act_words = _words(act_name)
+            matches = [(len(_words(bc.name)), bc.id) for bc in bcs
+                       if _words(bc.name) and _words(bc.name) <= act_words]
+            if not matches:
+                return None
+            best = max(m[0] for m in matches)
+            top = [bid for n, bid in matches if n == best]
+            return top[0] if len(top) == 1 else None
+
         activity_entities = self._context_store.query_entities("activity")
         updated = 0
         for entity in activity_entities:
             data = entity.data or {}
             act_name = data.get("name") or data.get("activityName") or ""
             norm_name = _norm(act_name)
-            bc_id = name_to_bc_id.get(norm_name)
+            bc_id = (source_to_bc_id.get(norm_name)
+                     or name_to_bc_id.get(norm_name)
+                     or _contained_bc(act_name))
             if bc_id:
                 existing_ids = data.get("biomedicalConceptIds") or []
                 if bc_id not in existing_ids:

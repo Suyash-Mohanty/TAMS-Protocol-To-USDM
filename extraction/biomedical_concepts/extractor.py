@@ -104,7 +104,7 @@ def extract_biomedical_concepts(
         return result
 
     # Build structured objects from raw LLM response
-    bcs, cats = _build_bc_objects(all_raw_bcs, all_raw_cats)
+    bcs, cats = _build_bc_objects(all_raw_bcs, all_raw_cats, unique_names)
 
     result.biomedical_concepts = bcs
     result.categories = cats
@@ -118,9 +118,19 @@ def extract_biomedical_concepts(
     return result
 
 
+def _source_activity(bc_raw: Dict, activity_names: List[str]) -> Optional[str]:
+    """The input activity line a BC was created for: the LLM's `activity`
+    echo when it is one of the input lines (case-insensitive), else None."""
+    echoed = (bc_raw.get("activity") or bc_raw.get("sourceActivity") or "").strip().lower()
+    if not echoed:
+        return None
+    return next((name for name in activity_names if name.strip().lower() == echoed), None)
+
+
 def _build_bc_objects(
     raw_bcs: List[Dict],
     raw_cats: List[Dict],
+    activity_names: Optional[List[str]] = None,
 ) -> Tuple[List[BiomedicalConcept], List[BiomedicalConceptCategory]]:
     """Build BiomedicalConcept and BiomedicalConceptCategory objects from raw LLM dicts."""
 
@@ -205,6 +215,7 @@ def _build_bc_objects(
             code_decode=nci_decode,
             category_ids=[cat_id],
             properties=properties,
+            source_activity=_source_activity(bc_raw, activity_names or []),
         )
         bcs.append(bc)
 

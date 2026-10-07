@@ -1,0 +1,1039 @@
+{
+  "agent_id": "studydesign_agent",
+  "timestamp": "2026-10-07T18:44:31.481165",
+  "confidence": 0.85,
+  "entity_count": 29,
+  "entities": [
+    {
+      "id": "sd_1",
+      "entity_type": "study_design",
+      "data": {
+        "id": "sd_1",
+        "name": "Study Design",
+        "instanceType": "InterventionalStudyDesign",
+        "model": {
+          "id": "ea9788e5-f4d4-46e3-a686-5f57344e2cfb",
+          "code": "C82637",
+          "decode": "CROSS-OVER",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2026-03-27",
+          "instanceType": "Code"
+        },
+        "trialIntentTypes": [
+          {
+            "code": "Treatment",
+            "codeSystem": "USDM",
+            "decode": "Treatment"
+          }
+        ],
+        "trialType": {
+          "code": "Interventional",
+          "codeSystem": "USDM",
+          "decode": "Interventional"
+        },
+        "blindingSchema": {
+          "code": "Open Label",
+          "codeSystem": "USDM",
+          "decode": "Open Label"
+        },
+        "randomizationType": {
+          "code": "Randomized",
+          "codeSystem": "USDM",
+          "decode": "Randomized"
+        },
+        "allocationRatio": {
+          "ratio": "1:1"
+        },
+        "stratificationFactors": [
+          "Treatment sequence (LY900018 then IMG, or IMG then LY900018)"
+        ],
+        "controlType": {
+          "code": "Active Control",
+          "codeSystem": "USDM",
+          "decode": "Active Control"
+        },
+        "armIds": [
+          "arm_1",
+          "arm_2"
+        ],
+        "cohortIds": [
+          "cohort_1",
+          "cohort_2"
+        ],
+        "therapeuticAreas": [
+          "Endocrinology",
+          "Diabetology"
+        ]
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "arm_1",
+      "entity_type": "study_arm",
+      "data": {
+        "id": "arm_1",
+        "name": "Sequence A: LY900018 → IMG",
+        "type": {
+          "code": "Experimental Arm",
+          "codeSystem": "USDM",
+          "decode": "Experimental Arm"
+        },
+        "instanceType": "StudyArm",
+        "description": "Participants receive 3 mg nasal LY900018 (single dose, intranasal) in Period 1, followed by 1 mg intramuscular glucagon (GlucaGen, single dose, IM injection) in Period 2, separated by a washout period of 3 to 14 days"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "arm_2",
+      "entity_type": "study_arm",
+      "data": {
+        "id": "arm_2",
+        "name": "Sequence B: IMG → LY900018",
+        "type": {
+          "code": "Active Comparator Arm",
+          "codeSystem": "USDM",
+          "decode": "Active Comparator Arm"
+        },
+        "instanceType": "StudyArm",
+        "description": "Participants receive 1 mg intramuscular glucagon (GlucaGen, single dose, IM injection) in Period 1, followed by 3 mg nasal LY900018 (single dose, intranasal) in Period 2, separated by a washout period of 3 to 14 days"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cohort_1",
+      "entity_type": "study_cohort",
+      "data": {
+        "id": "cohort_1",
+        "name": "Type 1 Diabetes Mellitus (T1DM)",
+        "instanceType": "StudyCohort",
+        "characteristic": "Japanese patients diagnosed with T1DM on daily insulin therapy (MDI or CSII) for at least 1 year; at least 30 completers required"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cohort_2",
+      "entity_type": "study_cohort",
+      "data": {
+        "id": "cohort_2",
+        "name": "Type 2 Diabetes Mellitus (T2DM)",
+        "instanceType": "StudyCohort",
+        "characteristic": "Japanese patients diagnosed with T2DM on daily insulin therapy with or without oral anti-hyperglycemic medications for at least 1 year; at least 30 completers required"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_1",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_1",
+        "armId": "arm_1",
+        "epochId": "epoch_1",
+        "elementIds": [
+          "elem_1"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_2",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_2",
+        "armId": "arm_1",
+        "epochId": "epoch_2",
+        "elementIds": [
+          "elem_2"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_3",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_3",
+        "armId": "arm_1",
+        "epochId": "epoch_3",
+        "elementIds": [
+          "elem_3"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_4",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_4",
+        "armId": "arm_1",
+        "epochId": "epoch_4",
+        "elementIds": [
+          "elem_4"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_5",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_5",
+        "armId": "arm_1",
+        "epochId": "epoch_5",
+        "elementIds": [
+          "elem_5"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_6",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_6",
+        "armId": "arm_1",
+        "epochId": "epoch_6",
+        "elementIds": [
+          "elem_6"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_7",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_7",
+        "armId": "arm_2",
+        "epochId": "epoch_1",
+        "elementIds": [
+          "elem_7"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_8",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_8",
+        "armId": "arm_2",
+        "epochId": "epoch_2",
+        "elementIds": [
+          "elem_8"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_9",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_9",
+        "armId": "arm_2",
+        "epochId": "epoch_3",
+        "elementIds": [
+          "elem_9"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_10",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_10",
+        "armId": "arm_2",
+        "epochId": "epoch_4",
+        "elementIds": [
+          "elem_10"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_11",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_11",
+        "armId": "arm_2",
+        "epochId": "epoch_5",
+        "elementIds": [
+          "elem_11"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "cell_12",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_12",
+        "armId": "arm_2",
+        "epochId": "epoch_6",
+        "elementIds": [
+          "elem_12"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_1",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_1",
+        "name": "Sequence A: LY900018 → IMG - Screening",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence A: LY900018 → IMG during Screening"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_2",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_2",
+        "name": "Sequence A: LY900018 → IMG - Period 1",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence A: LY900018 → IMG during Period 1"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_3",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_3",
+        "name": "Sequence A: LY900018 → IMG - Wash Out",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence A: LY900018 → IMG during Wash Out"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_4",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_4",
+        "name": "Sequence A: LY900018 → IMG - Period 2",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence A: LY900018 → IMG during Period 2"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_5",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_5",
+        "name": "Sequence A: LY900018 → IMG - Follow-up/ED",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence A: LY900018 → IMG during Follow-up/ED"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_6",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_6",
+        "name": "Sequence A: LY900018 → IMG - Additional Follow-up for TE ADA",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence A: LY900018 → IMG during Additional Follow-up for TE ADA"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_7",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_7",
+        "name": "Sequence B: IMG → LY900018 - Screening",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence B: IMG → LY900018 during Screening"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_8",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_8",
+        "name": "Sequence B: IMG → LY900018 - Period 1",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence B: IMG → LY900018 during Period 1"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_9",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_9",
+        "name": "Sequence B: IMG → LY900018 - Wash Out",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence B: IMG → LY900018 during Wash Out"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_10",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_10",
+        "name": "Sequence B: IMG → LY900018 - Period 2",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence B: IMG → LY900018 during Period 2"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_11",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_11",
+        "name": "Sequence B: IMG → LY900018 - Follow-up/ED",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence B: IMG → LY900018 during Follow-up/ED"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "elem_12",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_12",
+        "name": "Sequence B: IMG → LY900018 - Additional Follow-up for TE ADA",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Sequence B: IMG → LY900018 during Additional Follow-up for TE ADA"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    }
+  ],
+  "design_summary": {
+    "arm_count": 2,
+    "cohort_count": 2,
+    "cell_count": 12
+  }
+}

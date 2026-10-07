@@ -37,6 +37,72 @@ class NarrativeExtractionResult:
     model_used: Optional[str] = None
 
 
+_TOC_LEADER_RE = re.compile(r'\.{5,}\s*\d')
+_ABBREV_SECTION_RE = re.compile(
+    r'list\s+of\s+abbreviations|abbreviations?\s+and\s+definitions?|glossary\s+of\s+(?:terms|abbreviations)',
+    re.IGNORECASE,
+)
+
+
+def _is_toc_page(text: str) -> bool:
+    return len(_TOC_LEADER_RE.findall(text)) >= 3
+
+
+def _toc_continuation_pages(doc, toc_page: int, max_extra: int = 8) -> List[int]:
+    """Pages after a TOC page that still list sections with dotted page leaders."""
+    pages = []
+    for page_num in range(toc_page + 1, min(len(doc), toc_page + 1 + max_extra)):
+        if not _is_toc_page(doc[page_num].get_text()):
+            break
+        pages.append(page_num)
+    return pages
+
+
+# A line that starts with an acronym ("AE", "HbA1c", "T1DM adverse event")
+_ACRONYM_LINE_RE = re.compile(r"^\s*[A-Z][A-Za-z0-9/&\-]{1,12}\s*$|^\s*[A-Z]{2,}[A-Za-z0-9/&\-]*\s")
+_ABBREV_LIST_DENSITY = 0.2  # abbreviation lists ~0.3-0.5 of lines; body text ~0.1
+
+
+def _acronym_density(text: str) -> float:
+    lines = [l for l in text.splitlines() if l.strip()]
+    return sum(1 for l in lines if _ACRONYM_LINE_RE.match(l)) / max(1, len(lines))
+
+
+def find_abbreviation_section_pages(pdf_path: str, max_pages: int = 12) -> List[int]:
+    """Pages of the protocol's abbreviations section, wherever it is.
+
+    Protocols put the abbreviations list in front matter or in an appendix
+    (e.g. "Appendix 1. Abbreviations and Definitions" near the end), so the
+    whole document is scanned for the heading, skipping TOC pages. A heading
+    counts only when an abbreviation list (a page dense with acronym-led
+    lines) starts on that page or the next — not a passing mention such as
+    "see Appendix 1 for abbreviations". The section runs while pages stay
+    list-like.
+    """
+    import fitz
+
+    pages: List[int] = []
+    try:
+        doc = fitz.open(pdf_path)
+        for page_num in range(len(doc)):
+            text = doc[page_num].get_text()
+            if _is_toc_page(text) or not _ABBREV_SECTION_RE.search(text):
+                continue
+            next_text = doc[page_num + 1].get_text() if page_num + 1 < len(doc) else ""
+            if max(_acronym_density(text), _acronym_density(next_text)) < _ABBREV_LIST_DENSITY:
+                continue
+            pages.append(page_num)
+            for nxt in range(page_num + 1, min(len(doc), page_num + max_pages)):
+                if _acronym_density(doc[nxt].get_text()) < _ABBREV_LIST_DENSITY:
+                    break
+                pages.append(nxt)
+            break  # one abbreviations section per protocol
+        doc.close()
+    except Exception as e:
+        logger.error(f"Error scanning PDF for abbreviations section: {e}")
+    return pages
+
+
 def find_structure_pages(
     pdf_path: str,
     max_pages: int = 30,
@@ -69,10 +135,15 @@ def find_structure_pages(
         for page_num in range(total_pages):
             page = doc[page_num]
             text = page.get_text().lower()
-            
+
             if pattern.search(text):
                 structure_pages.append(page_num)
-        
+                # A multi-page TOC only says "Table of Contents" on its first
+                # page; follow the dotted-leader pages that continue it.
+                if re.search(r'table\s+of\s+contents', text):
+                    structure_pages.extend(_toc_continuation_pages(doc, page_num))
+
+        structure_pages = sorted(set(structure_pages))
         doc.close()
         
         # If nothing found, use first 10 pages
@@ -102,20 +173,33 @@ def extract_narrative_structure(
     result = NarrativeExtractionResult(success=False, model_used=model_name)
     
     try:
+        auto_pages = pages is None and protocol_text is None
+
         # Auto-detect structure pages if not specified
         if pages is None:
             pages = find_structure_pages(pdf_path)
-        
+
         result.pages_used = pages
-        
+
         # Extract text from pages
         if protocol_text is None:
             logger.info(f"Extracting text from pages {pages}...")
             protocol_text = extract_text_from_pages(pdf_path, pages)
-        
+
         if not protocol_text:
             result.error = "Failed to extract text from PDF"
             return result
+
+        # Abbreviations get the protocol's abbreviations section first (it can
+        # be an appendix far beyond the structure pages), so the prompt's
+        # character cap never cuts it off, then the inline table footnotes.
+        abbreviations_text = protocol_text
+        if auto_pages:
+            section_pages = find_abbreviation_section_pages(pdf_path)
+            if section_pages:
+                section_text = extract_text_from_pages(pdf_path, section_pages) or ""
+                abbreviations_text = section_text + "\n\n" + protocol_text
+                result.pages_used = sorted(set(pages) | set(section_pages))
         
         abbreviations = []
         sections = []
@@ -125,7 +209,7 @@ def extract_narrative_structure(
         # Extract abbreviations
         if extract_abbreviations:
             logger.info("Extracting abbreviations...")
-            abbrev_result = _extract_abbreviations(protocol_text, model_name)
+            abbrev_result = _extract_abbreviations(abbreviations_text, model_name)
             if abbrev_result:
                 abbreviations = abbrev_result.get("abbreviations", [])
                 raw_responses["abbreviations"] = abbrev_result
@@ -144,6 +228,8 @@ def extract_narrative_structure(
         # Convert to structured data
         result.data = _build_narrative_data(abbreviations, sections, document)
         result.success = result.data is not None
+        if result.success and pdf_path:
+            _add_section_text(result.data, pdf_path)
         
         if result.success:
             logger.info(
@@ -156,6 +242,36 @@ def extract_narrative_structure(
         result.error = str(e)
         
     return result
+
+
+def _add_section_text(data, pdf_path: str) -> None:
+    """Fill each section's text with the protocol's own section text (XHTML).
+
+    Sections come from the table of contents, so their bodies are located in
+    the PDF by number and title (core.pdf_utils.extract_numbered_sections),
+    in document order: each top-level section followed by its subsections.
+    A parent section keeps its title as text when it has no text of its own
+    before its first subsection; sections that can't be located keep their
+    current text.
+    """
+    from core.pdf_utils import extract_numbered_sections
+
+    items_by_id = {item.id: item for item in data.items}
+    ordered = []  # (number, title, object)
+    for section in data.sections:
+        ordered.append((section.section_number, section.section_title or section.name, section))
+        for child_id in section.child_ids:
+            item = items_by_id.get(child_id)
+            if item:
+                ordered.append((item.section_number, item.section_title or item.name, item))
+    texts = extract_numbered_sections(pdf_path, [(n, t) for n, t, _ in ordered if n])
+    filled = 0
+    for number, _, obj in ordered:
+        text = texts.get(str(number)) if number else None
+        if text:
+            obj.text = text
+            filled += 1
+    logger.info(f"Filled verbatim text for {filled}/{len(ordered)} narrative sections")
 
 
 def _extract_abbreviations(protocol_text: str, model_name: str) -> Optional[Dict]:

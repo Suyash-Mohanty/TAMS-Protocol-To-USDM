@@ -42,7 +42,7 @@ class ObjectivesExtractionResult:
 
 def find_objectives_pages(
     pdf_path: str,
-    max_pages_to_scan: int = 30,
+    max_pages_to_scan: int = 50,
 ) -> List[int]:
     """
     Find pages containing objectives and endpoints using heuristics.
@@ -67,9 +67,13 @@ def find_objectives_pages(
         r'efficacy\s+endpoints?',
         r'safety\s+endpoints?',
         r'estimand',
+        # Standard section/table title (ICH M11, TransCelerate template):
+        # "4. Objectives and Endpoints", "Table X.1 Objectives and Endpoints"
+        r'objectives?\s+and\s+endpoints?',
     ]
     
     pattern = re.compile('|'.join(objectives_keywords), re.IGNORECASE)
+    toc_pattern = re.compile(r'table\s+of\s+contents|\.{5,}\s*\d', re.IGNORECASE)
     
     objectives_pages = []
     
@@ -81,6 +85,9 @@ def find_objectives_pages(
             page = doc[page_num]
             text = page.get_text().lower()
             
+            # Table-of-contents pages mention every heading; skip them
+            if toc_pattern.search(text):
+                continue
             if pattern.search(text):
                 objectives_pages.append(page_num)
                 logger.debug(f"Found objectives keywords on page {page_num + 1}")

@@ -30,6 +30,9 @@ logger = logging.getLogger(__name__)
 # Cache configuration
 CACHE_DIR = Path(__file__).parent / "evs_cache"
 CACHE_FILE = CACHE_DIR / "nci_codes.json"
+# Versioned so entries cached by the old first-hit fallback ("g" -> G Force)
+# are not reused after the switch to exact-match-only CT lookups.
+CT_CACHE_PREFIX = "ct2:"
 CACHE_TTL_SECONDS = 60 * 60 * 24 * 30  # 30 days
 
 # API endpoints
@@ -116,7 +119,7 @@ class EVSClient:
         
         # Check cache first
         for cand in ordered_candidates:
-            cache_key = f"ct:{cand.lower()}"
+            cache_key = f"{CT_CACHE_PREFIX}{cand.lower()}"
             cached = self.cache.get(cache_key)
             if cached and self._is_fresh(cached):
                 return cached.get("data")
@@ -135,6 +138,8 @@ class EVSClient:
                 continue
 
             term_lower = cand.lower()
+            # Exact matches only: the search is free-text "contains", so its
+            # first hit can be an unrelated concept ("g" -> "G Force").
             match = next(
                 (
                     c for c in concepts
@@ -142,14 +147,16 @@ class EVSClient:
                     or (c.get("name") or "").lower() == term_lower
                     or (c.get("preferredName") or "").lower() == term_lower
                 ),
-                concepts[0],
+                None,
             )
+            if match is None:
+                continue
             entry = {
                 "code": match.get("code"),
                 "preferredName": match.get("name") or match.get("preferredName"),
                 "codeSystemVersion": match.get("version"),
             }
-            cache_key = f"ct:{term_lower}"
+            cache_key = f"{CT_CACHE_PREFIX}{term_lower}"
             self.cache[cache_key] = {"_cached_at": time.time(), "data": entry}
             self._save_cache()
             return entry

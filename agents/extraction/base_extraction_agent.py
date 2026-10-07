@@ -146,7 +146,7 @@ class BaseExtractionAgent(BaseAgent):
         if not self._context_store:
             return 0
 
-        entities = result_data.get("entities", [])
+        entities = self._resolve_id_collisions(result_data.get("entities", []))
         count = 0
         for entity_data in entities:
             try:
@@ -176,6 +176,45 @@ class BaseExtractionAgent(BaseAgent):
                 except KeyError:
                     pass
         return count
+
+    def _resolve_id_collisions(self, entities: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Re-ID entities whose id already belongs to another agent's entity.
+
+        Extractors number their entities independently ("dev_1", "dev_2",
+        ...), so two agents can emit different things under the same id; the
+        Context Store would then merge the second into the first field by
+        field (one device's name with another's label). Colliding entities
+        get an agent-specific id, and references to them within this agent's
+        batch are rewritten. Re-runs of the same agent keep updating in place.
+        """
+        store = self._context_store
+        id_map: Dict[str, str] = {}
+        suffix = self.agent_id.replace("_agent", "")
+        for entity_data in entities:
+            old_id = entity_data.get("id")
+            existing = store.get_entity(old_id) if old_id else None
+            if existing and existing.provenance.source_agent_id not in ("", self.agent_id):
+                new_id = f"{old_id}_{suffix}"
+                while store.get_entity(new_id):
+                    new_id += "_"
+                id_map[old_id] = new_id
+        if not id_map:
+            return entities
+        self._logger.warning(
+            f"[{self.agent_id}] {len(id_map)} entity id(s) already used by other agents; "
+            f"re-identified: {id_map}"
+        )
+
+        def _remap(value: Any) -> Any:
+            if isinstance(value, str):
+                return id_map.get(value, value)
+            if isinstance(value, list):
+                return [_remap(v) for v in value]
+            if isinstance(value, dict):
+                return {k: _remap(v) for k, v in value.items()}
+            return value
+
+        return [_remap(e) for e in entities]
 
     # --- Output File Numbering ---
     # Format: <step>_<category>_<name>

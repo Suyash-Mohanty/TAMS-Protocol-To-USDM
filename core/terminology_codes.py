@@ -119,6 +119,7 @@ ELIGIBILITY_CODES: Dict[str, Dict[str, str]] = {
 # Source: CDISC Protocol Controlled Terminology
 # =============================================================================
 
+# CDISC Intervention Model codelist C99076
 STUDY_MODEL_CODES: Dict[str, Dict[str, str]] = {
     "parallel": {
         "code": "C82639",
@@ -126,22 +127,22 @@ STUDY_MODEL_CODES: Dict[str, Dict[str, str]] = {
         "description": "A study in which groups of participants receive different interventions simultaneously.",
     },
     "crossover": {
-        "code": "C49649",
+        "code": "C82637",
         "decode": "Crossover Study",
         "description": "A study in which each subject receives each treatment in sequence.",
     },
     "single group": {
-        "code": "C82638",
+        "code": "C82640",
         "decode": "Single Group Study",
         "description": "A study in which all subjects receive the same intervention.",
     },
     "factorial": {
-        "code": "C82640",
+        "code": "C82638",
         "decode": "Factorial Study",
         "description": "A study in which two or more interventions, each with two or more levels, are evaluated in combination.",
     },
     "sequential": {
-        "code": "C139287",
+        "code": "C142568",
         "decode": "Sequential Study",
         "description": "A study in which groups of participants receive different interventions in sequence.",
     },

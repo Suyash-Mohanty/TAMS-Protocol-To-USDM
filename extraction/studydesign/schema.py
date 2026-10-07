@@ -13,6 +13,7 @@ from typing import List, Optional, Dict, Any
 from enum import Enum
 
 from core.usdm_types import generate_uuid, Code
+from core.cdisc_codelists import INTERVENTION_MODEL, lookup as cdisc_lookup, to_code
 
 
 class ArmType(Enum):
@@ -252,6 +253,10 @@ class InterventionalStudyDesign:
     
     # Additional design info
     therapeutic_areas: List[str] = field(default_factory=list)
+    # Intervention model as text (e.g. "Crossover"), resolved against CDISC C99076
+    model: Optional[str] = None
+    # Verbatim "Scientific Rationale for Study Design" section text
+    rationale: Optional[str] = None
     
     instance_type: str = "InterventionalStudyDesign"
     
@@ -264,6 +269,11 @@ class InterventionalStudyDesign:
         
         if self.description:
             result["description"] = self.description
+        if self.rationale:
+            result["rationale"] = self.rationale
+        model_term = cdisc_lookup(INTERVENTION_MODEL, self.model)
+        if model_term:
+            result["model"] = {"id": generate_uuid(), **to_code(model_term, INTERVENTION_MODEL), "instanceType": "Code"}
         if self.trial_intent_types:
             result["trialIntentTypes"] = [
                 {"code": t, "codeSystem": "USDM", "decode": t} for t in self.trial_intent_types
