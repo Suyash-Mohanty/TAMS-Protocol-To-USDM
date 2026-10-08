@@ -1115,6 +1115,7 @@ class TestAdvancedAgent:
         mock_data.geographic_scope = mock_scope
         mock_data.countries = [mock_country]
         mock_data.sites = [mock_site]
+        mock_data.original_protocol_date = None  # no Document History date
 
         mock_result = MagicMock()
         mock_result.success = True
@@ -1137,6 +1138,33 @@ class TestAdvancedAgent:
         assert result.data["advanced_summary"]["has_geographic_scope"] is True
 
     @patch("extraction.advanced.extractor.extract_advanced_entities")
+    def test_extract_emits_original_protocol_date(self, mock_extract, sample_task, context_store):
+        original = {"id": "gd_original_protocol", "name": "Original Protocol Issued Date",
+                    "dateValue": "2025-09-09", "documentVersionLabel": "Original", "instanceType": "GovernanceDate"}
+        mock_data = MagicMock()
+        mock_data.amendments = []
+        mock_data.amendment_reasons = []
+        mock_data.geographic_scope = None
+        mock_data.countries = []
+        mock_data.sites = []
+        mock_data.original_protocol_date = original
+        mock_result = MagicMock()
+        mock_result.success = True
+        mock_result.data = mock_data
+        mock_result.pages_used = [0, 1]
+        mock_result.raw_response = {}
+        mock_extract.return_value = mock_result
+
+        agent = AdvancedAgent()
+        agent.initialize()
+        agent.set_context_store(context_store)
+        result = agent.run_task(sample_task)
+
+        assert result.success
+        [entity] = result.data["entities"]
+        assert entity["entity_type"] == "governance_date" and entity["data"] is original
+
+    @patch("extraction.advanced.extractor.extract_advanced_entities")
     def test_extract_no_scope(self, mock_extract, sample_task, context_store):
         """Verify agent handles missing geographic scope."""
         mock_data = MagicMock()
@@ -1145,6 +1173,7 @@ class TestAdvancedAgent:
         mock_data.geographic_scope = None
         mock_data.countries = []
         mock_data.sites = []
+        mock_data.original_protocol_date = None
 
         mock_result = MagicMock()
         mock_result.success = True

@@ -74,6 +74,15 @@ class AdvancedAgent(BaseExtractionAgent):
                 "source_pages": result.pages_used,
             })
 
+        if data.original_protocol_date:
+            entities.append({
+                "id": data.original_protocol_date["id"],
+                "entity_type": "governance_date",
+                "data": data.original_protocol_date,
+                "confidence": 0.85,
+                "source_pages": result.pages_used,
+            })
+
         if data.geographic_scope:
             entities.append({
                 "id": data.geographic_scope.id,

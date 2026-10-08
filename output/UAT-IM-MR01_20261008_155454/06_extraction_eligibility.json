@@ -1,0 +1,373 @@
+{
+  "agent_id": "eligibility_agent",
+  "timestamp": "2026-10-08T15:57:10.039912",
+  "confidence": 0.85,
+  "entity_count": 17,
+  "entities": [
+    {
+      "id": "eci_1",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_1",
+        "name": "Inclusion Criterion 1",
+        "text": "[Full text of Inclusion Criterion 1 not provided in the available protocol excerpt; criterion exists per protocol Section 5.1]",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "eci_2",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_2",
+        "name": "Inclusion Criterion 4 - UC history",
+        "text": "[Full text of Inclusion Criterion 4 as amended, including:] history of UC for greater than or equal to 8 years.",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "eci_3",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_3",
+        "name": "Inclusion Criterion 11 - Oral corticosteroid dose",
+        "text": "[Full text of Inclusion Criterion 11 as amended; the prescribed dose stability requirement of at least 2 weeks before the screening colonoscopy has been removed. See Section 6.9.5 for instructions on tapering of oral corticosteroid therapy.]",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "eci_4",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_4",
+        "name": "Exclusion Criterion 34",
+        "text": "[Full text of Exclusion Criterion 34 as amended; the words 'significant active or' have been removed for clarification.]",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "eci_5",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_5",
+        "name": "Exclusion Criterion 35",
+        "text": "[Full text of Exclusion Criterion 35 as amended; the note regarding marijuana use has been removed for clarification.]",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "eci_6",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_6",
+        "name": "Exclusion Criterion 50 - IV corticosteroids",
+        "text": "[Full text of Exclusion Criterion 50 as amended; IV corticosteroids are excluded within 2 weeks prior to the screening colonoscopy and throughout screening.]",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "eci_7",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_7",
+        "name": "Exclusion Criterion 53",
+        "text": "[Full text of Exclusion Criterion 53 as amended; the word 'prior' has been removed for clarification.]",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "eci_8",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_8",
+        "name": "Exclusion Criterion 61 - Abnormal ECG",
+        "text": "Have abnormal 12-lead electrocardiogram (ECG) that, in the opinion of the investigator or sponsor, increases the risks associated with participating in the study.",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ec_1",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_1",
+        "identifier": "I1",
+        "category": {
+          "code": "Inclusion",
+          "codeSystem": "USDM",
+          "decode": "Inclusion"
+        },
+        "criterionItemId": "eci_1",
+        "instanceType": "EligibilityCriterion",
+        "name": "Inclusion Criterion 1",
+        "nextId": "ec_2"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ec_2",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_2",
+        "identifier": "I4",
+        "category": {
+          "code": "Inclusion",
+          "codeSystem": "USDM",
+          "decode": "Inclusion"
+        },
+        "criterionItemId": "eci_2",
+        "instanceType": "EligibilityCriterion",
+        "name": "Inclusion Criterion 4 - UC history",
+        "previousId": "ec_1",
+        "nextId": "ec_3"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ec_3",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_3",
+        "identifier": "I11",
+        "category": {
+          "code": "Inclusion",
+          "codeSystem": "USDM",
+          "decode": "Inclusion"
+        },
+        "criterionItemId": "eci_3",
+        "instanceType": "EligibilityCriterion",
+        "name": "Inclusion Criterion 11 - Oral corticosteroid dose",
+        "previousId": "ec_2"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ec_4",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_4",
+        "identifier": "E34",
+        "category": {
+          "code": "Exclusion",
+          "codeSystem": "USDM",
+          "decode": "Exclusion"
+        },
+        "criterionItemId": "eci_4",
+        "instanceType": "EligibilityCriterion",
+        "name": "Exclusion Criterion 34",
+        "nextId": "ec_5"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ec_5",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_5",
+        "identifier": "E35",
+        "category": {
+          "code": "Exclusion",
+          "codeSystem": "USDM",
+          "decode": "Exclusion"
+        },
+        "criterionItemId": "eci_5",
+        "instanceType": "EligibilityCriterion",
+        "name": "Exclusion Criterion 35",
+        "previousId": "ec_4",
+        "nextId": "ec_6"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ec_6",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_6",
+        "identifier": "E50",
+        "category": {
+          "code": "Exclusion",
+          "codeSystem": "USDM",
+          "decode": "Exclusion"
+        },
+        "criterionItemId": "eci_6",
+        "instanceType": "EligibilityCriterion",
+        "name": "Exclusion Criterion 50 - IV corticosteroids",
+        "previousId": "ec_5",
+        "nextId": "ec_7"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ec_7",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_7",
+        "identifier": "E53",
+        "category": {
+          "code": "Exclusion",
+          "codeSystem": "USDM",
+          "decode": "Exclusion"
+        },
+        "criterionItemId": "eci_7",
+        "instanceType": "EligibilityCriterion",
+        "name": "Exclusion Criterion 53",
+        "previousId": "ec_6",
+        "nextId": "ec_8"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "ec_8",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_8",
+        "identifier": "E61",
+        "category": {
+          "code": "Exclusion",
+          "codeSystem": "USDM",
+          "decode": "Exclusion"
+        },
+        "criterionItemId": "eci_8",
+        "instanceType": "EligibilityCriterion",
+        "name": "Exclusion Criterion 61 - Abnormal ECG",
+        "previousId": "ec_7"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "id": "pop_1",
+      "entity_type": "study_population",
+      "data": {
+        "id": "pop_1",
+        "name": "Study Population",
+        "includesHealthySubjects": false,
+        "criterionIds": [
+          "ec_1",
+          "ec_2",
+          "ec_3",
+          "ec_4",
+          "ec_5",
+          "ec_6",
+          "ec_7",
+          "ec_8"
+        ],
+        "instanceType": "StudyDesignPopulation",
+        "description": "Target population defined by eligibility criteria",
+        "plannedEnrollmentNumber": {
+          "maxValue": {
+            "instanceType": "Range"
+          },
+          "instanceType": "Range"
+        },
+        "plannedSex": [
+          {
+            "code": "Male",
+            "codeSystem": "USDM",
+            "decode": "Male"
+          },
+          {
+            "code": "Female",
+            "codeSystem": "USDM",
+            "decode": "Female"
+          }
+        ]
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "eligibility_summary": {
+    "inclusion_count": 3,
+    "exclusion_count": 5
+  }
+}

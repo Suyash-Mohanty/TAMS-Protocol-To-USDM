@@ -41,6 +41,12 @@ For EACH amendment in the history, extract:
 - "Not Applicable"
 - "Other" — none of the above fit; then fill `otherReason`
 
+### 1b. Original protocol date
+The "Document History" / "Protocol Amendment History" table (usually on the first pages) lists each protocol
+version with its date, starting with the "Original Protocol" (or "Initial Protocol", "Version 1.0") row.
+Return that row's date as `originalProtocolDate` (ISO 8601 YYYY-MM-DD). Use null when the protocol states no
+date for the original version — never estimate one.
+
 **IMPORTANT**: Each amendment should have its own summary text. Look for sections like:
 - "Overall Rationale for the Amendment"
 - "The main reason for preparation of this amendment was..."
@@ -116,6 +122,7 @@ Return a JSON object with this exact structure:
       ]
     }
   ],
+  "originalProtocolDate": "2020-01-15",
   "geographicScope": {
     "type": "Global",
     "countries": [

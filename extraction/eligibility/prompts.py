@@ -93,10 +93,7 @@ Every entity MUST have `id` and `instanceType` fields.
     "id": "pop_1",
     "name": "Study Population",
     "includesHealthySubjects": false,
-    "plannedEnrollmentNumber": {
-      "maxValue": 200,
-      "instanceType": "Range"
-    },
+    "plannedEnrollmentNumber": 200,
     "plannedMinimumAge": "P18Y",
     "plannedMaximumAge": "P75Y",
     "plannedAgeIsApproximate": false,

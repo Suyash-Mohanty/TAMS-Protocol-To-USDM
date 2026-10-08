@@ -337,6 +337,8 @@ class AdvancedData:
     geographic_scope: Optional[GeographicScope] = None
     countries: List[Country] = field(default_factory=list)
     sites: List[StudySite] = field(default_factory=list)
+    # GovernanceDate dict for the original protocol version's date (Document History)
+    original_protocol_date: Optional[Dict[str, Any]] = None
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to USDM-compatible dictionary structure."""

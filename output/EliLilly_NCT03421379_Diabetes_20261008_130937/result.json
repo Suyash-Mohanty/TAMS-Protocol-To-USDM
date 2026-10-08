@@ -1,0 +1,34 @@
+{
+  "status": "FAILED",
+  "duration_seconds": 1592.3,
+  "total_tokens": 188739,
+  "total_api_calls": 66,
+  "total_agents": 21,
+  "succeeded_agents": 17,
+  "failed_agents": [
+    {
+      "id": "metadata_agent",
+      "error": "Timed out after 600s"
+    },
+    {
+      "id": "soa_vision_agent",
+      "error": "Timed out after 600s"
+    },
+    {
+      "id": "docstructure_agent",
+      "error": "Timed out after 420s"
+    },
+    {
+      "id": "narrative_agent",
+      "error": "Timed out after 600s"
+    }
+  ],
+  "entity_count": 771,
+  "models": {
+    "model": "cortex/reforge-claude-opus-5",
+    "fast_model": "claude-cortex-llm-config",
+    "vision_model": "cortex/reforge-claude-opus-5"
+  },
+  "started": "2026-10-08T13:09:37",
+  "finished": "2026-10-08T13:36:10"
+}

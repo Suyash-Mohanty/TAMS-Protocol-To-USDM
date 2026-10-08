@@ -242,6 +242,23 @@ def _make_governance_date_dict(
     }
 
 
+_DATE_FORMATS = ("%Y-%m-%d", "%d-%b-%Y", "%d %b %Y", "%d %B %Y", "%B %d, %Y", "%b %d, %Y", "%Y/%m/%d")
+
+
+def _to_iso_date(text: Any) -> Optional[str]:
+    """A full calendar date as YYYY-MM-DD, or None (partial dates are not guessed)."""
+    from datetime import datetime
+    if not isinstance(text, str):
+        return None
+    cleaned = text.strip().replace("_", "-").replace(".", "")
+    for fmt in _DATE_FORMATS:
+        try:
+            return datetime.strptime(cleaned, fmt).strftime("%Y-%m-%d")
+        except ValueError:
+            continue
+    return None
+
+
 def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
     """Build AdvancedData from raw extraction results.
     
@@ -400,12 +417,27 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
             city=site.get('city'),
         ))
     
+    original_date = _to_iso_date(raw.get('originalProtocolDate'))
+    original_protocol_date = None
+    if original_date:
+        original_protocol_date = _make_governance_date_dict(
+            date_str=original_date,
+            type_code="C215664",
+            type_decode="Issued Date",
+            name="Original Protocol Issued Date",
+            gd_id="gd_original_protocol",
+        )
+        original_protocol_date["description"] = "Date the original protocol version was issued (Document History)"
+        # Staging key: attaches the date to the original document version
+        original_protocol_date["documentVersionLabel"] = "Original"
+
     return AdvancedData(
         amendments=amendments,
         amendment_reasons=amendment_reasons,
         geographic_scope=geo_scope,
         countries=countries,
         sites=sites,
+        original_protocol_date=original_protocol_date,
     )
 
 

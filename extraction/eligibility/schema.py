@@ -113,7 +113,7 @@ class StudyDesignPopulation:
     description: Optional[str] = None
     label: Optional[str] = None
     includes_healthy_subjects: bool = False
-    planned_enrollment_number: Optional[int] = None
+    planned_enrollment_number: Any = None  # a number, or {"minValue": n, "maxValue": n}
     planned_maximum_age: Optional[str] = None  # ISO 8601 duration or description
     planned_minimum_age: Optional[str] = None
     planned_age_is_approximate: Optional[bool] = None  # whether the age range is stated as approximate
@@ -134,10 +134,8 @@ class StudyDesignPopulation:
         if self.label:
             result["label"] = self.label
         if self.planned_enrollment_number:
-            result["plannedEnrollmentNumber"] = {
-                "maxValue": self.planned_enrollment_number,
-                "instanceType": "Range",
-            }
+            # Staging value: the generator builds the USDM Quantity/Range from it
+            result["plannedEnrollmentNumber"] = self.planned_enrollment_number
         # plannedMinimumAge/plannedMaximumAge/plannedAgeIsApproximate aren't
         # real StudyDesignPopulation fields in USDM 4.0 (the real field is
         # plannedAge, a single Range with minValue/maxValue as Quantity) —

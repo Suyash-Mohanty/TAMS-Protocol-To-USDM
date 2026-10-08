@@ -339,6 +339,10 @@ def _link_geographic_scopes(usdm: Dict[str, Any]) -> None:
             dv["geographicScopes"] = _copy_with_new_ids(resolved)
     for gd in version.get("dateValues", []):
         gd["geographicScopes"] = _copy_with_new_ids(resolved)
+    for document in study.get("documentedBy", []):
+        for doc_version in document.get("versions", []):
+            for gd in doc_version.get("dateValues", []):
+                gd["geographicScopes"] = _copy_with_new_ids(resolved)
 
 
 def _copy_with_new_ids(value: Any) -> Any:
@@ -449,6 +453,47 @@ def _parse_age_duration(raw: Optional[str]) -> Optional[Tuple[float, str]]:
         return float(desc_match.group(1)), desc_match.group(2).capitalize()
 
     return None
+
+
+def _count_value(raw: Any) -> Optional[float]:
+    """A number from an int/float, a numeric string ("1,035", "approximately 200"), or a
+    {"value": n} object; None when no number is stated."""
+    if isinstance(raw, bool):
+        return None
+    if isinstance(raw, (int, float)):
+        return float(raw)
+    if isinstance(raw, dict):
+        return _count_value(raw.get("value"))
+    if isinstance(raw, str):
+        match = re.search(r"\d[\d,]*(?:\.\d+)?", raw)
+        if match:
+            return float(match.group(0).replace(",", ""))
+    return None
+
+
+def _build_quantity_range(raw: Any) -> Optional[Dict[str, Any]]:
+    """USDM QuantityRange (Quantity or Range) for a planned count such as enrollment.
+
+    A single number becomes a Quantity. A stated range ({"minValue": a, "maxValue": b},
+    both numbers) becomes a Range of Quantities. A malformed value (e.g. only a nested
+    placeholder object, or a Range with one bound) yields None rather than an
+    invalid object; a lone maxValue is read as the planned number.
+    """
+    if isinstance(raw, dict) and ("minValue" in raw or "maxValue" in raw):
+        low, high = _count_value(raw.get("minValue")), _count_value(raw.get("maxValue"))
+        if low is not None and high is not None and low != high:
+            return {
+                "id": str(uuid.uuid4()).replace("-", "_"),
+                "minValue": {"id": str(uuid.uuid4()).replace("-", "_"), "value": min(low, high), "instanceType": "Quantity"},
+                "maxValue": {"id": str(uuid.uuid4()).replace("-", "_"), "value": max(low, high), "instanceType": "Quantity"},
+                "isApproximate": bool(raw.get("isApproximate", False)),
+                "instanceType": "Range",
+            }
+        raw = high if high is not None else low
+    value = _count_value(raw)
+    if value is None:
+        return None
+    return {"id": str(uuid.uuid4()).replace("-", "_"), "value": value, "instanceType": "Quantity"}
 
 
 def _build_planned_age_range(min_raw: Optional[str], max_raw: Optional[str],
@@ -739,10 +784,17 @@ def _place_entity(usdm: Dict[str, Any], entity_type: str,
                 entity_data.get("plannedMaximumAge"),
                 entity_data.get("plannedAgeIsApproximate"),
             )
-            skip_keys = {"criteria", "plannedMinimumAge", "plannedMaximumAge", "plannedAgeIsApproximate"}
+            skip_keys = {"criteria", "plannedMinimumAge", "plannedMaximumAge", "plannedAgeIsApproximate",
+                         "plannedEnrollmentNumber", "plannedCompletionNumber"}
             pop.update({k: v for k, v in entity_data.items() if k not in skip_keys})
             if planned_age:
                 pop["plannedAge"] = planned_age
+            for key in ("plannedEnrollmentNumber", "plannedCompletionNumber"):
+                planned_count = _build_quantity_range(entity_data.get(key))
+                if planned_count:
+                    pop[key] = planned_count
+                elif entity_data.get(key):
+                    logger.warning("Could not build %s from %r; left unset", key, entity_data.get(key))
             return True
         elif entity_type == "study_definition_document":
             _place_study_definition_document(usdm, entity_data)
@@ -2315,6 +2367,326 @@ def _link_document_versions(usdm: Dict[str, Any]) -> None:
         versions.append(version)
 
 
+def _alnum(text: Any) -> str:
+    return re.sub(r"[^a-z0-9]", "", str(text or "").lower())
+
+
+def _resolve_epoch_ref(ref: Optional[str], epochs: List[Dict[str, Any]]) -> Optional[str]:
+    """Epoch id for a rule's provisional reference ("epoch_period1" -> "Period 1").
+
+    Exact name match first, then containment (min. 4 characters) preferring
+    the closest-length name, so "epoch_followup" picks "Follow-up/ED" rather
+    than "Additional Follow-up for TE ADA".
+    """
+    key = _alnum(re.sub(r"^(?:epoch|element|elem)[_\- ]*", "", str(ref or ""), flags=re.IGNORECASE))
+    if len(key) < 3:
+        return None
+    names = [(e["id"], _alnum(e.get("name"))) for e in epochs if e.get("id")]
+    for eid, name in names:
+        if name == key:
+            return eid
+    close = [(abs(len(name) - len(key)), eid) for eid, name in names
+             if len(name) >= 4 and len(key) >= 4 and (key in name or name in key)]
+    return min(close)[1] if close else None
+
+
+def _link_transition_rules(usdm: Dict[str, Any]) -> None:
+    """Attach extracted transition rules to the design's elements/encounters.
+
+    USDM 4.0 holds a TransitionRule on a StudyElement (transitionStartRule /
+    transitionEndRule) or an Encounter. For a rule from A to B, in each arm
+    the last element matching A gets it as its end rule and the first
+    element matching B as its start rule. A reference matches an element by
+    the phase named at the end of its name ("... - Maintenance Treatment") or
+    by the element's epoch ("epoch_period1" -> epoch "Period 1"); a rule
+    between two visits ("visit_1" -> "visit_2") ends/starts those encounters.
+    Each slot holds one rule (the first extracted); a rule with no
+    resolvable link, or whose slots are all taken, is logged, not forced
+    onto an unrelated element.
+    """
+    study = usdm.get("study", {})
+    pending = study.pop("_pendingTransitionRules", [])
+    if not pending:
+        return
+    try:
+        design = study["versions"][0]["studyDesigns"][0]
+    except (KeyError, IndexError):
+        return
+    epochs, encounters = design.get("epochs", []), design.get("encounters", [])
+    epoch_order = {e["id"]: i for i, e in enumerate(epochs)}
+    elements = {e["id"]: e for e in design.get("elements", [])}
+    cells = design.get("studyCells", [])
+
+    def _rule(raw: Dict[str, Any]) -> Dict[str, Any]:
+        text = (raw.get("text") or raw.get("description") or raw.get("name") or "").strip()
+        rule = {"id": str(uuid.uuid4()), "name": raw.get("name") or text[:60], "text": text,
+                "instanceType": "TransitionRule"}
+        if raw.get("description") and raw["description"] != text:
+            rule["description"] = raw["description"]
+        return rule
+
+    def _arm_elements(arm_id: str) -> List[tuple]:
+        """(epoch id, element) for the arm, in epoch then cell order."""
+        arm_cells = sorted((c for c in cells if c.get("armId") == arm_id),
+                           key=lambda c: epoch_order.get(c.get("epochId"), 0))
+        return [(c["epochId"], elements[eid]) for c in arm_cells for eid in c.get("elementIds", []) if eid in elements]
+
+    def _matching(ref: Optional[str], arm_els: List[tuple]) -> List[Dict[str, Any]]:
+        key = _alnum(re.sub(r"^(?:epoch|element|elem)[_\- ]*", "", str(ref or ""), flags=re.IGNORECASE))
+        if len(key) < 3:
+            return []
+        by_phase = []
+        for _, el in arm_els:
+            phase = _alnum(str(el.get("name", "")).rsplit(" - ", 1)[-1])
+            if phase == key or (len(key) >= 4 and len(phase) >= 4 and (key in phase or phase in key)):
+                by_phase.append(el)
+        if by_phase:
+            return by_phase
+        epoch_id = _resolve_epoch_ref(ref, epochs)
+        return [el for ep, el in arm_els if epoch_id and ep == epoch_id]
+
+    arms = [a["id"] for a in design.get("arms", []) if a.get("id")]
+    per_arm = {arm: _arm_elements(arm) for arm in arms}
+    placed, unplaced = 0, []
+    for raw in pending:
+        from_ref, to_ref = raw.get("fromElementId"), raw.get("toElementId")
+        used = False
+        for arm_els in per_arm.values():
+            for el in _matching(from_ref, arm_els)[-1:]:
+                if "transitionEndRule" not in el:
+                    el["transitionEndRule"] = _rule(raw)
+                    used = True
+            for el in _matching(to_ref, arm_els)[:1]:
+                if "transitionStartRule" not in el:
+                    el["transitionStartRule"] = _rule(raw)
+                    used = True
+        if not used:  # visit-to-visit rules
+            enc_from = _instance_by_visit(from_ref and str(from_ref).replace("_", " "), encounters)
+            enc_to = _instance_by_visit(to_ref and str(to_ref).replace("_", " "), encounters)
+            if enc_from is not None and "transitionEndRule" not in enc_from:
+                enc_from["transitionEndRule"] = _rule(raw)
+                used = True
+            if enc_to is not None and "transitionStartRule" not in enc_to:
+                enc_to["transitionStartRule"] = _rule(raw)
+                used = True
+        if used:
+            placed += 1
+        else:
+            unplaced.append(raw.get("name"))
+    logger.info(f"Placed {placed}/{len(pending)} transition rules"
+                + (f"; not placed (no resolvable link or slot taken): {unplaced}" if unplaced else ""))
+
+
+def _link_conditions(usdm: Dict[str, Any]) -> None:
+    """Place extracted conditions in StudyVersion.conditions.
+
+    A Condition needs a name and text (the condition itself); label defaults
+    to the name. contextIds/appliesToIds (0..*) are left unset: the
+    extraction doesn't say which activity a condition concerns, and a guess
+    from word overlap links the wrong activity too often to be useful.
+    """
+    study = usdm.get("study", {})
+    pending = study.pop("_pendingConditions", [])
+    if not pending:
+        return
+    try:
+        version = study["versions"][0]
+    except (KeyError, IndexError):
+        return
+    conditions = []
+    for raw in pending:
+        name = (raw.get("name") or "").strip()
+        text = (raw.get("text") or raw.get("description") or name).strip()
+        if not name or not text:
+            continue
+        cond = {"id": str(uuid.uuid4()), "name": name, "label": raw.get("label") or name, "text": text,
+                "instanceType": "Condition"}
+        if raw.get("description"):
+            cond["description"] = raw["description"]
+        conditions.append(cond)
+    version["conditions"] = conditions
+    logger.info(f"Placed {len(conditions)} conditions")
+
+
+_XHTML_NS = "http://www.w3.org/1999/xhtml"
+
+
+def _classify_document_versions(doc_versions: List[Dict[str, Any]], amendments: List[Dict[str, Any]]) -> tuple:
+    """(current, original) StudyDefinitionDocumentVersion; either may be None.
+
+    Document versions aren't reliably ordered and their labels differ from the
+    amendment's ("Amendment e" vs version "e", "Amendment a" vs "YDAF(a)"), so
+    each is identified through the amendment chain:
+    - the latest amendment is the one whose resulting version no other
+      amendment amends (else the last listed); its document version is the one
+      labelled like its newVersion or its amendment number — that is the
+      current version;
+    - the original is the version labelled Original/Initial, else the one no
+      amendment produced.
+    Without an amendment match, the current version is the unique Approved one,
+    else the last listed; a lone version is both current and original.
+    """
+    if not doc_versions:
+        return None, None
+
+    def lab(text: Any) -> str:
+        return _alnum(text)
+
+    def labels(amendment: Dict[str, Any]) -> set:
+        return {lab(amendment.get("newVersion")), lab(amendment.get("number"))} - {""}
+
+    amended_from = {lab(a.get("previousVersion")) for a in amendments}
+    ends = [a for a in amendments if lab(a.get("newVersion")) and lab(a.get("newVersion")) not in amended_from]
+    latest = (ends or amendments or [None])[-1]
+
+    # A version already holding the protocol sections was chosen as current earlier
+    holders = [dv for dv in doc_versions if dv.get("contents")]
+    current = holders[0] if len(holders) == 1 else None
+    if current is None and latest is not None:
+        hit = [dv for dv in doc_versions if lab(dv.get("version")) in labels(latest)]
+        if len(hit) == 1:
+            current = hit[0]
+    if current is None:
+        approved = [dv for dv in doc_versions if (dv.get("status") or {}).get("code") == "C25425"]
+        current = approved[0] if len(approved) == 1 else doc_versions[-1]
+
+    original = None
+    named = [dv for dv in doc_versions if re.search(r"original|initial", str(dv.get("version") or ""), re.IGNORECASE)]
+    if len(named) == 1:
+        original = named[0]
+    elif len(doc_versions) == 1:
+        original = doc_versions[0]
+    else:
+        produced = set().union(*[labels(a) for a in amendments]) if amendments else set()
+        unamended = [dv for dv in doc_versions if lab(dv.get("version")) not in produced]
+        if len(unamended) == 1:
+            original = unamended[0]
+        elif len(doc_versions) == 2 and current is not None:
+            original = next(dv for dv in doc_versions if dv is not current)
+    return current, original
+
+
+def _build_document_contents(usdm: Dict[str, Any]) -> None:
+    """Build the protocol's section hierarchy (USDM 4.0 NarrativeContent).
+
+    A protocol section is a NarrativeContent — name, section number and
+    title, whether to display them, links to its parent's children,
+    previous/next section and its text item — held in the current
+    StudyDefinitionDocumentVersion.contents; the text itself is the
+    NarrativeContentItem in StudyVersion.narrativeContentItems. Sections are
+    chained in document order (each top-level section followed by its
+    subsections). A section whose text is not XHTML yet (a parent section
+    holding only its title) is wrapped so every item text is valid XHTML.
+    """
+    import html
+
+    study = usdm.get("study", {})
+    sections = study.pop("_pendingSections", [])
+    if not sections:
+        return
+    try:
+        version = study["versions"][0]
+    except (KeyError, IndexError):
+        return
+    documents = study.get("documentedBy") or []
+    if not documents:
+        logger.warning("No protocol document to hold the sections; NarrativeContent not built")
+        return
+    doc_versions = documents[0].setdefault("versions", [])
+    if not doc_versions:
+        # The document structure stage found no version: record the protocol
+        # version being converted (its version identifier; status Final, as
+        # elsewhere when none is extracted) so the sections have a home
+        doc_versions.append({
+            "id": str(uuid.uuid4()),
+            "version": str(version.get("versionIdentifier") or "1.0"),
+            "status": _resolve_ct_code("Final", "C188723"),
+            "instanceType": "StudyDefinitionDocumentVersion",
+        })
+    target, _ = _classify_document_versions(doc_versions, study.get("_amendmentInfo", []))
+
+    items = {item.get("id"): item for item in version.get("narrativeContentItems", [])}
+    by_id = {s["id"]: s for s in sections if s["id"] in items}
+
+    # Document order: top-level sections by order, each followed by its children
+    ordered: List[Dict[str, Any]] = []
+    children_of: Dict[str, List[str]] = {}
+    seen = set()
+    tops = sorted([s for s in by_id.values() if s["topLevel"]], key=lambda s: s.get("order") or 0)
+    for top in tops:
+        ordered.append(top); seen.add(top["id"])
+        kids = [by_id[c] for c in top["childIds"] if c in by_id]
+        children_of[top["id"]] = [k["id"] for k in kids]
+        for kid in kids:
+            if kid["id"] not in seen:
+                ordered.append(kid); seen.add(kid["id"])
+    ordered += [s for s in by_id.values() if s["id"] not in seen]
+
+    content_id = {s["id"]: f"nc_{n}" for n, s in enumerate(ordered, 1)}
+    names_used: Dict[str, int] = {}
+    contents = []
+    for n, s in enumerate(ordered):
+        name = s.get("name") or s.get("sectionTitle") or f"Section {s.get('sectionNumber') or n + 1}"
+        names_used[name] = names_used.get(name, 0) + 1
+        if names_used[name] > 1:  # names must be unique across sections
+            name = f"{name} ({s.get('sectionNumber') or names_used[name]})"
+        content = {
+            "id": content_id[s["id"]],
+            "name": name,
+            "displaySectionNumber": bool(s.get("sectionNumber")),
+            "displaySectionTitle": bool(s.get("sectionTitle") or s.get("name")),
+            "contentItemId": s["id"],
+            "instanceType": "NarrativeContent",
+        }
+        if s.get("sectionNumber"):
+            content["sectionNumber"] = str(s["sectionNumber"])
+        if s.get("sectionTitle") or s.get("name"):
+            content["sectionTitle"] = s.get("sectionTitle") or s["name"]
+        if children_of.get(s["id"]):
+            content["childIds"] = [content_id[c] for c in children_of[s["id"]]]
+        if n > 0:
+            content["previousId"] = content_id[ordered[n - 1]["id"]]
+        if n < len(ordered) - 1:
+            content["nextId"] = content_id[ordered[n + 1]["id"]]
+        contents.append(content)
+
+    for item in items.values():
+        text = item.get("text") or item.get("name") or ""
+        if not text.lstrip().startswith("<"):
+            item["text"] = f'<div xmlns="{_XHTML_NS}"><p>{html.escape(text, quote=False)}</p></div>'
+    target["contents"] = contents
+    if not version.get("documentVersionIds"):
+        version["documentVersionIds"] = [target["id"]]
+    logger.info(f"Built {len(contents)} NarrativeContent sections under document version {target.get('version')!r}")
+
+
+def _attach_document_version_dates(usdm: Dict[str, Any]) -> None:
+    """Attach staged document-version dates to their StudyDefinitionDocumentVersion.
+
+    The original protocol's issue date (Document History) belongs to the
+    original document version: the one labelled Original/Initial; with a
+    single version, that version; with two, the one that isn't the current
+    version (the one holding the sections). When the original can't be
+    identified, the date goes to StudyVersion.dateValues rather than to an
+    arbitrary document version.
+    """
+    study = usdm.get("study", {})
+    pending = study.pop("_pendingDocVersionDates", [])
+    if not pending:
+        return
+    try:
+        version = study["versions"][0]
+    except (KeyError, IndexError):
+        return
+    documents = study.get("documentedBy") or []
+    doc_versions = documents[0].get("versions", []) if documents else []
+    _, original = _classify_document_versions(doc_versions, study.get("_amendmentInfo", []))
+    for raw in pending:
+        date = {k: v for k, v in raw.items() if k != "documentVersionLabel"}
+        target = original if _alnum(raw.get("documentVersionLabel")) == "original" else None
+        (target if target is not None else version).setdefault("dateValues", []).append(date)
+
+
 def _link_change_sections_to_document(usdm: Dict[str, Any]) -> None:
     """Point StudyChange.changedSections[].appliesToId at the protocol document.
 
@@ -2973,6 +3345,11 @@ def _post_normalize_cleanup(usdm: Dict[str, Any]) -> None:
     study.pop("_pendingAdministrations", None)
     study.pop("_pendingInterventionAdmins", None)
     study.pop("_pendingTimings", None)
+    study.pop("_pendingSections", None)
+    study.pop("_amendmentInfo", None)
+    study.pop("_pendingDocVersionDates", None)
+    study.pop("_pendingTransitionRules", None)
+    study.pop("_pendingConditions", None)
 
     # Strip 'type' from all StudyIdentifiers (not in USDM 4.0 — DDF00125)
     for sid in version.get("studyIdentifiers", []):
@@ -3035,6 +3412,9 @@ def _post_normalize_cleanup(usdm: Dict[str, Any]) -> None:
     _fix_governance_dates(version.get("dateValues", []))
     for amend in version.get("amendments", []):
         _fix_governance_dates(amend.get("dateValues", []))
+    for document in study.get("documentedBy", []):
+        for doc_version in document.get("versions", []):
+            _fix_governance_dates(doc_version.get("dateValues", []))
 
     # Fix administrableDoseForm: must be AliasCode not a hybrid Code+standardCode object (DDF00081)
     for ap in version.get("administrableProducts", []):
@@ -3867,6 +4247,48 @@ class USDMGeneratorAgent(BaseAgent):
             if "id" not in entity_data:
                 entity_data["id"] = entity.id
 
+            # StudyAmendment.newVersion/previousVersion (the document versions an
+            # amendment links) are not USDM attributes and are stripped on
+            # placement; they identify the current and the original document version
+            if etype in ("study_amendment", "amendment"):
+                usdm["study"].setdefault("_amendmentInfo", []).append({
+                    "number": entity_data.get("number"),
+                    "newVersion": entity_data.get("newVersion"),
+                    "previousVersion": entity_data.get("previousVersion"),
+                })
+
+            # A date that belongs to a document version (not the study version)
+            # is attached to that version after the documents are assembled
+            if etype == "governance_date" and entity_data.get("documentVersionLabel"):
+                usdm["study"].setdefault("_pendingDocVersionDates", []).append(entity_data)
+                result.entity_count += 1
+                types_seen.add(etype)
+                continue
+
+            # Transition rules and conditions have no list container: staged
+            # with their raw links, and attached to elements/encounters and
+            # StudyVersion.conditions after the design is assembled
+            if etype in ("transition_rule", "condition"):
+                key = "_pendingTransitionRules" if etype == "transition_rule" else "_pendingConditions"
+                usdm["study"].setdefault(key, []).append(entity_data)
+                result.entity_count += 1
+                types_seen.add(etype)
+                continue
+
+            # Section structure (number, title, parent/child links) isn't part
+            # of NarrativeContentItem and is stripped on placement — keep it to
+            # build the NarrativeContent hierarchy in _build_document_contents()
+            if etype in ("narrative_content", "narrative_content_item"):
+                usdm["study"].setdefault("_pendingSections", []).append({
+                    "id": entity_data.get("id"),
+                    "name": entity_data.get("name"),
+                    "sectionNumber": entity_data.get("sectionNumber"),
+                    "sectionTitle": entity_data.get("sectionTitle"),
+                    "childIds": list(entity_data.get("childIds") or []),
+                    "order": entity_data.get("order", 0),
+                    "topLevel": etype == "narrative_content",
+                })
+
             # Capture encounter→epochId mapping BEFORE epochId gets stripped.
             # Timeline synthesis (_ensure_sponsor_identifier) needs this mapping
             # but runs before _normalize_codelists where it was previously built.
@@ -4026,6 +4448,10 @@ class USDMGeneratorAgent(BaseAgent):
         _ensure_study_definition_document(usdm)
         _link_document_versions(usdm)
         _link_change_sections_to_document(usdm)
+        _build_document_contents(usdm)
+        _attach_document_version_dates(usdm)
+        _link_transition_rules(usdm)
+        _link_conditions(usdm)
 
         # Attach staged maskedRoles (from study_design) to matching
         # StudyRole entries — must run after _ensure_sponsor_identifier
