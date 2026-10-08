@@ -30,6 +30,14 @@ Extract every exclusion criterion. These typically:
 - Target enrollment number
 - Age range (minimum/maximum)
 - Sex/Gender requirements
+- Whether the study population includes healthy subjects (volunteers without the
+  disease/condition under study) as opposed to only patients with the condition.
+  Look at the title, objectives, and eligibility criteria for explicit language such
+  as "healthy volunteers," "healthy subjects," or "normal volunteers" (→ true) versus
+  "patients with [condition]," "participants diagnosed with [condition]" (→ false).
+  Set includesHealthySubjects to true or false based on this — do not default to
+  false if the protocol doesn't make it explicit; infer it from whether the
+  inclusion criteria require the disease/condition under study.
 
 ## USDM v4.0 Output Format (MUST follow exactly)
 
@@ -123,7 +131,11 @@ Every entity MUST have `id` and `instanceType` fields.
 5. **Use identifier** - Preserve original numbering (I1, E1, 1, 2, etc.)
 6. **Maintain order** - Keep criteria in protocol order
 7. **Be complete** - Include sub-criteria in the text
-8. **Return ONLY valid JSON** - no markdown fences, no explanations
+8. **includesHealthySubjects is derived, not a default** - the `false` shown in the
+   example below is for a patient population (inclusion criteria require the
+   condition under study); set it to `true` instead whenever the protocol enrolls
+   healthy volunteers. Base it on what THIS protocol's criteria actually say.
+9. **Return ONLY valid JSON** - no markdown fences, no explanations
 
 Now analyze the protocol content and extract the eligibility criteria:
 """

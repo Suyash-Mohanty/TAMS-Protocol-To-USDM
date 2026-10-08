@@ -1,0 +1,112 @@
+{
+  "agent_id": "advanced_agent",
+  "timestamp": "2026-10-08T11:57:59.034000",
+  "confidence": 0.85,
+  "entity_count": 3,
+  "entities": [
+    {
+      "id": "amend_1",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_1",
+        "number": "a",
+        "name": "Amendment a",
+        "scope": {
+          "id": "fd93e62b-a7e2-4332-8dcb-488a6baa24b8",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "9e035fc0-df55-4eb9-9fc2-0080b7eba7aa",
+          "code": {
+            "id": "ee2d5249-e37a-4ad4-98b8-b819e58184ab",
+            "code": "C98782",
+            "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+            "codeSystemVersion": "25.01d",
+            "decode": "Protocol Amendment",
+            "instanceType": "Code"
+          },
+          "otherReason": "Protocol Amendment",
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "7f80606d-1a01-4009-9265-90b5f4a49113",
+            "type": {
+              "id": "e8b881aa-2a9a-489a-8927-9a77d24e8793",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The overall rationale for the changes implemented in this protocol amendment is to address feedback received from an internal safety committee.",
+        "reasonIds": [
+          "ar_1_1"
+        ],
+        "previousVersion": "Original Protocol",
+        "newVersion": "YDAF(a)"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        15
+      ]
+    },
+    {
+      "id": "ar_1_1",
+      "entity_type": "amendment_reason",
+      "data": {
+        "id": "ar_1_1",
+        "code": "SAFETY",
+        "description": "Safety",
+        "instanceType": "AmendmentReason"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        15
+      ]
+    },
+    {
+      "id": "geo_1",
+      "entity_type": "geographic_scope",
+      "data": {
+        "id": "geo_1",
+        "name": "Study Geographic Scope",
+        "scopeType": "Global",
+        "instanceType": "GeographicScope"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        15
+      ]
+    }
+  ],
+  "advanced_summary": {
+    "amendment_count": 1,
+    "country_count": 0,
+    "site_count": 0,
+    "has_geographic_scope": true
+  }
+}
