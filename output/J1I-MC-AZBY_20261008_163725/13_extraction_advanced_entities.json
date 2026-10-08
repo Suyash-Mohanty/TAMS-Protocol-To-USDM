@@ -1,0 +1,293 @@
+{
+  "agent_id": "advanced_agent",
+  "timestamp": "2026-10-08T16:39:23.060341",
+  "confidence": 0.85,
+  "entity_count": 3,
+  "entities": [
+    {
+      "id": "amend_1",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_1",
+        "number": "a",
+        "name": "Amendment a",
+        "scope": {
+          "id": "e39fbb12-805d-432d-87a2-79f8f3e56e13",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "44d15512-f70b-43cd-82c7-8de6b2721da6",
+          "code": {
+            "id": "ed1b7d06-e6fa-477f-bfbc-b8427d9e9e50",
+            "code": "C207609",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "New Safety Information Available",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "876c9f05-30fe-407f-91c8-eafb660cb5cf",
+            "type": {
+              "id": "e562cd09-0272-43e8-823e-28dcfa368dee",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The overall rationale for the changes implemented in the amendment is to\n• add new AESI of \"malnutrition and inadequate fluid intake\" and update the title and text for AESI of \"ketoacidosis due to inadequate nutritional intake and other types of metabolic acidosis and ketosis\"\n• provide more detailed guidance on recommending, monitoring, and managing nutritional intake and hydration\n• update criteria for dose modification, and\n• include adjudication of urgent visit for heart failure.",
+        "effectiveDate": "2025-02-17",
+        "dateValues": [
+          {
+            "id": "gd_amend_1_eff",
+            "name": "Amendment a Effective Date",
+            "dateValue": "2025-02-17",
+            "geographicScopes": [],
+            "type": {
+              "id": "0a9000bb-7d84-4861-8fd4-95eb5083c300",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          },
+          {
+            "id": "gd_amend_1_app",
+            "name": "Amendment a Approval Date",
+            "dateValue": "2025-02-17",
+            "geographicScopes": [],
+            "type": {
+              "id": "fc5f7913-b08d-4e4a-885f-97aaa9d1de13",
+              "code": "C71476",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Approval Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "secondaryReasons": [
+          {
+            "id": "d533240a-20d4-4827-ab14-e42207efe2bd",
+            "code": {
+              "id": "8f460ddf-f561-4a9c-9de3-2d16fa741ea3",
+              "code": "C207603",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Inconsistency and/or Error In The Protocol",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyAmendmentReason"
+          }
+        ],
+        "changes": [
+          {
+            "id": "3c5a3dad-10de-4a77-aff3-da26c769ad14",
+            "name": "Section 1.1 Synopsis – 3. Objectives, Endpoints, and Estimands",
+            "summary": "Updated the wording for the Additional Secondary Objective from \"relationships between retatrutide and safety, tolerability, and efficacy measures\" to \"relationships between retatrutide exposure and safety, tolerability, and efficacy measures\".",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "1db7df61-8709-4bcd-b3b9-d7dff8e67ce5",
+                "sectionNumber": "1.1",
+                "sectionTitle": "Synopsis – 3. Objectives, Endpoints, and Estimands",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "a7b4435b-75d1-4b92-8b7c-a84c63fd8a66",
+            "name": "Section 1.1 Synopsis – 3. Objectives, Endpoints, and Estimands",
+            "summary": "Additional note added to clarify the intended purpose of each estimand. Added a clarification to the definition of \"population\" for treatment regimen and efficacy estimand attributes.",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "dec362fc-96d4-43e9-81f6-8f1c9e5b2109",
+                "sectionNumber": "1.1",
+                "sectionTitle": "Synopsis – 3. Objectives, Endpoints, and Estimands",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "8d7c8fbc-0a25-4f8c-ad2b-4474cb18c8d7",
+            "name": "Section 1.3 Schedule of Activities",
+            "summary": "Added language for monitoring and routinely assessing the need to adjust or discontinue antihypertensive medications, diuretics, laxatives, and anti-emetics for concomitant medications.",
+            "rationale": "For consistency with recommendations in Sections 6.9.1 and 10.10",
+            "changedSections": [
+              {
+                "id": "413d7b2e-5de8-4969-9c65-c76d3bd28817",
+                "sectionNumber": "1.3",
+                "sectionTitle": "Schedule of Activities",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "3e7eaa4d-be37-4bd2-be76-1c80dd1cede8",
+            "name": "Section 1.3 Schedule of Activities",
+            "summary": "Added language for monitoring for and encouraging adequate nutritional intake and hydration throughout the study as part of the participant education.",
+            "rationale": "For consistency with recommendations in Sections 5.3.3 and 5.3.4",
+            "changedSections": [
+              {
+                "id": "fc3c0e59-6b78-435b-b39b-91457a1a26fb",
+                "sectionNumber": "1.3",
+                "sectionTitle": "Schedule of Activities",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "d0bd11d0-9228-404b-b2f3-90af3e764426",
+            "name": "Section 1.3 Schedule of Activities",
+            "summary": "Added additional evaluations for \"Lifestyle considerations, diabetes education (including BG meter and SMBG training), and meals and nutrition\" to all visits, expanding beyond the existing evaluation at Visit 2.",
+            "rationale": "To incorporate additional counseling and monitoring for patient safety",
+            "changedSections": [
+              {
+                "id": "8bb77a7b-353c-4050-b3c6-674fee9a5087",
+                "sectionNumber": "1.3",
+                "sectionTitle": "Schedule of Activities",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "2e37c91c-3fae-4527-b3e2-d870c964793a",
+            "name": "Section 1.3 Schedule of Activities",
+            "summary": "Added an additional evaluation of antihypertensive and lipid-lowering medications at ED visit.",
+            "rationale": "To assess the \"change in antihypertensive and lipid-lowering medications\" endpoint at ED visit",
+            "changedSections": [
+              {
+                "id": "577ec122-b73e-464e-ba6b-2afa62e3f2f1",
+                "sectionNumber": "1.3",
+                "sectionTitle": "Schedule of Activities",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "360e03f4-c531-4de2-8e37-1d2a398d58fa",
+            "name": "Section 5.1 Inclusion Criteria",
+            "summary": "Added a note in Inclusion Criterion 8 to address the usage of gender-neutral terms (AMAB and AFAB) in the document.",
+            "rationale": "For clarification and consistency with TRANSCEND T2D protocols",
+            "changedSections": [
+              {
+                "id": "7d01f864-7704-4e71-8e1f-ac91f05a2ce7",
+                "sectionNumber": "5.1",
+                "sectionTitle": "Inclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "089dc1b3-462d-4834-8a78-8135d5aa2e82",
+            "name": "Section 5.2 Exclusion Criteria",
+            "summary": "Removed the word \"clinically significant\" from Exclusion Criterion 22.",
+            "rationale": "Clarification to avoid ambiguity",
+            "changedSections": [
+              {
+                "id": "aaa70034-46cc-4243-b938-3ef7fa157b00",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "Original Protocol",
+        "newVersion": "Amendment a"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "gd_original_protocol",
+      "entity_type": "governance_date",
+      "data": {
+        "id": "gd_original_protocol",
+        "name": "Original Protocol Issued Date",
+        "dateValue": "2023-11-29",
+        "geographicScopes": [],
+        "type": {
+          "id": "bfcb2467-c3af-4480-b13b-043aabad54c2",
+          "code": "C215664",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Issued Date",
+          "instanceType": "Code"
+        },
+        "instanceType": "GovernanceDate",
+        "description": "Date the original protocol version was issued (Document History)",
+        "documentVersionLabel": "Original"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "geo_1",
+      "entity_type": "geographic_scope",
+      "data": {
+        "id": "geo_1",
+        "name": "Study Geographic Scope",
+        "scopeType": "Global",
+        "instanceType": "GeographicScope"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        8
+      ]
+    }
+  ],
+  "advanced_summary": {
+    "amendment_count": 1,
+    "country_count": 0,
+    "site_count": 0,
+    "has_geographic_scope": true
+  }
+}

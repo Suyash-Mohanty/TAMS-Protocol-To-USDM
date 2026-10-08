@@ -204,6 +204,23 @@ def resume_from_checkpoint(checkpoint_path: str, args):
         pipeline.shutdown()
 
 
+def _merge_with_sdr(args, protocol_id, pdf_path, usdm_path):
+    """Merge the generated USDM onto the SDR one (SDR values win); report next to the output."""
+    from merge import find_sdr_file, merge_files
+    sdr_path = args.sdr_usdm or find_sdr_file(protocol_id, args.sdr_dir)
+    if not sdr_path:
+        return
+    try:
+        out = merge_files(sdr_path, usdm_path, os.path.dirname(usdm_path), pdf_path)
+        s = out["summary"]
+        print(f"         SDR merge ({os.path.basename(sdr_path)}): {s['matched']} matched, {s['added']} added, "
+              f"{s['attributes_filled']} attributes filled; mandatory {out['coverage']['ok']}/{out['coverage']['total']} "
+              f"(NA {out['coverage']['na']}, gaps {out['coverage']['gaps']})")
+        print(f"         Final USDM (merged): {out['merged']}")
+    except Exception as e:  # the generated USDM stays valid on its own
+        print(f"         SDR merge FAILED: {e}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Extract USDM from clinical trial protocol PDFs"
@@ -226,6 +243,10 @@ def main():
                         help="List available checkpoint files and exit")
     parser.add_argument("--clean-checkpoints", action="store_true", dest="clean_checkpoints",
                         help="Delete all checkpoint files and exit")
+    parser.add_argument("--sdr-usdm", default=None,
+                        help="SDR USDM JSON to merge the generated USDM onto (default: auto-pick from --sdr-dir by protocol name)")
+    parser.add_argument("--sdr-dir", default="SDR", help="Folder holding SDR USDM JSON files (default: SDR)")
+    parser.add_argument("--no-sdr-merge", action="store_true", help="Do not merge with an SDR USDM")
     args = parser.parse_args()
 
     # Handle --list-checkpoints
@@ -298,6 +319,8 @@ def main():
             if result.success:
                 print(f"OK — {result.entity_count} entities, {result.execution_time_ms:.0f}ms")
                 print(f"         USDM: {result.usdm_path}")
+                if result.usdm_path and not args.no_sdr_merge:
+                    _merge_with_sdr(args, protocol_id, pdf_path, result.usdm_path)
                 success_count += 1
             else:
                 print(f"PARTIAL — {result.entity_count} entities, failed: {result.failed_agents}")
