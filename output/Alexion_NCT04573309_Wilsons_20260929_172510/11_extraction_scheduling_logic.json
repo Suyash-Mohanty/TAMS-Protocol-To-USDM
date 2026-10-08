@@ -1,0 +1,3651 @@
+{
+  "agent_id": "scheduling_agent",
+  "timestamp": "2026-09-29T17:30:36.430367",
+  "confidence": 1.0,
+  "entity_count": 89,
+  "entities": [
+    {
+      "id": "timing_1",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_1",
+        "name": "Screening Visit",
+        "type": {
+          "id": "7bc4b14d-405e-42a6-8a2e-12987434dc46",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P8D",
+        "valueLabel": "Day 8",
+        "relativeToFrom": {
+          "id": "34b35d5e-6ca2-432c-bbd5-a76f0c4c592f",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "bd68e2a8-e10d-493e-93e9-bf675fa51f8b",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "-P8D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_2",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_2",
+        "name": "Enrollment/Registration (Participant Number Assignment)",
+        "type": {
+          "id": "7e4795a1-4a0d-4750-bd19-8e5a9b3c9f1e",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "-P7D",
+        "valueLabel": "Day -7",
+        "relativeToFrom": {
+          "id": "b6ebe525-995c-47bb-9c2e-2c4aad54e177",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "e21166e8-7376-479b-81b2-9412b010faa2",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_3",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_3",
+        "name": "CRU Admission / Check-in for Inpatient Period 1",
+        "type": {
+          "id": "112e477c-b0eb-4fcf-9cce-475a06515733",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "-P8D",
+        "valueLabel": "Day -8",
+        "relativeToFrom": {
+          "id": "782e8ad8-d6b1-49cb-a248-690747bf5af1",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "ce816920-2c31-44e7-b71b-cbbfda0dfb35",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_4",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_4",
+        "name": "Run-in Diet Equilibration Period (Day -7 through Day -5)",
+        "type": {
+          "id": "fe043f61-d6ce-47bc-9778-b9e1709f92af",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "-P7D",
+        "valueLabel": "Day -7",
+        "relativeToFrom": {
+          "id": "cc75a220-3c3b-4636-8369-34329faefbd0",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "fd49144a-50aa-4fab-9e89-f778a568ff58",
+        "instanceType": "Timing",
+        "windowLower": "-P7D",
+        "windowUpper": "-P5D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_5",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_5",
+        "name": "Baseline (Pretreatment) Copper/Molybdenum Intake and Output Collection Period (Day -4 through Day -1)",
+        "type": {
+          "id": "4142d44d-e9d1-4903-91d9-81d861e15bb3",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "-P4D",
+        "valueLabel": "Day -4",
+        "relativeToFrom": {
+          "id": "a5f28fab-ad46-4018-9149-212823bb53d3",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "7e9243a6-ff56-4544-9691-71bcb98268d3",
+        "instanceType": "Timing",
+        "windowLower": "-P4D",
+        "windowUpper": "-P1D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_6",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_6",
+        "name": "Chelator Therapy Discontinuation Prior to ALXN1840",
+        "type": {
+          "id": "5cedd3b7-fe03-4969-93ba-e6fbb367e3a5",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P4D",
+        "valueLabel": "Day 4",
+        "relativeToFrom": {
+          "id": "15ca09bc-704f-44ee-960f-b27d073fc783",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "47acc561-46e0-400c-84be-19062057c40c",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "-P4D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_7",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_7",
+        "name": "Zinc Therapy Washout Prior to Day 1",
+        "type": {
+          "id": "567033e1-5cb7-4f29-b6f4-7392f93af91e",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P21D",
+        "valueLabel": "Day 21",
+        "relativeToFrom": {
+          "id": "998d66d5-ec51-446c-b12d-c4e3505888fb",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "b4252041-a89a-418e-9286-fac9b8682f44",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "-P21D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_8",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_8",
+        "name": "Prior ALXN1840/Tetrathiomolybdate Exclusion Window",
+        "type": {
+          "id": "070f3e99-adc1-4e31-965a-65eaac082c60",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P1D",
+        "valueLabel": "1 years",
+        "relativeToFrom": {
+          "id": "d6dbb730-b5e3-4226-8e73-a1547cb44063",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "6365581d-90d4-4352-aea5-dfeda464a29c",
+        "instanceType": "Timing",
+        "windowLower": "-P365D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_9",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_9",
+        "name": "Experimental/Unapproved Therapy Exclusion Window (90 days or 5 half-lives, whichever is longer)",
+        "type": {
+          "id": "655e9b38-2c0f-48b0-b3fe-36ccf5abe9b0",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P90D",
+        "valueLabel": "Day 90",
+        "relativeToFrom": {
+          "id": "3e3f65d1-dee9-4903-b787-a5d04d3f9123",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "d5534cac-0afb-46f9-8eb7-68513d678d91",
+        "instanceType": "Timing",
+        "windowLower": "-P90D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_10",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_10",
+        "name": "Prescription Medication Washout Prior to Day -7 (14 days or 5 half-lives, whichever is longer)",
+        "type": {
+          "id": "8689f49c-7ece-4638-86cb-391d59829f1b",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P14D",
+        "valueLabel": "Day 14",
+        "relativeToFrom": {
+          "id": "210e4d0d-cc7e-4d07-92b7-6f12d0c16dbf",
+          "code": "C71153",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Study Start",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "caa7834e-052f-4279-b53d-e3e7f40e4f20",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "-P14D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_11",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_11",
+        "name": "Nonprescription Drug/Vitamin/Supplement Washout Prior to Day -7 (7 days or 5 half-lives, whichever is longer)",
+        "type": {
+          "id": "89cecfda-9197-4b44-b2a9-db7847087322",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P7D",
+        "valueLabel": "Day 7",
+        "relativeToFrom": {
+          "id": "9b857840-3ddf-4f39-86e1-2ab8174625f4",
+          "code": "C71153",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Study Start",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "1f15765d-4905-418f-bac7-407a04e31808",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "-P7D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_12",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_12",
+        "name": "Alcohol Abstinence Prior to Study Intervention Administration",
+        "type": {
+          "id": "8ef1b81c-b7a7-436d-9cb6-b37de52e5be9",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT48H",
+        "valueLabel": "48 hours",
+        "relativeToFrom": {
+          "id": "949ad6c8-fd8f-447a-9049-0bf2d9dbcb48",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "02f7a488-9877-4cc3-a0af-f499d2b22bd9",
+        "instanceType": "Timing",
+        "windowLower": "-PT48H",
+        "windowUpper": "PT0H"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_13",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_13",
+        "name": "15 mg/day Treatment Period (Day 1 through Day 28)",
+        "type": {
+          "id": "6e693551-d2e5-49b7-8913-12b484803b5a",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P1D",
+        "valueLabel": "Day 1",
+        "relativeToFrom": {
+          "id": "9be45178-79c2-45fb-81f0-005a33818f3f",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "b87cb470-6438-46a2-906c-de821a1440d3",
+        "instanceType": "Timing",
+        "windowLower": "P1D",
+        "windowUpper": "P28D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_14",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_14",
+        "name": "Initial 15 mg/day Intake and Output Collection Period (Day 1 through Day 8)",
+        "type": {
+          "id": "cb7142bf-b74e-4d20-b475-e13522ffbd29",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P1D",
+        "valueLabel": "Day 1",
+        "relativeToFrom": {
+          "id": "f624fce3-ec40-4934-a58d-47a4b6a549a4",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "67376bfc-cab6-40d2-b941-5c844d5ee8f8",
+        "instanceType": "Timing",
+        "windowLower": "P1D",
+        "windowUpper": "P8D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_15",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_15",
+        "name": "CRU Discharge from Inpatient Period 1",
+        "type": {
+          "id": "c6da9dd7-a86b-4e40-af7a-ac213a2bdc2d",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P9D",
+        "valueLabel": "Day 9",
+        "relativeToFrom": {
+          "id": "366db0ae-fa38-45ba-a30b-733ea7cc7492",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c82ee075-e3a1-47c8-b543-ac60d68637de",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_16",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_16",
+        "name": "Expected Steady State (5 x half-life of 2 days)",
+        "type": {
+          "id": "9f462602-cd58-4873-aa70-667f7f017f61",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P10D",
+        "valueLabel": "Day 10",
+        "relativeToFrom": {
+          "id": "6da211a3-1951-453a-b60f-168dc186f497",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c9f7a415-7eb5-47ba-ac3b-8520d14702e4",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_17",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_17",
+        "name": "Re-admission for Inpatient/Treatment Period 2 (Day 22 or Day 23 predose)",
+        "type": {
+          "id": "c5b4a5b3-2e15-4d06-b2d1-bf896b75173e",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P22D",
+        "valueLabel": "Day 22",
+        "relativeToFrom": {
+          "id": "5155df67-6ba2-49cc-9479-75cf656b17b4",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "e55e4686-4aae-4b2b-8506-46db25d910ea",
+        "instanceType": "Timing",
+        "windowLower": "P22D",
+        "windowUpper": "P23D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_18",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_18",
+        "name": "Start of Treatment Period 2 Procedures",
+        "type": {
+          "id": "152d337e-d5ab-4a31-99cb-e8e576abb4f7",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P23D",
+        "valueLabel": "Day 23",
+        "relativeToFrom": {
+          "id": "0b812770-f8f6-4ac1-91fe-781b0e8d7003",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "53c48c0b-9741-47bf-b6a5-f817b0288bc6",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_19",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_19",
+        "name": "Optional Extension of Outpatient Period (Treatment Period 1)",
+        "type": {
+          "id": "1b0b8177-1e4c-4fcb-9458-bbc78cd41efa",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P14D",
+        "valueLabel": "Day 14",
+        "relativeToFrom": {
+          "id": "88e1799f-bce9-429b-ba00-ff646e343d10",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "a9a62c4a-abce-4d23-be7a-7a88a0682574",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P14D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_20",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_20",
+        "name": "Inpatient Period 2 (Day 23 to Day 40)",
+        "type": {
+          "id": "45cb8b15-1a7f-4e84-963c-64cf28a784ba",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P23D",
+        "valueLabel": "Day 23",
+        "relativeToFrom": {
+          "id": "2ffea656-57c7-4d52-ab98-11bddff80366",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "9069eb13-b931-4692-ad7f-9af510fc12dc",
+        "instanceType": "Timing",
+        "windowLower": "P23D",
+        "windowUpper": "P40D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_21",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_21",
+        "name": "Second Intake and Output Collection Period (Day 25 through Day 39)",
+        "type": {
+          "id": "b5208e72-46a8-4777-ae81-a99d87dc158a",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P25D",
+        "valueLabel": "Day 25",
+        "relativeToFrom": {
+          "id": "bef4b710-8a3b-45a7-a761-977bfc77222b",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "751dc872-6d8b-4e4c-a5cc-45f522e8bf33",
+        "instanceType": "Timing",
+        "windowLower": "P25D",
+        "windowUpper": "P39D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_22",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_22",
+        "name": "15 mg/day Steady-State I/O Sub-Period (Days 25 through 28)",
+        "type": {
+          "id": "5b3ad1fa-8d78-4090-9334-a257c80bc297",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P25D",
+        "valueLabel": "Day 25",
+        "relativeToFrom": {
+          "id": "806d3a0c-1d0f-4b90-b13c-875dd0f90376",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "015ef335-49a6-463f-ab8a-414123a7183f",
+        "instanceType": "Timing",
+        "windowLower": "P25D",
+        "windowUpper": "P28D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_23",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_23",
+        "name": "SRC Safety Data Review Window Prior to Titration (data through Day 23)",
+        "type": {
+          "id": "3648bb60-a9ed-4e78-a4ca-27b4a208dfd0",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P23D",
+        "valueLabel": "Day 23",
+        "relativeToFrom": {
+          "id": "fcc4d062-1a1d-47da-8554-9f4a0047fdd7",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "f774aad9-2d21-4e2c-be44-03c3b3c7ff05",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P23D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_24",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_24",
+        "name": "Dose Titration to 30 mg/day",
+        "type": {
+          "id": "6db10d1c-c055-4458-9ca9-b6e4ec694bf5",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P29D",
+        "valueLabel": "Day 29",
+        "relativeToFrom": {
+          "id": "ce3f5497-3f89-40d4-a50b-ae9af6a83403",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "508ca610-32e3-4ae0-a7a2-702673f7d02c",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_25",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_25",
+        "name": "30 mg/day Treatment and I/O Collection Period (Day 29 through Day 39)",
+        "type": {
+          "id": "836a5d35-4487-49a1-b58a-3fce71a038f8",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P29D",
+        "valueLabel": "Day 29",
+        "relativeToFrom": {
+          "id": "2b7a55fc-0893-49a2-9279-ec3258d769bb",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c67007c1-03b5-4da9-9e55-07d7685140e1",
+        "instanceType": "Timing",
+        "windowLower": "P29D",
+        "windowUpper": "P39D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_26",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_26",
+        "name": "30 mg/day Accumulation Copper Balance Assessment (Days 31 through 35)",
+        "type": {
+          "id": "55f2ee34-7b72-49ae-afc7-1dde7290cfa5",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P31D",
+        "valueLabel": "Day 31",
+        "relativeToFrom": {
+          "id": "5170606c-eaa5-4a3f-9885-d2af68fec0ea",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "31163167-cff9-4ff7-bf78-507556fab2e2",
+        "instanceType": "Timing",
+        "windowLower": "P31D",
+        "windowUpper": "P35D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_27",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_27",
+        "name": "30 mg/day Steady-State Copper Balance Assessment (Days 36 through 39)",
+        "type": {
+          "id": "c2284e93-53c7-405b-a6c3-3fd833889612",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P36D",
+        "valueLabel": "Day 36",
+        "relativeToFrom": {
+          "id": "3718e61c-f1fb-4be4-9eb4-782c68f41823",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "69c7cc19-88c4-4c34-8cf6-c1013fe2c6d5",
+        "instanceType": "Timing",
+        "windowLower": "P36D",
+        "windowUpper": "P39D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_28",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_28",
+        "name": "End of Inpatient Periods / End of Treatment",
+        "type": {
+          "id": "5a9c52d7-c771-4e22-a6e8-bf154455b13f",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P40D",
+        "valueLabel": "Day 40",
+        "relativeToFrom": {
+          "id": "2faf997d-c88c-4de2-9420-a8da4b6abb66",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c34bf104-9e4e-4692-90f7-fca9207b377f",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_29",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_29",
+        "name": "End of Study (EOS) Visit",
+        "type": {
+          "id": "a233b2ac-4f45-48aa-8520-c344bd8ee332",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P54D",
+        "valueLabel": "Day 54",
+        "relativeToFrom": {
+          "id": "88473c29-cd3a-463d-8217-2f530bc71c41",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "658f8ee8-984e-4a92-bb6d-e0d2e16ccb45",
+        "instanceType": "Timing",
+        "windowLower": "-P2D",
+        "windowUpper": "P2D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_30",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_30",
+        "name": "24-Hour PK/PD Blood Sampling Days (Days 1, 25, 29, 39)",
+        "type": {
+          "id": "0cbd7ff2-d57a-4558-af78-f155479b65ad",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P1D",
+        "valueLabel": "Day 1",
+        "relativeToFrom": {
+          "id": "ff96d9f6-d989-4d83-a513-092b0a8a50dc",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "da769d94-9f7f-44e3-b1eb-d88cec6ae66e",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_31",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_31",
+        "name": "Predose Trough PK/PD Sampling Days (Days 4-7, 26-28, 30-38)",
+        "type": {
+          "id": "c560b08a-7d02-4b1f-ab03-f53e71b74949",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P4D",
+        "valueLabel": "Day 4",
+        "relativeToFrom": {
+          "id": "d3de0963-5a6e-4175-9137-d486acc0f084",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "a78914ca-1241-464c-80b8-9f460668a2a9",
+        "instanceType": "Timing",
+        "windowLower": "P4D",
+        "windowUpper": "P38D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_32",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_32",
+        "name": "Clinical Safety Laboratory Assessments (chemistry, hematology, coagulation on Days -8, -1, 8, 23, 28)",
+        "type": {
+          "id": "073dc330-eb00-4162-a1b8-1a00ddb1adcb",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "-P8D",
+        "valueLabel": "Day -8",
+        "relativeToFrom": {
+          "id": "3a25dc0f-64a9-4039-afbf-437c2fe83795",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "f9ffc33b-adde-45cc-b371-102b60d3ed26",
+        "instanceType": "Timing",
+        "windowLower": "-P8D",
+        "windowUpper": "P28D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_33",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_33",
+        "name": "Overnight Fast Before Inpatient Dosing",
+        "type": {
+          "id": "e77d8f11-fe47-4e61-ae28-af8bb5a138a1",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "PT10H",
+        "valueLabel": "10 hours",
+        "relativeToFrom": {
+          "id": "36beb6c3-50ad-40f5-b3bb-a9b7d5e10c87",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "eb4dfec8-9014-4548-b13a-8e79d17fa69d",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "-PT10H"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_34",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_34",
+        "name": "Fasting Requirement for Serum Chemistry (Screening and Check-in)",
+        "type": {
+          "id": "413cb2d5-6ead-4c7d-882d-f79e77599273",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "PT8H",
+        "valueLabel": "8 hours",
+        "relativeToFrom": {
+          "id": "78ed911b-6c20-4bd1-b156-eafb7d0843ec",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "d5b1fe16-be88-489a-ba16-aa110a4ac22b",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "-PT8H"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_35",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_35",
+        "name": "Meal Delay After Dosing",
+        "type": {
+          "id": "1df09036-72ed-4b13-a372-2538ee4bc448",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "PT2H",
+        "valueLabel": "2 hours",
+        "relativeToFrom": {
+          "id": "2887c4d1-02be-40fd-b28e-83413d67131c",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "ce64f078-7e45-43e6-ba21-1653426181c7",
+        "instanceType": "Timing",
+        "windowLower": "PT2H",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_36",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_36",
+        "name": "Outpatient Daily Dosing Time Window",
+        "type": {
+          "id": "ee01e8b2-1735-447f-8bcf-337ffd16399e",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT24H",
+        "valueLabel": "24 hours",
+        "relativeToFrom": {
+          "id": "19137cff-25f5-460e-9b73-1d54796c4e38",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "25a6bb27-2404-4f68-a2a1-65e757ecec20",
+        "instanceType": "Timing",
+        "windowLower": "-PT1H",
+        "windowUpper": "PT1H"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_37",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_37",
+        "name": "Urine Pregnancy Testing Interval for Females of Childbearing Potential",
+        "type": {
+          "id": "69137533-8747-44db-bc16-d52cf041845e",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P4W",
+        "valueLabel": "4 weeks",
+        "relativeToFrom": {
+          "id": "d57d3d95-e0ab-48c2-84cb-a7d1c7b8f7c8",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "57cc0442-6e21-46da-a0fb-76e8fc64b229",
+        "instanceType": "Timing",
+        "windowLower": "P0W",
+        "windowUpper": "P28W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_38",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_38",
+        "name": "24-Hour Urine Pooling and Void Requirement",
+        "type": {
+          "id": "a37c42b8-94f0-470b-bfab-a47008dffeaf",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT2H",
+        "valueLabel": "2 hours",
+        "relativeToFrom": {
+          "id": "42606efd-c298-44ce-b9e0-ffb0e978bafb",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "85429fc4-b893-4734-8f3b-1cd47a3fae63",
+        "instanceType": "Timing",
+        "windowLower": "-PT2H",
+        "windowUpper": "PT0H"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_39",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_39",
+        "name": "Weekly Repeat Safety Laboratory Testing After Dose Modification Criterion Met",
+        "type": {
+          "id": "7bda0134-dde8-406e-97c2-3074888f9410",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P7D",
+        "valueLabel": "Day 7",
+        "relativeToFrom": {
+          "id": "ec10e7e5-0373-4d3d-b99c-34b47e8a942b",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "7b83b0e4-3c52-477c-9403-e840d3401ac1",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P7D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_40",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_40",
+        "name": "Notification of Sponsor for Clinically Concerning Abnormality",
+        "type": {
+          "id": "ac809153-b465-43eb-b975-17326e738c16",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT24H",
+        "valueLabel": "24 hours",
+        "relativeToFrom": {
+          "id": "d421558a-2f1a-4398-8499-ec7ba22f8a72",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "9d7063e2-7a25-4c97-ac2a-8f358fcd7abe",
+        "instanceType": "Timing",
+        "windowLower": "PT0H",
+        "windowUpper": "PT24H"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_41",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_41",
+        "name": "Maximum Indwelling Cannula/Catheter Duration",
+        "type": {
+          "id": "429a7b07-9778-4935-9b7f-0a98066d9c1b",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT72H",
+        "valueLabel": "72 hours",
+        "relativeToFrom": {
+          "id": "c28ef9d8-f7d8-403a-b189-5595363198e9",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "e87db778-5356-40c7-94bf-c0b981901eaa",
+        "instanceType": "Timing",
+        "windowLower": "PT0H",
+        "windowUpper": "PT72H"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_42",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_42",
+        "name": "Cannula Flush Interval",
+        "type": {
+          "id": "fb2fdc81-9ecf-4db5-b860-ba6560d8027e",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT8H",
+        "valueLabel": "8 hours",
+        "relativeToFrom": {
+          "id": "03be32f9-0a94-4ce3-be3b-13603006e01c",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "5e4bcad8-945e-4e2f-80d4-bd5d0c49de0b",
+        "instanceType": "Timing",
+        "windowLower": "PT0H",
+        "windowUpper": "PT8H"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_43",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_43",
+        "name": "Minimum Duration of 15 mg/day Dosing Before Increase to 30 mg/day",
+        "type": {
+          "id": "9000667b-accb-45ea-a38c-bd444a4ad079",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "P4W",
+        "valueLabel": "4 weeks",
+        "relativeToFrom": {
+          "id": "9408f1aa-8650-41a2-a359-04e68be6aed5",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "3843c445-6324-4255-8b45-e0d1e0042a5e",
+        "instanceType": "Timing",
+        "windowLower": "P28W",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "timing_44",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_44",
+        "name": "Intake/Output Collection Period Duration Limits (minimum 3 days, maximum 15 days)",
+        "type": {
+          "id": "03e7c604-0a54-49fa-98cf-edbd6146d76f",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P3D",
+        "valueLabel": "Day 3",
+        "relativeToFrom": {
+          "id": "e9fa1073-98b4-47f8-a93a-204d1761656c",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "aa27a851-2cf7-49fd-a6e0-f35b94bf985e",
+        "instanceType": "Timing",
+        "windowLower": "P3D",
+        "windowUpper": "P15D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_1",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_1",
+        "name": "Enrollment Definition",
+        "instanceType": "Condition",
+        "description": "Definition of an enrolled participant",
+        "text": "'Enrolled' means all participants who sign the informed consent form (ICF), are eligible for the study, and are registered on Day -7 when participants are assigned a participant number."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_2",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_2",
+        "name": "SRC Safety Review Before Dose Titration",
+        "instanceType": "Condition",
+        "description": "Safety Review Committee gate prior to up-titration to 30 mg/day on Day 29",
+        "text": "Before titration to 30 mg/day, the Safety Review Committee (SRC) will review available safety data through Day 23 for each participant."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_3",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_3",
+        "name": "Safety Concern Restricting Dose Escalation",
+        "instanceType": "Condition",
+        "description": "Participants may remain on 15 mg/day if escalation poses undue risk",
+        "text": "Dosing will be initiated at 15 mg once daily for a minimum of 4 weeks, with an increase to 30 mg after 4 weeks, unless there are safety concerns that, in the opinion of the Investigator(s) and/or Alexion, may place participants at undue risk, in which case participants may remain on the 15 mg/day dose for the duration of the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_4",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_4",
+        "name": "Hepatic Dose Modification Criterion (Bilirubin with ALT)",
+        "instanceType": "Condition",
+        "description": "Liver injury laboratory criterion triggering temporary interruption",
+        "text": "Bilirubin > 2 × ULN accompanied by ALT > 3 × ULN, indicative of liver injury: temporary interruption of ALXN1840 with weekly repeat testing."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_5",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_5",
+        "name": "Neutrophil Decline Dose Modification Criterion",
+        "instanceType": "Condition",
+        "description": "Hematologic criterion triggering dose reduction",
+        "text": "> 30% decrease from baseline in neutrophils with neutrophils below reference range at baseline: reduce dose to previous dose level if up-titration has occurred, or reduce dose to 15 mg QOD if on 15 mg QD; no further dose increase until resolution of abnormality; weekly repeat testing."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_6",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_6",
+        "name": "Neurological Worsening Condition",
+        "instanceType": "Condition",
+        "description": "Evidence of neurologic worsening requiring dose decision",
+        "text": "Evidence of neurologic worsening by AEs or by neurologic physical exam assessment: Investigator and Alexion Medical Monitor will evaluate the need for dose modification (interruption, increase or decrease) based on copper control parameters and relevant clinical data; rationale must be documented and re-evaluated at the next study visit."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_7",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_7",
+        "name": "Psychiatric Worsening Condition",
+        "instanceType": "Condition",
+        "description": "Clinically significant acute psychiatric worsening requiring dose decision",
+        "text": "Evidence of clinically significant acute psychiatric worsening which may include but is not limited to suicidality, acute depression, or psychosis: Investigator and Alexion Medical Monitor will evaluate the need for dose modification (interruption, increase or decrease)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_8",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_8",
+        "name": "Rechallenge Conditions",
+        "instanceType": "Condition",
+        "description": "Limits and conditions for rechallenge after dose interruption",
+        "text": "A maximum of 3 rechallenges will be allowed. Rechallenge after bilirubin-related interruption occurs at 15 mg QOD or less frequent dosing when bilirubin is below ULN and requires approval of the Alexion Medical Monitor. Participants who were on 15 mg QOD should be rechallenged at the 15 mg QOD dose. The Investigator, in consultation with the Medical Monitor, may change dose and dose frequency in participants who require rechallenge."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_9",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_9",
+        "name": "Recovery Condition for Dose Re-escalation",
+        "instanceType": "Condition",
+        "description": "Hemoglobin and platelets returned to baseline concentration permits resumption/rechallenge",
+        "text": "Rechallenge when parameters (hemoglobin and platelets) are at baseline concentration."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_10",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_10",
+        "name": "Adaptive Design Features",
+        "instanceType": "Condition",
+        "description": "Investigator-implemented adaptive features without protocol amendment",
+        "text": "This study incorporates the use of an adaptive design. Adaptive features may be implemented at the discretion of the Investigator to support conduct of the study. Such adaptive features do not require amendment of the protocol. Adaptive features and their limits are described in Table 4."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_11",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_11",
+        "name": "Extended Inpatient Stay Condition",
+        "instanceType": "Condition",
+        "description": "Participants may remain in CRU instead of outpatient discharge",
+        "text": "At the CRU's discretion, participants may remain in the CRU during the outpatient period for safety or to maintain the integrity of the conduct of the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_12",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_12",
+        "name": "Pregnancy Test Eligibility Condition",
+        "instanceType": "Condition",
+        "description": "Negative pregnancy test required before enrollment of women of childbearing potential",
+        "text": "Women of childbearing potential should only be enrolled after a negative serum pregnancy test result at Screening."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_13",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_13",
+        "name": "Diet Compliance Condition",
+        "instanceType": "Condition",
+        "description": "Willingness to comply with controlled diet required",
+        "text": "Participants unwilling to consistently complete every meal and tolerate a controlled, limited menu for the duration of the study are excluded; participants remain on a copper/molybdenum-controlled diet throughout inpatient Period 1 (Day -8 to Day 9) and inpatient Period 2 (Day 23 to Day 40)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_14",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_14",
+        "name": "Clinically Significant ECG/QTcF Finding Condition",
+        "instanceType": "Condition",
+        "description": "Post-enrollment clinically significant finding requires continuation assessment",
+        "text": "If a clinically significant finding is identified (including, but not limited to, changes from baseline in QTcF) after enrollment, the Investigator or qualified designee will determine if the participant can continue in the study and if any change in participant management is needed."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_15",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_15",
+        "name": "Drug/Alcohol Screen Condition",
+        "instanceType": "Condition",
+        "description": "Toxicology and alcohol testing at Screening and Day -8",
+        "text": "Positive urine drug toxicology screen at Screening or on Day -8 (cannabinoids not tested), or positive alcohol breath test at Screening or on Day -8, excludes the participant."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_16",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_16",
+        "name": "US Screening-Only Site Condition",
+        "instanceType": "Condition",
+        "description": "Sites in the US may perform screening procedures only",
+        "text": "Text applicable only to the US details the possibility for sites in the US to only perform screening procedures and not any of the remaining study procedures."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "cond_17",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_17",
+        "name": "Lost to Follow-up Condition",
+        "instanceType": "Condition",
+        "description": "Definition and required contact attempts before declaring lost to follow-up",
+        "text": "A participant will be considered lost to follow-up if he or she repeatedly fails to return for scheduled visits and is unable to be contacted by the study site. Before a participant is deemed lost to follow-up, the Investigator or designee must make every effort to regain contact (where possible, 3 telephone calls and, if necessary, a certified letter to the last known mailing address)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_1",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_1",
+        "name": "Screening to Enrollment/Run-in Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_screening",
+        "toElementId": "epoch_runin",
+        "text": "Participants eligible for the study will be enrolled on Day -7 (registered and assigned a participant number) and initiated on a copper- and molybdenum-controlled diet; participants are admitted to the CRU on Day -8. Eligibility requires meeting all inclusion criteria and no exclusion criteria, including negative serum pregnancy test (women of childbearing potential), negative urine drug screen and alcohol breath test at Screening and Day -8, zinc washout ≥ 21 days prior to Day 1, and chelator discontinuation approximately 4 days prior to ALXN1840 initiation."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_2",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_2",
+        "name": "Run-in to Treatment Period 1 Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_runin",
+        "toElementId": "epoch_treatment1",
+        "text": "Following the Run-in Period (Day -7 through Day -1, including baseline copper/molybdenum balance collection Day -4 through Day -1), participants are administered ALXN1840 15 mg/day starting on Day 1."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_3",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_3",
+        "name": "Inpatient Period 1 to Outpatient Period Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_inpatient1",
+        "toElementId": "epoch_outpatient",
+        "text": "Participants may be discharged from the CRU on Day 9 to the Outpatient Period, or remain in the CRU for their own safety or to maintain the integrity of the conduct of the study. During the Outpatient Period participants confirm dosing via SMS text messaging."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_4",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_4",
+        "name": "Outpatient Period to Inpatient/Treatment Period 2 Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_outpatient",
+        "toElementId": "epoch_inpatient2",
+        "text": "Participants who were discharged will be re-admitted on Day 22 or Day 23 (predose) and remain in house until Day 40; all procedures will start on Day 23. The Outpatient Period may be extended up to an additional 14 days with Investigator approval, with additional investigational product provided; the actual Outpatient Period duration will be recorded and the participant will continue Inpatient Period 2 at Day 23."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_5",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_5",
+        "name": "Dose Escalation from 15 mg/day to 30 mg/day",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "fromElementId": "arm_15mg",
+        "toElementId": "arm_30mg",
+        "text": "Participants receive ALXN1840 15 mg/day Day 1 through Day 28 and increase to 30 mg/day on Day 29 through Day 39, after SRC review of available safety data through Day 23 for each participant and provided no safety concerns place the participant at undue risk."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_6",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_6",
+        "name": "End of Treatment to End of Study Visit Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_treatment2",
+        "toElementId": "epoch_followup",
+        "text": "Following completion of both inpatient periods (ie, Day 40), participants transition to previously discontinued therapy, other standard of care therapy, or preapproval access ALXN1840; all participants should return to the CRU for the EOS Visit on Day 54 (+/- 2 days)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_7",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_7",
+        "name": "Dose Reduction for Neutrophil Decline",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "> 30% decrease from baseline in neutrophils with neutrophils below reference range at baseline: reduce dose to previous dose level if up-titration has occurred or reduce to 15 mg QOD if on 15 mg QD; no further dose increase until resolution of abnormality; weekly repeat testing."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_8",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_8",
+        "name": "Temporary Dose Interruption for Hyperbilirubinemia/Liver Injury",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "Bilirubin > 2 × ULN accompanied by ALT > 3 × ULN indicative of liver injury: temporary interruption of ALXN1840 with weekly repeat testing; rechallenge at 15 mg QOD or less frequent when bilirubin is below ULN and with Alexion Medical Monitor approval."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_9",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_9",
+        "name": "Dose Modification for Neurologic or Psychiatric Worsening",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "For neurologic worsening (AEs or neurologic exam) or clinically significant acute psychiatric worsening (including suicidality, acute depression, or psychosis), the Investigator and Alexion Medical Monitor will evaluate the need for dose interruption, increase, or decrease based on copper control parameters and relevant clinical data; rationale documented and re-evaluated at the next study visit."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_10",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_10",
+        "name": "Discontinuation of Study Intervention for Safety Events",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Participants must be considered for discontinuation from study intervention if any of the following occur: serious hypersensitivity reaction; severe uncontrolled infection; use of disallowed medication; pregnancy or planned pregnancy; or Alexion or the Investigator deems it necessary for the participant."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_11",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_11",
+        "name": "Discontinuation of Study Intervention for Abnormal Liver Function",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Discontinuation of study intervention for abnormal liver function should be considered by the Investigator when a participant meets one of the conditions outlined in the Dose Modification criteria (Section 6.6) or if the Investigator believes it is in the best interest of the participant."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_12",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_12",
+        "name": "Continued Safety Follow-up After Intervention Discontinuation",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "If the study intervention is definitively discontinued, the participant should remain in the study to be evaluated for safety follow-up, with data collected per the SoA at the time of discontinuation and follow-up."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "trans_13",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_13",
+        "name": "Withdrawal from Study at Participant or Investigator Decision",
+        "instanceType": "TransitionRule",
+        "transitionType": "Early Termination",
+        "text": "A participant may withdraw from the study at any time at his/her own request, or may be withdrawn at any time at the discretion of the Investigator for safety, behavioral, compliance, or administrative reasons. The participant will be permanently discontinued both from the study intervention and from the study at that time."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "exit_1",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_1",
+        "name": "Early Termination / Early Discontinuation Visit",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "At the time of discontinuation from the study, if possible, an early discontinuation visit (EOS/ET Visit) should be conducted as shown in the SoA, including a full physical examination; the reason for discontinuation must be recorded in source documents and CRF."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "exit_2",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_2",
+        "name": "Study Completion",
+        "exitType": "Completion",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "A participant is considered to have completed the study if he/she has completed all phases of the study including the last scheduled procedure shown in the Schedule of Activities (EOS Visit on Day 54 +/- 2 days). The end of the study is the date the last participant completes the last visit shown in the SoA."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "exit_3",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_3",
+        "name": "Lost to Follow-up",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "If the participant repeatedly fails to return for scheduled visits and cannot be contacted after documented attempts (where possible 3 telephone calls and a certified letter), he/she will be considered to have withdrawn from the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "exit_4",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_4",
+        "name": "Withdrawal of Consent",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Participant withdraws consent at any time at his/her own request; if consent for disclosure of future information is withdrawn, Alexion may retain data collected before withdrawal, and the participant may request destruction of untested samples."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "exit_5",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_5",
+        "name": "Discontinuation Due to Pregnancy",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Pregnancy or planned pregnancy requires the participant to be considered for discontinuation from study intervention."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "exit_6",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_6",
+        "name": "Use of Disallowed Medication",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Use of disallowed medication (prescription medications within 14 days or 5 half-lives, or nonprescription drugs/vitamins/supplements within 7 days or 5 half-lives before Day -7 and until completion of the follow-up visit) requires consideration for discontinuation of study intervention."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "exit_7",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_7",
+        "name": "Study or Site Termination by Sponsor or Investigator",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Alexion may close the study site or terminate the study at any time for any reason (eg, protocol noncompliance, inadequate recruitment, discontinuation of further study intervention development); the Investigator may initiate site closure with reasonable cause and sufficient advance notice. A site is considered closed when all participants have completed the end of study or early discontinuation visit, all data are entered, documents/supplies collected, and a closure visit performed."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "dec_1",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_1",
+        "name": "SRC Titration Decision",
+        "timepointId": "pt_day23",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Before titration to 30 mg/day on Day 29, the Safety Review Committee reviews available safety data through Day 23 for each participant; if safety concerns exist, participants may remain at 15 mg/day for the duration of the study.",
+        "conditionIds": [
+          "cond_2",
+          "cond_3"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "dec_2",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_2",
+        "name": "Day 29 Dose Escalation Decision",
+        "timepointId": "pt_day29",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision to increase ALXN1840 from 15 mg/day to 30 mg/day on Day 29 after a minimum of 4 weeks at 15 mg/day.",
+        "conditionIds": [
+          "cond_2",
+          "cond_3"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "dec_3",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_3",
+        "name": "Day 9 Discharge vs Continued Inpatient Decision",
+        "timepointId": "pt_day9",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision whether to discharge the participant from the CRU on Day 9 to the Outpatient Period or keep the participant inpatient for safety or study conduct integrity.",
+        "conditionIds": [
+          "cond_11"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "dec_4",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_4",
+        "name": "Outpatient Period Extension Decision",
+        "timepointId": "pt_outpatient",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Investigator may approve extension of the Outpatient Period during Treatment Period 1 by up to an additional 14 days, with provision of additional investigational product; Inpatient Period 2 then resumes at Day 23.",
+        "conditionIds": [
+          "cond_10"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "dec_5",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_5",
+        "name": "Dose Modification Assessment at Safety Laboratory Timepoints",
+        "timepointId": "pt_safety_labs",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Review of safety laboratory results (Days -8, -1, 8, 23, 28 and weekly repeat testing) against dose modification criteria to determine dose reduction, interruption, restriction of dose increase, or rechallenge.",
+        "conditionIds": [
+          "cond_4",
+          "cond_5",
+          "cond_9"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "dec_6",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_6",
+        "name": "Neurologic/Psychiatric Dose Decision",
+        "timepointId": "pt_any_visit",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Investigator and Alexion Medical Monitor decision on dose interruption, increase, or decrease for neurologic or psychiatric worsening, re-evaluated at the next study visit.",
+        "conditionIds": [
+          "cond_6",
+          "cond_7",
+          "cond_8"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "dec_7",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_7",
+        "name": "Post-Enrollment Clinically Significant Finding Decision",
+        "timepointId": "pt_post_enrollment",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Investigator or qualified designee determines whether a participant with a clinically significant finding (eg, QTcF change from baseline) can continue in the study and whether management changes are needed.",
+        "conditionIds": [
+          "cond_14"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    },
+    {
+      "id": "dec_8",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_8",
+        "name": "End of Study Post-Treatment Therapy Decision",
+        "timepointId": "pt_day40",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "At Day 40, decision to transition the participant to previously discontinued therapy, other standard of care therapy, or requested continuation of ALXN1840 under preapproval access."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        4,
+        10,
+        12,
+        15,
+        17,
+        20,
+        25,
+        27,
+        29,
+        32,
+        37,
+        39,
+        40,
+        41,
+        42,
+        57
+      ]
+    }
+  ],
+  "scheduling_summary": {
+    "timing_count": 44,
+    "condition_count": 17,
+    "transition_rule_count": 13,
+    "exit_count": 7,
+    "decision_count": 8
+  }
+}

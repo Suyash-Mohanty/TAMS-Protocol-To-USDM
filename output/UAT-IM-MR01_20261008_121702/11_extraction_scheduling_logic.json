@@ -1,0 +1,1758 @@
+{
+  "agent_id": "scheduling_agent",
+  "timestamp": "2026-10-08T12:22:53.550327",
+  "confidence": 1.0,
+  "entity_count": 61,
+  "entities": [
+    {
+      "id": "timing_1",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_1",
+        "name": "Screening Period (Study Period I)",
+        "type": {
+          "id": "0e3a0832-3f28-4518-9661-e8b801270627",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P35D",
+        "valueLabel": "Day 35",
+        "relativeToFrom": {
+          "id": "158f9bbd-3f2e-4bbf-97f6-9c8c804b8670",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "b58bc1b3-3ca5-4ea5-9a72-e869ba432d3f",
+        "instanceType": "Timing",
+        "windowLower": "-P35D",
+        "windowUpper": "-P1D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_2",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_2",
+        "name": "Study Period II - Induction and Dose Escalation Duration",
+        "type": {
+          "id": "99d794b9-a905-4e1e-8c04-d339f6751172",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P24W",
+        "valueLabel": "24 weeks",
+        "relativeToFrom": {
+          "id": "d830c715-f7e9-4fa8-9bfd-744dd3de43dc",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "720f35c4-ab12-459c-8e1c-278622bcadc5",
+        "instanceType": "Timing",
+        "windowLower": "P0W",
+        "windowUpper": "P168W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_3",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_3",
+        "name": "Study Period III - Maintenance Treatment Duration",
+        "type": {
+          "id": "155d7d95-f8e2-43c6-b47b-179785a447c5",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P28W",
+        "valueLabel": "28 weeks",
+        "relativeToFrom": {
+          "id": "fa7bbb6f-5b00-41e8-95ef-de5c09b2952d",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "a56e61bf-6c5f-4573-b658-822a7228a794",
+        "instanceType": "Timing",
+        "windowLower": "P168W",
+        "windowUpper": "P364W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_4",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_4",
+        "name": "Safety Follow-up Visit",
+        "type": {
+          "id": "5df61b28-8576-4376-a948-f338f6a2e1b4",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "P4W",
+        "valueLabel": "4 weeks",
+        "relativeToFrom": {
+          "id": "60152714-4f9a-476d-b11f-5b76c68f9d06",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "b6ce13f8-5209-447e-a427-daad30109c69",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_5",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_5",
+        "name": "Maximum Total Study Duration",
+        "type": {
+          "id": "faf9ab30-0330-4797-ae8c-d56671df7047",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P61W",
+        "valueLabel": "61 weeks",
+        "relativeToFrom": {
+          "id": "524c6017-1e65-41fb-bc85-f226bb31ba93",
+          "code": "C71153",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Study Start",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "61173b96-883f-4ef2-8c57-f8ad4cdbe3c1",
+        "instanceType": "Timing",
+        "windowLower": "P0W",
+        "windowUpper": "P427W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_6",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_6",
+        "name": "Maximum Treatment Duration",
+        "type": {
+          "id": "aeba8c69-066d-4bc8-bdd4-939fd399dc5a",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P52W",
+        "valueLabel": "52 weeks",
+        "relativeToFrom": {
+          "id": "cd06a281-14bb-46ce-8e5e-a6fe497f4009",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c940bae9-e0e0-4322-9703-a9e64fe6387c",
+        "instanceType": "Timing",
+        "windowLower": "P0W",
+        "windowUpper": "P364W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_7",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_7",
+        "name": "Treatment Period Visit Interval (every 4 weeks)",
+        "type": {
+          "id": "a3bb5c65-19ef-436d-895c-79f33d69a299",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "P4W",
+        "valueLabel": "4 weeks",
+        "relativeToFrom": {
+          "id": "33f1fe03-66b3-4ad6-8a5c-c500bba4bd5e",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "6b75cc25-30f3-477c-8610-3187f3880a61",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_8",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_8",
+        "name": "Telephone Visit Window (Week 28 to Week 48)",
+        "type": {
+          "id": "ffbc5c68-3d84-45ac-96c5-50396d357251",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P28W",
+        "valueLabel": "28 weeks",
+        "relativeToFrom": {
+          "id": "aa6d7977-1e6f-44ff-b2a7-d7e29874aa01",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "2a4d1ab2-ec26-4fc5-b1b1-3dd56d1e5cab",
+        "instanceType": "Timing",
+        "windowLower": "P196W",
+        "windowUpper": "P336W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_9",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_9",
+        "name": "Week 8 Assessment (waist circumference)",
+        "type": {
+          "id": "8095f2f5-63d1-42f2-b63f-8d22cf4490a5",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P56D",
+        "valueLabel": "Day 56",
+        "relativeToFrom": {
+          "id": "ddef7d56-b91e-480a-a9f2-b104a088cd47",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "fe0b5306-c4aa-4823-9f22-e509bbb55220",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_10",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_10",
+        "name": "Week 12 Assessment",
+        "type": {
+          "id": "350f0dee-fb5a-49d7-bc16-6e0249a71589",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P84D",
+        "valueLabel": "Day 84",
+        "relativeToFrom": {
+          "id": "009d9afe-6219-4886-bb64-79376aa1cb63",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "4a6cfea1-cf7d-4463-b1c7-a4a1a1b39f24",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_11",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_11",
+        "name": "Week 24 Assessment (End of Induction/Dose Escalation)",
+        "type": {
+          "id": "1eb8b47a-84d9-4af4-a3bd-691787be90ea",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P168D",
+        "valueLabel": "Day 168",
+        "relativeToFrom": {
+          "id": "c03f5180-9a94-41b2-abf7-c833212a26ee",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "90e65c53-ac50-4f33-b4c8-d6b8ad6f7044",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_12",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_12",
+        "name": "Week 40 Assessment",
+        "type": {
+          "id": "4c5c5da9-a3a9-4031-97f0-3b9bdf5811a8",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P280D",
+        "valueLabel": "Day 280",
+        "relativeToFrom": {
+          "id": "f09e5f77-9b85-4b9b-999b-a29bf2a9aace",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "3dfb5dba-e207-4b49-8ab3-b1fb391396bf",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_13",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_13",
+        "name": "Week 52 Assessment (Primary Endpoint)",
+        "type": {
+          "id": "96cb0b87-413d-4021-b952-4fb8f077eb58",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P364D",
+        "valueLabel": "Day 364",
+        "relativeToFrom": {
+          "id": "e154b446-4b23-4557-8e36-ff946260a3ac",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "725c42b2-e192-4878-9d65-e4e9830e2dbd",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_14",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_14",
+        "name": "UC Diagnosis Established Prior to Visit 2",
+        "type": {
+          "id": "39792231-eba8-4c3a-a765-7cd84ed20829",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P3D",
+        "valueLabel": "3 months",
+        "relativeToFrom": {
+          "id": "6534c254-b51f-421b-9cba-1392ed513a05",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "a028e946-1093-4b57-adbd-f40b7aeefc18",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_15",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_15",
+        "name": "Disease Activity Assessment (mMS/Endoscopic Subscore) Window",
+        "type": {
+          "id": "5dd92fba-2039-4bbf-aff4-d7ab7fd9277e",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P21D",
+        "valueLabel": "Day 21",
+        "relativeToFrom": {
+          "id": "9f875d79-1845-41d6-bc47-eba6f09b84d2",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "52fc21e6-f784-4135-90d7-c07964acffe0",
+        "instanceType": "Timing",
+        "windowLower": "-P21D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_16",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_16",
+        "name": "COVID-19 Rescreening Interval",
+        "type": {
+          "id": "a97ab24f-4d64-412b-a523-937acb8483f1",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "P14D",
+        "valueLabel": "Day 14",
+        "relativeToFrom": {
+          "id": "b7423e46-ecff-40b9-9f4c-07dc8b465ca6",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "38f83448-94a5-40b9-96d1-82759bec03d9",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_17",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_17",
+        "name": "C. difficile / Intestinal Infection Exclusion Window",
+        "type": {
+          "id": "ca624b2c-d15e-4b35-9b24-0fd0ddcc24b5",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P30D",
+        "valueLabel": "Day 30",
+        "relativeToFrom": {
+          "id": "9ae85c2a-9b80-4fcb-b161-e65b7269e675",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "6505898e-4a40-449b-bfa5-8c6c6ed7428f",
+        "instanceType": "Timing",
+        "windowLower": "-P30D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_18",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_18",
+        "name": "Cytomegalovirus Colitis Resolution Interval Before Screening Colonoscopy",
+        "type": {
+          "id": "26141df0-b71a-43aa-8a93-5513bbf73bd0",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P3D",
+        "valueLabel": "3 months",
+        "relativeToFrom": {
+          "id": "609a164e-9a31-4183-a5bb-c5400b8b9a23",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "d58d07e0-2f6e-4370-8c8c-7206002f204a",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_19",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_19",
+        "name": "Rectal Topical UC Therapy Washout",
+        "type": {
+          "id": "51f9447e-c194-418c-a628-a818ce7a8af5",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P2W",
+        "valueLabel": "2 weeks",
+        "relativeToFrom": {
+          "id": "c80455e9-b9a2-451a-8ee2-e24ad93642db",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "a8014584-638f-4847-8bb1-2e153c02a452",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_20",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_20",
+        "name": "IV Corticosteroid Washout (2 weeks prior to screening colonoscopy and throughout screening)",
+        "type": {
+          "id": "6376251f-73b7-417b-8e6a-6562e97c004d",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P2W",
+        "valueLabel": "2 weeks",
+        "relativeToFrom": {
+          "id": "cb0a0da3-d983-4544-aa6f-e856495c1f13",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "4a553e8b-c113-4186-b45b-b772cece263e",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_21",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_21",
+        "name": "Immunomodulatory Medication Washout",
+        "type": {
+          "id": "a6fb2057-7ed7-495f-a4c0-e6a00d828b01",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P2W",
+        "valueLabel": "2 weeks",
+        "relativeToFrom": {
+          "id": "b87e8783-e6b7-4653-9ede-9e14bc85812c",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "54f4af58-9438-47b6-8f6c-4460fd0355b5",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_22",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_22",
+        "name": "Anti-IL-12p40 Antibody (ustekinumab) Washout",
+        "type": {
+          "id": "1ab2305a-f4ea-4e8b-a52a-ae4d4188546c",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P16W",
+        "valueLabel": "16 weeks",
+        "relativeToFrom": {
+          "id": "780cfeff-f04f-4786-8c42-4c0350a07926",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "900d6622-f67d-415e-9293-50f45d496c39",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_23",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_23",
+        "name": "Antihyperglycemic Medication Washout (4 weeks or 5 half-lives, whichever is longer)",
+        "type": {
+          "id": "eaf5887b-1768-4923-ab2c-c1287039b1d7",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P4W",
+        "valueLabel": "4 weeks",
+        "relativeToFrom": {
+          "id": "e551580d-908f-4b5a-88ad-f805ae45563d",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "9a1abdba-465e-4658-9ff0-3d52d6b9bea0",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_24",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_24",
+        "name": "Weight-Loss Promoting Medication Washout",
+        "type": {
+          "id": "c44b1ad1-d790-4297-b179-2b6382c7e363",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P3D",
+        "valueLabel": "3 months",
+        "relativeToFrom": {
+          "id": "2ce07995-d8a4-4f23-b636-f61a38b9df81",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "42ba1cd9-8b97-4de3-91ee-2cf1d6946d7c",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_25",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_25",
+        "name": "Weight-Gain Causing Medication Washout",
+        "type": {
+          "id": "f3c92a5a-cc28-44b2-90b2-c8c33a46165e",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P3D",
+        "valueLabel": "3 months",
+        "relativeToFrom": {
+          "id": "6ba64967-b95d-41b7-896e-835e0a2f3359",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "afe3fc04-3660-4c63-b216-5d46bb0c1f46",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "timing_26",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_26",
+        "name": "Vaccination Washout Before Visit 2",
+        "type": {
+          "id": "1d362d27-ba64-4bc3-9d01-dd3954d6e384",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P4W",
+        "valueLabel": "4 weeks",
+        "relativeToFrom": {
+          "id": "f78ea07f-1078-4f64-a282-1dcccfdded8e",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "2ce51c22-3c38-4dc6-8e6a-d4453da2da75",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_1",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_1",
+        "name": "Primary Composite Response Criteria",
+        "instanceType": "Condition",
+        "description": "Primary endpoint response definition at Week 52",
+        "text": "Simultaneously achieving clinical remission and at least 10% weight reduction at Week 52 without early permanent discontinuation of study intervention or taking specified prohibited medication"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_2",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_2",
+        "name": "Moderately to Severely Active UC",
+        "instanceType": "Condition",
+        "description": "Disease activity eligibility condition confirmed by central review",
+        "text": "mMS of 5 to 9 points and Endoscopic Subscore of 2 to 3 (confirmed by central review) within 21 days before Visit 2"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_3",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_3",
+        "name": "Established UC Diagnosis",
+        "instanceType": "Condition",
+        "description": "Diagnostic eligibility condition",
+        "text": "Established diagnosis of UC for ≥3 months before Visit 2, including endoscopic evidence of UC and a histopathology report supporting a diagnosis of UC"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_4",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_4",
+        "name": "Weight Eligibility Condition",
+        "instanceType": "Condition",
+        "description": "Obesity or overweight plus comorbidity requirement",
+        "text": "Obesity (BMI ≥30 kg/m2) OR overweight (BMI ≥27 to <30 kg/m2) with at least 1 weight-related comorbid condition: hypertension, type 2 diabetes mellitus, dyslipidemia, obstructive sleep apnea, or cardiovascular disease"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_5",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_5",
+        "name": "Age Eligibility Condition",
+        "instanceType": "Condition",
+        "description": "Age range for participation",
+        "text": "≥18 to ≤70 years of age"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_6",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_6",
+        "name": "COVID-19 Rescreening Condition",
+        "instanceType": "Condition",
+        "description": "Condition permitting rescreening after COVID-19 screen failure",
+        "text": "Symptomatic participants: at least 14 days have passed since recovery (resolution of fever without antipyretics and improvement in symptoms). Asymptomatic participants: at least 14 days have passed since the first positive molecular (e.g., PCR) test result."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_7",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_7",
+        "name": "Cytomegalovirus Colitis Re-eligibility Condition",
+        "instanceType": "Condition",
+        "description": "Conditional eligibility despite prior CMV colitis",
+        "text": "Participants may be eligible if they have had adequate treatment of cytomegalovirus-associated colitis and resolution of symptoms at least 3 months prior to screening colonoscopy, provided all other eligibility criteria are met"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_8",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_8",
+        "name": "Ustekinumab Washout Exception Condition",
+        "instanceType": "Condition",
+        "description": "Drug-level based exception to 16-week washout",
+        "text": "Exclusion does not apply if the participant has a result from a validated drug-level test demonstrating undetectable drug level in the period between last dose and the screening visit"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_9",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_9",
+        "name": "Advanced Therapy Failure Limit",
+        "instanceType": "Condition",
+        "description": "Prior therapy failure exclusion condition",
+        "text": "Participants who have failed 4 or more classes of advanced therapies approved for the treatment of UC are excluded"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_10",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_10",
+        "name": "Active Infection Exclusion Conditions",
+        "instanceType": "Condition",
+        "description": "Infection-based exclusion conditions at screening",
+        "text": "Current HBV infection (HBsAg positive and/or PCR positive for HBV DNA), current HCV infection (HCV RNA positive), known active COVID-19 infection, C. difficile or other intestinal infection within 30 days of screening colonoscopy or positive screening test"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_11",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_11",
+        "name": "Maximum Tolerated Dose Condition",
+        "instanceType": "Condition",
+        "description": "Tirzepatide dose escalation target",
+        "text": "Tirzepatide administered at the maximum tolerated dose (MTD), up to 15 mg"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_12",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_12",
+        "name": "Hepatic Criteria for Study Drug Interruption or Discontinuation",
+        "instanceType": "Condition",
+        "description": "Liver-related safety criteria triggering interruption or discontinuation (Section 7.1.3)",
+        "text": "Hepatic criteria for study drug interruption or discontinuation are applied per protocol Section 7.1.3"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "cond_13",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_13",
+        "name": "Disease Progression Requiring Rescue Therapy",
+        "instanceType": "Condition",
+        "description": "Condition triggering rescue therapy per Section 6.9.6",
+        "text": "Disease progression as defined in Section 6.9.6 permits initiation of rescue therapy"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_1",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_1",
+        "name": "Screening to Induction/Dose Escalation Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_screening",
+        "toElementId": "epoch_induction_dose_escalation",
+        "text": "After a screening period of up to 5 weeks (≤35 days), participants meeting all eligibility criteria (including mMS 5-9 with Endoscopic Subscore 2-3 confirmed by central review within 21 days before Visit 2 and BMI criteria) are randomly assigned 1:1 to mirikizumab plus placebo or mirikizumab concomitantly administered with tirzepatide"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_2",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_2",
+        "name": "Induction/Dose Escalation to Maintenance Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_induction_dose_escalation",
+        "toElementId": "epoch_maintenance",
+        "text": "After completion of 24 weeks of Study Period II (Induction and Dose Escalation), participants continue into Study Period III (Maintenance Treatment) for 28 weeks"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_3",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_3",
+        "name": "Maintenance to Safety Follow-up Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_maintenance",
+        "toElementId": "epoch_safety_followup",
+        "text": "Safety follow-up occurs 4 weeks after the last visit (Week 52), yielding a maximum study duration of approximately 61 weeks"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_4",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_4",
+        "name": "Tirzepatide Dose Escalation",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "Tirzepatide is dose-escalated during Study Period II (first 24 weeks) toward the maximum tolerated dose (up to 15 mg) per Section 6.1.4"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_5",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_5",
+        "name": "Dose Modification for Mirikizumab or Tirzepatide",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "Dose modification rules for mirikizumab (Section 6.6.1) and tirzepatide (Section 6.6.2) are applied based on tolerability and adverse events"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_6",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_6",
+        "name": "Temporary Discontinuation of Study Intervention",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Study intervention may be temporarily discontinued (interrupted) per Section 7.1.2, including for hepatic criteria per Section 7.1.3"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_7",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_7",
+        "name": "Permanent Discontinuation of Study Intervention",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Permanent discontinuation of study intervention per Section 7.1.1, including discontinuation due to adverse events and meeting hepatic discontinuation criteria (Section 7.1.3). Participants with early permanent discontinuation are counted as nonresponders for the primary estimand."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_8",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_8",
+        "name": "Rescue Therapy for Disease Progression",
+        "instanceType": "TransitionRule",
+        "transitionType": "Rescue Therapy",
+        "text": "Rescue therapy may be initiated in the setting of disease progression per Section 6.9.6; corticosteroid use and taper rules are specified in Section 6.9.5"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_9",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_9",
+        "name": "Screen Failure and Rescreening for COVID-19",
+        "instanceType": "TransitionRule",
+        "transitionType": "Early Termination",
+        "fromElementId": "epoch_screening",
+        "text": "Participants who do not meet COVID-19 eligibility criteria must be screen failed and may only rescreen after at least 14 days have passed since recovery (symptomatic) or since first positive molecular test (asymptomatic)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "trans_10",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_10",
+        "name": "Prohibited Medication Use",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Use of specified prohibited medication is an intercurrent event addressed by the composite strategy; participants are considered nonresponders after the first occurrence. Prohibited concomitant medications are listed in Section 6.9.3."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "exit_1",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_1",
+        "name": "Screen Failure",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Participants not meeting eligibility criteria during the up to 5-week (≤35 day) screening period are screen failures; rescreening permitted for COVID-19 after ≥14 days when criteria are met"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "exit_2",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_2",
+        "name": "Participant Discontinuation/Withdrawal from Study",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Participant discontinuation or withdrawal from the study per Section 7.2, which may occur at any time for any reason"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "exit_3",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_3",
+        "name": "Discontinuation of Study Intervention due to Adverse Events",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Permanent discontinuation of study intervention due to adverse events, serious adverse events, injection site reactions, or hepatic safety criteria (Sections 7.1.1 and 7.1.3)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "exit_4",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_4",
+        "name": "Lost to Follow-Up",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Participant is lost to follow-up per Section 7.3"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "exit_5",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_5",
+        "name": "Study Completion",
+        "exitType": "Completion",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Completion of up to 52 weeks of treatment (24-week induction/dose escalation plus 28-week maintenance) and the 4-week safety follow-up, for a maximum total duration of approximately 61 weeks"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "exit_6",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_6",
+        "name": "Continued Access After End of Study",
+        "exitType": "Completion",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Continued access to study intervention after the end of the study may be provided per Section 6.7"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "dec_1",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_1",
+        "name": "Eligibility/Randomization Decision at Visit 2",
+        "timepointId": "pt_visit2_baseline",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "At Visit 2, eligibility is confirmed (including centrally reviewed mMS 5-9 and Endoscopic Subscore 2-3 within 21 days before Visit 2 and required washout periods) and participants are randomized 1:1",
+        "conditionIds": [
+          "cond_2",
+          "cond_3",
+          "cond_4",
+          "cond_5",
+          "cond_10"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "dec_2",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_2",
+        "name": "Tirzepatide MTD Determination Decision",
+        "timepointId": "pt_week24",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "During the 24-week induction and dose escalation period, dose escalation continues until the maximum tolerated dose (up to 15 mg) is reached",
+        "conditionIds": [
+          "cond_11"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "dec_3",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_3",
+        "name": "Week 24 Metabolic and Clinical Assessment Decision",
+        "timepointId": "pt_week24",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Week 24 assessment of percent change in body weight, BMI, waist circumference, HbA1c, and glucose at the transition from induction/dose escalation to maintenance",
+        "conditionIds": [
+          "cond_1"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "dec_4",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_4",
+        "name": "Week 52 Primary Endpoint Decision",
+        "timepointId": "pt_week52",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Primary endpoint evaluation of simultaneous clinical remission and ≥10% weight reduction at Week 52 without early permanent discontinuation or prohibited medication use",
+        "conditionIds": [
+          "cond_1"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "dec_5",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_5",
+        "name": "Safety Discontinuation Decision",
+        "timepointId": null,
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Ongoing decision point for temporary interruption or permanent discontinuation of study intervention based on hepatic and other safety criteria",
+        "conditionIds": [
+          "cond_12"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    },
+    {
+      "id": "dec_6",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_6",
+        "name": "Rescue Therapy Decision",
+        "timepointId": null,
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision to initiate rescue therapy and/or corticosteroid taper in the event of disease progression",
+        "conditionIds": [
+          "cond_13"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        6,
+        11,
+        12,
+        44,
+        57,
+        59
+      ]
+    }
+  ],
+  "scheduling_summary": {
+    "timing_count": 26,
+    "condition_count": 13,
+    "transition_rule_count": 10,
+    "exit_count": 6,
+    "decision_count": 6
+  }
+}

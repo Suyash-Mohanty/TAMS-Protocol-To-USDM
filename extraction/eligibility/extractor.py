@@ -383,11 +383,24 @@ def _parse_usdm_eligibility_format(raw: Dict[str, Any]) -> Optional[EligibilityD
         # Parse population if present, linking to all criteria
         population = None
         pop_data = raw.get('population')
-        if isinstance(pop_data, dict) and pop_data.get('description'):
+        if isinstance(pop_data, dict) and pop_data:
+            sex_list = pop_data.get('sex') or pop_data.get('plannedSex') or []
+            if isinstance(sex_list, str):
+                sex_list = [sex_list]
+            elif isinstance(sex_list, list):
+                # plannedSex may be a list of Code objects ({"code": "Male", ...})
+                sex_list = [s.get('code', s) if isinstance(s, dict) else s for s in sex_list]
+
             population = StudyDesignPopulation(
                 id=pop_data.get('id', 'pop_1'),
                 name=pop_data.get('name', 'Study Population'),
-                description=pop_data['description'],
+                description=pop_data.get('description') or 'Target population defined by eligibility criteria',
+                includes_healthy_subjects=pop_data.get('includesHealthySubjects', False),
+                planned_enrollment_number=pop_data.get('plannedEnrollment') or pop_data.get('plannedEnrollmentNumber'),
+                planned_minimum_age=pop_data.get('plannedMinimumAge') or pop_data.get('minimumAge'),
+                planned_maximum_age=pop_data.get('plannedMaximumAge') or pop_data.get('maximumAge'),
+                planned_age_is_approximate=pop_data.get('plannedAgeIsApproximate'),
+                planned_sex=sex_list if sex_list else None,
                 criterion_ids=[c.id for c in criteria],  # Link to all criteria
             )
         elif criteria:

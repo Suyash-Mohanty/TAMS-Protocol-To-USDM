@@ -238,6 +238,11 @@ def _parse_metadata_response(raw: Dict[str, Any]) -> Optional[StudyMetadata]:
         for i, org_data in enumerate(raw.get('organizations', [])):
             if isinstance(org_data, dict) and org_data.get('role'):
                 role_code = _map_role_code(org_data['role'])
+                if role_code not in _VALID_STUDY_ROLE_CODES:
+                    # e.g. Manufacturer, Study Site, Medical Expert, Project Manager,
+                    # Regulatory Agency - not a valid C215480 StudyRole; the
+                    # organization itself is still captured via 'organizations' above.
+                    continue
                 org_id = org_id_map.get(org_data.get('name', ''), f"org_{i+1}")
                 roles.append(StudyRole(
                     id=f"role_{i+1}",
@@ -484,7 +489,25 @@ def _map_role_code(role_str: str) -> StudyRoleCode:
         return StudyRoleCode.PROJECT_MANAGER
     elif 'site' in role_lower:
         return StudyRoleCode.STUDY_SITE
-    return StudyRoleCode.SPONSOR
+    # Unrecognized role text (e.g. "Central Laboratory", "Data Management",
+    # "Academic Partner") is NOT a Sponsor - leave it unmapped rather than
+    # defaulting to Sponsor, which would fabricate an incorrect role.
+    return StudyRoleCode.UNKNOWN
+
+
+# Only these map to a real CDISC C215480 StudyRole code (see StudyRole.to_dict()).
+# Manufacturer, Study Site, Medical Expert, Project Manager, and Regulatory Agency
+# are organization types, not study roles, per C215480 — organizations with those
+# roles are still captured as Organization entities, just without a StudyRole.
+_VALID_STUDY_ROLE_CODES = {
+    StudyRoleCode.SPONSOR,
+    StudyRoleCode.CO_SPONSOR,
+    StudyRoleCode.LOCAL_SPONSOR,
+    StudyRoleCode.CRO,
+    StudyRoleCode.INVESTIGATOR,
+    StudyRoleCode.PRINCIPAL_INVESTIGATOR,
+    StudyRoleCode.STATISTICIAN,
+}
 
 
 def _infer_identifier_type(

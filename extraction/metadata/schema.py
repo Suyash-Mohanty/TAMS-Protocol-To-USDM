@@ -208,7 +208,10 @@ class StudyRole:
             StudyRoleCode.CO_SPONSOR: ("C70793", "Sponsor"),  # no distinct code — use Sponsor
             StudyRoleCode.LOCAL_SPONSOR: ("C70793", "Sponsor"),
             StudyRoleCode.CRO: ("C54499", "Contract Research Organization"),
-            StudyRoleCode.REGULATORY: ("C25461", "Regulatory Agency"),
+            # REGULATORY intentionally omitted: Regulatory Agency is an
+            # Organization type, not a valid C215480 StudyRole (the extractor
+            # never emits a StudyRole with this code - see _VALID_STUDY_ROLE_CODES
+            # in extraction/metadata/extractor.py).
             StudyRoleCode.INVESTIGATOR: ("C25936", "Principal Investigator"),
             StudyRoleCode.PRINCIPAL_INVESTIGATOR: ("C25936", "Principal Investigator"),
             StudyRoleCode.STATISTICIAN: ("C25943", "Statistician"),
