@@ -1,5 +1,6 @@
 """Merge of a generated USDM onto an SDR-published USDM (SDR values always win)."""
 import json
+import os
 import re
 from pathlib import Path
 from typing import Any, Dict, Optional
@@ -25,7 +26,10 @@ def merge_files(sdr_path: str, ours_path: str, out_dir: str, pdf_path: Optional[
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     merged_path = Path(ours_path)      # one USDM per protocol: the merged result replaces the generated file
-    merged_path.write_text(json.dumps(merged, indent=2, ensure_ascii=False), encoding="utf-8")
+    # write beside it, then swap in: the generated file is never left half-written
+    tmp_path = merged_path.with_name(merged_path.name + ".tmp")
+    tmp_path.write_text(json.dumps(merged, indent=2, ensure_ascii=False), encoding="utf-8")
+    os.replace(tmp_path, merged_path)
     cov = coverage(merged, sdr, merger, pdf_text(pdf_path))
     report["sdr_file"], report["generated_file"] = Path(sdr_path).name, Path(ours_path).name
     (out / "merge_report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")

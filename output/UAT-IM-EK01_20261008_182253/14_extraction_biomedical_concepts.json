@@ -1,0 +1,3641 @@
+{
+  "agent_id": "biomedical_concept_agent",
+  "timestamp": "2026-10-08T18:28:27.734268",
+  "confidence": 0.75,
+  "entity_count": 82,
+  "entities": [
+    {
+      "id": "bc_1",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_1",
+        "name": "12-Lead Electrocardiogram",
+        "label": "12-Lead Electrocardiogram (Single, Local Read)",
+        "synonyms": [
+          "ECG",
+          "EKG",
+          "12-lead ECG",
+          "Electrocardiogram"
+        ],
+        "categories": [
+          "bcc_4"
+        ],
+        "properties": [
+          {
+            "id": "bc_1_prop_1",
+            "name": "EGTESTCD",
+            "label": "ECG Test Short Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_2",
+            "name": "EGTEST",
+            "label": "ECG Test Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_3",
+            "name": "EGORRES",
+            "label": "ECG Result or Finding in Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_4",
+            "name": "EGINTERPRET",
+            "label": "ECG Overall Interpretation",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "ECG, 12-lead (single, local)",
+        "code": {
+          "id": "b942d673-a41f-4c57-985e-6fe7113d69b9",
+          "code": "C38054",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Electrocardiogram",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_2",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_2",
+        "name": "Electronic Diary Training",
+        "label": "Daily Electronic Diary (eDiary) Training Session",
+        "synonyms": [
+          "eDiary instruction",
+          "electronic diary training",
+          "PRO device training"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_2_prop_1",
+            "name": "SUPPDM_EDIARYTR",
+            "label": "eDiary Training Completed",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_2",
+            "name": "SSDTC",
+            "label": "Training Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Daily eDiary training"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_3",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_3",
+        "name": "Dosing Diary Dispensation",
+        "label": "Dispensation of Dosing Diary to Participant",
+        "synonyms": [
+          "dosing diary issue",
+          "diary dispensing"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_3_prop_1",
+            "name": "DSDIARY",
+            "label": "Dosing Diary Dispensed",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_2",
+            "name": "DSDTC",
+            "label": "Dispensation Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dispense dosing diary"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_4",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_4",
+        "name": "Ancillary Supplies Dispensation",
+        "label": "Dispensation of Ancillary Supplies to Participant",
+        "synonyms": [
+          "supply dispensing",
+          "ancillary materials dispensation",
+          "study supplies issue"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_4_prop_1",
+            "name": "DSANCSUPP",
+            "label": "Ancillary Supplies Dispensed",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_2",
+            "name": "DSDTC",
+            "label": "Dispensation Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_3",
+            "name": "DSANCTYPE",
+            "label": "Type of Ancillary Supplies",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dispense ancillary supplies to participant"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_5",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_5",
+        "name": "Follicle-Stimulating Hormone",
+        "label": "Follicle-Stimulating Hormone (FSH) Measurement",
+        "synonyms": [
+          "FSH",
+          "Follitropin",
+          "Follicle Stimulating Hormone"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_5_prop_1",
+            "name": "LBORRES",
+            "label": "FSH Result in Original Units",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_2",
+            "name": "LBORRESU",
+            "label": "FSH Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_3",
+            "name": "LBSTRESU",
+            "label": "FSH Standardised Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_4",
+            "name": "LBNRIND",
+            "label": "FSH Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Follicle-stimulating hormone (FSH)",
+        "code": {
+          "id": "18a01eba-2474-4cfb-aa8f-50237f8c200c",
+          "code": "C16481",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Follicle-Stimulating Hormone",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_6",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_6",
+        "name": "High-Sensitivity C-Reactive Protein",
+        "label": "High-Sensitivity C-Reactive Protein (hsCRP) Measurement",
+        "synonyms": [
+          "hsCRP",
+          "hs-CRP",
+          "high sensitivity CRP",
+          "C-reactive protein hs"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_6_prop_1",
+            "name": "LBORRES",
+            "label": "hsCRP Result in Original Units",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_2",
+            "name": "LBORRESU",
+            "label": "hsCRP Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_3",
+            "name": "LBSTRESU",
+            "label": "hsCRP Standardised Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_4",
+            "name": "LBNRIND",
+            "label": "hsCRP Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "C-reactive protein, high sensitivity (hsCRP)",
+        "code": {
+          "id": "b3a2f10d-eadd-4344-aebf-499e49e00d55",
+          "code": "C130753",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "High Sensitivity C-Reactive Protein",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_7",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_7",
+        "name": "Urinalysis",
+        "label": "Urinalysis Panel Assessment",
+        "synonyms": [
+          "UA",
+          "urine analysis",
+          "urine dipstick",
+          "urine chemistry"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_7_prop_1",
+            "name": "LBTESTCD",
+            "label": "Urinalysis Test Short Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_2",
+            "name": "LBORRES",
+            "label": "Urinalysis Result in Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_3",
+            "name": "LBORRESU",
+            "label": "Urinalysis Original Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_4",
+            "name": "LBNRIND",
+            "label": "Urinalysis Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Urinalysis",
+        "code": {
+          "id": "5f82a461-8530-4882-85ab-f04af6ebd4f9",
+          "code": "C25477",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Urinalysis",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_8",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_8",
+        "name": "Dosing Diary Training",
+        "label": "Dosing Diary Training Session for Participant",
+        "synonyms": [
+          "diary training",
+          "dosing record training",
+          "medication diary instruction"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_8_prop_1",
+            "name": "DSDIARYTRAIN",
+            "label": "Dosing Diary Training Completed",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_2",
+            "name": "DSDTC",
+            "label": "Training Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dosing diary training"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_9",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_9",
+        "name": "Hepatitis C Virus Screening",
+        "label": "Hepatitis C Virus (HCV) Screening Test",
+        "synonyms": [
+          "HCV test",
+          "anti-HCV",
+          "HCV antibody test",
+          "hepatitis C serology"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_9_prop_1",
+            "name": "LBORRES",
+            "label": "HCV Screening Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_2",
+            "name": "LBORRESU",
+            "label": "HCV Result Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_3",
+            "name": "LBNRIND",
+            "label": "HCV Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_4",
+            "name": "LBSTAT",
+            "label": "HCV Test Completion Status",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Hepatitis C virus (HCV) screening tests",
+        "code": {
+          "id": "46a629c5-d7d6-456a-bfa5-6fed4d2d20df",
+          "code": "C86488",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Hepatitis C Virus Antibody Test",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_10",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_10",
+        "name": "Fibroblast Growth Factor 19",
+        "label": "Fibroblast Growth Factor 19 (FGF19) Measurement",
+        "synonyms": [
+          "FGF19",
+          "FGF-19",
+          "Fibroblast Growth Factor-19"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_10_prop_1",
+            "name": "LBORRES",
+            "label": "FGF19 Result in Original Units",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_2",
+            "name": "LBORRESU",
+            "label": "FGF19 Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_3",
+            "name": "LBSTRESU",
+            "label": "FGF19 Standardised Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_4",
+            "name": "LBNRIND",
+            "label": "FGF19 Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "FGF19",
+        "code": {
+          "id": "659c7684-2184-458c-8bf8-7a39d3625736",
+          "code": "C106432",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fibroblast Growth Factor 19",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_11",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_11",
+        "name": "Daily eDiary Review",
+        "label": "Review of Daily Electronic Diary",
+        "synonyms": [
+          "eDiary Review",
+          "Electronic Diary Review",
+          "Daily Diary Review"
+        ],
+        "categories": [
+          "bcc_10"
+        ],
+        "properties": [
+          {
+            "id": "bc_11_prop_1",
+            "name": "EDREVFL",
+            "label": "eDiary Review Completed Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_11_prop_2",
+            "name": "EDREVDAT",
+            "label": "Date of eDiary Review",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Review daily eDiary"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_12",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_12",
+        "name": "Dispense LY4395089",
+        "label": "Dispensing of Study Drug LY4395089",
+        "synonyms": [
+          "LY4395089 Dispensing",
+          "Study Drug Dispensing"
+        ],
+        "categories": [
+          "bcc_12"
+        ],
+        "properties": [
+          {
+            "id": "bc_12_prop_1",
+            "name": "EXDOSE",
+            "label": "Dispensed Dose",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_12_prop_2",
+            "name": "EXDOSU",
+            "label": "Dose Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_12_prop_3",
+            "name": "EXDAT",
+            "label": "Date of Dispensing",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dispense LY4395089"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_13",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_13",
+        "name": "Study Intervention Compliance Assessment",
+        "label": "Assessment of Study Intervention Compliance",
+        "synonyms": [
+          "Drug Compliance Assessment",
+          "Treatment Compliance",
+          "Medication Adherence Assessment"
+        ],
+        "categories": [
+          "bcc_12"
+        ],
+        "properties": [
+          {
+            "id": "bc_13_prop_1",
+            "name": "EXCOMPFL",
+            "label": "Compliance Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_13_prop_2",
+            "name": "EXCOMPPCT",
+            "label": "Compliance Percentage",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_13_prop_3",
+            "name": "EXCOMPDAT",
+            "label": "Date of Compliance Assessment",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Assess study intervention compliance"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_14",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_14",
+        "name": "Genetics Sample Collection",
+        "label": "Genetics Sample Collection for Pharmacogenomics",
+        "synonyms": [
+          "Pharmacogenomics Sample",
+          "DNA Sample",
+          "Genetic Sample"
+        ],
+        "categories": [
+          "bcc_9"
+        ],
+        "properties": [
+          {
+            "id": "bc_14_prop_1",
+            "name": "PGCOLLFL",
+            "label": "Genetics Sample Collected Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_14_prop_2",
+            "name": "PGDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_14_prop_3",
+            "name": "PGSPEC",
+            "label": "Sample Specimen Type",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Genetics sample"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_15",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_15",
+        "name": "Daily eDiary Return",
+        "label": "Return of Daily Electronic Diary",
+        "synonyms": [
+          "eDiary Return",
+          "Electronic Diary Return"
+        ],
+        "categories": [
+          "bcc_12"
+        ],
+        "properties": [
+          {
+            "id": "bc_15_prop_1",
+            "name": "EDRETFL",
+            "label": "eDiary Returned Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_15_prop_2",
+            "name": "EDRETDAT",
+            "label": "Date of eDiary Return",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Return daily eDiary"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_16",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_16",
+        "name": "Dosing Diary Return",
+        "label": "Return of Dosing Diary",
+        "synonyms": [
+          "Drug Diary Return",
+          "Medication Diary Return"
+        ],
+        "categories": [
+          "bcc_12"
+        ],
+        "properties": [
+          {
+            "id": "bc_16_prop_1",
+            "name": "DDRETFL",
+            "label": "Dosing Diary Returned Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_16_prop_2",
+            "name": "DDRETDAT",
+            "label": "Date of Dosing Diary Return",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dosing diary return"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_17",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_17",
+        "name": "Symptom-Directed Physical Assessment",
+        "label": "Symptom-Directed Physical Assessment",
+        "synonyms": [
+          "Targeted Physical Exam",
+          "Symptom-Focused Physical Examination"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_17_prop_1",
+            "name": "PEORRES",
+            "label": "Physical Assessment Finding",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_17_prop_2",
+            "name": "PEBODY",
+            "label": "Body System Examined",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_17_prop_3",
+            "name": "PEDAT",
+            "label": "Date of Assessment",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Symptom-directed physical assessment"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_18",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_18",
+        "name": "Lifestyle Counseling",
+        "label": "Lifestyle Counseling (Vitamin D/Calcium Counseling)",
+        "synonyms": [
+          "Vitamin D Counseling",
+          "Calcium Counseling",
+          "Nutritional Counseling"
+        ],
+        "categories": [
+          "bcc_12"
+        ],
+        "properties": [
+          {
+            "id": "bc_18_prop_1",
+            "name": "LSCOMPLFL",
+            "label": "Lifestyle Counseling Completed Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_18_prop_2",
+            "name": "LSTOPIC",
+            "label": "Counseling Topic",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_18_prop_3",
+            "name": "LSDAT",
+            "label": "Date of Counseling",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Lifestyle counseling (vitamin D/calcium counseling)"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_19",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_19",
+        "name": "Crohn's Disease Activity Index",
+        "label": "Crohn's Disease Activity Index (CDAI) Score",
+        "synonyms": [
+          "CDAI",
+          "Crohn's Disease Activity Score"
+        ],
+        "categories": [
+          "bcc_6"
+        ],
+        "properties": [
+          {
+            "id": "bc_19_prop_1",
+            "name": "QSORRES",
+            "label": "CDAI Total Score",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_19_prop_2",
+            "name": "QSDAT",
+            "label": "Date of CDAI Assessment",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Crohn's Disease activity index (CDAI)"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_20",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_20",
+        "name": "Exploratory Biomarkers Stool Supernatant",
+        "label": "Exploratory Biomarker Assessment from Stool Supernatant",
+        "synonyms": [
+          "Stool Supernatant Biomarkers",
+          "Fecal Biomarkers"
+        ],
+        "categories": [
+          "bcc_8"
+        ],
+        "properties": [
+          {
+            "id": "bc_20_prop_1",
+            "name": "BMORRES",
+            "label": "Stool Supernatant Biomarker Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_20_prop_2",
+            "name": "BMSPEC",
+            "label": "Specimen Type",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_20_prop_3",
+            "name": "BMDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Exploratory biomarkers, stool supernatant"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_21",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_21",
+        "name": "Injection Training Mirikizumab SC",
+        "label": "Injection Training for Mirikizumab Subcutaneous Administration",
+        "synonyms": [
+          "SC Injection Training",
+          "Self-Injection Training",
+          "Mirikizumab Injection Training"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_21_prop_1",
+            "name": "TRNGCMPL",
+            "label": "Training Completed Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_21_prop_2",
+            "name": "TRNGDAT",
+            "label": "Date of Training",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Injection training - mirikizumab SC"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_22",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_22",
+        "name": "PK Sample Collection LY4395089",
+        "label": "Pharmacokinetic Sample Collection for LY4395089",
+        "synonyms": [
+          "LY4395089 PK Sampling",
+          "Pharmacokinetic Blood Sample"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_22_prop_1",
+            "name": "PCTPT",
+            "label": "Planned Time Point",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_22_prop_2",
+            "name": "PCDAT",
+            "label": "Date/Time of Sample Collection",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_22_prop_3",
+            "name": "PCSPEC",
+            "label": "Specimen Type",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_22_prop_4",
+            "name": "PCORRES",
+            "label": "PK Concentration Result",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Pharmacokinetics (PK) samples for LY4395089"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_23",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_23",
+        "name": "Synthetic Glucocorticoid Testing",
+        "label": "Synthetic Glucocorticoid Laboratory Testing",
+        "synonyms": [
+          "Glucocorticoid Test",
+          "Synthetic Steroid Testing",
+          "Dexamethasone Suppression Test"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_23_prop_1",
+            "name": "LBORRES",
+            "label": "Glucocorticoid Test Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_23_prop_2",
+            "name": "LBORRESU",
+            "label": "Result Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_23_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Synthetic glucocorticoid testing"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_24",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_24",
+        "name": "Exploratory Biomarkers Colonic Tissue",
+        "label": "Exploratory Biomarker Assessment from Colonic Tissue",
+        "synonyms": [
+          "Colonic Tissue Biomarkers",
+          "Mucosal Biopsy Biomarkers"
+        ],
+        "categories": [
+          "bcc_8"
+        ],
+        "properties": [
+          {
+            "id": "bc_24_prop_1",
+            "name": "BMORRES",
+            "label": "Colonic Tissue Biomarker Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_24_prop_2",
+            "name": "BMSPEC",
+            "label": "Specimen Type",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_24_prop_3",
+            "name": "BMDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Exploratory biomarkers, colonic tissue"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_25",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_25",
+        "name": "Randomization via IWRS",
+        "label": "Randomization to Study Intervention via Interactive Web Response System",
+        "synonyms": [
+          "IWRS Randomization",
+          "Study Randomization",
+          "Treatment Assignment"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_25_prop_1",
+            "name": "RANDFL",
+            "label": "Randomized Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_25_prop_2",
+            "name": "RANDDAT",
+            "label": "Date of Randomization",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_25_prop_3",
+            "name": "ARMCD",
+            "label": "Randomized Treatment Arm Code",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Randomization to study intervention via IWRS"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_26",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_26",
+        "name": "Bone-Specific Alkaline Phosphatase",
+        "label": "Bone-Specific Alkaline Phosphatase (BSALP) Measurement",
+        "synonyms": [
+          "BSALP",
+          "Bone ALP",
+          "Bone-Specific ALP"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_26_prop_1",
+            "name": "LBORRES",
+            "label": "Bone-Specific ALP Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_26_prop_2",
+            "name": "LBORRESU",
+            "label": "Result Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_26_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Bone-specific ALP"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_27",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_27",
+        "name": "CDAI Review",
+        "label": "Review of Crohn's Disease Activity Index",
+        "synonyms": [
+          "CDAI Score Review",
+          "Crohn's Disease Activity Index Review"
+        ],
+        "categories": [
+          "bcc_6"
+        ],
+        "properties": [
+          {
+            "id": "bc_27_prop_1",
+            "name": "QSORRES",
+            "label": "CDAI Review Score",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_27_prop_2",
+            "name": "QSDAT",
+            "label": "Date of CDAI Review",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Review CDAI"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_28",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_28",
+        "name": "Dosing Diary Review",
+        "label": "Review of Dosing Diary",
+        "synonyms": [
+          "Drug Diary Review",
+          "Medication Diary Review"
+        ],
+        "categories": [
+          "bcc_10"
+        ],
+        "properties": [
+          {
+            "id": "bc_28_prop_1",
+            "name": "DDREVFL",
+            "label": "Dosing Diary Review Completed Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_28_prop_2",
+            "name": "DDREVDAT",
+            "label": "Date of Dosing Diary Review",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dosing diary review"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_29",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_29",
+        "name": "QIDS-SR16",
+        "label": "Quick Inventory of Depressive Symptomatology Self-Report 16-Item Scale",
+        "synonyms": [
+          "Quick Inventory of Depressive Symptomatology",
+          "QIDS Self-Report",
+          "QIDS-SR"
+        ],
+        "categories": [
+          "bcc_6"
+        ],
+        "properties": [
+          {
+            "id": "bc_29_prop_1",
+            "name": "QSORRES",
+            "label": "QIDS-SR16 Total Score",
+            "isRequired": true,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_29_prop_2",
+            "name": "QSDAT",
+            "label": "Date of QIDS-SR16 Assessment",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "QIDS-SR16"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_30",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_30",
+        "name": "eGFR CKD-EPI",
+        "label": "Estimated Glomerular Filtration Rate Calculated by CKD-EPI Using Creatinine",
+        "synonyms": [
+          "eGFR",
+          "CKD-EPI eGFR",
+          "Estimated GFR"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_30_prop_1",
+            "name": "LBORRES",
+            "label": "eGFR Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_30_prop_2",
+            "name": "LBORRESU",
+            "label": "eGFR Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_30_prop_3",
+            "name": "LBMTHD",
+            "label": "Calculation Method",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "eGFR (CKD-EPI) calculated using creatinine",
+        "code": {
+          "id": "fe801ff7-9b7a-4317-b840-8e30d57d1071",
+          "code": "C99513",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Estimated Glomerular Filtration Rate",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_31",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_31",
+        "name": "IWRS Visit Registration",
+        "label": "Register Study Visit with Interactive Web Response System",
+        "synonyms": [
+          "IWRS Visit Check-In",
+          "Visit Registration",
+          "IWRS Check-In"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_31_prop_1",
+            "name": "IWRSREGFL",
+            "label": "IWRS Visit Registered Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_31_prop_2",
+            "name": "IWRSDAT",
+            "label": "Date of IWRS Registration",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Register visit with IWRS"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_32",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_32",
+        "name": "Endoscopy with Biopsy",
+        "label": "Endoscopy with Biopsy Procedure",
+        "synonyms": [
+          "Colonoscopy with Biopsy",
+          "GI Endoscopy with Biopsy",
+          "Ileocolonoscopy with Biopsy"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_32_prop_1",
+            "name": "PROCCMPL",
+            "label": "Procedure Completed Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_32_prop_2",
+            "name": "ENDOSCORE",
+            "label": "Endoscopy Score",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_32_prop_3",
+            "name": "PROCDAT",
+            "label": "Date of Endoscopy",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_32_prop_4",
+            "name": "BIOPSYFL",
+            "label": "Biopsy Obtained Flag",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Endoscopy with biopsy"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_33",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_33",
+        "name": "Hematology Panel",
+        "label": "Hematology Laboratory Panel",
+        "synonyms": [
+          "Complete Blood Count",
+          "CBC",
+          "Blood Count Panel",
+          "Full Blood Count"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_33_prop_1",
+            "name": "LBTESTCD",
+            "label": "Hematology Test Code",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_33_prop_2",
+            "name": "LBORRES",
+            "label": "Hematology Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_33_prop_3",
+            "name": "LBORRESU",
+            "label": "Hematology Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_33_prop_4",
+            "name": "LBNRIND",
+            "label": "Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Hematology"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_34",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_34",
+        "name": "Parathyroid Hormone",
+        "label": "Parathyroid Hormone (PTH) Measurement",
+        "synonyms": [
+          "PTH",
+          "Intact PTH",
+          "iPTH"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_34_prop_1",
+            "name": "LBORRES",
+            "label": "PTH Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_34_prop_2",
+            "name": "LBORRESU",
+            "label": "PTH Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_34_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Parathyroid hormone (PTH)"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_35",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_35",
+        "name": "Mirikizumab IV Administration",
+        "label": "Administration of Study Intervention Mirikizumab Intravenous",
+        "synonyms": [
+          "Mirikizumab Infusion",
+          "IV Mirikizumab",
+          "Study Drug IV Administration"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_35_prop_1",
+            "name": "EXDOSE",
+            "label": "Administered Dose",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_35_prop_2",
+            "name": "EXDOSU",
+            "label": "Dose Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_35_prop_3",
+            "name": "EXSTDAT",
+            "label": "Start Date/Time of Infusion",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_35_prop_4",
+            "name": "EXENDAT",
+            "label": "End Date/Time of Infusion",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Administer study intervention - mirikizumab IV"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_36",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_36",
+        "name": "HIV Test",
+        "label": "Human Immunodeficiency Virus (HIV) Testing",
+        "synonyms": [
+          "HIV Serology",
+          "HIV Antibody Test",
+          "HIV Screen"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_36_prop_1",
+            "name": "LBORRES",
+            "label": "HIV Test Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_36_prop_2",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "HIV testing"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_37",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_37",
+        "name": "Tuberculosis Test",
+        "label": "Tuberculosis (TB) Screening Test",
+        "synonyms": [
+          "TB Test",
+          "TB Screening",
+          "QuantiFERON",
+          "Tuberculin Skin Test",
+          "IGRA"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_37_prop_1",
+            "name": "LBORRES",
+            "label": "TB Test Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_37_prop_2",
+            "name": "LBMTHD",
+            "label": "Test Method",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_37_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Test",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Tuberculosis (TB) Test"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_38",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_38",
+        "name": "Urine Pregnancy Test",
+        "label": "Urine Pregnancy Test (Local Laboratory)",
+        "synonyms": [
+          "Urine hCG",
+          "Urine Pregnancy Screen",
+          "Local Urine Pregnancy Test"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_38_prop_1",
+            "name": "LBORRES",
+            "label": "Urine Pregnancy Test Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_38_prop_2",
+            "name": "LBDAT",
+            "label": "Date of Test",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Urine pregnancy (local)"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_39",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_39",
+        "name": "Fasting Lipid Panel",
+        "label": "Fasting Lipid Panel Laboratory Assessment",
+        "synonyms": [
+          "Lipid Profile",
+          "Fasting Lipids",
+          "Cholesterol Panel"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_39_prop_1",
+            "name": "LBTESTCD",
+            "label": "Lipid Test Code",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_39_prop_2",
+            "name": "LBORRES",
+            "label": "Lipid Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_39_prop_3",
+            "name": "LBORRESU",
+            "label": "Lipid Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_39_prop_4",
+            "name": "LBFAST",
+            "label": "Fasting Status",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Lipids (fasting)"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_40",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_40",
+        "name": "Fecal Calprotectin",
+        "label": "Fecal Calprotectin Measurement",
+        "synonyms": [
+          "Stool Calprotectin",
+          "Calprotectin Fecal"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_40_prop_1",
+            "name": "LBORRES",
+            "label": "Fecal Calprotectin Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_40_prop_2",
+            "name": "LBORRESU",
+            "label": "Result Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_40_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Fecal calprotectin"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_41",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_41",
+        "name": "Hepatitis B Virus DNA",
+        "label": "Hepatitis B Virus (HBV) DNA Quantification",
+        "synonyms": [
+          "HBV DNA PCR",
+          "HBV Viral Load",
+          "Hepatitis B DNA"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_41_prop_1",
+            "name": "LBORRES",
+            "label": "HBV DNA Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_41_prop_2",
+            "name": "LBORRESU",
+            "label": "HBV DNA Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_41_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "HBV DNA"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_42",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_42",
+        "name": "Daily eDiary Dispensing",
+        "label": "Dispensing of Daily Electronic Diary",
+        "synonyms": [
+          "eDiary Dispensing",
+          "Electronic Diary Dispensing"
+        ],
+        "categories": [
+          "bcc_12"
+        ],
+        "properties": [
+          {
+            "id": "bc_42_prop_1",
+            "name": "EDDISPFL",
+            "label": "eDiary Dispensed Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_42_prop_2",
+            "name": "EDDISPDAT",
+            "label": "Date of eDiary Dispensing",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dispense daily eDiary"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_43",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_43",
+        "name": "LY4395089 Return and Accountability",
+        "label": "Return and Drug Accountability of LY4395089",
+        "synonyms": [
+          "Drug Accountability",
+          "Study Drug Return",
+          "LY4395089 Accountability"
+        ],
+        "categories": [
+          "bcc_10"
+        ],
+        "properties": [
+          {
+            "id": "bc_43_prop_1",
+            "name": "DARETFL",
+            "label": "Drug Returned Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_43_prop_2",
+            "name": "DAQTYRET",
+            "label": "Quantity Returned",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_43_prop_3",
+            "name": "DARETDAT",
+            "label": "Date of Return",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Return and accountability of LY4395089"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_44_kit",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_44_kit",
+        "name": "Stool Collection Kit Dispensing",
+        "label": "Dispensing of Stool Collection Kit",
+        "synonyms": [
+          "Fecal Collection Kit Dispensing",
+          "Stool Kit Dispensing"
+        ],
+        "categories": [
+          "bcc_12"
+        ],
+        "properties": [
+          {
+            "id": "bc_44_kit_prop_1",
+            "name": "KITDISPFL",
+            "label": "Stool Kit Dispensed Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_44_kit_prop_2",
+            "name": "KITDISPDAT",
+            "label": "Date of Kit Dispensing",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dispense stool collection kit"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_44_lab",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_44_lab",
+        "name": "Quantitative Immunoglobulins",
+        "label": "Quantitative Immunoglobulins (IgG, IgA, IgM) Measurement",
+        "synonyms": [
+          "Immunoglobulin Panel",
+          "Serum Immunoglobulins",
+          "IgG IgA IgM"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_44_lab_prop_1",
+            "name": "LBTESTCD",
+            "label": "Immunoglobulin Test Code",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_44_lab_prop_2",
+            "name": "LBORRES",
+            "label": "Immunoglobulin Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_44_lab_prop_3",
+            "name": "LBORRESU",
+            "label": "Immunoglobulin Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "IgG, IgA, IgM (quantitative immunoglobulins)"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_45",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_45",
+        "name": "Procollagen Type 1 N-Terminal Propeptide",
+        "label": "Procollagen Type 1 N-Terminal Propeptide (P1NP) Measurement",
+        "synonyms": [
+          "P1NP",
+          "PINP",
+          "Procollagen I N-Propeptide",
+          "Bone Formation Marker"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_45_prop_1",
+            "name": "LBORRES",
+            "label": "P1NP Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_45_prop_2",
+            "name": "LBORRESU",
+            "label": "P1NP Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_45_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "P1NP"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_47",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_47",
+        "name": "Complete Physical Examination",
+        "label": "Complete Physical Examination",
+        "synonyms": [
+          "Full Physical Exam",
+          "Comprehensive Physical Examination"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_47_prop_1",
+            "name": "PEORRES",
+            "label": "Physical Examination Finding",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_47_prop_2",
+            "name": "PEBODY",
+            "label": "Body System Examined",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_47_prop_3",
+            "name": "PEDAT",
+            "label": "Date of Examination",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_47_prop_4",
+            "name": "PENORIND",
+            "label": "Normal/Abnormal Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Complete physical examination",
+        "code": {
+          "id": "73b006f4-0027-416c-8abb-5cb0d390127e",
+          "code": "C62244",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Physical Examination",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_48",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_48",
+        "name": "Urine Calcium",
+        "label": "Urine Calcium Measurement",
+        "synonyms": [
+          "Urinary Calcium",
+          "Urine Ca",
+          "24-Hour Urine Calcium"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_48_prop_1",
+            "name": "LBORRES",
+            "label": "Urine Calcium Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_48_prop_2",
+            "name": "LBORRESU",
+            "label": "Urine Calcium Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_48_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Calcium (urine)"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_49",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_49",
+        "name": "C-Terminal Telopeptide of Type 1 Collagen",
+        "label": "C-Terminal Telopeptide of Type 1 Collagen (CTX-1) Measurement",
+        "synonyms": [
+          "CTX-1",
+          "Beta-CTX",
+          "Serum CTX",
+          "Bone Resorption Marker"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_49_prop_1",
+            "name": "LBORRES",
+            "label": "CTX-1 Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_49_prop_2",
+            "name": "LBORRESU",
+            "label": "CTX-1 Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_49_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "CTX-1"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_50",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_50",
+        "name": "Stool Culture",
+        "label": "Stool Culture Microbiological Assessment",
+        "synonyms": [
+          "Fecal Culture",
+          "Stool Microbiology",
+          "Fecal Microbiology"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_50_prop_1",
+            "name": "LBORRES",
+            "label": "Stool Culture Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_50_prop_2",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Stool culture"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_51",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_51",
+        "name": "Coagulation Panel",
+        "label": "Coagulation Laboratory Panel",
+        "synonyms": [
+          "Clotting Studies",
+          "Coagulation Studies",
+          "PT/aPTT Panel"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_51_prop_1",
+            "name": "LBTESTCD",
+            "label": "Coagulation Test Code",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_51_prop_2",
+            "name": "LBORRES",
+            "label": "Coagulation Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_51_prop_3",
+            "name": "LBORRESU",
+            "label": "Coagulation Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Coagulation"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_52",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_52",
+        "name": "Contraceptive Counseling",
+        "label": "Contraceptive Counseling Session",
+        "synonyms": [
+          "Birth Control Counseling",
+          "Contraception Counseling"
+        ],
+        "categories": [
+          "bcc_12"
+        ],
+        "properties": [
+          {
+            "id": "bc_52_prop_1",
+            "name": "CCCOMPLFL",
+            "label": "Contraceptive Counseling Completed Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_52_prop_2",
+            "name": "CCDAT",
+            "label": "Date of Counseling",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Contraceptive counseling"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_53",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_53",
+        "name": "Serum 25-Hydroxy Vitamin D",
+        "label": "Serum 25-Hydroxy Vitamin D (25-OH Vitamin D) Measurement",
+        "synonyms": [
+          "25-OH Vitamin D",
+          "Calcidiol",
+          "Vitamin D Level",
+          "25-Hydroxyvitamin D"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_53_prop_1",
+            "name": "LBORRES",
+            "label": "25-OH Vitamin D Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_53_prop_2",
+            "name": "LBORRESU",
+            "label": "Result Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_53_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Serum 25-hydroxy vitamin D"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_54",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_54",
+        "name": "Clostridioides difficile Testing",
+        "label": "Clostridioides difficile (C. difficile) Laboratory Testing",
+        "synonyms": [
+          "C. diff Testing",
+          "CDI Testing",
+          "Clostridium difficile Test"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_54_prop_1",
+            "name": "LBORRES",
+            "label": "C. difficile Test Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_54_prop_2",
+            "name": "LBMTHD",
+            "label": "Test Method",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_54_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "C. difficile testing"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_55",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_55",
+        "name": "Body Weight",
+        "label": "Body Weight Measurement",
+        "synonyms": [
+          "Body Weight",
+          "BW",
+          "Patient Weight"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_55_prop_1",
+            "name": "VSORRES",
+            "label": "Weight Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_55_prop_2",
+            "name": "VSORRESU",
+            "label": "Weight Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Weight",
+        "code": {
+          "id": "7985e0ef-d48a-44ad-bc9b-f181ef923ce9",
+          "code": "C81328",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Body Weight",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_56",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_56",
+        "name": "Exploratory Biomarker Blood",
+        "label": "Exploratory Biomarker Assessment from Blood",
+        "synonyms": [
+          "Blood Biomarkers",
+          "Serum Biomarkers",
+          "Exploratory Blood Biomarkers"
+        ],
+        "categories": [
+          "bcc_8"
+        ],
+        "properties": [
+          {
+            "id": "bc_56_prop_1",
+            "name": "BMORRES",
+            "label": "Blood Biomarker Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_56_prop_2",
+            "name": "BMSPEC",
+            "label": "Specimen Type",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_56_prop_3",
+            "name": "BMDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Exploratory biomarker, blood"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_57",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_57",
+        "name": "Randomization or ISA Assignment via IWRS",
+        "label": "Randomization or Assignment to Induction Sub-study Arm via IWRS",
+        "synonyms": [
+          "ISA Assignment",
+          "IWRS Assignment",
+          "Sub-study Randomization"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_57_prop_1",
+            "name": "RANDFL",
+            "label": "Randomized/Assigned Flag",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_57_prop_2",
+            "name": "RANDDAT",
+            "label": "Date of Randomization/Assignment",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_57_prop_3",
+            "name": "ARMCD",
+            "label": "Assigned Arm Code",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Randomization or assignment to ISA via IWRS"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_58",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_58",
+        "name": "Vital Signs",
+        "label": "Vital Signs Measurements",
+        "synonyms": [
+          "VS",
+          "Vital Signs Assessment"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_58_prop_1",
+            "name": "VSTESTCD",
+            "label": "Vital Signs Test Code",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_58_prop_2",
+            "name": "VSORRES",
+            "label": "Vital Signs Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_58_prop_3",
+            "name": "VSORRESU",
+            "label": "Vital Signs Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_58_prop_4",
+            "name": "VSDAT",
+            "label": "Date/Time of Measurement",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Vital signs"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_59",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_59",
+        "name": "Hepatitis B Virus Screening Tests",
+        "label": "Hepatitis B Virus (HBV) Screening Tests",
+        "synonyms": [
+          "HBV Serology",
+          "Hepatitis B Screening",
+          "HBsAg HBcAb HBsAb"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_59_prop_1",
+            "name": "LBTESTCD",
+            "label": "HBV Test Code",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_59_prop_2",
+            "name": "LBORRES",
+            "label": "HBV Screening Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_59_prop_3",
+            "name": "LBDAT",
+            "label": "Date of Sample Collection",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Hepatitis B virus (HBV) screening tests"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_60",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_60",
+        "name": "DXA Scan",
+        "label": "Dual-Energy X-Ray Absorptiometry (DXA) Scan",
+        "synonyms": [
+          "DEXA Scan",
+          "Dual-Energy X-Ray Absorptiometry",
+          "Bone Density Scan"
+        ],
+        "categories": [
+          "bcc_7"
+        ],
+        "properties": [
+          {
+            "id": "bc_60_prop_1",
+            "name": "IMGRESLT",
+            "label": "DXA Scan Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_60_prop_2",
+            "name": "IMGSITE",
+            "label": "Scan Site",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_60_prop_3",
+            "name": "IMGDAT",
+            "label": "Date of DXA Scan",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_60_prop_4",
+            "name": "IMGTSCOR",
+            "label": "T-Score",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "DXA scan"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_1",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_1",
+        "name": "12-Lead Electrocardiogram",
+        "label": "12-Lead Electrocardiogram (Single, Local Read)",
+        "synonyms": [
+          "ECG",
+          "EKG",
+          "12-lead ECG",
+          "Electrocardiogram"
+        ],
+        "categories": [
+          "bcc_4"
+        ],
+        "properties": [
+          {
+            "id": "bc_1_prop_1",
+            "name": "EGTESTCD",
+            "label": "ECG Test Short Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_2",
+            "name": "EGTEST",
+            "label": "ECG Test Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_3",
+            "name": "EGORRES",
+            "label": "ECG Result or Finding in Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_4",
+            "name": "EGINTERPRET",
+            "label": "ECG Overall Interpretation",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "ECG, 12-lead (single, local)",
+        "code": {
+          "id": "b942d673-a41f-4c57-985e-6fe7113d69b9",
+          "code": "C38054",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Electrocardiogram",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_2",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_2",
+        "name": "Electronic Diary Training",
+        "label": "Daily Electronic Diary (eDiary) Training Session",
+        "synonyms": [
+          "eDiary instruction",
+          "electronic diary training",
+          "PRO device training"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_2_prop_1",
+            "name": "SUPPDM_EDIARYTR",
+            "label": "eDiary Training Completed",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_2",
+            "name": "SSDTC",
+            "label": "Training Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Daily eDiary training"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_3",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_3",
+        "name": "Dosing Diary Dispensation",
+        "label": "Dispensation of Dosing Diary to Participant",
+        "synonyms": [
+          "dosing diary issue",
+          "diary dispensing"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_3_prop_1",
+            "name": "DSDIARY",
+            "label": "Dosing Diary Dispensed",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_2",
+            "name": "DSDTC",
+            "label": "Dispensation Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dispense dosing diary"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_4",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_4",
+        "name": "Ancillary Supplies Dispensation",
+        "label": "Dispensation of Ancillary Supplies to Participant",
+        "synonyms": [
+          "supply dispensing",
+          "ancillary materials dispensation",
+          "study supplies issue"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_4_prop_1",
+            "name": "DSANCSUPP",
+            "label": "Ancillary Supplies Dispensed",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_2",
+            "name": "DSDTC",
+            "label": "Dispensation Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_3",
+            "name": "DSANCTYPE",
+            "label": "Type of Ancillary Supplies",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dispense ancillary supplies to participant"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_5",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_5",
+        "name": "Follicle-Stimulating Hormone",
+        "label": "Follicle-Stimulating Hormone (FSH) Measurement",
+        "synonyms": [
+          "FSH",
+          "Follitropin",
+          "Follicle Stimulating Hormone"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_5_prop_1",
+            "name": "LBORRES",
+            "label": "FSH Result in Original Units",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_2",
+            "name": "LBORRESU",
+            "label": "FSH Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_3",
+            "name": "LBSTRESU",
+            "label": "FSH Standardised Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_4",
+            "name": "LBNRIND",
+            "label": "FSH Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Follicle-stimulating hormone (FSH)",
+        "code": {
+          "id": "18a01eba-2474-4cfb-aa8f-50237f8c200c",
+          "code": "C16481",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Follicle-Stimulating Hormone",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_6",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_6",
+        "name": "High-Sensitivity C-Reactive Protein",
+        "label": "High-Sensitivity C-Reactive Protein (hsCRP) Measurement",
+        "synonyms": [
+          "hsCRP",
+          "hs-CRP",
+          "high sensitivity CRP",
+          "C-reactive protein hs"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_6_prop_1",
+            "name": "LBORRES",
+            "label": "hsCRP Result in Original Units",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_2",
+            "name": "LBORRESU",
+            "label": "hsCRP Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_3",
+            "name": "LBSTRESU",
+            "label": "hsCRP Standardised Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_4",
+            "name": "LBNRIND",
+            "label": "hsCRP Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "C-reactive protein, high sensitivity (hsCRP)",
+        "code": {
+          "id": "b3a2f10d-eadd-4344-aebf-499e49e00d55",
+          "code": "C130753",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "High Sensitivity C-Reactive Protein",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_7",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_7",
+        "name": "Urinalysis",
+        "label": "Urinalysis Panel Assessment",
+        "synonyms": [
+          "UA",
+          "urine analysis",
+          "urine dipstick",
+          "urine chemistry"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_7_prop_1",
+            "name": "LBTESTCD",
+            "label": "Urinalysis Test Short Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_2",
+            "name": "LBORRES",
+            "label": "Urinalysis Result in Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_3",
+            "name": "LBORRESU",
+            "label": "Urinalysis Original Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_4",
+            "name": "LBNRIND",
+            "label": "Urinalysis Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Urinalysis",
+        "code": {
+          "id": "5f82a461-8530-4882-85ab-f04af6ebd4f9",
+          "code": "C25477",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Urinalysis",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_8",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_8",
+        "name": "Dosing Diary Training",
+        "label": "Dosing Diary Training Session for Participant",
+        "synonyms": [
+          "diary training",
+          "dosing record training",
+          "medication diary instruction"
+        ],
+        "categories": [
+          "bcc_11"
+        ],
+        "properties": [
+          {
+            "id": "bc_8_prop_1",
+            "name": "DSDIARYTRAIN",
+            "label": "Dosing Diary Training Completed",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_2",
+            "name": "DSDTC",
+            "label": "Training Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Dosing diary training"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_9",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_9",
+        "name": "Hepatitis C Virus Screening",
+        "label": "Hepatitis C Virus (HCV) Screening Test",
+        "synonyms": [
+          "HCV test",
+          "anti-HCV",
+          "HCV antibody test",
+          "hepatitis C serology"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_9_prop_1",
+            "name": "LBORRES",
+            "label": "HCV Screening Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_2",
+            "name": "LBORRESU",
+            "label": "HCV Result Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_3",
+            "name": "LBNRIND",
+            "label": "HCV Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_4",
+            "name": "LBSTAT",
+            "label": "HCV Test Completion Status",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Hepatitis C virus (HCV) screening tests",
+        "code": {
+          "id": "46a629c5-d7d6-456a-bfa5-6fed4d2d20df",
+          "code": "C86488",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Hepatitis C Virus Antibody Test",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_10",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_10",
+        "name": "Fibroblast Growth Factor 19",
+        "label": "Fibroblast Growth Factor 19 (FGF19) Measurement",
+        "synonyms": [
+          "FGF19",
+          "FGF-19",
+          "Fibroblast Growth Factor-19"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_10_prop_1",
+            "name": "LBORRES",
+            "label": "FGF19 Result in Original Units",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_2",
+            "name": "LBORRESU",
+            "label": "FGF19 Original Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_3",
+            "name": "LBSTRESU",
+            "label": "FGF19 Standardised Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_4",
+            "name": "LBNRIND",
+            "label": "FGF19 Reference Range Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "FGF19",
+        "code": {
+          "id": "659c7684-2184-458c-8bf8-7a39d3625736",
+          "code": "C106432",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fibroblast Growth Factor 19",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_1",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_1",
+        "name": "Vital Signs",
+        "label": "Vital Signs Measurements",
+        "memberIds": [
+          "bc_9",
+          "bc_55",
+          "bc_58"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_2",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_2",
+        "name": "Laboratory Tests",
+        "label": "Laboratory Test Assessments",
+        "memberIds": [
+          "bc_5",
+          "bc_6",
+          "bc_8",
+          "bc_10",
+          "bc_23",
+          "bc_26",
+          "bc_30",
+          "bc_33",
+          "bc_34",
+          "bc_36",
+          "bc_37",
+          "bc_38",
+          "bc_39",
+          "bc_40",
+          "bc_41",
+          "bc_44_lab",
+          "bc_45",
+          "bc_48",
+          "bc_49",
+          "bc_50",
+          "bc_51",
+          "bc_53",
+          "bc_54",
+          "bc_59",
+          "bc_5",
+          "bc_6",
+          "bc_7",
+          "bc_9",
+          "bc_10"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_3",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_3",
+        "name": "Pharmacokinetics",
+        "label": "Pharmacokinetic Sample Collections",
+        "memberIds": [
+          "bc_22"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_4",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_4",
+        "name": "ECG/Cardiac",
+        "label": "ECG and Cardiac Assessments",
+        "memberIds": [
+          "bc_1"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_5",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_5",
+        "name": "Physical Examination",
+        "label": "Physical Examination Assessments",
+        "memberIds": [
+          "bc_17",
+          "bc_47"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_6",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_6",
+        "name": "Questionnaires/PRO",
+        "label": "Questionnaires and Patient-Reported Outcomes",
+        "memberIds": [
+          "bc_3",
+          "bc_19",
+          "bc_27",
+          "bc_29"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_7",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_7",
+        "name": "Imaging",
+        "label": "Imaging Assessments",
+        "memberIds": [
+          "bc_7",
+          "bc_60"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_8",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_8",
+        "name": "Biomarker",
+        "label": "Biomarker Assessments",
+        "memberIds": [
+          "bc_20",
+          "bc_24",
+          "bc_56"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_9",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_9",
+        "name": "Pharmacogenomics",
+        "label": "Pharmacogenomics and Genetics Assessments",
+        "memberIds": [
+          "bc_14"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_10",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_10",
+        "name": "Safety Monitoring",
+        "label": "Safety Monitoring Activities",
+        "memberIds": [
+          "bc_2",
+          "bc_11",
+          "bc_28",
+          "bc_43"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_11",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_11",
+        "name": "Procedures",
+        "label": "Clinical Procedures",
+        "memberIds": [
+          "bc_4",
+          "bc_21",
+          "bc_25",
+          "bc_31",
+          "bc_32",
+          "bc_35",
+          "bc_57",
+          "bc_2",
+          "bc_3",
+          "bc_4",
+          "bc_8"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_12",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_12",
+        "name": "Other",
+        "label": "Other Activities",
+        "memberIds": [
+          "bc_1",
+          "bc_12",
+          "bc_13",
+          "bc_15",
+          "bc_16",
+          "bc_18",
+          "bc_42",
+          "bc_44_kit",
+          "bc_52"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    }
+  ],
+  "bc_summary": {
+    "biomedical_concept_count": 70,
+    "category_count": 12,
+    "activity_count": 70
+  }
+}

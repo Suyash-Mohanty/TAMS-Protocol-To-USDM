@@ -1,0 +1,829 @@
+{
+  "agent_id": "studydesign_agent",
+  "timestamp": "2026-10-08T18:25:03.672946",
+  "confidence": 0.85,
+  "entity_count": 21,
+  "entities": [
+    {
+      "id": "sd_1",
+      "entity_type": "study_design",
+      "data": {
+        "id": "sd_1",
+        "name": "Study Design",
+        "instanceType": "InterventionalStudyDesign",
+        "description": "Study design overview Study J6Z-MC-CD01 (CD01) is a Phase 2, randomized, open-label, active-controlled study to investigate FXR314 agonist LY4395089 co-administration with mirikizumab in adults with moderately to severely active CD. The study design of this ISA will be governed by the IIBD master protocol. Duration and study periods for this ISA The duration and study periods for this ISA will be governed by the IIBD master protocol. A schematic of the design specific to this ISA is presented in Section 1.2. Assessments, sample collections, and study drug administrations for this ISA will occur at the visits shown in the SoA (Section 1.3). Treatment groups This table summarizes the treatment groups under this ISA. Study Interventions in Study Period 1 Study Intervention in Study Period 2 LY4395089/mirikizumab co-administration Mirikizumab Active comparator: mirikizumab Randomization ratios and stratification factors Transition from Study Period 1 to Study Period 2 See the IIBD master protocol and study schema (Section 1.2).",
+        "model": {
+          "id": "1faaad18-1618-4b5c-a1f7-22240e25372e",
+          "code": "C82639",
+          "decode": "PARALLEL",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2026-03-27",
+          "instanceType": "Code"
+        },
+        "trialIntentTypes": [
+          {
+            "code": "Treatment",
+            "codeSystem": "USDM",
+            "decode": "Treatment"
+          }
+        ],
+        "trialType": {
+          "code": "Interventional",
+          "codeSystem": "USDM",
+          "decode": "Interventional"
+        },
+        "blindingSchema": {
+          "code": "Open Label",
+          "codeSystem": "USDM",
+          "decode": "Open Label"
+        },
+        "randomizationType": {
+          "code": "Randomized",
+          "codeSystem": "USDM",
+          "decode": "Randomized"
+        },
+        "controlType": {
+          "code": "Active Control",
+          "codeSystem": "USDM",
+          "decode": "Active Control"
+        },
+        "armIds": [
+          "arm_1",
+          "arm_2"
+        ],
+        "cohortIds": [
+          "cohort_1",
+          "cohort_2"
+        ],
+        "therapeuticAreas": [
+          "Gastroenterology",
+          "Inflammatory Bowel Disease"
+        ]
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "arm_1",
+      "entity_type": "study_arm",
+      "data": {
+        "id": "arm_1",
+        "name": "LY4395089/Mirikizumab Co-administration",
+        "type": {
+          "code": "Experimental Arm",
+          "codeSystem": "USDM",
+          "decode": "Experimental Arm"
+        },
+        "instanceType": "StudyArm",
+        "description": "Participants receive LY4395089 6 mg QD orally co-administered with mirikizumab IV in Study Period 1. Responders at Week 12 transition to mirikizumab SC in Study Period 2."
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "arm_2",
+      "entity_type": "study_arm",
+      "data": {
+        "id": "arm_2",
+        "name": "Mirikizumab",
+        "type": {
+          "code": "Active Comparator Arm",
+          "codeSystem": "USDM",
+          "decode": "Active Comparator Arm"
+        },
+        "instanceType": "StudyArm",
+        "description": "Participants receive mirikizumab IV per approved product labeling in Study Period 1. Responders at Week 12 transition to mirikizumab SC in Study Period 2."
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cohort_1",
+      "entity_type": "study_cohort",
+      "data": {
+        "id": "cohort_1",
+        "name": "Responders",
+        "instanceType": "StudyCohort",
+        "characteristic": "Participants who achieve endoscopic response or clinical response (by CDAI) at Week 12 of Study Period 1; transition to mirikizumab SC in Study Period 2"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cohort_2",
+      "entity_type": "study_cohort",
+      "data": {
+        "id": "cohort_2",
+        "name": "Non-responders",
+        "instanceType": "StudyCohort",
+        "characteristic": "Participants who do not achieve endoscopic response or clinical response (by CDAI) at Week 12 of Study Period 1; do not continue to Study Period 2"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_1",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_1",
+        "armId": "arm_1",
+        "epochId": "epoch_1",
+        "elementIds": [
+          "elem_1"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_2",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_2",
+        "armId": "arm_1",
+        "epochId": "epoch_2",
+        "elementIds": [
+          "elem_2"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_3",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_3",
+        "armId": "arm_1",
+        "epochId": "epoch_3",
+        "elementIds": [
+          "elem_3"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_4",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_4",
+        "armId": "arm_1",
+        "epochId": "epoch_4",
+        "elementIds": [
+          "elem_4"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_5",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_5",
+        "armId": "arm_2",
+        "epochId": "epoch_1",
+        "elementIds": [
+          "elem_5"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_6",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_6",
+        "armId": "arm_2",
+        "epochId": "epoch_2",
+        "elementIds": [
+          "elem_6"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_7",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_7",
+        "armId": "arm_2",
+        "epochId": "epoch_3",
+        "elementIds": [
+          "elem_7"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_8",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_8",
+        "armId": "arm_2",
+        "epochId": "epoch_4",
+        "elementIds": [
+          "elem_8"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_1",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_1",
+        "name": "LY4395089/Mirikizumab Co-administration - Screening",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for LY4395089/Mirikizumab Co-administration during Screening"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_2",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_2",
+        "name": "LY4395089/Mirikizumab Co-administration - Study Period 1",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for LY4395089/Mirikizumab Co-administration during Study Period 1"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_3",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_3",
+        "name": "LY4395089/Mirikizumab Co-administration - Study Period 2",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for LY4395089/Mirikizumab Co-administration during Study Period 2"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_4",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_4",
+        "name": "LY4395089/Mirikizumab Co-administration - Safety Follow-Up",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for LY4395089/Mirikizumab Co-administration during Safety Follow-Up"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_5",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_5",
+        "name": "Mirikizumab - Screening",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab during Screening"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_6",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_6",
+        "name": "Mirikizumab - Study Period 1",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab during Study Period 1"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_7",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_7",
+        "name": "Mirikizumab - Study Period 2",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab during Study Period 2"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_8",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_8",
+        "name": "Mirikizumab - Safety Follow-Up",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab during Safety Follow-Up"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        27,
+        28,
+        29
+      ]
+    }
+  ],
+  "design_summary": {
+    "arm_count": 2,
+    "cohort_count": 2,
+    "cell_count": 8
+  }
+}

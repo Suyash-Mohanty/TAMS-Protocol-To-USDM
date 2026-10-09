@@ -1,0 +1,1088 @@
+{
+  "agent_id": "scheduling_agent",
+  "timestamp": "2026-10-08T18:27:02.429922",
+  "confidence": 1.0,
+  "entity_count": 39,
+  "entities": [
+    {
+      "id": "timing_1",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_1",
+        "name": "Screening Window",
+        "type": {
+          "id": "6d7a91f0-1872-4b67-93b1-479ec2a9d283",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P42D",
+        "valueLabel": "Day 42",
+        "relativeToFrom": {
+          "id": "49c5bf50-72c7-43cf-86d3-36481ff8fa74",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c4ef5e1e-c9dd-4dbc-9723-f440b1884dcf",
+        "instanceType": "Timing",
+        "windowLower": "-P42D",
+        "windowUpper": "-P1D",
+        "visitName": "Visit 1 (Screening)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_2",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_2",
+        "name": "Baseline/Randomization Visit (Week 0)",
+        "type": {
+          "id": "e5d3f8b2-436f-4b2c-b982-5701392213b6",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Day 0",
+        "relativeToFrom": {
+          "id": "feacebc1-234c-4179-9ca7-e4ecadd50f34",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "00928d9f-092c-48b2-9dc5-fbd89b06a325",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Visit 2 (Week 0)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_3",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_3",
+        "name": "Week 2 Visit Window",
+        "type": {
+          "id": "805cc2e5-02f8-435b-a115-da6a272e0142",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P14D",
+        "valueLabel": "Day 14",
+        "relativeToFrom": {
+          "id": "8b61224d-6b59-43e5-9d48-df503d64a412",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "f56c1f2d-554d-4555-8c7b-8cf2685e7416",
+        "instanceType": "Timing",
+        "windowLower": "-P3D",
+        "windowUpper": "P3D",
+        "visitName": "Visit 3 (Week 2)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_4",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_4",
+        "name": "Week 4 Visit Window",
+        "type": {
+          "id": "ea363b2d-42ad-4be2-8b96-a9d30c5445b1",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P28D",
+        "valueLabel": "Day 28",
+        "relativeToFrom": {
+          "id": "3f50db99-e682-4089-9895-0c8eada41029",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "42b82346-9616-4329-8006-ad43aa2b5672",
+        "instanceType": "Timing",
+        "windowLower": "-P3D",
+        "windowUpper": "P3D",
+        "visitName": "Visit 4 (Week 4)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_5",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_5",
+        "name": "Week 8 Visit Window",
+        "type": {
+          "id": "d0d41c0e-66d8-4079-a525-a7c0a2835574",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P56D",
+        "valueLabel": "Day 56",
+        "relativeToFrom": {
+          "id": "0e1b23ab-90fe-46eb-bddd-041c61724db4",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "6a80d8d7-1589-49c1-94b1-68e367b6d385",
+        "instanceType": "Timing",
+        "windowLower": "-P3D",
+        "windowUpper": "P3D",
+        "visitName": "Visit 5 (Week 8)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_6",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_6",
+        "name": "Week 12 Visit Window (Primary Endpoint, End of Study Period 1)",
+        "type": {
+          "id": "5650a781-f97b-49bc-8956-1dba44b7a985",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P84D",
+        "valueLabel": "Day 84",
+        "relativeToFrom": {
+          "id": "6bbecf1f-b43f-47e4-ba51-6c7f29aaf12c",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "e09b7e1b-56aa-4cfd-a510-2780db8ff90e",
+        "instanceType": "Timing",
+        "windowLower": "-P7D",
+        "windowUpper": "P7D",
+        "visitName": "Visit 6 (Week 12)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_7",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_7",
+        "name": "Screening Endoscopy with Biopsy Timing",
+        "type": {
+          "id": "3cd49b9c-b491-4341-8abc-100e26623a74",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P21D",
+        "valueLabel": "Day 21",
+        "relativeToFrom": {
+          "id": "7dc951cc-af75-4a7f-95ab-55b0ffdd49ca",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "6ba29831-7548-465e-b666-60bbab39ebf8",
+        "instanceType": "Timing",
+        "windowLower": "-P21D",
+        "windowUpper": "-P1D",
+        "visitName": "Visit 1 (Screening)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_8",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_8",
+        "name": "Week 12 Endoscopy Scheduling within Visit Window",
+        "type": {
+          "id": "f7510580-1889-45b8-870d-cdccbd2953c1",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P84D",
+        "valueLabel": "Day 84",
+        "relativeToFrom": {
+          "id": "93751bfc-5bda-4f6f-aaae-156c84a7e1dc",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "f7e6094a-95d3-4e5e-a821-17b842253191",
+        "instanceType": "Timing",
+        "windowLower": "-P7D",
+        "windowUpper": "P7D",
+        "visitName": "Visit 6 (Week 12)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_9",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_9",
+        "name": "Baseline DXA Scan Window",
+        "type": {
+          "id": "a0409734-38d6-491a-b9b2-f9cb630d201f",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Day 0",
+        "relativeToFrom": {
+          "id": "9889a5f8-51e0-4e6e-a49a-5ed2902ef995",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "5bee68af-00e0-4090-ac43-0187b6a7386f",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P7D",
+        "visitName": "Visit 2 (Week 0)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_10",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_10",
+        "name": "Week 12 DXA Scan Window",
+        "type": {
+          "id": "6eaa2cf7-2d11-472f-b4b6-c2491999f0a8",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P84D",
+        "valueLabel": "Day 84",
+        "relativeToFrom": {
+          "id": "4a1cd840-7959-43e4-9015-f218960187f5",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "70e69cab-a873-4fc9-82c1-f4b8507f9e05",
+        "instanceType": "Timing",
+        "windowLower": "-P7D",
+        "windowUpper": "P7D",
+        "visitName": "Visit 6 (Week 12)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_11",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_11",
+        "name": "Calcium Supplement Avoidance Before DXA Scan",
+        "type": {
+          "id": "e29aa6b3-ec1b-4763-bd38-4e49b68778f1",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT24H",
+        "valueLabel": "24 hours",
+        "relativeToFrom": {
+          "id": "726de5cd-9ae7-40f0-b708-4fb724ae312c",
+          "code": "C71153",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Study Start",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c9c44dcf-d555-4122-9f24-b86f9d4cbe87",
+        "instanceType": "Timing",
+        "windowLower": "-PT24H",
+        "windowUpper": "PT0H",
+        "visitName": "Visit 6 (Week 12)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_12",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_12",
+        "name": "Genetics Sample Collection Timing",
+        "type": {
+          "id": "e3117007-35f3-4a94-9da1-3f54e22da288",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Day 0",
+        "relativeToFrom": {
+          "id": "43df760b-b31c-4ff0-88ac-b952c96b962c",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "faedf54c-dcf2-4505-b993-dea316eb324f",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Visit 2 (Week 0)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "timing_13",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_13",
+        "name": "Stool Supernatant Exploratory Biomarker Collection (if not previously collected)",
+        "type": {
+          "id": "cc48c41b-844f-4db9-9b9f-fc529b083b05",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Day 0",
+        "relativeToFrom": {
+          "id": "f50acc14-7024-48e4-bb39-0ebdc613b788",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "f1d1ecf7-615c-44b0-bbde-4f7c9557c4de",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Visit 2 (Week 0)",
+        "relativeToVisitName": "Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "cond_1",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_1",
+        "name": "Week 12 Response Status Confirmation",
+        "instanceType": "Condition",
+        "description": "Endoscopic response status at Week 12 of Study Period 1 must be determined and available before the participant starts Study Period 2",
+        "text": "At Week 12 of Study Period 1, the endoscopy should be scheduled sufficiently early within the visit window to ensure the results are available to confirm the participant's response status before starting Study Period 2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "cond_2",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_2",
+        "name": "Adequate Endoscopy Preparation",
+        "instanceType": "Condition",
+        "description": "A second endoscopy may be performed when the initial procedure is not evaluable",
+        "text": "Second endoscopy is allowed if inadequate preparation or equipment issues."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "cond_3",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_3",
+        "name": "ISA Assignment Condition",
+        "instanceType": "Condition",
+        "description": "Assignment to an intervention-specific appendix when multiple ISAs are open",
+        "text": "If a participant is eligible for more than 1 open ISA, they will be randomly assigned to an ISA (randomization or assignment to ISA via IWRS at Visit 2)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "cond_4",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_4",
+        "name": "Treatment Compliance Threshold",
+        "instanceType": "Condition",
+        "description": "Definition of acceptable study intervention compliance per visit interval",
+        "text": "Treatment compliance for each visit interval is defined as taking at least 75% of the required doses of study interventions."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "cond_5",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_5",
+        "name": "Fasting Visit Requirement",
+        "instanceType": "Condition",
+        "description": "Fasting required at designated visits (Screening and Week 12) per Section 8.2.5 fasting instructions",
+        "text": "Fasting visit: X at Visit 1 (Screening) and Visit 6 (Week 12). See fasting instructions in Section 8.2.5."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "cond_6",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_6",
+        "name": "BMD Safety Alert Threshold",
+        "instanceType": "Condition",
+        "description": "DXA-based bone mineral density threshold triggering site notification",
+        "text": "Sites will be informed if participants have a T-score of less than -2.5, or a Z-score of less than -2.0."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "cond_7",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_7",
+        "name": "Suspected Nontraumatic Fracture",
+        "instanceType": "Condition",
+        "description": "Clinical signs/symptoms prompting evaluation and interruption of LY4395089",
+        "text": "New unexplained localized bone pain, swelling, tenderness, reduced mobility, pain during normal daily activities, visible deformity, or signs of vertebral compression such as sudden back pain or height loss."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "cond_8",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_8",
+        "name": "DXA Instrument Consistency",
+        "instanceType": "Condition",
+        "description": "Both baseline and Week 12 DXA assessments should use the same instrument and software version",
+        "text": "Whenever feasible, both timepoint assessments for an individual subject will be performed on the same instrument using the same software version to ensure consistency."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "cond_9",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_9",
+        "name": "Genetics Sample Regulatory Condition",
+        "instanceType": "Condition",
+        "description": "Genetics sample collected only where permitted",
+        "text": "Sample can be obtained at or after the specified visit. If country regulations allow."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "trans_1",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_1",
+        "name": "Screening to Study Period 1 Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_screening",
+        "toElementId": "epoch_study_period_1",
+        "text": "After completion of screening assessments within 42 days (including endoscopy with biopsy within 21 days before randomization), eligible participants are assigned to an ISA and randomized to study intervention via IWRS at Visit 2 (Week 0)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "trans_2",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_2",
+        "name": "Study Period 1 to Study Period 2 Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_study_period_1",
+        "toElementId": "epoch_study_period_2",
+        "text": "Week 12 endoscopy results must be available to confirm the participant's response status before starting Study Period 2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "trans_3",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_3",
+        "name": "Permanent Discontinuation of LY4395089 for Nontraumatic Fracture",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "A participant treated with LY4395089/mirikizumab co-administration in this ISA must be permanently discontinued from LY4395089 for occurrence of nontraumatic bone fracture confirmed by imaging and clinical evaluation."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "trans_4",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_4",
+        "name": "Temporary Discontinuation (Interruption) of LY4395089 for Suspected Fracture",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "LY4395089 must be interrupted if a nontraumatic fracture is suspected (for example, new unexplained localized bone pain, swelling, tenderness, reduced mobility, pain during normal daily activities, visible deformity, or signs of vertebral compression such as sudden back pain or height loss) to ensure appropriate evaluation and management."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "trans_5",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_5",
+        "name": "Hepatic Criteria for Study Drug Interruption or Discontinuation",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Hepatic criteria for study drug interruption or discontinuation: see the IIBD master protocol."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "trans_6",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_6",
+        "name": "No Dose Modification Permitted",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "Dose modifications are not permitted in this study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "trans_7",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_7",
+        "name": "QTc Stopping Criteria Not Applicable",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "QTc stopping criteria: Not applicable for this ISA."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "trans_8",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_8",
+        "name": "Rescue Medicine",
+        "instanceType": "TransitionRule",
+        "transitionType": "Rescue Therapy",
+        "text": "Rescue medicine rules: see the IIBD master protocol (Section 6.9.4)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "exit_1",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_1",
+        "name": "Participant Discontinuation/Withdrawal from Study",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Participant discontinuation/withdrawal from the study is handled per the IIBD master protocol (Section 7.2); participants may withdraw at any time."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "exit_2",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_2",
+        "name": "Lost to Follow-Up",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Participants who cannot be contacted are handled as lost to follow-up per the IIBD master protocol (Section 7.3)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "exit_3",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_3",
+        "name": "Permanent Discontinuation of Study Intervention",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Permanent discontinuation of LY4395089 for confirmed nontraumatic bone fracture, or other reasons per the IIBD master protocol."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "exit_4",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_4",
+        "name": "Study Completion",
+        "exitType": "Completion",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Completion of all protocol-required visits and assessments through the end of the study; LY4395089 and mirikizumab will not be provided to participants after completion of the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "dec_1",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_1",
+        "name": "Week 12 Response Status Decision (Entry into Study Period 2)",
+        "timepointId": "pt_visit6_week12",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "At Visit 6 (Week 12), endoscopy results determine the participant's response status, which must be confirmed before starting Study Period 2.",
+        "conditionIds": [
+          "cond_1",
+          "cond_2"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "dec_2",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_2",
+        "name": "ISA Assignment and Randomization Decision",
+        "timepointId": "pt_visit2_week0",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "At Visit 2 (Week 0), the participant is assigned to an ISA (randomly, if eligible for more than one open ISA) and randomized to study intervention via IWRS.",
+        "conditionIds": [
+          "cond_3"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "dec_3",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_3",
+        "name": "BMD Safety Review Decision",
+        "timepointId": "pt_visit6_week12",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Central reader analysis of Week 12 DXA scan; sites notified for T-score < -2.5 or Z-score < -2.0.",
+        "conditionIds": [
+          "cond_6",
+          "cond_8"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "dec_4",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_4",
+        "name": "Fracture Evaluation Decision",
+        "timepointId": null,
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Any time a nontraumatic fracture is suspected, LY4395089 is interrupted; if confirmed by imaging and clinical evaluation, LY4395089 is permanently discontinued.",
+        "conditionIds": [
+          "cond_7"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    },
+    {
+      "id": "dec_5",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_5",
+        "name": "Compliance Assessment Decision",
+        "timepointId": null,
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "At each visit indicated in the SoA, compliance is assessed (≥75% of required doses per visit interval); poorly compliant participants receive additional training and instruction.",
+        "conditionIds": [
+          "cond_4"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        14,
+        31,
+        36,
+        38,
+        41
+      ]
+    }
+  ],
+  "scheduling_summary": {
+    "timing_count": 13,
+    "condition_count": 9,
+    "transition_rule_count": 8,
+    "exit_count": 4,
+    "decision_count": 5
+  }
+}
