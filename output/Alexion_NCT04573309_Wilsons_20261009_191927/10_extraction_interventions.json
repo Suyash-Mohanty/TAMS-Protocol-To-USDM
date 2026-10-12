@@ -1,0 +1,777 @@
+{
+  "agent_id": "interventions_agent",
+  "timestamp": "2026-10-09T19:25:11.695318",
+  "confidence": 0.85,
+  "entity_count": 8,
+  "entities": [
+    {
+      "id": "int_1",
+      "entity_type": "study_intervention",
+      "data": {
+        "id": "int_1",
+        "name": "ALXN1840",
+        "type": {
+          "id": "61a94273-ce84-46dc-9718-b6433cc661b3",
+          "code": "C1909",
+          "decode": "DRUG",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2026-03-27",
+          "instanceType": "Code"
+        },
+        "role": {
+          "id": "91d0a28a-7928-4331-9af6-b30211fcde2a",
+          "code": "C41161",
+          "decode": "Experimental Intervention",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2026-03-27",
+          "instanceType": "Code"
+        },
+        "instanceType": "StudyIntervention",
+        "description": "Novel copper binding agent (bis-choline tetrathiomolybdate) in development for the treatment of Wilson disease",
+        "productIds": [
+          "prod_1"
+        ],
+        "administrationIds": [
+          "admin_1",
+          "admin_2",
+          "admin_3",
+          "admin_4"
+        ]
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "citations": {
+        "name": {
+          "page": 17,
+          "quote": "ALXN1840 (bis-choline tetrathiomolybdate; formerly known as WTX101) is a novel copper binding agent in development for the treatment of WD."
+        },
+        "description": {
+          "page": 17,
+          "quote": "ALXN1840 (bis-choline tetrathiomolybdate; formerly known as WTX101) is a novel copper binding agent in development for the treatment of WD."
+        }
+      }
+    },
+    {
+      "id": "prod_1",
+      "entity_type": "administrable_product",
+      "data": {
+        "id": "prod_1",
+        "name": "ALXN1840 tablet",
+        "administrableDoseForm": {
+          "id": "b94dc601-a0a3-494e-96bb-fd963f3d5422",
+          "standardCode": {
+            "id": "7b7964a8-20a6-44a7-aa58-9425633b0658",
+            "code": "C42998",
+            "decode": "TABLET",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2026-03-27",
+            "instanceType": "Code"
+          },
+          "standardCodeAliases": [],
+          "instanceType": "AliasCode"
+        },
+        "productDesignation": {
+          "id": "eb3dfc31-5352-4bf1-95af-690335209bc5",
+          "code": "C202579",
+          "decode": "IMP",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2026-03-27",
+          "instanceType": "Code"
+        },
+        "instanceType": "AdministrableProduct",
+        "strengthValue": 15.0,
+        "strengthUnit": "mg",
+        "substanceIds": [
+          "sub_1"
+        ],
+        "manufacturer": "Alexion"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "citations": {
+        "name": {
+          "page": 35,
+          "quote": "Dose formulation Tablet"
+        },
+        "doseForm": {
+          "page": 35,
+          "quote": "Dose formulation Tablet"
+        },
+        "strengthValue": {
+          "page": 35,
+          "quote": "15 mg ALXN1840 containing 7.8 mg of tetrathiomolybdic acid"
+        },
+        "strengthUnit": {
+          "page": 35,
+          "quote": "15 mg ALXN1840 containing 7.8 mg of tetrathiomolybdic acid"
+        },
+        "manufacturer": {
+          "page": 35,
+          "quote": "Sourcing Provided by Alexion"
+        }
+      }
+    },
+    {
+      "id": "admin_1",
+      "entity_type": "administration",
+      "data": {
+        "id": "admin_1",
+        "name": "ALXN1840 15 mg once daily (Day 1 through Day 28)",
+        "duration": {
+          "id": "ac389013-0bc1-4b39-9e54-9a7b62c6c45a",
+          "text": "Day 1 through Day 28 (approximately 28 days)",
+          "durationWillVary": true,
+          "instanceType": "Duration",
+          "reasonDurationWillVary": "Day 1 through Day 28 (approximately 28 days)"
+        },
+        "instanceType": "Administration",
+        "dose": {
+          "id": "d36cedf7-d898-4481-bc5f-8494d02f68c2",
+          "value": 15.0,
+          "instanceType": "Quantity",
+          "unit": {
+            "id": "884d99bf-45d2-4e06-9ecb-9c0b2c1a40cf",
+            "standardCode": {
+              "id": "b1a3b88d-ffcc-4804-b45b-326a882d21f9",
+              "code": "C28253",
+              "decode": "mg",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "instanceType": "Code"
+            },
+            "standardCodeAliases": [],
+            "instanceType": "AliasCode"
+          }
+        },
+        "route": {
+          "id": "d7c2f9b2-6ee7-41e2-acb9-d1bfad8c7c39",
+          "standardCode": {
+            "id": "40a63d30-2591-4ab9-a56c-dcdde4ef40fd",
+            "code": "C38288",
+            "decode": "ORAL",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2026-03-27",
+            "instanceType": "Code"
+          },
+          "standardCodeAliases": [],
+          "instanceType": "AliasCode"
+        },
+        "administrableProductId": "prod_1",
+        "description": "Frequency: once daily"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "citations": {
+        "name": {
+          "page": 35,
+          "quote": "Repeat doses of 15 mg/day or 30 mg/day (administered as 2 × 15 mg ALXN1840 tablets) for 40 days"
+        },
+        "dose": {
+          "page": 35,
+          "quote": "Repeat doses of 15 mg/day"
+        },
+        "frequency": {
+          "page": 37,
+          "quote": "Participants will be initiated on ALXN1840 at 15 mg once daily and increased to 30 mg once daily on Day 29."
+        },
+        "duration": {
+          "page": 10,
+          "quote": "participants will be administered ALXN1840 at 15 mg/day for a treatment period of approximately 28 days followed by titration up to 30 mg/day on Day 29."
+        }
+      }
+    },
+    {
+      "id": "admin_2",
+      "entity_type": "administration",
+      "data": {
+        "id": "admin_2",
+        "name": "ALXN1840 30 mg once daily (Day 29 through Day 39)",
+        "duration": {
+          "id": "32bac2ee-f043-4398-a36b-33fa0ff98f4f",
+          "text": "Day 29 through Day 39",
+          "durationWillVary": true,
+          "instanceType": "Duration",
+          "reasonDurationWillVary": "Day 29 through Day 39"
+        },
+        "instanceType": "Administration",
+        "dose": {
+          "id": "d59fccd5-9e0c-4f82-9426-2513a4cb62c4",
+          "value": 30.0,
+          "instanceType": "Quantity",
+          "unit": {
+            "id": "278840b9-6dd3-4f7c-9d6b-83bf479e9650",
+            "standardCode": {
+              "id": "c1736aec-95c2-472d-affe-fca18c770dd0",
+              "code": "C28253",
+              "decode": "mg",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "instanceType": "Code"
+            },
+            "standardCodeAliases": [],
+            "instanceType": "AliasCode"
+          }
+        },
+        "route": {
+          "id": "1afff671-4c07-40c1-b8a1-734528df9429",
+          "standardCode": {
+            "id": "07f22454-7c3e-4e35-ac90-ef586c823e05",
+            "code": "C38288",
+            "decode": "ORAL",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2026-03-27",
+            "instanceType": "Code"
+          },
+          "standardCodeAliases": [],
+          "instanceType": "AliasCode"
+        },
+        "description": "Dose: 30 mg (administered as 2 × 15 mg tablets); Frequency: once daily"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "citations": {
+        "name": {
+          "page": 35,
+          "quote": "Repeat doses of 15 mg/day or 30 mg/day (administered as 2 × 15 mg ALXN1840 tablets) for 40 days"
+        },
+        "dose": {
+          "page": 35,
+          "quote": "30 mg/day (administered as 2 × 15 mg ALXN1840 tablets)"
+        },
+        "frequency": {
+          "page": 37,
+          "quote": "Participants will be initiated on ALXN1840 at 15 mg once daily and increased to 30 mg once daily on Day 29."
+        },
+        "duration": {
+          "page": 12,
+          "quote": "Participants will be administered ALXN1840 at a dose of 15 mg/day on Day 1 through Day 28 and then increase to 30 mg/day on Day 29 through Day 39."
+        }
+      }
+    },
+    {
+      "id": "admin_3",
+      "entity_type": "administration",
+      "data": {
+        "id": "admin_3",
+        "name": "ALXN1840 15 mg every other day (dose reduction)",
+        "duration": {
+          "id": "cd1bfb9c-48ee-4ab6-9040-69731d25df84",
+          "text": "Until resolution of abnormality as per dose modification criteria",
+          "durationWillVary": true,
+          "instanceType": "Duration",
+          "reasonDurationWillVary": "Until resolution of abnormality as per dose modification criteria"
+        },
+        "instanceType": "Administration",
+        "dose": {
+          "id": "4f2ae593-2484-4b02-a09b-2aea9bffc299",
+          "value": 15.0,
+          "instanceType": "Quantity",
+          "unit": {
+            "id": "0aaa1db7-943c-460d-8a0e-3cd5532db46c",
+            "standardCode": {
+              "id": "fa734587-9314-47c1-b7df-65b20a2d6725",
+              "code": "C28253",
+              "decode": "mg",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "instanceType": "Code"
+            },
+            "standardCodeAliases": [],
+            "instanceType": "AliasCode"
+          }
+        },
+        "route": {
+          "id": "938f1995-9cea-4124-a5f9-42a42bcb76af",
+          "standardCode": {
+            "id": "61873c4f-08d3-4707-a08e-91801862efda",
+            "code": "C38288",
+            "decode": "ORAL",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2026-03-27",
+            "instanceType": "Code"
+          },
+          "standardCodeAliases": [],
+          "instanceType": "AliasCode"
+        },
+        "frequency": {
+          "id": "df9bd031-5032-4ed8-ac36-0502d6d50642",
+          "standardCode": {
+            "id": "94d0ca66-02ec-4042-aa73-3fb249c037bf",
+            "code": "C64525",
+            "decode": "QOD",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2026-03-27",
+            "instanceType": "Code"
+          },
+          "standardCodeAliases": [],
+          "instanceType": "AliasCode"
+        },
+        "administrableProductId": "prod_1"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "citations": {
+        "name": {
+          "page": 38,
+          "quote": "At 15 mg QOD when ALT < 2 × ↑ from baseline."
+        },
+        "dose": {
+          "page": 38,
+          "quote": "At 15 mg QOD when ALT < 2 × ↑ from baseline."
+        },
+        "frequency": {
+          "page": 38,
+          "quote": "Reduce dose to 15 mg QOD if on 15 mg QD."
+        },
+        "duration": {
+          "page": 38,
+          "quote": "No further dose ↑ until resolution of abnormality."
+        }
+      }
+    },
+    {
+      "id": "admin_4",
+      "entity_type": "administration",
+      "data": {
+        "id": "admin_4",
+        "name": "ALXN1840 administration conditions (fasting)",
+        "duration": {
+          "id": "15412629-7e10-4ff5-8f4c-331f713da713",
+          "text": "Throughout inpatient periods; as outpatient approximately the same time daily (+/-1 hour)",
+          "durationWillVary": true,
+          "instanceType": "Duration",
+          "reasonDurationWillVary": "Throughout inpatient periods; as outpatient approximately the same time daily (+/-1 hour)"
+        },
+        "instanceType": "Administration",
+        "route": {
+          "id": "1056e1a7-b5f4-4f0d-a3f6-9b9ee416b382",
+          "standardCode": {
+            "id": "a9dc8d6c-0687-4281-916e-ec682054181b",
+            "code": "C38288",
+            "decode": "ORAL",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2026-03-27",
+            "instanceType": "Code"
+          },
+          "standardCodeAliases": [],
+          "instanceType": "AliasCode"
+        },
+        "administrableProductId": "prod_1",
+        "description": "Dose: administered with 240 mL of water; Frequency: same time every morning"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "citations": {
+        "name": {
+          "page": 15,
+          "quote": "study intervention will be administered after an overnight fast (ie, at least 10 hours) at the same time every morning; drug is to be administered with 240 mL of water and meals should be delayed a minimum of 2 hours after dosing."
+        },
+        "dose": {
+          "page": 15,
+          "quote": "drug is to be administered with 240 mL of water"
+        },
+        "frequency": {
+          "page": 15,
+          "quote": "at the same time every morning"
+        },
+        "duration": {
+          "page": 15,
+          "quote": "As an outpatient, participants are expected to take ALXN1840 at approximately the same time daily (+/-1 hour)."
+        }
+      }
+    },
+    {
+      "id": "sub_1",
+      "entity_type": "substance",
+      "data": {
+        "id": "sub_1",
+        "name": "bis-choline tetrathiomolybdate",
+        "instanceType": "Substance",
+        "description": "Active pharmaceutical ingredient of ALXN1840; novel copper binding agent"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "citations": {
+        "name": {
+          "page": 17,
+          "quote": "ALXN1840 (bis-choline tetrathiomolybdate; formerly known as WTX101)"
+        },
+        "description": {
+          "page": 17,
+          "quote": "ALXN1840 (bis-choline tetrathiomolybdate; formerly known as WTX101) is a novel copper binding agent in development for the treatment of WD."
+        }
+      }
+    },
+    {
+      "id": "sub_2",
+      "entity_type": "substance",
+      "data": {
+        "id": "sub_2",
+        "name": "tetrathiomolybdic acid",
+        "instanceType": "Substance",
+        "description": "Active moiety contained within each 15 mg ALXN1840 tablet at 7.8 mg"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        19,
+        20,
+        21,
+        22,
+        24,
+        25,
+        26,
+        27,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48
+      ],
+      "citations": {
+        "name": {
+          "page": 35,
+          "quote": "15 mg ALXN1840 containing 7.8 mg of tetrathiomolybdic acid"
+        },
+        "description": {
+          "page": 35,
+          "quote": "15 mg ALXN1840 containing 7.8 mg of tetrathiomolybdic acid"
+        }
+      }
+    }
+  ],
+  "interventions_summary": {
+    "intervention_count": 1,
+    "product_count": 1,
+    "administration_count": 4
+  }
+}

@@ -1,0 +1,801 @@
+{
+  "agent_id": "studydesign_agent",
+  "timestamp": "2026-09-02T12:36:32.880893",
+  "confidence": 0.85,
+  "entity_count": 21,
+  "entities": [
+    {
+      "id": "sd_1",
+      "entity_type": "study_design",
+      "data": {
+        "id": "sd_1",
+        "name": "Study Design",
+        "instanceType": "InterventionalStudyDesign",
+        "trialIntentTypes": [
+          {
+            "code": "Treatment",
+            "codeSystem": "USDM",
+            "decode": "Treatment"
+          }
+        ],
+        "trialType": {
+          "code": "Interventional",
+          "codeSystem": "USDM",
+          "decode": "Interventional"
+        },
+        "blindingSchema": {
+          "code": "",
+          "codeSystem": "USDM",
+          "decode": ""
+        },
+        "randomizationType": {
+          "code": "Randomized",
+          "codeSystem": "USDM",
+          "decode": "Randomized"
+        },
+        "allocationRatio": {
+          "ratio": "Defined per addendum; may vary (e.g., 2:1 or 3:1 experimental to control); cross-addendum randomization possible (e.g., 2:3:1)"
+        },
+        "controlType": {
+          "code": "Placebo Control",
+          "codeSystem": "USDM",
+          "decode": "Placebo Control"
+        },
+        "armIds": [
+          "arm_1",
+          "arm_2"
+        ],
+        "cohortIds": [
+          "cohort_1",
+          "cohort_2"
+        ],
+        "therapeuticAreas": [
+          "Pediatric Oncology"
+        ]
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "arm_1",
+      "entity_type": "study_arm",
+      "data": {
+        "id": "arm_1",
+        "name": "To be defined per addendum",
+        "type": {
+          "code": "Experimental Arm",
+          "codeSystem": "USDM",
+          "decode": "Experimental Arm"
+        },
+        "instanceType": "StudyArm",
+        "description": "Each addendum defines its own treatment arms, including investigational drug(s) alone or in combination with other treatments. Specific arm details, doses, and durations are provided in each protocol addendum."
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "arm_2",
+      "entity_type": "study_arm",
+      "data": {
+        "id": "arm_2",
+        "name": "Control Arm (shared or addendum-specific)",
+        "type": {
+          "code": "Placebo Comparator Arm",
+          "codeSystem": "USDM",
+          "decode": "Placebo Comparator Arm"
+        },
+        "instanceType": "StudyArm",
+        "description": "A common control arm may be shared across addenda of common scientific interest to minimize the number of patients exposed to potentially less effective therapies. Specific control arm details are defined in each addendum."
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cohort_1",
+      "entity_type": "study_cohort",
+      "data": {
+        "id": "cohort_1",
+        "name": "Pediatric patients",
+        "instanceType": "StudyCohort",
+        "characteristic": "Patients under 16 years of age with cancer; specific age range and tumor type defined per addendum"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cohort_2",
+      "entity_type": "study_cohort",
+      "data": {
+        "id": "cohort_2",
+        "name": "Young adult patients",
+        "instanceType": "StudyCohort",
+        "characteristic": "Patients 16 years of age and older (up to addendum-specified upper age limit) with cancer; specific tumor type defined per addendum"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_1",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_1",
+        "armId": "arm_1",
+        "epochId": "epoch_1",
+        "elementIds": [
+          "elem_1"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_2",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_2",
+        "armId": "arm_1",
+        "epochId": "epoch_2",
+        "elementIds": [
+          "elem_2"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_3",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_3",
+        "armId": "arm_1",
+        "epochId": "epoch_3",
+        "elementIds": [
+          "elem_3"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_4",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_4",
+        "armId": "arm_1",
+        "epochId": "epoch_4",
+        "elementIds": [
+          "elem_4"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_5",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_5",
+        "armId": "arm_2",
+        "epochId": "epoch_1",
+        "elementIds": [
+          "elem_5"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_6",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_6",
+        "armId": "arm_2",
+        "epochId": "epoch_2",
+        "elementIds": [
+          "elem_6"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_7",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_7",
+        "armId": "arm_2",
+        "epochId": "epoch_3",
+        "elementIds": [
+          "elem_7"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_8",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_8",
+        "armId": "arm_2",
+        "epochId": "epoch_4",
+        "elementIds": [
+          "elem_8"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_1",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_1",
+        "name": "To be defined per addendum - Screening",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for To be defined per addendum during Screening"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_2",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_2",
+        "name": "To be defined per addendum - Treatment",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for To be defined per addendum during Treatment"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_3",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_3",
+        "name": "To be defined per addendum - Continued Access",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for To be defined per addendum during Continued Access"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_4",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_4",
+        "name": "To be defined per addendum - Follow-up",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for To be defined per addendum during Follow-up"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_5",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_5",
+        "name": "Control Arm (shared or addendum-specific) - Screening",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Control Arm (shared or addendum-specific) during Screening"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_6",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_6",
+        "name": "Control Arm (shared or addendum-specific) - Treatment",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Control Arm (shared or addendum-specific) during Treatment"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_7",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_7",
+        "name": "Control Arm (shared or addendum-specific) - Continued Access",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Control Arm (shared or addendum-specific) during Continued Access"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_8",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_8",
+        "name": "Control Arm (shared or addendum-specific) - Follow-up",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Control Arm (shared or addendum-specific) during Follow-up"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        1,
+        2,
+        3,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        27,
+        28,
+        29
+      ]
+    }
+  ],
+  "design_summary": {
+    "arm_count": 2,
+    "cohort_count": 2,
+    "cell_count": 8
+  }
+}

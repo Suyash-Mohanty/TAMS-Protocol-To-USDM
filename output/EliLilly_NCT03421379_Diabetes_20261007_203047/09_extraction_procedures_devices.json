@@ -1,0 +1,1967 @@
+{
+  "agent_id": "procedures_agent",
+  "timestamp": "2026-10-07T20:33:01.080616",
+  "confidence": 1.0,
+  "entity_count": 56,
+  "entities": [
+    {
+      "id": "proc_1",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_1",
+        "name": "Venipuncture",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "4ddca7e4-68fa-4d22-8f40-7df89d0d22da",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Blood Draw",
+        "description": "Collection of venous blood samples for PK (glucagon), PD (plasma glucose), laboratory tests, and immunogenicity assessments"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_2",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_2",
+        "name": "Insulin Intravenous Infusion for Hypoglycemia Induction",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "2b6f131d-3f3e-43b4-8049-872be8e072cb",
+          "code": "96365",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Intravenous infusion, for therapy, prophylaxis, or diagnosis",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "IV Insulin Infusion",
+        "description": "Intravenous infusion of insulin to induce hypoglycemia; infusion stopped once bedside plasma glucose reaches <60 mg/dL"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_3",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_3",
+        "name": "Nasal LY900018 Administration",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "a0897e5d-5816-4be5-b5f2-1625a1b293c5",
+          "code": "99190",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Assembly and operation of pump with oxygenator or heat exchanger (with or without ECG and/or pressure monitoring)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Intranasal Glucagon Administration",
+        "description": "Administration of 3 mg LY900018 glucagon powder via single-use nasal dosing device for absorption through the nasal mucosa"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_4",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_4",
+        "name": "Intramuscular Glucagon Administration",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "a240d45d-0f69-4661-8dfb-037f3786f00b",
+          "code": "96372",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Therapeutic, prophylactic, or diagnostic injection; subcutaneous or intramuscular",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "IM Glucagon Injection",
+        "description": "Intramuscular injection of 1 mg GlucaGen (IMG) following reconstitution, administered as comparator treatment"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_5",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_5",
+        "name": "Bedside Plasma Glucose Monitoring",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "301c76b8-77d0-4af7-aa8e-d9d5f3f7d3f9",
+          "code": "82962",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Glucose, blood by glucose monitoring device(s) cleared by the FDA specifically for home use",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Bedside PG Monitoring",
+        "description": "Frequent bedside plasma glucose monitoring during hypoglycemia induction and post-treatment (up to 120 minutes); no more than 10 minutes apart when PG ≥90 mg/dL and no more than 5 minutes apart when PG <90 mg/dL"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_6",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_6",
+        "name": "Vital Signs Measurement",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "b0c52ea3-073e-42db-9f35-08249f6bfa68",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Vital Signs",
+        "description": "Measurement of supine blood pressure, pulse rate, and body temperature at multiple time points including pre-hypoglycemia induction, predose, 15, 30, 60, 120, and 240 minutes post-dose"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_7",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_7",
+        "name": "Single 12-Lead Electrocardiogram (Local)",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "5f3dfd49-ea7b-4c8d-88b1-5a9e11ed6e48",
+          "code": "93000",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Electrocardiogram, routine ECG with at least 12 leads; with interpretation and report",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Single 12-Lead ECG",
+        "description": "Single 12-lead ECG performed at screening and follow-up visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_8",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_8",
+        "name": "Triplicate 12-Lead Electrocardiogram (Central)",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "43761191-9c94-457f-abb3-d8bf1cc561e3",
+          "code": "93000",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Electrocardiogram, routine ECG with at least 12 leads; with interpretation and report",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Triplicate 12-Lead ECG",
+        "description": "Triplicate 12-lead ECG performed centrally at pre-hypoglycemia induction (30 and 15 min prior to insulin infusion), predose, 15, 30, 60, 120, and 240 minutes post-dose in each treatment period"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_9",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_9",
+        "name": "Clinical Laboratory Tests - Hematology",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "6825502e-059a-4540-b6be-3f969572eb44",
+          "code": "85025",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Blood count; complete (CBC), automated (Hgb, Hct, RBC, WBC and platelet count) and automated differential WBC count",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Hematology",
+        "description": "Hematology laboratory tests performed at screening, pre-hypoglycemia induction in each period, and follow-up"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_10",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_10",
+        "name": "Clinical Laboratory Tests - Clinical Chemistry",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "bae23bfd-cc80-4d9f-b74b-f0595a1200d5",
+          "code": "80053",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Comprehensive metabolic panel",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Clinical Chemistry",
+        "description": "Clinical chemistry laboratory tests performed at screening, pre-hypoglycemia induction in each period, and follow-up"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_11",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_11",
+        "name": "Urinalysis",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "2490a467-3216-44d4-9da2-d928be24ca0a",
+          "code": "81001",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Urinalysis, by dip stick or tablet reagent for bilirubin, glucose, hemoglobin, ketones, leukocytes, nitrite, pH, protein, specific gravity, and urobilinogen; automated, with microscopy",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Urinalysis",
+        "description": "Urine sample collection and analysis performed at screening, pre-hypoglycemia induction in each period, and follow-up"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_12",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_12",
+        "name": "HbA1c Testing",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "95d00b82-ac45-41fa-8710-c225c44063f1",
+          "code": "83036",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Hemoglobin; glycosylated (A1c)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Hemoglobin A1c",
+        "description": "HbA1c blood test performed at screening and pre-hypoglycemia induction in Period 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_13",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_13",
+        "name": "Serum Pregnancy Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "a3e6f704-fe36-4bbd-8ca8-6d0f6b08edbe",
+          "code": "84702",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Gonadotropin, chorionic (hCG); quantitative",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Serum Pregnancy Test",
+        "description": "Serum pregnancy test performed at screening for female patients of childbearing potential"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_14",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_14",
+        "name": "Urine Pregnancy Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "18ef3667-c873-469f-862d-b76f1cd78c9b",
+          "code": "81025",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Urine pregnancy test, by visual color comparison methods",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Urine Pregnancy Test",
+        "description": "Urine pregnancy test performed at every admission period and follow-up visit for female patients of childbearing potential"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_15",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_15",
+        "name": "FSH Testing",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "04dc5b26-0591-4b9f-ac81-3de46469c87d",
+          "code": "83001",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Follicle stimulating hormone (FSH)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Follicle-Stimulating Hormone Test",
+        "description": "FSH blood test performed for female patients when needed to confirm postmenopausal status"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_16",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_16",
+        "name": "Ethanol Testing",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "18c60a88-a541-43dd-a893-ecd9c23b1ea1",
+          "code": "82055",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Alcohol (ethanol); any specimen except breath",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Ethanol Test",
+        "description": "Ethanol testing performed at screening; additional tests at investigator discretion"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_17",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_17",
+        "name": "Urine Drug Screen",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "a4b5cbce-232c-4154-9210-c79719d0fb44",
+          "code": "80305",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Drug test(s), presumptive; any number of drug classes, any number of devices or procedures",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Urine Drug Screen",
+        "description": "Urine drug screen performed at screening; additional tests at investigator discretion"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_18",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_18",
+        "name": "PK Blood Sampling for Glucagon",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "31bd5575-7630-4801-b22d-2a232cd58f09",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Glucagon PK Sampling",
+        "description": "Serial blood sampling for glucagon pharmacokinetic analysis at pre-hypoglycemia induction, predose, 5, 10, 15, 20, 25, 30, 40, 50, 60, 90, 120, and 240 minutes relative to study treatment administration"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_19",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_19",
+        "name": "Plasma Glucose Sampling for PD",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "db068ce4-3999-4675-bfc8-88b4135b312d",
+          "code": "82947",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Glucose; quantitative, blood (except reagent strip)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Plasma Glucose PD Sampling",
+        "description": "Serial blood sampling for plasma glucose pharmacodynamic analysis at pre-hypoglycemia induction, -5, predose, 5, 10, 15, 20, 25, 30, 40, 50, 60, 90, 120, and 240 minutes relative to study treatment administration"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_20",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_20",
+        "name": "Genetic Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "fcf2d9a2-6428-4232-af86-7b9c54bba40a",
+          "code": "86849",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Unlisted immunology procedure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Pharmacogenetic Sample",
+        "description": "Single blood sample collected for pharmacogenetic analysis prior to or on Period 1 Day -1; sample stored"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_21",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_21",
+        "name": "Immunogenicity Blood Sampling",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "1f1e6c37-822b-4724-87ad-733d3eedb5ea",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Anti-Drug Antibody Sampling",
+        "description": "Blood samples collected for anti-glucagon antibody (immunogenicity) assessment; collected every 12 weeks (84±7 days) for treatment-emergent ADA follow-up until titer returns to baseline or up to 1 year after last dose"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_22",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_22",
+        "name": "Clinical Serology Tests",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "4a8c47c3-c2a5-4774-adbf-3c15e61f6b33",
+          "code": "86592",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Syphilis test, qualitative (eg, VDRL, RPR, ART)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Serology",
+        "description": "Clinical serology tests performed at screening"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_23",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_23",
+        "name": "Physical Examination",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "d8884fc3-9d72-4ff8-8cd7-20c2bc36394a",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit for the evaluation and management of an established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Physical Exam",
+        "description": "Physical examination performed at screening to assess eligibility; nature of conditions and preexisting conditions documented"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_24",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_24",
+        "name": "Height and Weight Measurement",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "56c0aeab-d4b0-493f-a6c7-4b9b00eb6136",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Evaluation and management, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Anthropometric Measurements",
+        "description": "Height measured at screening only; weight collected on Day 1 before the start of the procedure to induce hypoglycemia"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_25",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_25",
+        "name": "Injection-Site Assessment",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "acc3d51b-164d-46bb-817c-4c0d3d7fe1c6",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Evaluation and management, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Injection-Site Assessment",
+        "description": "Assessment of injection site for IMG only, performed pre-hypoglycemia induction and at 90 minutes post-dose in each treatment period"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_26",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_26",
+        "name": "Nasal Inspection",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "1503dcfd-9d4f-4fab-9843-b1960f7884a1",
+          "code": "92511",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Nasopharyngoscopy with endoscope",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Nasal Inspection",
+        "description": "Nasal inspection performed for both IMG and LY900018 treatment arms, pre-hypoglycemia induction and at 90 minutes post-dose in each treatment period"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_27",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_27",
+        "name": "Edinburgh Hypoglycemia Scale Assessment",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "16cfab03-aae1-4eed-a5ae-69674f64ac13",
+          "code": "96127",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Brief emotional/behavioral assessment",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Edinburgh Hypoglycemia Scale",
+        "description": "Hypoglycemia symptom questionnaire administered pre-hypoglycemia induction, during hypoglycemia induction (when PG ≤75 mg/dL), predose, 15, 30, 60, and 120 minutes post-dose"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_28",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_28",
+        "name": "Intravenous Glucose Administration",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "e268c990-b7a0-45e0-89b4-00e50e9a8f19",
+          "code": "96374",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Therapeutic, prophylactic, or diagnostic injection; intravenous push, single or initial substance/drug",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "IV Glucose Supplementation",
+        "description": "IV glucose administered if patient experiences signs and symptoms of severe hypoglycemia requiring intervention during the experimental procedure, at investigator discretion"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "proc_29",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_29",
+        "name": "Prandial Insulin Administration",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "a19ea197-75cf-458b-923a-4611a8a760ab",
+          "code": "96372",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Therapeutic, prophylactic, or diagnostic injection; subcutaneous or intramuscular",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Prandial Insulin Dose",
+        "description": "Prandial insulin dose administered if needed after carbohydrate-rich meal to ensure stable plasma glucose prior to discharge"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "dev_1",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_1",
+        "name": "Single-Use Nasal Dosing Device",
+        "instanceType": "MedicalDevice",
+        "label": "Nasal Glucagon Device",
+        "description": "User-friendly, single-use, nasal dosing device that delivers 3 mg glucagon powder for absorption through the nasal mucosa; does not require patient inhalation",
+        "deviceType": {
+          "code": "Drug Delivery Device",
+          "codeSystem": "USDM",
+          "decode": "Drug Delivery Device"
+        },
+        "manufacturer": "Eli Lilly",
+        "modelNumber": "LY900018"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "dev_2",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_2",
+        "name": "Intravenous Infusion System",
+        "instanceType": "MedicalDevice",
+        "label": "IV Infusion Setup",
+        "description": "Intravenous infusion system used to administer insulin for hypoglycemia induction and IV glucose for rescue if needed",
+        "deviceType": {
+          "code": "Drug Delivery Device",
+          "codeSystem": "USDM",
+          "decode": "Drug Delivery Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "dev_3",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_3",
+        "name": "Bedside Glucose Monitor",
+        "instanceType": "MedicalDevice",
+        "label": "Bedside PG Monitor",
+        "description": "Point-of-care glucose monitoring device used for bedside plasma glucose safety monitoring during hypoglycemia induction and post-treatment up to 120 minutes",
+        "deviceType": {
+          "code": "Monitoring Device",
+          "codeSystem": "USDM",
+          "decode": "Monitoring Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "dev_4",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_4",
+        "name": "12-Lead Electrocardiogram Device (Local)",
+        "instanceType": "MedicalDevice",
+        "label": "Local ECG Machine",
+        "description": "Standard 12-lead ECG device used for local ECG recordings at screening and follow-up",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "dev_5",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_5",
+        "name": "12-Lead Electrocardiogram Device (Central)",
+        "instanceType": "MedicalDevice",
+        "label": "Central ECG Machine",
+        "description": "12-lead ECG device used for centrally read triplicate ECG recordings at multiple time points during each treatment period",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "dev_6",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_6",
+        "name": "Continuous Subcutaneous Insulin Infusion Pump",
+        "instanceType": "MedicalDevice",
+        "label": "CSII Pump / Insulin Pump",
+        "description": "Insulin pump used by eligible T1DM and T2DM patients on continuous subcutaneous insulin infusion therapy as part of their pre-existing diabetes management",
+        "deviceType": {
+          "code": "Drug Delivery Device",
+          "codeSystem": "USDM",
+          "decode": "Drug Delivery Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "dev_7",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_7",
+        "name": "Sphygmomanometer / Blood Pressure Monitor",
+        "instanceType": "MedicalDevice",
+        "label": "BP Monitor",
+        "description": "Device used to measure supine blood pressure as part of vital signs assessments at multiple time points",
+        "deviceType": {
+          "code": "Monitoring Device",
+          "codeSystem": "USDM",
+          "decode": "Monitoring Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_1",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_1",
+        "name": "Glucagon (synthetic human)",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_2",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_2",
+        "name": "Insulin (intravenous, for hypoglycemia induction)",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_2"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_3",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_3",
+        "name": "Insulin glargine",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_3"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_4",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_4",
+        "name": "Insulin degludec",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_4"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_5",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_5",
+        "name": "Insulin lispro",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_5"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_6",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_6",
+        "name": "Insulin aspart",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_6"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_7",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_7",
+        "name": "Insulin glulisine",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_7"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_8",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_8",
+        "name": "Metformin",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_8"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_9",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_9",
+        "name": "Dipeptidyl peptidase-4 inhibitor",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_9"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_10",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_10",
+        "name": "Sodium glucose cotransporter 2 inhibitor",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_10"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_11",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_11",
+        "name": "Sulfonylurea",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_11"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_12",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_12",
+        "name": "Glinides",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_12"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_13",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_13",
+        "name": "Alpha-glucosidase inhibitor",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_13"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "ing_14",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_14",
+        "name": "Thiazolidine",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_14"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "str_1",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_1",
+        "instanceType": "Strength",
+        "value": 3,
+        "unit": "mg",
+        "numerator": {
+          "value": 3,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "dose"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "str_2",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_2",
+        "instanceType": "Strength",
+        "value": 1,
+        "unit": "mg",
+        "numerator": {
+          "value": 1,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "dose"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "str_3",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_3",
+        "instanceType": "Strength",
+        "value": 100,
+        "unit": "U",
+        "numerator": {
+          "value": 100,
+          "unit": "U"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "mL"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "str_4",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_4",
+        "instanceType": "Strength",
+        "value": 300,
+        "unit": "U",
+        "numerator": {
+          "value": 300,
+          "unit": "U"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "mL"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "bior_1",
+      "entity_type": "biospecimen_retention",
+      "data": {
+        "id": "bior_1",
+        "name": "Pharmacogenetic Sample Retention",
+        "isRetained": true,
+        "instanceType": "BiospecimenRetention",
+        "description": "A single blood sample for pharmacogenetic analysis is collected prior to or on Period 1 Day -1 and stored. The protocol indicates this sample is stored for pharmacogenetic analysis.",
+        "includesDNA": true
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    },
+    {
+      "id": "bior_2",
+      "entity_type": "biospecimen_retention",
+      "data": {
+        "id": "bior_2",
+        "name": "Treatment-Emergent Anti-Drug Antibody Follow-up Samples",
+        "isRetained": true,
+        "instanceType": "BiospecimenRetention",
+        "description": "Immunogenicity samples are collected every 12 weeks (84±7 days) for patients with treatment-emergent anti-drug antibodies until the titer returns to baseline or up to 1 year after the last dose of study treatment.",
+        "includesDNA": false
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        8,
+        12,
+        13,
+        14,
+        15,
+        16,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25
+      ]
+    }
+  ],
+  "procedures_summary": {
+    "procedure_count": 29,
+    "device_count": 7,
+    "ingredient_count": 14,
+    "strength_count": 4,
+    "biospecimen_retention_count": 2
+  }
+}

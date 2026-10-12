@@ -1,0 +1,447 @@
+{
+  "agent_id": "soa_vision_agent",
+  "timestamp": "2026-10-08T15:55:26.520825",
+  "confidence": 0.8,
+  "entity_count": 9,
+  "entities": [
+    {
+      "id": "soa_header_structure",
+      "entity_type": "header_structure",
+      "data": {
+        "source": "vision",
+        "page_numbers": [
+          9,
+          10,
+          11,
+          42,
+          43,
+          44,
+          53,
+          54,
+          55,
+          56
+        ],
+        "image_count": 10,
+        "structure": {
+          "columnHierarchy": {
+            "epochs": [
+              {
+                "id": "epoch_1",
+                "name": "Study Period I, Screening",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "f9e94282-e8fb-4b19-9fa4-c0ebdf9b18c7",
+                  "code": "C98779",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Screening Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_2",
+                "name": "Study Period II, Induction and Dose Escalation",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "564c34f5-5900-47c5-b837-696e1e35376e",
+                  "code": "C98780",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Treatment Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_3",
+                "name": "Study Period III, Maintenance Treatment",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "4ac425a9-446e-4037-8342-fe2b4d04b4b7",
+                  "code": "C98780",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Treatment Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_4",
+                "name": "Safety Follow-up",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "77fa4b76-284b-412d-871a-bfeded7cf811",
+                  "code": "C98781",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up Epoch",
+                  "instanceType": "Code"
+                }
+              }
+            ],
+            "encounters": [
+              {
+                "id": "enc_1",
+                "name": "Screening (Visit 1)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "840d638d-5ab2-491e-942c-a021a34f6f7f",
+                  "code": "C48262",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Screening",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_1"
+              },
+              {
+                "id": "enc_2",
+                "name": "Induction and Dose Escalation (Baseline/Visit 2 through Week 24)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "48200ee2-34ed-4cbe-8a9d-c2a7d63cba51",
+                  "code": "C82517",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Baseline",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_2"
+              },
+              {
+                "id": "enc_3",
+                "name": "Maintenance Treatment (Week 24 through Week 52)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "540025f8-5ba7-4c9d-8413-de742d3b64a2",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_3"
+              },
+              {
+                "id": "enc_4",
+                "name": "Safety Follow-up",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "a766e59c-2806-4c2d-930d-262b7391e2b2",
+                  "code": "C99158",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_4"
+              }
+            ],
+            "plannedTimepoints": [
+              {
+                "id": "pt_1",
+                "visit": "Up to 5 weeks (≤35 days) prior to baseline",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_1",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_2",
+                "visit": "Weeks 0 to 24",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_2",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_3",
+                "visit": "Weeks 24 to 52",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_3",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_4",
+                "visit": "4 weeks after the last visit",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_4",
+                "instanceType": "Timing"
+              }
+            ]
+          },
+          "rowGroups": [
+            {
+              "id": "grp_1",
+              "name": "Primary",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "To evaluate if concomitant administration of mirikizumab and tirzepatide at the MTD (up to 15 mg) is superior to mirikizumab and placebo in simultaneously achieving clinical remission and weight reduction"
+              ]
+            },
+            {
+              "id": "grp_2",
+              "name": "Key Secondary",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "To evaluate the effect of treatment with concomitant administration of mirikizumab and tirzepatide at the MTD (up to 15 mg) versus mirikizumab and placebo as measured by gastroenterologic outcomes"
+              ]
+            },
+            {
+              "id": "grp_3",
+              "name": "Additional Secondary",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "To evaluate the effect of treatment with concomitant administration of mirikizumab and tirzepatide at the MTD (up to 15 mg) versus mirikizumab and placebo as measured by gastroenterologic and patient-reported outcomes",
+                "To evaluate the effect of treatment with concomitant administration of mirikizumab and tirzepatide at the MTD (up to 15 mg) versus mirikizumab and placebo as measured by metabolic outcomes",
+                "To describe safety and tolerability of the study interventions"
+              ]
+            },
+            {
+              "id": "grp_4",
+              "name": "Exploratory",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Exploratory objectives and endpoints will also evaluate all the key secondary and additional secondary measures listed above at additional time points as noted in the SoA.",
+                "To evaluate the effect of treatment with concomitant administration of mirikizumab and tirzepatide at the MTD (up to 15 mg) versus mirikizumab and placebo as measured by efficacy and inflammatory biomarkers",
+                "To characterize the PK of mirikizumab and tirzepatide"
+              ]
+            }
+          ],
+          "footnotes": [
+            "a. Assessed via DXA scan.",
+            "Abbreviations: AE = adverse event; CRP = C-reactive protein; BMI = body mass index; EIM = extraintestinal manifestation; HbA1c = hemoglobin A1c; HDL = high-density lipoprotein; IBDQ = Inflammatory Bowel Disease Questionnaire; LDL = low-density lipoprotein; MTD = maximum tolerated dose; NRS = numeric rating scale; PGR-S = Patient's Global Rating of Severity; SAE = serious adverse event; TEAE = treatment-emergent adverse event; TG = triglycerides; UC = ulcerative colitis; WPAI:UC = Work Productivity and Activity Impairment Questionnaire ulcerative colitis.",
+            "Abbreviations: AE = adverse event; CRP = C-reactive protein; BMI = body mass index; DXA = dual-energy absorptiometry; EIM = extraintestinal manifestation; HbA1c = hemoglobin A1c; HDL = high-density lipoprotein; IBDQ = Inflammatory Bowel Disease Questionnaire; LDL = low-density lipoprotein; MTD = maximum tolerated dose; NRS = numeric rating scale; PGR-S = Patient's Global Rating of Severity; PK = pharmacokinetics; SAE = serious adverse event; SoA = schedule of activities; TEAE = treatment-emergent adverse event; TG = triglycerides; UC = ulcerative colitis; WPAI:UC = Work Productivity and Activity Impairment Questionnaire ulcerative colitis."
+          ]
+        }
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "epoch_v_1",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Study Period I, Screening",
+        "source": "vision",
+        "order": 0
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "epoch_v_2",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Study Period II, Induction and Dose Escalation",
+        "source": "vision",
+        "order": 1
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "epoch_v_3",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Study Period III, Maintenance Treatment",
+        "source": "vision",
+        "order": 2
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "epoch_v_4",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Safety Follow-up",
+        "source": "vision",
+        "order": 3
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "encounter_v_1",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Screening (Visit 1)",
+        "epochId": "epoch_1",
+        "source": "vision",
+        "order": 0
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "encounter_v_2",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Induction and Dose Escalation (Baseline/Visit 2 through Week 24)",
+        "epochId": "epoch_2",
+        "source": "vision",
+        "order": 1
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "encounter_v_3",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Maintenance Treatment (Week 24 through Week 52)",
+        "epochId": "epoch_3",
+        "source": "vision",
+        "order": 2
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "encounter_v_4",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Safety Follow-up",
+        "epochId": "epoch_4",
+        "source": "vision",
+        "order": 3
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    }
+  ],
+  "vision_summary": {
+    "soa_pages": [
+      9,
+      10,
+      11,
+      42,
+      43,
+      44,
+      53,
+      54,
+      55,
+      56
+    ],
+    "image_count": 10,
+    "epoch_count": 4,
+    "encounter_count": 4
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "agent_id": "advanced_agent",
+  "timestamp": "2026-09-11T16:33:35.734404",
+  "confidence": 0.85,
+  "entity_count": 4,
+  "entities": [
+    {
+      "id": "amend_1",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_1",
+        "number": "a",
+        "name": "Amendment a",
+        "scope": {
+          "id": "606955d6-55c8-4239-8e0a-86f14416fb1e",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "fbc53b96-8110-4147-a135-3de889299bc5",
+          "code": {
+            "id": "9d5266cb-9ee5-48e8-b279-80f4bb41420b",
+            "code": "C98782",
+            "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+            "codeSystemVersion": "25.01d",
+            "decode": "Protocol Amendment",
+            "instanceType": "Code"
+          },
+          "otherReason": "Protocol Amendment",
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "f15157a1-e6c3-4279-91d7-146e22ca1f67",
+            "type": {
+              "id": "90668299-576a-45ec-bdb7-adba77cd3dee",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The overall rationale for the changes implemented in the amendment is to • add new AESI of \"malnutrition and inadequate fluid intake\" and update the title and text for AESI of \"ketoacidosis due to inadequate nutritional intake and other types of metabolic acidosis and ketosis\" • provide more detailed guidance on recommending, monitoring, and managing nutritional intake and hydration • update criteria for dose modification, and • include adjudication of urgent visit for heart failure.",
+        "effectiveDate": "2025-02-17",
+        "dateValues": [
+          {
+            "id": "gd_amend_1_eff",
+            "name": "Amendment a Effective Date",
+            "dateValue": "2025-02-17",
+            "geographicScopes": [],
+            "type": {
+              "id": "0f370a3b-5c52-456e-9b47-cc9b8052401d",
+              "code": "C99904",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Protocol Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          },
+          {
+            "id": "gd_amend_1_app",
+            "name": "Amendment a Approval Date",
+            "dateValue": "2025-02-17",
+            "geographicScopes": [],
+            "type": {
+              "id": "87369436-8f49-4a3d-a7bd-43bdb8099c34",
+              "code": "C99903",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Protocol Approved Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "reasonIds": [
+          "ar_1_1",
+          "ar_1_2"
+        ],
+        "previousVersion": "Original Protocol",
+        "newVersion": "a"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "ar_1_1",
+      "entity_type": "amendment_reason",
+      "data": {
+        "id": "ar_1_1",
+        "code": "SAFETY",
+        "description": "Safety",
+        "instanceType": "AmendmentReason"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "ar_1_2",
+      "entity_type": "amendment_reason",
+      "data": {
+        "id": "ar_1_2",
+        "code": "OPERATIONAL",
+        "description": "Operational",
+        "instanceType": "AmendmentReason"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        8
+      ]
+    },
+    {
+      "id": "geo_1",
+      "entity_type": "geographic_scope",
+      "data": {
+        "id": "geo_1",
+        "name": "Study Geographic Scope",
+        "scopeType": "Multicenter",
+        "instanceType": "GeographicScope"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        8
+      ]
+    }
+  ],
+  "advanced_summary": {
+    "amendment_count": 1,
+    "country_count": 0,
+    "site_count": 0,
+    "has_geographic_scope": true
+  }
+}

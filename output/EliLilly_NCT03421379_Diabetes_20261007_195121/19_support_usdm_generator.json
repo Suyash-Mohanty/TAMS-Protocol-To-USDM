@@ -1,0 +1,195 @@
+{
+  "agent_id": "usdm-generator",
+  "timestamp": "2026-10-07T19:56:02.176163",
+  "success": true,
+  "data": {
+    "usdm": {
+      "usdmVersion": "4.0.0",
+      "study": {
+        "id": "46758fd7-6051-4312-adbc-0c3b21435f88",
+        "instanceType": "Study",
+        "name": "Untitled Study",
+        "description": "",
+        "label": "",
+        "versions": [
+          {
+            "id": "e7b1f842-5682-4708-b762-0bc2d1da3d96",
+            "versionIdentifier": "1",
+            "rationale": "Original protocol version",
+            "titles": [],
+            "studyIdentifiers": [],
+            "studyPhase": null,
+            "organizations": [],
+            "roles": [
+              {
+                "id": "73a4ea21-32c2-47a7-a670-13b44db8b176",
+                "name": "Sponsor",
+                "code": {
+                  "id": "509fad32-050e-4d24-9c16-a01b40ec1ad7",
+                  "code": "C70793",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Clinical Study Sponsor",
+                  "instanceType": "Code"
+                },
+                "appliesToIds": [
+                  "e7b1f842-5682-4708-b762-0bc2d1da3d96"
+                ],
+                "instanceType": "StudyRole"
+              }
+            ],
+            "narrativeContentItems": [],
+            "abbreviations": [],
+            "amendments": [],
+            "eligibilityCriterionItems": [],
+            "dateValues": [],
+            "businessTherapeuticAreas": [],
+            "administrableProducts": [],
+            "medicalDevices": [],
+            "biomedicalConcepts": [],
+            "bcCategories": [],
+            "studyDesigns": [
+              {
+                "id": "cbe57a62-c1fb-4afe-b1f7-7178581dca76",
+                "name": "Study Design",
+                "description": "",
+                "arms": [],
+                "epochs": [],
+                "studyCells": [],
+                "objectives": [],
+                "endpoints": [],
+                "estimands": [],
+                "indications": [],
+                "activities": [],
+                "encounters": [],
+                "soaFootnotes": [],
+                "scheduleTimelines": [
+                  {
+                    "id": "17186380-a302-4cf8-a115-fa28c418d9cc",
+                    "name": "Main Study Timeline",
+                    "description": "Primary schedule of assessments",
+                    "mainTimeline": true,
+                    "entryCondition": "Informed consent signed",
+                    "instanceType": "ScheduleTimeline",
+                    "plannedDuration": {
+                      "id": "08b44a0d-e6d9-4199-8da3-b94cc2dc4ff7",
+                      "durationWillVary": true,
+                      "reasonDurationWillVary": "Duration depends on individual subject progression and follow-up.",
+                      "text": "Variable",
+                      "instanceType": "Duration"
+                    },
+                    "timings": [],
+                    "instances": []
+                  }
+                ],
+                "eligibilityCriteria": [],
+                "elements": [],
+                "analysisPopulations": [],
+                "studyInterventionIds": [],
+                "population": {
+                  "id": "a5bb68b7-ea88-4407-bbc7-39961852d9c7",
+                  "name": "Study Population",
+                  "instanceType": "StudyDesignPopulation"
+                },
+                "biospecimenRetentions": [],
+                "instanceType": "InterventionalStudyDesign",
+                "studyType": {
+                  "id": "4fb4123a-1c27-4390-89ec-fcfce561a9b0",
+                  "code": "C98388",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Interventional Study",
+                  "instanceType": "Code"
+                },
+                "model": {
+                  "id": "3d17fb02-3aa6-4220-96a5-f24f42164fe2",
+                  "code": "C82639",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2026-03-27",
+                  "decode": "PARALLEL",
+                  "instanceType": "Code"
+                },
+                "rationale": "See protocol synopsis.",
+                "blindingSchema": {
+                  "id": "3021447a-24a5-4372-8b7a-6cfbbb1d7d37",
+                  "instanceType": "AliasCode",
+                  "standardCode": {
+                    "id": "2bb0d018-0ac7-41ec-aa5c-88b4b7ebb69c",
+                    "code": "C49659",
+                    "codeSystem": "http://www.cdisc.org",
+                    "codeSystemVersion": "2024-09-27",
+                    "decode": "Open Label Study",
+                    "instanceType": "Code"
+                  },
+                  "standardCodeAliases": []
+                }
+              }
+            ],
+            "instanceType": "StudyVersion",
+            "studyInterventions": []
+          }
+        ],
+        "documentedBy": [
+          {
+            "id": "7ea4f1a9-7ae0-4fce-b88d-2e27312de364",
+            "name": "Protocol",
+            "language": {
+              "id": "65a256f9-a8f9-427f-91f1-0cb179d13770",
+              "code": "en",
+              "codeSystem": "ISO",
+              "codeSystemVersion": "639-1",
+              "decode": "English",
+              "instanceType": "Code"
+            },
+            "type": {
+              "id": "e79fd244-fee8-4327-81a8-bb58865a4ccd",
+              "code": "C70817",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "decode": "Protocol",
+              "instanceType": "Code"
+            },
+            "templateName": "SPONSOR",
+            "versions": [],
+            "instanceType": "StudyDefinitionDocument"
+          }
+        ]
+      }
+    },
+    "id_map_size": 7,
+    "schema_valid": false,
+    "semantic_issues": 2,
+    "entity_count": 0,
+    "entity_types_included": [],
+    "validation_issues": [
+      {
+        "severity": "warning",
+        "path": "study.name",
+        "message": "Study name is empty"
+      },
+      {
+        "severity": "warning",
+        "path": "study.versions[0].studyIdentifiers",
+        "message": "No study identifiers"
+      },
+      {
+        "severity": "warning",
+        "path": "studyDesigns[0].arms",
+        "message": "No study arms"
+      },
+      {
+        "severity": "warning",
+        "path": "studyDesigns[0].epochs",
+        "message": "No study epochs"
+      },
+      {
+        "severity": "warning",
+        "path": "studyDesigns[0].objectives",
+        "message": "No objectives"
+      }
+    ],
+    "output_path": null
+  },
+  "error": null,
+  "confidence": 0.8
+}

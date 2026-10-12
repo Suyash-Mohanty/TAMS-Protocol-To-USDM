@@ -1,0 +1,1616 @@
+[orchestrator] initializing -> ready
+Orchestrator initialized (max_workers=4)
+C:\Users\L150394\OneDrive - Eli Lilly and Company\Desktop\Protocol2USDM-Agentic-main\llm_providers.py:77: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+Registered agent: pdf-parser (type=support)
+Registered agent: metadata_agent (type=metadata_extraction)
+Registered agent: eligibility_agent (type=eligibility_extraction)
+Registered agent: objectives_agent (type=objectives_extraction)
+Registered agent: studydesign_agent (type=studydesign_extraction)
+Registered agent: interventions_agent (type=interventions_extraction)
+Registered agent: procedures_agent (type=procedures_extraction)
+Registered agent: scheduling_agent (type=scheduling_extraction)
+Registered agent: execution_agent (type=execution_extraction)
+Registered agent: narrative_agent (type=narrative_extraction)
+Registered agent: advanced_agent (type=advanced_extraction)
+Registered agent: docstructure_agent (type=docstructure_extraction)
+Registered agent: biomedical_concept_agent (type=biomedical_concept_extraction)
+Registered agent: soa_vision_agent (type=soa_vision_extraction)
+Registered agent: soa_text_agent (type=soa_text_extraction)
+Registered agent: postprocessing_agent (type=quality)
+Registered agent: validation_agent (type=validation)
+Registered agent: reconciliation_agent (type=reconciliation)
+Registered agent: enrichment_agent (type=enrichment)
+Registered agent: usdm-generator (type=support)
+Registered agent: provenance (type=support)
+[pdf-parser] initializing -> ready
+[pdf-parser] Initialized
+[pdf-parser] ready -> ready
+[metadata_agent] initializing -> ready
+[metadata_agent] Initialized (model=cortex)
+[metadata_agent] ready -> ready
+[eligibility_agent] initializing -> ready
+[eligibility_agent] Initialized (model=cortex)
+[eligibility_agent] ready -> ready
+[objectives_agent] initializing -> ready
+[objectives_agent] Initialized (model=cortex)
+[objectives_agent] ready -> ready
+[studydesign_agent] initializing -> ready
+[studydesign_agent] Initialized (model=cortex)
+[studydesign_agent] ready -> ready
+[interventions_agent] initializing -> ready
+[interventions_agent] Initialized (model=cortex)
+[interventions_agent] ready -> ready
+[procedures_agent] initializing -> ready
+[procedures_agent] Initialized (model=cortex)
+[procedures_agent] ready -> ready
+[scheduling_agent] initializing -> ready
+[scheduling_agent] Initialized (model=cortex)
+[scheduling_agent] ready -> ready
+[execution_agent] initializing -> ready
+[execution_agent] Initialized (model=cortex)
+[execution_agent] ready -> ready
+[narrative_agent] initializing -> ready
+[narrative_agent] Initialized (model=cortex)
+[narrative_agent] ready -> ready
+[advanced_agent] initializing -> ready
+[advanced_agent] Initialized (model=cortex)
+[advanced_agent] ready -> ready
+[docstructure_agent] initializing -> ready
+[docstructure_agent] Initialized (model=cortex)
+[docstructure_agent] ready -> ready
+[biomedical_concept_agent] initializing -> ready
+[biomedical_concept_agent] Initialized (model=cortex)
+[biomedical_concept_agent] ready -> ready
+[soa_vision_agent] initializing -> ready
+[soa_vision_agent] Initialized (model=cortex)
+[soa_vision_agent] ready -> ready
+[soa_text_agent] initializing -> ready
+[soa_text_agent] Initialized (model=cortex)
+[soa_text_agent] ready -> ready
+[postprocessing_agent] initializing -> ready
+[postprocessing_agent] Initialized
+[postprocessing_agent] ready -> ready
+[validation_agent] initializing -> ready
+[validation_agent] Initialized with 24 entity schemas
+[validation_agent] ready -> ready
+[reconciliation_agent] initializing -> ready
+[reconciliation_agent] Initialized. fuzzy_threshold=0.85
+[reconciliation_agent] ready -> ready
+[enrichment_agent] initializing -> ready
+[enrichment_agent] Initialized. Enrichable types: ['indication', 'investigational_product', 'medical_device', 'procedure', 'study_intervention']
+[enrichment_agent] ready -> ready
+[usdm-generator] initializing -> ready
+[usdm-generator] Initialized
+[usdm-generator] ready -> ready
+[provenance] initializing -> ready
+[provenance] Initialized
+[provenance] ready -> ready
+Pipeline initialized: 21 agents registered
+Protocol2USDM — Extracting 1 protocol(s)
+Model: cortex | Fast: - | Vision: - | Workers: 4
+--------------------------------------------------
+Pipeline ready: 21 agents
+
+[1/1] NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b... Copied protocol PDF to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b.pdf
+Execution plan: 4 waves, 21 tasks
+Starting execution 0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680: 21 tasks in 4 waves
+  Wave 0: 7 tasks — docstructure_agent, narrative_agent, pdf-parser, usdm-generator, metadata_agent, soa_vision_agent, provenance
+[docstructure_agent] ready -> executing
+[pdf-parser] ready -> executing
+[narrative_agent] ready -> executing
+[usdm-generator] ready -> executing
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+[usdm-generator] Type normalization applied
+[usdm-generator] Post-normalize cleanup applied
+[usdm-generator] Converted 7 IDs to UUIDs
+Found 13 structure pages
+Extracting text from pages [2, 7, 8, 9, 14, 17, 21, 23, 24, 25, 26, 27, 28]...
+Extracting abbreviations...
+Starting document structure extraction...
+Found 16 document structure pages
+Loaded LLM task config from C:\Users\L150394\OneDrive - Eli Lilly and Company\Desktop\Protocol2USDM-Agentic-main\llm_config.yaml
+Loaded LLM task config from C:\Users\L150394\OneDrive - Eli Lilly and Company\Desktop\Protocol2USDM-Agentic-main\llm_config.yaml
+usdm package not installed. Install with: pip install usdm
+============================================================
+USDM v4.0 Schema Validation Pipeline
+============================================================
+
+[1/3] Normalizing entities (type inference)...
+      ✓ Applied type inference to Encounters, Epochs, Arms, Codes
+
+[2/3] Loaded existing ID mapping (7 IDs)
+
+[3/3] Official USDM Package Validation...
+      ⚠ usdm package not installed
+      Install with: pip install usdm
+============================================================
+[usdm-generator] USDM schema validation PASSED
+[usdm-generator] executing -> ready
+    ✓ usdm-generator
+[metadata_agent] ready -> executing
+Extracting text from PDF pages [0, 1, 2]...
+Added entity: pdf-page-0 (type=pdf_page)
+Added entity: pdf-page-1 (type=pdf_page)
+Added entity: pdf-page-2 (type=pdf_page)
+Added entity: pdf-page-3 (type=pdf_page)
+Added entity: pdf-page-4 (type=pdf_page)
+Added entity: pdf-page-5 (type=pdf_page)
+Added entity: pdf-page-6 (type=pdf_page)
+Added entity: pdf-page-7 (type=pdf_page)
+Added entity: pdf-page-8 (type=pdf_page)
+Added entity: pdf-page-9 (type=pdf_page)
+Added entity: pdf-page-10 (type=pdf_page)
+Added entity: pdf-page-11 (type=pdf_page)
+Added entity: pdf-page-12 (type=pdf_page)
+Added entity: pdf-page-13 (type=pdf_page)
+Added entity: pdf-page-14 (type=pdf_page)
+Added entity: pdf-page-15 (type=pdf_page)
+Added entity: pdf-page-16 (type=pdf_page)
+Added entity: pdf-page-17 (type=pdf_page)
+Added entity: pdf-page-18 (type=pdf_page)
+Added entity: pdf-page-19 (type=pdf_page)
+Added entity: pdf-page-20 (type=pdf_page)
+Added entity: pdf-page-21 (type=pdf_page)
+Added entity: pdf-page-22 (type=pdf_page)
+Added entity: pdf-page-23 (type=pdf_page)
+Added entity: pdf-page-24 (type=pdf_page)
+Added entity: pdf-page-25 (type=pdf_page)
+Added entity: pdf-page-26 (type=pdf_page)
+Added entity: pdf-page-27 (type=pdf_page)
+Added entity: pdf-page-28 (type=pdf_page)
+Added entity: pdf-page-29 (type=pdf_page)
+Added entity: pdf-page-30 (type=pdf_page)
+Added entity: pdf-page-31 (type=pdf_page)
+Added entity: pdf-page-32 (type=pdf_page)
+Added entity: pdf-page-33 (type=pdf_page)
+Added entity: pdf-page-34 (type=pdf_page)
+Added entity: pdf-page-35 (type=pdf_page)
+Added entity: pdf-page-36 (type=pdf_page)
+Added entity: pdf-page-37 (type=pdf_page)
+Added entity: pdf-page-38 (type=pdf_page)
+Added entity: pdf-page-39 (type=pdf_page)
+Added entity: pdf-page-40 (type=pdf_page)
+Added entity: pdf-page-41 (type=pdf_page)
+Added entity: pdf-page-42 (type=pdf_page)
+Added entity: pdf-page-43 (type=pdf_page)
+Added entity: pdf-page-44 (type=pdf_page)
+Added entity: pdf-page-45 (type=pdf_page)
+Added entity: pdf-page-46 (type=pdf_page)
+Added entity: pdf-page-47 (type=pdf_page)
+Added entity: pdf-page-48 (type=pdf_page)
+Added entity: pdf-page-49 (type=pdf_page)
+Added entity: pdf-page-50 (type=pdf_page)
+Added entity: pdf-page-51 (type=pdf_page)
+Added entity: pdf-page-52 (type=pdf_page)
+[pdf-parser] executing -> ready
+    ✓ pdf-parser
+[soa_vision_agent] ready -> executing
+Finding SoA pages in: input/test_trials/NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b.pdf
+Heuristic candidates: [25, 26, 27, 23, 24, 28, 32, 2, 9, 14]
+Title pages: []
+Page 3: Identified as TOC (33 page refs, 22 sections)
+Page 4: Identified as TOC (38 page refs, 28 sections)
+TOC pages to exclude: [2, 3]
+Added page 9 (1-indexed) before SoA group [10-10]
+Added page 11 (1-indexed) after SoA group [10-10]
+Added page 14 (1-indexed) before SoA group [15-15]
+Added page 16 (1-indexed) after SoA group [15-15]
+Added page 23 (1-indexed) before SoA group [24-29]
+Added page 30 (1-indexed) after SoA group [24-29]
+Added page 32 (1-indexed) before SoA group [33-33]
+Added page 34 (1-indexed) after SoA group [33-33]
+Saved page 8 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_009.png
+Saved page 9 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_010.png
+Saved page 10 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_011.png
+Saved page 13 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_014.png
+Saved page 14 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_015.png
+Saved page 15 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_016.png
+Saved page 22 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_023.png
+Saved page 23 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_024.png
+Saved page 24 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_025.png
+Saved page 25 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_026.png
+Analyzing 10 SoA images with cortex
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Importing PngImagePlugin
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 151803
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 152360
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 207170
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 173201
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 68297
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 188965
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 182585
+Building HTTP request: method=POST retries_taken=0
+Building HTTP request: method=POST retries_taken=0
+Building HTTP request: method=POST retries_taken=0
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 141038
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 151725
+STREAM b'IHDR' 16 13
+STREAM b'pHYs' 41 9
+STREAM b'IDAT' 62 85692
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Sending HTTP Request: POST
+Sending HTTP Request: POST
+Sending HTTP Request: POST
+Token read successfully, Expires on Wednesday 02 Sep 2026 13:31:27
+Token creation successful - expiry on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924525E80>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024922B0B7F0> server_hostname='api.cortex.lilly.com' timeout=5.0
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492449F110>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024922984190> server_hostname='api.cortex.lilly.com' timeout=5.0
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492449ED50>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024922B0B110> server_hostname='api.cortex.lilly.com' timeout=5.0
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249243E6D70>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024922A72DF0> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249243E6FD0>
+send_request_headers.started request=<Request [b'POST']>
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249244C6690>
+send_request_headers.complete
+send_request_headers.started request=<Request [b'POST']>
+send_request_body.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249244E3AC0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249244E39B0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:47:57 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'2272'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'9945741e-ff75-4b3c-87f6-b6b5c4a6a6c9'), (b'X-Cortex-Message-Id', b'1788338873-b3f65f1c-997e-4819-8376-f1ff51bcad31'), (b'X-Cortex-Model-Session-Id', b'fb3c3ef2-a518-42c4-a58b-76d563798b28'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Added entity: title_1 (type=study_title)
+Added entity: title_2 (type=study_title)
+Added entity: sid_1 (type=study_identifier)
+Added entity: org_1 (type=organization)
+Added entity: role_1 (type=study_role)
+Added entity: ind_1 (type=indication)
+Added entity: study_phase_1 (type=study_phase)
+Added entity: study_metadata_1 (type=metadata)
+[metadata_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\01_extraction_metadata.json
+[metadata_agent] executing -> ready
+    ✓ metadata_agent
+[provenance] ready -> executing
+[provenance] executing -> ready
+    ✓ provenance
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:47:59 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'3209'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'5af8fc9c-9826-4313-b6ef-5c33469850c7'), (b'X-Cortex-Message-Id', b'1788338873-5331fa88-de5f-4233-af6e-f820538b3ce4'), (b'X-Cortex-Model-Session-Id', b'535d7936-e585-47c8-8611-20a8e2d236d1'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracting document structure...
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492448BB50>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024920A8D770> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492451CA50>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:48:06 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'3585'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'5af8fc9c-9826-4313-b6ef-5c33469850c7'), (b'X-Cortex-Message-Id', b'1788338873-0489357b-7c76-421b-b110-6661e26dcb68'), (b'X-Cortex-Model-Session-Id', b'bbb4be05-0016-4ec3-b3e9-035caaaf3694'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Added entity: soa_header_structure (type=header_structure)
+Added entity: epoch_v_1 (type=epoch)
+Added entity: encounter_v_1 (type=encounter)
+[soa_vision_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\02_extraction_soa_vision.json
+[soa_vision_agent] executing -> ready
+    ✓ soa_vision_agent
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:48:13 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'6298'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'ef4c0c70-e671-49ff-bd00-8f0650405579'), (b'X-Cortex-Message-Id', b'1788338880-962abc4e-f8de-4bf5-840a-6151f9a142ec'), (b'X-Cortex-Model-Session-Id', b'249235e9-f921-405f-bfa1-afc44885527d'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 26 abbreviations, 14 sections
+Added entity: nc_1 (type=narrative_content)
+Added entity: nc_2 (type=narrative_content)
+Added entity: nc_3 (type=narrative_content)
+Added entity: nc_4 (type=narrative_content)
+Added entity: nc_5 (type=narrative_content)
+Added entity: nc_6 (type=narrative_content)
+Added entity: nc_7 (type=narrative_content)
+Added entity: nc_8 (type=narrative_content)
+Added entity: nc_9 (type=narrative_content)
+Added entity: nc_10 (type=narrative_content)
+Added entity: nc_11 (type=narrative_content)
+Added entity: nc_12 (type=narrative_content)
+Added entity: nc_13 (type=narrative_content)
+Added entity: nc_14 (type=narrative_content)
+Added entity: nci_3_1 (type=narrative_content_item)
+Added entity: nci_3_2 (type=narrative_content_item)
+Added entity: nci_3_3 (type=narrative_content_item)
+Added entity: nci_5_1 (type=narrative_content_item)
+Added entity: nci_5_2 (type=narrative_content_item)
+Added entity: nci_5_3 (type=narrative_content_item)
+Added entity: nci_5_4 (type=narrative_content_item)
+Added entity: nci_5_5 (type=narrative_content_item)
+Added entity: nci_6_1 (type=narrative_content_item)
+Added entity: nci_6_2 (type=narrative_content_item)
+Added entity: nci_6_3 (type=narrative_content_item)
+Added entity: nci_6_4 (type=narrative_content_item)
+Added entity: nci_7_1 (type=narrative_content_item)
+Added entity: nci_7_2 (type=narrative_content_item)
+Added entity: nci_7_3 (type=narrative_content_item)
+Added entity: nci_7_4 (type=narrative_content_item)
+Added entity: nci_7_5 (type=narrative_content_item)
+Added entity: nci_7_6 (type=narrative_content_item)
+Added entity: nci_7_7 (type=narrative_content_item)
+Added entity: nci_7_8 (type=narrative_content_item)
+Added entity: nci_8_1 (type=narrative_content_item)
+Added entity: nci_8_2 (type=narrative_content_item)
+Added entity: nci_8_3 (type=narrative_content_item)
+Added entity: nci_9_1 (type=narrative_content_item)
+Added entity: abbr_1 (type=abbreviation)
+Added entity: abbr_2 (type=abbreviation)
+Added entity: abbr_3 (type=abbreviation)
+Added entity: abbr_4 (type=abbreviation)
+Added entity: abbr_5 (type=abbreviation)
+Added entity: abbr_6 (type=abbreviation)
+Added entity: abbr_7 (type=abbreviation)
+Added entity: abbr_8 (type=abbreviation)
+Added entity: abbr_9 (type=abbreviation)
+Added entity: abbr_10 (type=abbreviation)
+Added entity: abbr_11 (type=abbreviation)
+Added entity: abbr_12 (type=abbreviation)
+Added entity: abbr_13 (type=abbreviation)
+Added entity: abbr_14 (type=abbreviation)
+Added entity: abbr_15 (type=abbreviation)
+Added entity: abbr_16 (type=abbreviation)
+Added entity: abbr_17 (type=abbreviation)
+Added entity: abbr_18 (type=abbreviation)
+Added entity: abbr_19 (type=abbreviation)
+Added entity: abbr_20 (type=abbreviation)
+Added entity: abbr_21 (type=abbreviation)
+Added entity: abbr_22 (type=abbreviation)
+Added entity: abbr_23 (type=abbreviation)
+Added entity: abbr_24 (type=abbreviation)
+Added entity: abbr_25 (type=abbreviation)
+Added entity: abbr_26 (type=abbreviation)
+Added entity: sdd_1 (type=study_definition_document)
+[narrative_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\04_extraction_narrative.json
+[narrative_agent] executing -> ready
+    ✓ narrative_agent
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:48:46 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'19385'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'7deadd9e-fda7-4a7e-a195-5cdeaf333067'), (b'X-Cortex-Message-Id', b'1788338873-d6ececde-7b6f-4fcc-bec4-c522913fbd01'), (b'X-Cortex-Model-Session-Id', b'cde2003e-217f-4f0a-9638-cde65db38f3d'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Saved document structure to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\05_extraction_document_structure.json
+Extracted 26 refs, 19 annotations, 3 versions
+Added entity: ref_1 (type=document_content_reference)
+Added entity: ref_2 (type=document_content_reference)
+Added entity: ref_3 (type=document_content_reference)
+Added entity: ref_4 (type=document_content_reference)
+Added entity: ref_5 (type=document_content_reference)
+Added entity: ref_6 (type=document_content_reference)
+Added entity: ref_7 (type=document_content_reference)
+Added entity: ref_8 (type=document_content_reference)
+Added entity: ref_9 (type=document_content_reference)
+Added entity: ref_10 (type=document_content_reference)
+Added entity: ref_11 (type=document_content_reference)
+Added entity: ref_12 (type=document_content_reference)
+Added entity: ref_13 (type=document_content_reference)
+Added entity: ref_14 (type=document_content_reference)
+Added entity: ref_15 (type=document_content_reference)
+Added entity: ref_16 (type=document_content_reference)
+Added entity: ref_17 (type=document_content_reference)
+Added entity: ref_18 (type=document_content_reference)
+Added entity: ref_19 (type=document_content_reference)
+Added entity: ref_20 (type=document_content_reference)
+Added entity: ref_21 (type=document_content_reference)
+Added entity: ref_22 (type=document_content_reference)
+Added entity: ref_23 (type=document_content_reference)
+Added entity: ref_24 (type=document_content_reference)
+Added entity: ref_25 (type=document_content_reference)
+Added entity: ref_26 (type=document_content_reference)
+Added entity: annot_1 (type=comment_annotation)
+Added entity: annot_2 (type=comment_annotation)
+Added entity: annot_3 (type=comment_annotation)
+Added entity: annot_4 (type=comment_annotation)
+Added entity: annot_5 (type=comment_annotation)
+Added entity: annot_6 (type=comment_annotation)
+Added entity: annot_7 (type=comment_annotation)
+Added entity: annot_8 (type=comment_annotation)
+Added entity: annot_9 (type=comment_annotation)
+Added entity: annot_10 (type=comment_annotation)
+Added entity: annot_11 (type=comment_annotation)
+Added entity: annot_12 (type=comment_annotation)
+Added entity: annot_13 (type=comment_annotation)
+Added entity: annot_14 (type=comment_annotation)
+Added entity: annot_15 (type=comment_annotation)
+Added entity: annot_16 (type=comment_annotation)
+Added entity: annot_17 (type=comment_annotation)
+Added entity: annot_18 (type=comment_annotation)
+Added entity: annot_19 (type=comment_annotation)
+Added entity: ver_1 (type=document_version)
+Added entity: ver_2 (type=document_version)
+Added entity: ver_3 (type=document_version)
+[docstructure_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\05_extraction_document_structure.json
+[docstructure_agent] executing -> ready
+    ✓ docstructure_agent
+Checkpoint saved: checkpoints\checkpoint_0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680_0.json
+  Wave 0 complete: 7/21 done, 0 failed
+  Wave 1: 6 tasks — studydesign_agent, procedures_agent, objectives_agent, eligibility_agent, advanced_agent, soa_text_agent
+[studydesign_agent] ready -> executing
+[eligibility_agent] ready -> executing
+[objectives_agent] ready -> executing
+[procedures_agent] ready -> executing
+Found design keywords on page 3
+Starting procedures/devices extraction...
+Found design keywords on page 9
+Found design keywords on page 10
+Found design keywords on page 11
+Found procedure keywords on page 4 (2 matches)
+Found design keywords on page 12
+Found eligibility content on page 16
+Found procedure keywords on page 17 (3 matches)
+Found design keywords on page 14
+Found procedure keywords on page 20 (5 matches)
+Found design keywords on page 15
+Found 3 potential eligibility pages
+Found 0 potential objectives pages
+Found procedure keywords on page 24 (2 matches)
+Found design keywords on page 20
+Extracting text from pages [14, 15, 16]...
+No objectives pages detected, scanning first 15 pages
+Found procedure keywords on page 27 (2 matches)
+Found design keywords on page 22
+Found procedure keywords on page 28 (2 matches)
+Found design keywords on page 23
+Found procedure keywords on page 29 (2 matches)
+Extracting text from pages [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]...
+Extracting eligibility criteria with LLM...
+Found design keywords on page 29
+Found procedure keywords on page 31 (3 matches)
+Found design keywords on page 30
+Found procedure keywords on page 32 (9 matches)
+Found 21 potential study design pages
+Phase 1: Extracting objectives and endpoints...
+Found procedure keywords on page 34 (3 matches)
+Extracting text from pages [1, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 20, 21, 22, 23, 27, 28, 29]...
+Found procedure keywords on page 42 (3 matches)
+Found procedure keywords on page 46 (2 matches)
+Found 12 potential procedure pages
+Extracting study design with LLM...
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249244CB7A0>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000249245ADD10> server_hostname='api.cortex.lilly.com' timeout=5.0
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249244CBA70>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000249245AD810> server_hostname='api.cortex.lilly.com' timeout=5.0
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249245EE970>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924536C10> server_hostname='api.cortex.lilly.com' timeout=5.0
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249245EEA50>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000249245362B0> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249247587A0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492453A990>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492453AA50>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249245D89F0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:48:52 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'1637'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'764b6e01-b737-4f68-9a67-479506592216'), (b'X-Cortex-Message-Id', b'1788338928-df900272-b5b2-4e0c-b096-5b291cb8cbc1'), (b'X-Cortex-Model-Session-Id', b'a1ca2eef-9251-4134-82a7-85f67490c21b'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Phase 1 complete: 1 primary, 0 secondary, 0 exploratory objectives, 1 endpoints
+Phase 2: Extracting estimands with endpoint context...
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249245D8C00>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000249245363F0> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492474D090>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:48:58 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'3213'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'61506728-f7a2-4fa4-9ff4-ed17baae4890'), (b'X-Cortex-Message-Id', b'1788338928-4a10dbeb-e21b-4da0-b5f2-58426f04c2d4'), (b'X-Cortex-Model-Session-Id', b'1e0813d1-4bd7-49a1-93f9-2a21315b44ca'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted study design with 1 arms, 1 cohorts
+Added entity: sd_1 (type=study_design)
+Added entity: arm_1 (type=study_arm)
+Added entity: cohort_1 (type=study_cohort)
+Added entity: cell_1 (type=study_cell)
+Added entity: cell_2 (type=study_cell)
+Added entity: cell_3 (type=study_cell)
+Added entity: cell_4 (type=study_cell)
+Added entity: elem_1 (type=study_element)
+Added entity: elem_2 (type=study_element)
+Added entity: elem_3 (type=study_element)
+Added entity: elem_4 (type=study_element)
+[studydesign_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\08_extraction_study_design.json
+[studydesign_agent] executing -> ready
+    ✓ studydesign_agent
+[advanced_agent] ready -> executing
+Found 10 advanced entity pages (including 1 amendment history pages)
+Extracting text from pages [0, 1, 2, 3, 7, 17, 21, 22, 27, 29]...
+Extracting advanced entities with LLM...
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492474D810>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924535C70> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249245B70B0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:00 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'7250'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'81020581-afdc-42f2-a665-aaa223589319'), (b'X-Cortex-Message-Id', b'1788338927-a1faf44b-a43f-41f8-84f7-5f0f65385c1d'), (b'X-Cortex-Model-Session-Id', b'3d36f0e6-159d-42e2-a0af-f1d102d13f7b'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Parsed USDM format: 5 inclusion, 0 exclusion criteria
+Extracted 5 inclusion and 0 exclusion criteria
+Added entity: eci_1 (type=criterion_item)
+Added entity: eci_2 (type=criterion_item)
+Added entity: eci_3 (type=criterion_item)
+Added entity: eci_4 (type=criterion_item)
+Added entity: eci_5 (type=criterion_item)
+Added entity: ec_1 (type=eligibility_criterion)
+Added entity: ec_2 (type=eligibility_criterion)
+Added entity: ec_3 (type=eligibility_criterion)
+Added entity: ec_4 (type=eligibility_criterion)
+Added entity: ec_5 (type=eligibility_criterion)
+Added entity: pop_1 (type=study_population)
+[eligibility_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\06_extraction_eligibility.json
+[eligibility_agent] executing -> ready
+    ✓ eligibility_agent
+[soa_text_agent] ready -> executing
+Finding SoA pages in: input/test_trials/NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b.pdf
+Heuristic candidates: [25, 26, 27, 23, 24, 28, 32, 2, 9, 14]
+Title pages: []
+Page 3: Identified as TOC (33 page refs, 22 sections)
+Page 4: Identified as TOC (38 page refs, 28 sections)
+TOC pages to exclude: [2, 3]
+Added page 9 (1-indexed) before SoA group [10-10]
+Added page 11 (1-indexed) after SoA group [10-10]
+Added page 14 (1-indexed) before SoA group [15-15]
+Added page 16 (1-indexed) after SoA group [15-15]
+Added page 23 (1-indexed) before SoA group [24-29]
+Added page 30 (1-indexed) after SoA group [24-29]
+Added page 32 (1-indexed) before SoA group [33-33]
+Added page 34 (1-indexed) after SoA group [33-33]
+Extracting SoA from text with cortex
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492478B0D0>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924794AF0> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492478B2D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:03 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'4044'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'797fe752-a0c5-4175-bf93-d8fbccba263f'), (b'X-Cortex-Message-Id', b'1788338933-4c18e892-1f2b-4221-a497-04ef4f63398f'), (b'X-Cortex-Model-Session-Id', b'f4f4da1d-189f-4023-8e39-e2e488e4bc53'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Phase 2 complete: 1 estimands extracted
+Resolved 1 analysis populations: Investigation-Specific Analysis Population (defined per addendum; may include ITT, mITT, or Per-Protocol populations as specified in each addendum's Statistical Analysis Plan)
+Extraction complete: 1 primary, 0 secondary, 0 exploratory objectives
+Added entity: obj_1 (type=objective)
+Added entity: ep_1 (type=endpoint)
+Added entity: est_1 (type=estimand)
+Added entity: ap_1 (type=analysis_population)
+[objectives_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\07_extraction_objectives.json
+[objectives_agent] executing -> ready
+    ✓ objectives_agent
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:04 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'1260'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'0883e537-90d3-466d-b139-692ba94a48e2'), (b'X-Cortex-Message-Id', b'1788338939-33afb2d7-499d-4b8e-8115-6c25fa8c27df'), (b'X-Cortex-Model-Session-Id', b'3e9e2a72-c814-46cd-89a3-f8cf6a8f5e54'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 2 amendments, 0 countries
+Added entity: amend_1 (type=study_amendment)
+Added entity: amend_2 (type=study_amendment)
+Added entity: geo_1 (type=geographic_scope)
+[advanced_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\13_extraction_advanced_entities.json
+[advanced_agent] executing -> ready
+    ✓ advanced_agent
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:16 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'7657'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'3050c77d-2eab-454e-af3f-cfe6e4983689'), (b'X-Cortex-Message-Id', b'1788338941-290b0e98-1eef-48f9-9e3e-980ce861a678'), (b'X-Cortex-Model-Session-Id', b'8cfd5837-e1a2-4a65-b1b2-46eaa2c60f85'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+  Response validated on attempt 1
+  Filter check: 2 groups, group_names={'addenda', 'campfire master protocol'}
+  No group headers filtered (0 matches from 2 group names)
+Extracted 24 activities, 0 ticks
+Saved page 8 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_009.png
+Saved page 9 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_010.png
+Saved page 10 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_011.png
+Saved page 13 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_014.png
+Saved page 14 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_015.png
+Saved page 15 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_016.png
+Saved page 22 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_023.png
+Saved page 23 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_024.png
+Saved page 24 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_025.png
+Saved page 25 to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\soa_page_026.png
+Validating 0 ticks against 10 images
+Kept 0 unconfirmed ticks (text-only, marked for review)
+Confirmed 0 ticks (text + vision agree)
+Validation complete: 0/0 cells confirmed by vision (marked as 'both')
+Saved SOA provenance to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\9_final_soa_provenance.json
+Added entity: soa_text_result (type=soa_text_extraction)
+Added entity: activity_t_1 (type=activity)
+Added entity: activity_t_2 (type=activity)
+Added entity: activity_t_3 (type=activity)
+Added entity: activity_t_4 (type=activity)
+Added entity: activity_t_5 (type=activity)
+Added entity: activity_t_6 (type=activity)
+Added entity: activity_t_7 (type=activity)
+Added entity: activity_t_8 (type=activity)
+Added entity: activity_t_9 (type=activity)
+Added entity: activity_t_10 (type=activity)
+Added entity: activity_t_11 (type=activity)
+Added entity: activity_t_12 (type=activity)
+Added entity: activity_t_13 (type=activity)
+Added entity: activity_t_14 (type=activity)
+Added entity: activity_t_15 (type=activity)
+Added entity: activity_t_16 (type=activity)
+Added entity: activity_t_17 (type=activity)
+Added entity: activity_t_18 (type=activity)
+Added entity: activity_t_19 (type=activity)
+Added entity: activity_t_20 (type=activity)
+Added entity: activity_t_21 (type=activity)
+Added entity: activity_t_22 (type=activity)
+Added entity: activity_t_23 (type=activity)
+Added entity: activity_t_24 (type=activity)
+[soa_text_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\03_extraction_soa_text.json
+[soa_text_agent] executing -> ready
+    ✓ soa_text_agent
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:19 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'13936'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'2651f77f-59a5-4f1b-a344-a35280460470'), (b'X-Cortex-Message-Id', b'1788338928-4708f85d-e2a9-4fbf-9cd9-d891e7ba9e50'), (b'X-Cortex-Model-Session-Id', b'647b78b4-e995-46ff-bdbd-21a7f52263ab'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Saved procedures/devices to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\09_extraction_procedures_devices.json
+Extracted 23 procedures, 5 devices, 1 ingredients
+Added entity: proc_1 (type=procedure)
+Added entity: proc_2 (type=procedure)
+Added entity: proc_3 (type=procedure)
+Added entity: proc_4 (type=procedure)
+Added entity: proc_5 (type=procedure)
+Added entity: proc_6 (type=procedure)
+Added entity: proc_7 (type=procedure)
+Added entity: proc_8 (type=procedure)
+Added entity: proc_9 (type=procedure)
+Added entity: proc_10 (type=procedure)
+Added entity: proc_11 (type=procedure)
+Added entity: proc_12 (type=procedure)
+Added entity: proc_13 (type=procedure)
+Added entity: proc_14 (type=procedure)
+Added entity: proc_15 (type=procedure)
+Added entity: proc_16 (type=procedure)
+Added entity: proc_17 (type=procedure)
+Added entity: proc_18 (type=procedure)
+Added entity: proc_19 (type=procedure)
+Added entity: proc_20 (type=procedure)
+Added entity: proc_21 (type=procedure)
+Added entity: proc_22 (type=procedure)
+Added entity: proc_23 (type=procedure)
+Added entity: dev_1 (type=medical_device)
+Added entity: dev_2 (type=medical_device)
+Added entity: dev_3 (type=medical_device)
+Added entity: dev_4 (type=medical_device)
+Added entity: dev_5 (type=medical_device)
+Added entity: ing_1 (type=ingredient)
+[procedures_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\09_extraction_procedures_devices.json
+[procedures_agent] executing -> ready
+    ✓ procedures_agent
+Checkpoint saved: checkpoints\checkpoint_0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680_1.json
+  Wave 1 complete: 13/21 done, 0 failed
+  Wave 2: 4 tasks — scheduling_agent, biomedical_concept_agent, interventions_agent, execution_agent
+[scheduling_agent] ready -> executing
+[interventions_agent] ready -> executing
+[biomedical_concept_agent] ready -> executing
+[execution_agent] ready -> executing
+Starting scheduling logic extraction...
+BiomedicalConceptAgent: found 24 activity names
+Found intervention keywords on page 4
+Extracting BiomedicalConcepts for 24 unique activities
+Found intervention keywords on page 10
+Processing chunk 1/1 (24 activities)
+Found scheduling keywords on page 3
+Found intervention keywords on page 11
+Found scheduling keywords on page 4
+Found intervention keywords on page 12
+Found scheduling keywords on page 10
+Found intervention keywords on page 13
+Found scheduling keywords on page 19
+Found intervention keywords on page 14
+Found scheduling keywords on page 21
+Found intervention keywords on page 16
+Found scheduling keywords on page 23
+Found intervention keywords on page 17
+Found scheduling keywords on page 25
+Found intervention keywords on page 18
+Found scheduling keywords on page 26
+Found intervention keywords on page 19
+Found scheduling keywords on page 27
+Found intervention keywords on page 20
+Found scheduling keywords on page 28
+Found intervention keywords on page 22
+Found scheduling keywords on page 31
+Found intervention keywords on page 23
+Found scheduling keywords on page 38
+Found intervention keywords on page 24
+Found scheduling keywords on page 49
+Found intervention keywords on page 25
+Found 13 potential scheduling pages
+Found intervention keywords on page 26
+Found intervention keywords on page 27
+Found intervention keywords on page 28
+Found intervention keywords on page 30
+Found intervention keywords on page 31
+Found intervention keywords on page 32
+Found intervention keywords on page 33
+Found intervention keywords on page 34
+Found intervention keywords on page 35
+Found intervention keywords on page 36
+Found intervention keywords on page 38
+Found intervention keywords on page 39
+Found intervention keywords on page 43
+Found intervention keywords on page 46
+Found 41 potential intervention pages
+Extracting text from pages [2, 3, 4, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 41, 42, 43, 44, 45, 46]...
+Extracting interventions with LLM...
+============================================================
+Starting Execution Model Extraction
+============================================================
+Step 1/10: Extracting time anchors...
+Starting time anchor extraction...
+Found anchor keywords on page 10
+Found anchor keywords on page 16
+Found anchor keywords on page 17
+Found anchor keywords on page 19
+Found anchor keywords on page 22
+Found anchor keywords on page 23
+Found anchor keywords on page 24
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Found anchor keywords on page 28
+Building HTTP request: method=POST retries_taken=0
+Found anchor keywords on page 29
+Sending HTTP Request: POST
+Found anchor keywords on page 33
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Found 10 potential anchor pages
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924893A10>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002492483D090> server_hostname='api.cortex.lilly.com' timeout=5.0
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924908130>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924796C10> server_hostname='api.cortex.lilly.com' timeout=5.0
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249248F9190>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002492483FB10> server_hostname='api.cortex.lilly.com' timeout=5.0
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249248F95B0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918BE0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918B40>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918D70>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000249248A36B0> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918B90>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:23 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'853'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'3845969a-4162-449c-a2ec-bd936a925f30'), (b'X-Cortex-Message-Id', b'1788338961-5e55843d-cd3c-467b-b5d2-759b6426601c'), (b'X-Cortex-Model-Session-Id', b'458c35eb-abed-4a92-809e-12a438d94de3'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 5 time anchors
+  ✓ Found 5 time anchors
+Step 2/10: Extracting repetition patterns...
+Starting repetition extraction...
+Found 6 potential repetition pages
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924919450>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924905EF0> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924919360>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:30 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'3802'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'9625e9a8-09b4-41ad-8c2a-55018446b003'), (b'X-Cortex-Message-Id', b'1788338963-5df80367-4da2-43bf-a74f-ec399d096cbf'), (b'X-Cortex-Model-Session-Id', b'eb45aae6-ccce-48ca-b95d-3eee585dfb7c'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 13 repetitions, 0 sampling constraints
+  ✓ Found 13 repetitions, 0 sampling constraints
+Step 3/10: Classifying execution types...
+Starting execution type classification...
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924919450>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000249249063F0> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249249190E0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:38 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'3123'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'02e735e9-a0f5-496f-b67c-0644757fc647'), (b'X-Cortex-Message-Id', b'1788338971-1d326e63-28dd-49cd-9251-f3d157a4a829'), (b'X-Cortex-Model-Session-Id', b'bfd3fe7e-964f-4b45-a369-0a283d30d6f1'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Classified 23 activities: {'Episode': 3, 'Single': 20}
+  ✓ Classified 23 activities
+Step 4/10: Detecting crossover design...
+Starting crossover design extraction...
+Found 0 potential crossover pages
+No crossover pages found, using first 20 pages
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918960>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000249249067B0> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000249249187D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:40 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'599'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'2b10d4a8-948c-4092-a5fa-1eab8959790a'), (b'X-Cortex-Message-Id', b'1788338979-46a200be-e342-47a5-a26e-31c484f7edc2'), (b'X-Cortex-Model-Session-Id', b'71bf57fa-0329-400a-bcf0-8b789c64bd0b'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+No crossover design detected (parallel or other design)
+  ○ No crossover design detected (parallel or other)
+Step 5/10: Extracting traversal constraints...
+Starting traversal constraint extraction...
+Found 15 potential traversal pages
+No SoA epochs provided - using abstract labels: ['SCREENING', 'LEAD_IN', 'BASELINE', 'TREATMENT', 'FOLLOW_UP', 'END_OF_STUDY']
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924919540>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924906D50> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918EB0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:41 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'6700'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'0b9f04e2-76d3-4d83-877b-f1554856f2c0'), (b'X-Cortex-Message-Id', b'1788338961-5ede5494-bf3b-4839-aefc-7da085d853aa'), (b'X-Cortex-Model-Session-Id', b'b488387f-e41f-4c0a-9dce-d559ca9bb341'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 16 interventions, 1 products, 1 administration regimens
+Added entity: int_1 (type=study_intervention)
+Added entity: int_2 (type=study_intervention)
+Added entity: int_3 (type=study_intervention)
+Added entity: int_4 (type=study_intervention)
+Added entity: int_5 (type=study_intervention)
+Added entity: int_6 (type=study_intervention)
+Added entity: int_7 (type=study_intervention)
+Added entity: int_8 (type=study_intervention)
+Added entity: int_9 (type=study_intervention)
+Added entity: int_10 (type=study_intervention)
+Added entity: int_11 (type=study_intervention)
+Added entity: int_12 (type=study_intervention)
+Added entity: int_13 (type=study_intervention)
+Added entity: int_14 (type=study_intervention)
+Added entity: int_15 (type=study_intervention)
+Added entity: int_16 (type=study_intervention)
+Added entity: prod_1 (type=administrable_product)
+Added entity: admin_1 (type=administration)
+Added entity: sub_1 (type=substance)
+[interventions_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\10_extraction_interventions.json
+[interventions_agent] executing -> ready
+    ✓ interventions_agent
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:48 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'2471'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'33cc0d9d-3f4c-4d27-8528-59daffd6b503'), (b'X-Cortex-Message-Id', b'1788338981-d81708b2-8ea7-4e07-9657-057b1501d544'), (b'X-Cortex-Model-Session-Id', b'ebcb311a-0f56-4110-94a0-cde77edc95a6'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted traversal: 6 epochs, 2 mandatory visits, early_exit=True
+  ✓ Found 6 epochs, 3 mandatory visits
+Step 6/10: Extracting footnote conditions...
+Starting footnote condition extraction...
+Found 6 potential footnote pages
+Filtered 5 -> 5 -> 5 footnotes
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924919270>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924907D90> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918690>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:49:58 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'3200'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'1b86aeda-b72c-47ba-83fe-2eff6721b6ba'), (b'X-Cortex-Message-Id', b'1788338989-bf48279e-dc60-4c45-9836-024f1cdf6600'), (b'X-Cortex-Model-Session-Id', b'0e335203-5550-47a2-830b-3af2cc755037'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 5 footnote conditions
+  ✓ Found 5 footnote conditions
+Step 7/10: Extracting endpoint algorithms...
+Starting endpoint algorithm extraction...
+Found 3 potential endpoint pages
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492491B8E0>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x000002492494CC30> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492491B6B0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:50:03 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'23285'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'4388f185-c017-44e7-9016-79f8b242061f'), (b'X-Cortex-Message-Id', b'1788338960-221e932f-211b-4aff-9b4d-50957ce8da42'), (b'X-Cortex-Model-Session-Id', b'0f57e5a2-c985-477c-8f19-b3410b7191c2'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 24 BiomedicalConcepts in 3 categories
+Backfilled biomedicalConceptIds on 9 Activity entities
+Added entity: bc_1 (type=biomedical_concept)
+Added entity: bc_2 (type=biomedical_concept)
+Added entity: bc_3 (type=biomedical_concept)
+Added entity: bc_4 (type=biomedical_concept)
+Added entity: bc_5 (type=biomedical_concept)
+Added entity: bc_6 (type=biomedical_concept)
+Added entity: bc_7 (type=biomedical_concept)
+Added entity: bc_8 (type=biomedical_concept)
+Added entity: bc_9 (type=biomedical_concept)
+Added entity: bc_10 (type=biomedical_concept)
+Added entity: bc_11 (type=biomedical_concept)
+Added entity: bc_12 (type=biomedical_concept)
+Added entity: bc_13 (type=biomedical_concept)
+Added entity: bc_14 (type=biomedical_concept)
+Added entity: bc_15 (type=biomedical_concept)
+Added entity: bc_16 (type=biomedical_concept)
+Added entity: bc_17 (type=biomedical_concept)
+Added entity: bc_18 (type=biomedical_concept)
+Added entity: bc_19 (type=biomedical_concept)
+Added entity: bc_20 (type=biomedical_concept)
+Added entity: bc_21 (type=biomedical_concept)
+Added entity: bc_22 (type=biomedical_concept)
+Added entity: bc_23 (type=biomedical_concept)
+Added entity: bc_24 (type=biomedical_concept)
+Added entity: bcc_1 (type=biomedical_concept_category)
+Added entity: bcc_2 (type=biomedical_concept_category)
+Added entity: bcc_3 (type=biomedical_concept_category)
+[biomedical_concept_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\14_extraction_biomedical_concepts.json
+[biomedical_concept_agent] executing -> ready
+    ✓ biomedical_concept_agent
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:50:15 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'7099'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'fb73505c-8872-4e0a-aa32-f50d9ddaacfc'), (b'X-Cortex-Message-Id', b'1788339000-53f6ed7f-4845-49ef-b26e-5c27bc46e204'), (b'X-Cortex-Model-Session-Id', b'80257aa3-e401-45c4-8323-0de9ff258209'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 5 endpoint algorithms
+  ✓ Found 5 endpoint algorithms
+Step 8/10: Extracting derived variables...
+Starting derived variable extraction...
+Found 2 potential variable pages
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:50:16 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'25115'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'79d3d563-aba6-46ad-9f14-ba929806f837'), (b'X-Cortex-Message-Id', b'1788338961-78ea58de-dc20-45cc-b441-c71a08ee732e'), (b'X-Cortex-Model-Session-Id', b'5d6b65f5-98c7-4251-b9f5-cb9efa8f7e80'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492495D720>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x00000249249079D0> server_hostname='api.cortex.lilly.com' timeout=5.0
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Saved scheduling logic to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\11_extraction_scheduling_logic.json
+Extracted 7 timings, 18 rules, 16 conditions
+Added entity: timing_1 (type=timing)
+Added entity: timing_2 (type=timing)
+Added entity: timing_3 (type=timing)
+Added entity: timing_4 (type=timing)
+Added entity: timing_5 (type=timing)
+Added entity: timing_6 (type=timing)
+Added entity: timing_7 (type=timing)
+Added entity: cond_1 (type=condition)
+Added entity: cond_2 (type=condition)
+Added entity: cond_3 (type=condition)
+Added entity: cond_4 (type=condition)
+Added entity: cond_5 (type=condition)
+Added entity: cond_6 (type=condition)
+Added entity: cond_7 (type=condition)
+Added entity: cond_8 (type=condition)
+Added entity: cond_9 (type=condition)
+Added entity: cond_10 (type=condition)
+Added entity: cond_11 (type=condition)
+Added entity: cond_12 (type=condition)
+Added entity: cond_13 (type=condition)
+Added entity: cond_14 (type=condition)
+Added entity: cond_15 (type=condition)
+Added entity: cond_16 (type=condition)
+Added entity: trans_1 (type=transition_rule)
+Added entity: trans_2 (type=transition_rule)
+Added entity: trans_3 (type=transition_rule)
+Added entity: trans_4 (type=transition_rule)
+Added entity: trans_5 (type=transition_rule)
+Added entity: trans_6 (type=transition_rule)
+Added entity: trans_7 (type=transition_rule)
+Added entity: trans_8 (type=transition_rule)
+Added entity: trans_9 (type=transition_rule)
+Added entity: trans_10 (type=transition_rule)
+Added entity: trans_11 (type=transition_rule)
+Added entity: trans_12 (type=transition_rule)
+Added entity: trans_13 (type=transition_rule)
+Added entity: trans_14 (type=transition_rule)
+Added entity: trans_15 (type=transition_rule)
+Added entity: trans_16 (type=transition_rule)
+Added entity: trans_17 (type=transition_rule)
+Added entity: trans_18 (type=transition_rule)
+Added entity: exit_1 (type=schedule_exit)
+Added entity: exit_2 (type=schedule_exit)
+Added entity: exit_3 (type=schedule_exit)
+Added entity: exit_4 (type=schedule_exit)
+Added entity: exit_5 (type=schedule_exit)
+Added entity: exit_6 (type=schedule_exit)
+Added entity: exit_7 (type=schedule_exit)
+Added entity: exit_8 (type=schedule_exit)
+Added entity: exit_9 (type=schedule_exit)
+Added entity: exit_10 (type=schedule_exit)
+Added entity: exit_11 (type=schedule_exit)
+Added entity: exit_12 (type=schedule_exit)
+Added entity: exit_13 (type=schedule_exit)
+Added entity: exit_14 (type=schedule_exit)
+Added entity: exit_15 (type=schedule_exit)
+Added entity: exit_16 (type=schedule_exit)
+Added entity: dec_1 (type=decision_instance)
+Added entity: dec_2 (type=decision_instance)
+Added entity: dec_3 (type=decision_instance)
+Added entity: dec_4 (type=decision_instance)
+Added entity: dec_5 (type=decision_instance)
+Added entity: dec_6 (type=decision_instance)
+[scheduling_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\11_extraction_scheduling_logic.json
+[scheduling_agent] executing -> ready
+    ✓ scheduling_agent
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024920A9C0A0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:50:30 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'6873'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'087e6286-aa36-4e0c-9bad-26e1e730eb1b'), (b'X-Cortex-Message-Id', b'1788339016-4c7bc669-ae29-45cf-b999-472957678cc9'), (b'X-Cortex-Model-Session-Id', b'564e6ebb-cd00-44c3-a5ce-45617b9458ba'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 10 derived variables
+  ✓ Found 10 derived variables
+Step 9/10: Generating subject state machine...
+Starting state machine generation...
+Built state machine from traversal: 7 states, 6 transitions
+  ✓ Generated state machine: 7 states, 6 transitions
+Step 10/13: Extracting dosing regimens...
+============================================================
+PHASE 4A: Dosing Regimen Extraction
+============================================================
+Found 30 potential dosing pages
+Heuristic extraction found 0 dosing regimens
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492491A990>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924907C50> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000002492491A5D0>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:50:39 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'2583'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'27863bcc-081f-4ba2-90bc-3d1fd5592dfa'), (b'X-Cortex-Message-Id', b'1788339032-89d64ab7-9b9c-4e2a-86d3-7dd6719708c8'), (b'X-Cortex-Model-Session-Id', b'44b38a75-5d55-4fdc-90df-6106121c12c8'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+After LLM enhancement: 1 dosing regimens
+Extracted 1 dosing regimens
+  ✓ Found 1 dosing regimens
+Step 11/13: Extracting visit windows...
+============================================================
+PHASE 4B: Visit Window Extraction
+============================================================
+Found 2 potential visit schedule pages
+Heuristic extraction found 5 visit windows
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918190>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924907B10> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918C80>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:50:43 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'1095'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'1b4f08b9-5277-429d-b1c2-7897c48b5ca1'), (b'X-Cortex-Message-Id', b'1788339040-34dc7b27-c28f-42d1-9e5e-c55cf91d8efa'), (b'X-Cortex-Model-Session-Id', b'9a1211d7-2861-4ce1-8a51-5fa61f3ca9ad'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+Extracted 5 visit windows
+  ✓ Found 5 visit windows
+Step 12/13: Extracting stratification scheme...
+============================================================
+PHASE 4C: Stratification/Randomization Extraction
+============================================================
+Found 4 potential randomization pages
+Heuristic extraction found randomization: 2:1, 0 factors
+CortexProvider initialised — model=cortex, base=https://api.cortex.lilly.com, env=PRD
+Building HTTP request: method=POST retries_taken=0
+Sending HTTP Request: POST
+Reading token file from C:\Users\L150394\.LIGHTPythonClientAzureADPRD.
+Token read successfully, Expires on Wednesday 02 Sep 2026 15:28:49
+connect_tcp.started host='api.cortex.lilly.com' port=443 local_address=None timeout=5.0 socket_options=None
+connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924919360>
+start_tls.started ssl_context=<ssl.SSLContext object at 0x0000024924907570> server_hostname='api.cortex.lilly.com' timeout=5.0
+start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000024924918500>
+send_request_headers.started request=<Request [b'POST']>
+send_request_headers.complete
+send_request_body.started request=<Request [b'POST']>
+send_request_body.complete
+receive_response_headers.started request=<Request [b'POST']>
+receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Wed, 02 Sep 2026 08:50:47 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'877'), (b'Connection', b'keep-alive'), (b'Server', b'uvicorn'), (b'X-Content-Type-Options', b'nosniff'), (b'X-Cortex-Correlation-Id', b'8e397ac8-5b16-46ca-a120-525fa69d1930'), (b'X-Cortex-Message-Id', b'1788339045-9aae2082-7e4c-4962-a012-84e8ff38318d'), (b'X-Cortex-Model-Session-Id', b'12ef179c-6643-4e89-b77d-6b7551f00651'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'X-Xss-Protection', b'1; mode=block')])
+receive_response_body.started request=<Request [b'POST']>
+receive_response_body.complete
+response_closed.started
+response_closed.complete
+HTTP Response: POST 200
+request_id: None
+After LLM enhancement: Addendum-specific; example given: 2:1 (Addendum 1), 3:1 (Addendum 2), overall 2:3:1, 0 factors
+Extracted randomization scheme: Addendum-specific; example given: 2:1 (Addendum 1), 3:1 (Addendum 2), overall 2:3:1 ratio, 0 stratification factors
+  ✓ Found randomization: Addendum-specific; example given: 2:1 (Addendum 1), 3:1 (Addendum 2), overall 2:3:1, 0 factors
+Step 13/13: Extracting sampling density...
+Starting sampling density extraction...
+Found 1 potential sampling pages
+  Detected 0 PD glucose sampling constraints
+Extracted 0 sampling constraints, 0 dense windows
+  ○ No additional sampling constraints found
+Saved execution model to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\12_extraction_execution_model.json
+============================================================
+Execution Model Extraction Complete
+============================================================
+Added entity: anchor_1 (type=time_anchor)
+Added entity: anchor_4 (type=time_anchor)
+Added entity: anchor_2 (type=time_anchor)
+Added entity: anchor_3 (type=time_anchor)
+Added entity: anchor_5 (type=time_anchor)
+Added entity: rep_daily_1 (type=repetition)
+Added entity: rep_window_1 (type=repetition)
+Added entity: rep_window_3 (type=repetition)
+Added entity: rep_window_4 (type=repetition)
+Added entity: rep_window_5 (type=repetition)
+Added entity: rep_llm_1 (type=repetition)
+Added entity: rep_llm_2 (type=repetition)
+Added entity: rep_llm_3 (type=repetition)
+Added entity: rep_llm_4 (type=repetition)
+Added entity: rep_llm_5 (type=repetition)
+Added entity: rep_llm_6 (type=repetition)
+Added entity: rep_llm_7 (type=repetition)
+Added entity: rep_llm_8 (type=repetition)
+Added entity: et_Blood Sample (type=execution_type)
+Added entity: et_Vital Signs (type=execution_type)
+Added entity: et_Electrocardiogram (type=execution_type)
+Added entity: et_Pe (type=execution_type)
+Added entity: et_Adverse Events (type=execution_type)
+Added entity: et_Concomitant Medications (type=execution_type)
+Added entity: et_Laboratory Tests (type=execution_type)
+Added entity: et_Pharmacokinetic (type=execution_type)
+Added entity: et_Pharmacodynamic (type=execution_type)
+Added entity: et_Drug Administration (type=execution_type)
+Added entity: et_Imaging (type=execution_type)
+Added entity: et_Tissue Sample (type=execution_type)
+Added entity: et_Epro (type=execution_type)
+Added entity: et_Schedule of Activities (type=execution_type)
+Added entity: et_Inclusion Criteria Assessment (type=execution_type)
+Added entity: et_Exclusion Criteria Assessment (type=execution_type)
+Added entity: et_Screen Failures (type=execution_type)
+Added entity: et_Treatment Compliance (type=execution_type)
+Added entity: et_Dose Modification Assessment (type=execution_type)
+Added entity: et_Concomitant Therapy Review (type=execution_type)
+Added entity: et_Discontinuation Criteria Assessment (type=execution_type)
+Added entity: et_Benefit/Risk Assessment (type=execution_type)
+Added entity: et_Continued Access Assessment (type=execution_type)
+Added entity: traversal_1 (type=traversal_constraint)
+Added entity: fn_cond_1 (type=footnote_condition)
+Added entity: fn_cond_2 (type=footnote_condition)
+Added entity: fn_cond_3 (type=footnote_condition)
+Added entity: fn_cond_4 (type=footnote_condition)
+Added entity: fn_cond_5 (type=footnote_condition)
+Added entity: sm_1 (type=state_machine)
+Added entity: dosing_llm_1 (type=dosing_regimen)
+Added entity: visit_3 (type=visit_window)
+Added entity: visit_2 (type=visit_window)
+Added entity: visit_5 (type=visit_window)
+Added entity: visit_1 (type=visit_window)
+Added entity: visit_4 (type=visit_window)
+[execution_agent] Saved output to output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\12_extraction_execution_model.json
+[execution_agent] executing -> ready
+    ✓ execution_agent
+Checkpoint saved: checkpoints\checkpoint_0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680_2.json
+  Wave 2 complete: 17/21 done, 0 failed
+  Wave 3: 4 tasks — validation_agent, reconciliation_agent, postprocessing_agent, enrichment_agent
+[validation_agent] ready -> executing
+[validation_agent] executing -> ready
+[postprocessing_agent] ready -> executing
+[reconciliation_agent] ready -> executing
+    ✓ validation_agent
+[enrichment_agent] ready -> executing
+[enrichment_agent] Enriching 45 entities (max_concurrent=8)
+[postprocessing_agent] executing -> ready
+[reconciliation_agent] executing -> ready
+    ✓ reconciliation_agent
+    ✓ postprocessing_agent
+[enrichment_agent] Enrichment complete: 28/45 enriched
+[enrichment_agent] executing -> ready
+    ✓ enrichment_agent
+Checkpoint saved: checkpoints\checkpoint_0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680_3.json
+  Wave 3 complete: 21/21 done, 0 failed
+Execution 0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680 completed: 21 succeeded, 0 failed
+Deleted checkpoint: checkpoints\checkpoint_0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680_0.json
+Deleted checkpoint: checkpoints\checkpoint_0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680_1.json
+Deleted checkpoint: checkpoints\checkpoint_0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680_2.json
+Deleted checkpoint: checkpoints\checkpoint_0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680_3.json
+Cleaned up 4 checkpoint(s) for successful execution 0eb82c7d-7c6b-40fa-8b4a-0a91a53e9680
+Saved quality/support output: 19_support_usdm_generator.json
+Saved quality/support output: 20_support_provenance.json
+Saved quality/support output: 17_quality_validation.json
+Saved quality/support output: 16_quality_reconciliation.json
+Saved quality/support output: 15_quality_postprocessing.json
+Saved quality/support output: 18_quality_enrichment.json
+[usdm-generator] Type normalization applied
+[usdm-generator] Post-normalize cleanup applied
+[usdm-generator] Converted 297 IDs to UUIDs
+============================================================
+USDM v4.0 Schema Validation Pipeline
+============================================================
+
+[1/3] Normalizing entities (type inference)...
+      ✓ Applied type inference to Encounters, Epochs, Arms, Codes
+
+[2/3] Loaded existing ID mapping (297 IDs)
+      Loaded provenance with 0 cells from output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\9_final_soa_provenance.json
+      Cell count after merge: 0
+      ✓ Created NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_provenance.json (0 cells)
+
+[3/3] Official USDM Package Validation...
+      ⚠ usdm package not installed
+      Install with: pip install usdm
+============================================================
+[usdm-generator] USDM schema validation PASSED
+Merged 0 SOA cells into provenance
+Populated entities: 1 encounters, 24 activities, 1 epochs
+CDISC CORE engine not installed, using built-in rules only
+CDISC CORE engine not available or produced no output
+Result summary: output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\result.md
+Pipeline complete: NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b - SUCCESS - 417 entities - 200371ms
+[pdf-parser] ready -> terminated
+[pdf-parser] terminated -> terminated
+[metadata_agent] ready -> terminated
+[metadata_agent] terminated -> terminated
+[eligibility_agent] ready -> terminated
+[eligibility_agent] terminated -> terminated
+[objectives_agent] ready -> terminated
+[objectives_agent] terminated -> terminated
+[studydesign_agent] ready -> terminated
+[studydesign_agent] terminated -> terminated
+[interventions_agent] ready -> terminated
+[interventions_agent] terminated -> terminated
+[procedures_agent] ready -> terminated
+[procedures_agent] terminated -> terminated
+[scheduling_agent] ready -> terminated
+[scheduling_agent] terminated -> terminated
+[execution_agent] ready -> terminated
+[execution_agent] terminated -> terminated
+[narrative_agent] ready -> terminated
+[narrative_agent] terminated -> terminated
+[advanced_agent] ready -> terminated
+[advanced_agent] terminated -> terminated
+[docstructure_agent] ready -> terminated
+[docstructure_agent] terminated -> terminated
+[biomedical_concept_agent] ready -> terminated
+[biomedical_concept_agent] terminated -> terminated
+[soa_vision_agent] ready -> terminated
+[soa_vision_agent] terminated -> terminated
+[soa_text_agent] ready -> terminated
+[soa_text_agent] terminated -> terminated
+[postprocessing_agent] ready -> terminated
+[postprocessing_agent] terminated -> terminated
+[validation_agent] ready -> terminated
+[validation_agent] terminated -> terminated
+[reconciliation_agent] ready -> terminated
+[reconciliation_agent] terminated -> terminated
+[enrichment_agent] ready -> terminated
+[enrichment_agent] terminated -> terminated
+[usdm-generator] ready -> terminated
+[usdm-generator] terminated -> terminated
+[provenance] ready -> terminated
+[provenance] terminated -> terminated
+[pdf-parser] terminated -> terminated
+[pdf-parser] terminated -> terminated
+[metadata_agent] terminated -> terminated
+[metadata_agent] terminated -> terminated
+[eligibility_agent] terminated -> terminated
+[eligibility_agent] terminated -> terminated
+[objectives_agent] terminated -> terminated
+[objectives_agent] terminated -> terminated
+[studydesign_agent] terminated -> terminated
+[studydesign_agent] terminated -> terminated
+[interventions_agent] terminated -> terminated
+[interventions_agent] terminated -> terminated
+[procedures_agent] terminated -> terminated
+[procedures_agent] terminated -> terminated
+[scheduling_agent] terminated -> terminated
+[scheduling_agent] terminated -> terminated
+[execution_agent] terminated -> terminated
+[execution_agent] terminated -> terminated
+[narrative_agent] terminated -> terminated
+[narrative_agent] terminated -> terminated
+[advanced_agent] terminated -> terminated
+[advanced_agent] terminated -> terminated
+[docstructure_agent] terminated -> terminated
+[docstructure_agent] terminated -> terminated
+[biomedical_concept_agent] terminated -> terminated
+[biomedical_concept_agent] terminated -> terminated
+[soa_vision_agent] terminated -> terminated
+[soa_vision_agent] terminated -> terminated
+[soa_text_agent] terminated -> terminated
+[soa_text_agent] terminated -> terminated
+[postprocessing_agent] terminated -> terminated
+[postprocessing_agent] terminated -> terminated
+[validation_agent] terminated -> terminated
+[validation_agent] terminated -> terminated
+[reconciliation_agent] terminated -> terminated
+[reconciliation_agent] terminated -> terminated
+[enrichment_agent] terminated -> terminated
+[enrichment_agent] terminated -> terminated
+[usdm-generator] terminated -> terminated
+[usdm-generator] terminated -> terminated
+[provenance] terminated -> terminated
+[provenance] terminated -> terminated
+[orchestrator] ready -> terminated
+Orchestrator terminated
+Pipeline shutdown complete
+OK — 417 entities, 200371ms
+         USDM: output\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_20260902_141744\NCT05999994_Eli-Lilly-and-Company_J1S-MC-JAAA_b_usdm.json
+--------------------------------------------------
+Done: 1/1 successful

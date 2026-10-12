@@ -1,0 +1,155 @@
+{
+  "agent_id": "advanced_agent",
+  "timestamp": "2026-10-07T20:20:33.303101",
+  "confidence": 0.85,
+  "entity_count": 2,
+  "entities": [
+    {
+      "id": "amend_1",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_1",
+        "number": "a",
+        "name": "Amendment a",
+        "scope": {
+          "id": "d0e48901-48fd-4ff5-92f2-cd7c6be23645",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "f02dae7c-fd55-45d7-ae3d-81addc6c3a2d",
+          "code": {
+            "id": "62c2fa63-e5f9-448e-a290-39ddcbc189e4",
+            "code": "C207609",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "New Safety Information Available",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "9acd33f7-b7dd-4922-a442-6b9085b55a74",
+            "type": {
+              "id": "339ea7cc-0433-4424-a58c-02e565f28b07",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The overall rationale for the changes implemented in this protocol amendment is to address feedback received from an internal safety committee.",
+        "changes": [
+          {
+            "id": "9d83ed51-b6f7-4a47-a34d-cfb078082a25",
+            "name": "Section 5.2 Exclusion Criteria",
+            "summary": "Exclusion Criterion #16: removed \"Exception: Short-term treatment with insulin for <14 days is allowed for certain clinical situations, such as, elective surgery, during hospitalization, hyperosmolar states, or acute illness.\"\nEdited Exclusion Criterion #36 to remove \", except for the use of insulin for treatment of gestational diabetes or acute, temporary use of insulin (≤14 days), for example, for acute illness, hospitalization, elective surgery.\"\nEdited Exclusion Criterion #40 to add \"Note: Insulin therapy is not allowed within 90 days prior to Visit 1.\"",
+            "rationale": "Updated internal safety guidance.",
+            "changedSections": [
+              {
+                "id": "af540b9a-a4ce-4111-9820-74c4aab696e9",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "67834d2e-55b1-4876-9c94-06d0a42c1973",
+            "name": "Section 6.9.1 Initiation of new Antihyperglycemic Medications",
+            "summary": "Added \"Insulin use for ≥14 consecutive days is prohibited.\"",
+            "rationale": "Updated internal safety guidance.",
+            "changedSections": [
+              {
+                "id": "6b6d1b78-2c35-4b97-9093-fed7a2ca756a",
+                "sectionNumber": "6.9.1",
+                "sectionTitle": "Initiation of new Antihyperglycemic Medications",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "7cc66a38-b445-4bb5-8b4f-4c1a50111d57",
+            "name": "Section 6.9.2 Rescue Therapy for Severe, Persistent Hyperglycemia",
+            "summary": "Updated from \"Participants should\" to \"Participants must\" continue administering assigned study intervention, and added clarification \"unless insulin is used as short-term rescue therapy.\"\nUpdated Recommended glycemic rescue therapy section to state that urgent use of short-term insulin in a hospital or closely monitored setting may be used as rescue therapy, and added respective instructions to temporarily interrupt study intervention.\nRemoved \"Short-term treatment with insulin not as rescue therapy\" section.",
+            "rationale": "Updated internal safety guidance.",
+            "changedSections": [
+              {
+                "id": "06018e95-b002-4da6-9259-96d89b6d2239",
+                "sectionNumber": "6.9.2",
+                "sectionTitle": "Rescue Therapy for Severe, Persistent Hyperglycemia",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "cecffccb-00c8-45fc-8aa1-e8f9f54e1c5e",
+            "name": "Section 6.9.3 Prohibited Medications",
+            "summary": "Updated Note regarding short-term insulin use to clarify that it is allowed for urgent use.",
+            "rationale": "Updated internal safety guidance.",
+            "changedSections": [
+              {
+                "id": "3e9d3a01-3413-4885-b605-a91395e93a3b",
+                "sectionNumber": "6.9.3",
+                "sectionTitle": "Prohibited Medications",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "Original Protocol",
+        "newVersion": "YDAF(a)"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        15
+      ]
+    },
+    {
+      "id": "geo_1",
+      "entity_type": "geographic_scope",
+      "data": {
+        "id": "geo_1",
+        "name": "Study Geographic Scope",
+        "scopeType": "Global",
+        "instanceType": "GeographicScope"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        15
+      ]
+    }
+  ],
+  "advanced_summary": {
+    "amendment_count": 1,
+    "country_count": 0,
+    "site_count": 0,
+    "has_geographic_scope": true
+  }
+}

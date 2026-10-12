@@ -1,0 +1,580 @@
+{
+  "agent_id": "biomedical_concept_agent",
+  "timestamp": "2026-09-29T14:43:49.895622",
+  "confidence": 0.75,
+  "entity_count": 14,
+  "entities": [
+    {
+      "id": "bc_1",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_1",
+        "name": "Visit Detail",
+        "label": "Clinical Visit Detail Record",
+        "synonyms": [
+          "Visit Information",
+          "Visit Record",
+          "Encounter Detail"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_1_prop_1",
+            "name": "VISITDTC",
+            "label": "Visit Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_2",
+            "name": "VISIT",
+            "label": "Visit Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_3",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_2",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_2",
+        "name": "Fasting Visit",
+        "label": "Fasting Status at Visit",
+        "synonyms": [
+          "Fasting Confirmation",
+          "Pre-visit Fasting",
+          "Fasting Requirement"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_2_prop_1",
+            "name": "FAORRES",
+            "label": "Fasting Status Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_2",
+            "name": "FADUR",
+            "label": "Fasting Duration",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_3",
+            "name": "FASTAT",
+            "label": "Fasting Completion Status",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_3",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_3",
+        "name": "Waist Circumference",
+        "label": "Waist Circumference Measurement",
+        "synonyms": [
+          "Abdominal Circumference",
+          "Waist Measurement",
+          "WC"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_3_prop_1",
+            "name": "VSORRES",
+            "label": "Waist Circumference Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_2",
+            "name": "VSORRESU",
+            "label": "Waist Circumference Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_3",
+            "name": "VSPOS",
+            "label": "Position During Measurement",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_4",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_4",
+        "name": "Symptom-Directed Physical Assessment",
+        "label": "Symptom-Directed Physical Assessment Finding",
+        "synonyms": [
+          "Targeted Physical Exam",
+          "Symptom-Focused Examination",
+          "Directed Physical Assessment"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_4_prop_1",
+            "name": "PEORRES",
+            "label": "Physical Assessment Finding",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_2",
+            "name": "PEBODSYS",
+            "label": "Body System Examined",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_3",
+            "name": "PENORIND",
+            "label": "Normal/Abnormal Indicator",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_4",
+            "name": "PESTAT",
+            "label": "Completion Status",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_5",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_5",
+        "name": "Visit Interval Tolerance",
+        "label": "Visit Interval Tolerance in Days",
+        "synonyms": [
+          "Visit Window",
+          "Visit Tolerance Window",
+          "Allowable Visit Deviation"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_5_prop_1",
+            "name": "SVSTDTC",
+            "label": "Visit Start Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_2",
+            "name": "SVWINDOW",
+            "label": "Visit Window Tolerance (Days)",
+            "isRequired": true,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_3",
+            "name": "SVDEVIAT",
+            "label": "Visit Deviation from Schedule (Days)",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_6",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_6",
+        "name": "12-Lead ECG Triplicate",
+        "label": "12-Lead Electrocardiogram Triplicate Central Reading",
+        "synonyms": [
+          "ECG 12-Lead",
+          "Triplicate ECG",
+          "Central ECG",
+          "12-Lead Electrocardiogram"
+        ],
+        "categories": [
+          "bcc_4"
+        ],
+        "properties": [
+          {
+            "id": "bc_6_prop_1",
+            "name": "EGORRES",
+            "label": "ECG Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_2",
+            "name": "EGTPTREF",
+            "label": "Time Point Reference",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_3",
+            "name": "EGNORIND",
+            "label": "Normal/Abnormal Indicator",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_4",
+            "name": "EGREPNUM",
+            "label": "Replicate Number",
+            "isRequired": true,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "code": {
+          "id": "f7113538-7dec-4b6f-b416-36f35f03b330",
+          "code": "C38054",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Electrocardiogram",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_7",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_7",
+        "name": "Physical Examination",
+        "label": "Complete Physical Examination",
+        "synonyms": [
+          "Full Physical Exam",
+          "General Physical Examination",
+          "PE"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_7_prop_1",
+            "name": "PEORRES",
+            "label": "Physical Examination Finding",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_2",
+            "name": "PEBODSYS",
+            "label": "Body System Examined",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_3",
+            "name": "PENORIND",
+            "label": "Normal/Abnormal Indicator",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_4",
+            "name": "PESTAT",
+            "label": "Completion Status",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "code": {
+          "id": "19566409-1c86-43d5-b496-8ad3ca89a78b",
+          "code": "C62244",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Physical Examination",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_8",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_8",
+        "name": "Vital Signs Triplicate",
+        "label": "Vital Signs Triplicate Measurement",
+        "synonyms": [
+          "Triplicate Vital Signs",
+          "Repeated Vital Signs",
+          "VS Triplicate"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_8_prop_1",
+            "name": "VSTESTCD",
+            "label": "Vital Signs Test Code",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_2",
+            "name": "VSORRES",
+            "label": "Vital Signs Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_3",
+            "name": "VSORRESU",
+            "label": "Vital Signs Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_4",
+            "name": "VSREPNUM",
+            "label": "Replicate Number",
+            "isRequired": true,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_9",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_9",
+        "name": "Weeks from Randomization",
+        "label": "Weeks Elapsed from Visit 3 Randomization",
+        "synonyms": [
+          "Weeks Post-Randomization",
+          "Time from Randomization",
+          "Study Week"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_9_prop_1",
+            "name": "RFSTDTC",
+            "label": "Randomization Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_2",
+            "name": "VISITDY",
+            "label": "Planned Study Day of Visit",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_3",
+            "name": "WEEKFRRND",
+            "label": "Weeks from Randomization",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_10",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_10",
+        "name": "Visit Number",
+        "label": "Clinical Trial Visit Number",
+        "synonyms": [
+          "Visit Sequence Number",
+          "Visit ID",
+          "Visit Identifier"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_10_prop_1",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_2",
+            "name": "VISIT",
+            "label": "Visit Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_1",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_1",
+        "name": "Procedures",
+        "label": "Clinical Procedures and Administrative Activities",
+        "bcIds": [
+          "bc_1",
+          "bc_2",
+          "bc_5",
+          "bc_9",
+          "bc_10"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_2",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_2",
+        "name": "Physical Examination",
+        "label": "Physical Examination Assessments",
+        "bcIds": [
+          "bc_4",
+          "bc_7"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_3",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_3",
+        "name": "Vital Signs",
+        "label": "Vital Signs Measurements",
+        "bcIds": [
+          "bc_3",
+          "bc_8"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_4",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_4",
+        "name": "ECG/Cardiac",
+        "label": "Electrocardiogram and Cardiac Assessments",
+        "bcIds": [
+          "bc_6"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    }
+  ],
+  "bc_summary": {
+    "biomedical_concept_count": 10,
+    "category_count": 4,
+    "activity_count": 10
+  }
+}

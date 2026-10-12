@@ -1,0 +1,187 @@
+{
+  "agent_id": "advanced_agent",
+  "timestamp": "2026-09-29T14:28:54.543454",
+  "confidence": 0.85,
+  "entity_count": 5,
+  "entities": [
+    {
+      "id": "amend_1",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_1",
+        "number": "a",
+        "name": "Amendment a",
+        "scope": {
+          "id": "91eeed8a-1f03-4ebf-92ae-6760e9a89b43",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "7beffd07-9189-4391-94d3-87bee9771652",
+          "code": {
+            "id": "a2ad72fe-2d8d-4d7a-a5d7-5a7f66e3dd6a",
+            "code": "C98782",
+            "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+            "codeSystemVersion": "25.01d",
+            "decode": "Protocol Amendment",
+            "instanceType": "Code"
+          },
+          "otherReason": "Protocol Amendment",
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "c7016b5e-84e0-4a80-910a-c3c8aa517293",
+            "type": {
+              "id": "d8c24d0d-d81a-4b0e-9b0f-c89e86339f9b",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "Amendment (a) Electronically Signed and Approved by Lilly on date provided below. Approval Date: 05-Dec-2017 GMT",
+        "effectiveDate": "2017-12-05",
+        "dateValues": [
+          {
+            "id": "gd_amend_1_eff",
+            "name": "Amendment a Effective Date",
+            "dateValue": "2017-12-05",
+            "geographicScopes": [],
+            "type": {
+              "id": "0305400c-7419-4720-be54-cd9556dfc4ad",
+              "code": "C99904",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Protocol Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          },
+          {
+            "id": "gd_amend_1_app",
+            "name": "Amendment a Approval Date",
+            "dateValue": "2017-12-05",
+            "geographicScopes": [],
+            "type": {
+              "id": "0bb3cc0f-8f9b-42a0-b3f8-7653eff23b84",
+              "code": "C99903",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Protocol Approved Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "reasonIds": [
+          "ar_1_1",
+          "ar_1_2"
+        ],
+        "previousVersion": "Original Protocol (26 October 2017)",
+        "newVersion": "I8R-JE-IGBJ(a)"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "ar_1_1",
+      "entity_type": "amendment_reason",
+      "data": {
+        "id": "ar_1_1",
+        "code": "ADMINISTRATIVE",
+        "description": "Administrative",
+        "instanceType": "AmendmentReason"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "ar_1_2",
+      "entity_type": "amendment_reason",
+      "data": {
+        "id": "ar_1_2",
+        "code": "OPERATIONAL",
+        "description": "Operational",
+        "instanceType": "AmendmentReason"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "geo_1",
+      "entity_type": "geographic_scope",
+      "data": {
+        "id": "geo_1",
+        "name": "Study Geographic Scope",
+        "scopeType": "Single Country",
+        "instanceType": "GeographicScope",
+        "countryIds": [
+          "country_1"
+        ]
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        9
+      ]
+    },
+    {
+      "id": "country_1",
+      "entity_type": "country",
+      "data": {
+        "id": "country_1",
+        "name": "Japan",
+        "instanceType": "Country",
+        "code": "JP"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        7,
+        9
+      ]
+    }
+  ],
+  "advanced_summary": {
+    "amendment_count": 1,
+    "country_count": 1,
+    "site_count": 0,
+    "has_geographic_scope": true
+  }
+}

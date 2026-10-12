@@ -1,0 +1,1882 @@
+{
+  "agent_id": "scheduling_agent",
+  "timestamp": "2026-10-07T15:28:12.410490",
+  "confidence": 1.0,
+  "entity_count": 62,
+  "entities": [
+    {
+      "id": "timing_1",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_1",
+        "name": "Screening Period (Visit 1 to Visit 3)",
+        "type": {
+          "id": "af79471b-2f23-45a3-afbf-877cfd58b103",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P35D",
+        "valueLabel": "Day 35",
+        "relativeToFrom": {
+          "id": "45388123-07e4-4f85-ae84-3727feffa2ad",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "e6ce9dfa-7f79-401d-ac13-9f7707fdf235",
+        "instanceType": "Timing",
+        "windowLower": "-P35D",
+        "windowUpper": "-P1D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_2",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_2",
+        "name": "Treatment Period Duration",
+        "type": {
+          "id": "c9b5464f-fd6c-419d-9cf4-dda5ebab04db",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P64W",
+        "valueLabel": "64 weeks",
+        "relativeToFrom": {
+          "id": "07e42df6-7932-47b8-89fe-8a55cc8b79b9",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "7b86403a-aa83-419c-a370-625cc423e41e",
+        "instanceType": "Timing",
+        "windowLower": "P0W",
+        "windowUpper": "P448W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_3",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_3",
+        "name": "Dose Escalation Period",
+        "type": {
+          "id": "ee54dea4-32c9-4fba-8ea3-2da236a4aede",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P12W",
+        "valueLabel": "12 weeks",
+        "relativeToFrom": {
+          "id": "1eee581b-6ccf-4701-ac2a-6df078acd1fe",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "3d5d9f42-1317-4440-ae4a-d4b441bd55d1",
+        "instanceType": "Timing",
+        "windowLower": "P0W",
+        "windowUpper": "P84W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_4",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_4",
+        "name": "Dose Escalation Step Interval",
+        "type": {
+          "id": "b7e23f0d-18e2-4ba7-90af-8b18bd920e68",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P4W",
+        "valueLabel": "4 weeks",
+        "relativeToFrom": {
+          "id": "a0d844ca-396c-454e-94cd-bf936a961735",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "f427622b-cdcd-4410-97da-c70306c5072e",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_5",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_5",
+        "name": "Treatment Maintenance Period",
+        "type": {
+          "id": "df5b83ff-1abc-4a11-84b3-18ac23230fcc",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P52W",
+        "valueLabel": "52 weeks",
+        "relativeToFrom": {
+          "id": "50e4faac-fd54-4ad1-b2e4-6514ecb7665a",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "96126ff4-0487-4e1a-b670-f05b29dd453b",
+        "instanceType": "Timing",
+        "windowLower": "P84W",
+        "windowUpper": "P448W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_6",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_6",
+        "name": "Post-treatment Follow-up Period",
+        "type": {
+          "id": "fdc45a10-6f39-411e-8e30-5b55da4064fd",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P6W",
+        "valueLabel": "6 weeks",
+        "relativeToFrom": {
+          "id": "852c988d-cf3b-4ac6-bcdd-2a16dcf50137",
+          "code": "C71160",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "End of Treatment",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "0c9f37d6-4caf-4a3a-8a57-4044768f3d79",
+        "instanceType": "Timing",
+        "windowLower": "P0W",
+        "windowUpper": "P42W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_7",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_7",
+        "name": "Visit 801 Posttreatment Safety Follow-up Visit",
+        "type": {
+          "id": "2cfaefd2-d763-4f3d-a03d-b4617f61c152",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "P6W",
+        "valueLabel": "6 weeks",
+        "relativeToFrom": {
+          "id": "4d9694d1-6672-4ea6-bdd9-432ad3c81a67",
+          "code": "C71160",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "End of Treatment",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "820a4e4a-99c4-4d37-9dc0-62d3be71aaee",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_8",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_8",
+        "name": "General Visit Frequency",
+        "type": {
+          "id": "28c99809-bfba-45b0-990f-4beb0f11d138",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P4W",
+        "valueLabel": "4 weeks",
+        "relativeToFrom": {
+          "id": "d5304fba-4dd4-44fd-ba10-dbcc1adfb091",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "4f6cb399-1b37-4cfb-8235-855581b7431e",
+        "instanceType": "Timing",
+        "windowLower": "P28W",
+        "windowUpper": "P84W"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_9",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_9",
+        "name": "Study Intervention Dosing Interval (once weekly SC)",
+        "type": {
+          "id": "ef984526-f7c2-40a2-a5a1-97514b0fb6f3",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P1W",
+        "valueLabel": "1 weeks",
+        "relativeToFrom": {
+          "id": "aebc67c7-1888-4e28-9011-7190f22a457d",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "4b21194d-4ba5-4b03-85f9-0adc4e64047a",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_10",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_10",
+        "name": "Exclusionary Antihyperglycemic Medication Washout (amylin analogs, GLP-1 RA, GIP/GLP RA, insulin)",
+        "type": {
+          "id": "229a71b1-2420-4c62-9c08-b173415717fd",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P90D",
+        "valueLabel": "Day 90",
+        "relativeToFrom": {
+          "id": "2c9370bb-86c7-4cc9-b911-26c0c090342d",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "a65515ae-fae2-4c9c-ad14-05fe522f48ba",
+        "instanceType": "Timing",
+        "windowLower": "-P90D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_11",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_11",
+        "name": "Insulin Therapy Prohibition Prior to Visit 1",
+        "type": {
+          "id": "9398030d-3202-477f-a31e-12baa8b4578e",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P90D",
+        "valueLabel": "Day 90",
+        "relativeToFrom": {
+          "id": "9274dcc9-ee93-4686-8d1d-db35a2839e53",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "38076319-9db3-4e36-a16e-f3f44a235be1",
+        "instanceType": "Timing",
+        "windowLower": "-P90D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_12",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_12",
+        "name": "Severe Hypoglycemia / Hypoglycemia Unawareness Lookback",
+        "type": {
+          "id": "257ae50f-9e47-4f1b-81db-1dd9ff1698d8",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P180D",
+        "valueLabel": "Day 180",
+        "relativeToFrom": {
+          "id": "de85a8f1-47ef-463f-80b8-e1e2561077f5",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "e1cd3de7-5363-420f-a4a9-9b9f59a5695a",
+        "instanceType": "Timing",
+        "windowLower": "-P180D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_13",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_13",
+        "name": "Qualifying Fundus Photography Validity Window",
+        "type": {
+          "id": "6194d354-df21-42af-b18a-bcd531626127",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P90D",
+        "valueLabel": "Day 90",
+        "relativeToFrom": {
+          "id": "b72465eb-d6a3-45e3-9d1f-fd37ff3d7caa",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "ad98b6bf-f64d-42ba-a9f5-64e40784eba2",
+        "instanceType": "Timing",
+        "windowLower": "-P90D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_14",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_14",
+        "name": "Baseline Fundus Photography Prior to Randomization",
+        "type": {
+          "id": "65d0472c-28e6-44fc-9144-2ee9f909d98f",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Day 0",
+        "relativeToFrom": {
+          "id": "166ea172-9cc7-43c4-94f9-fa240666cd55",
+          "code": "C71154",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Randomization",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "0dd742fa-767d-40d6-9d8c-2113821ed670",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_15",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_15",
+        "name": "Cardiovascular Event Lookback (e.g., acute myocardial infarction)",
+        "type": {
+          "id": "63ced735-0ef8-439e-9ee0-23a5d1f2a3a4",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P90D",
+        "valueLabel": "Day 90",
+        "relativeToFrom": {
+          "id": "e2d09baa-5269-48b0-a338-752258898a54",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "362b319c-ebed-4b0e-9472-6a3bb72256c8",
+        "instanceType": "Timing",
+        "windowLower": "-P90D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_16",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_16",
+        "name": "Chronic Systemic Glucocorticoid Lookback (>2 weeks duration)",
+        "type": {
+          "id": "f6a0fdf0-9c2f-49f5-932e-048d51a42d8b",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P90D",
+        "valueLabel": "Day 90",
+        "relativeToFrom": {
+          "id": "0fdce06b-a5d8-494c-9de3-0409f1458453",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "3ffb1e1c-5e89-4ab5-a496-cc694a885493",
+        "instanceType": "Timing",
+        "windowLower": "-P90D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_17",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_17",
+        "name": "Weight-Reduction Medication/Supplement Washout",
+        "type": {
+          "id": "8a167a62-8636-4644-88b9-6eb0780b9a4a",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P90D",
+        "valueLabel": "Day 90",
+        "relativeToFrom": {
+          "id": "ffcd6f73-1e91-4cb6-a16b-236cea3c8bc5",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "8fdfc8ea-55f1-4ef3-be2c-09ded4f6600b",
+        "instanceType": "Timing",
+        "windowLower": "-P90D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_18",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_18",
+        "name": "Weight-Gain-Causing Medication Lookback",
+        "type": {
+          "id": "a545aa68-2076-430d-b892-934cfd68c8c5",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P90D",
+        "valueLabel": "Day 90",
+        "relativeToFrom": {
+          "id": "3da0ad1c-b58b-47d5-9476-986eae20d04e",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "4532f066-a149-4e4e-8ce1-ffed8ac59c90",
+        "instanceType": "Timing",
+        "windowLower": "-P90D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_19",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_19",
+        "name": "Stable Dose Requirement for Weight-Gain-Causing Medications",
+        "type": {
+          "id": "2e9e8729-8200-4d85-b930-cf46099f1770",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P6D",
+        "valueLabel": "6 months",
+        "relativeToFrom": {
+          "id": "26c61137-1d71-4209-b654-8401a0a94b64",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "16859c2e-5f9b-4cd7-8973-b866b1d2882c",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "-P180D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_20",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_20",
+        "name": "Injectable/Implantable Contraceptive Initiation Lookback",
+        "type": {
+          "id": "cc646524-7876-43d4-9fb3-a4adec96d951",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P18D",
+        "valueLabel": "18 months",
+        "relativeToFrom": {
+          "id": "24a612e7-85ba-43ad-b2f7-b95204de5ac4",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "e0b40a64-77d0-4085-a506-405a50143372",
+        "instanceType": "Timing",
+        "windowLower": "-P540D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_21",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_21",
+        "name": "Malignancy Remission Requirement",
+        "type": {
+          "id": "c13a9fbc-0c5e-44f3-be02-bbe189a5af65",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P5D",
+        "valueLabel": "5 years",
+        "relativeToFrom": {
+          "id": "375ac501-e5b4-4a60-af6f-47751475d4f6",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "29a2dd38-7240-418f-88e7-5761a867c9fd",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "-P1825D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_22",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_22",
+        "name": "Major Depressive/Severe Psychiatric Disorder Lookback",
+        "type": {
+          "id": "445a2341-c4bb-4ae2-bd7e-3895e1cf679b",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P2D",
+        "valueLabel": "2 years",
+        "relativeToFrom": {
+          "id": "cbfc1d5b-7125-4c9a-9257-80145f54c271",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "d4b5e09e-b584-49dc-94e4-c3a68257ac94",
+        "instanceType": "Timing",
+        "windowLower": "-P730D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_23",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_23",
+        "name": "C-SSRS Suicidal Ideation Lookback",
+        "type": {
+          "id": "c0dffda9-77e4-4a11-8536-18ddd15f6770",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P3D",
+        "valueLabel": "3 months",
+        "relativeToFrom": {
+          "id": "bc135a79-365f-4aad-89ca-33a99742e4ae",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "1deea18f-13e1-485a-b7c9-7149555651b4",
+        "instanceType": "Timing",
+        "windowLower": "-P90D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_24",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_24",
+        "name": "C-SSRS Suicidal Behavior Lookback",
+        "type": {
+          "id": "cb553560-c512-456a-a360-4690f90030d3",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P5D",
+        "valueLabel": "5 years",
+        "relativeToFrom": {
+          "id": "7de99caf-ce14-49a2-b5f0-5f9f37781a70",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "4cdbfe0d-7958-464e-8c02-9cdbf8f57ecf",
+        "instanceType": "Timing",
+        "windowLower": "-P1825D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "timing_25",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_25",
+        "name": "Prohibited Duration of On-Study Insulin Use",
+        "type": {
+          "id": "98d0e762-8eb7-4524-b056-09b4c86e89a1",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P14D",
+        "valueLabel": "Day 14",
+        "relativeToFrom": {
+          "id": "c208391b-3f86-49da-87c7-1ae36dcbab85",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "81b28b8f-44be-44a9-8228-58f7c432095c",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_1",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_1",
+        "name": "Randomization Eligibility at Visit 3",
+        "instanceType": "Condition",
+        "description": "Participant must complete screening (Visit 1 to Visit 3, up to 35 days) and meet all eligibility criteria including baseline fundus photography and PHQ-9 assessment prior to randomization at Visit 3",
+        "text": "All participants will have a baseline fundus photography assessment prior to randomization (Visit 3). Qualifying fundus photographs obtained within 90 days before Visit 1 may be used for eligibility determination."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_2",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_2",
+        "name": "PHQ-9 Exclusionary Threshold",
+        "instanceType": "Condition",
+        "description": "Depression severity threshold assessed at screening and randomization",
+        "text": "Have a PHQ-9 score of 15 or more at any screening visit (Visit 1) or at randomization (Visit 3)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_3",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_3",
+        "name": "Fasting Glucose Threshold at Screening",
+        "instanceType": "Condition",
+        "description": "Central laboratory confirmed hyperglycemia threshold excluding participation",
+        "text": "Have fasting glucose >270 mg/dL (>15.0 mmol/L) confirmed by the central laboratory at screening (Visit 1)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_4",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_4",
+        "name": "Renal Function Threshold at Screening",
+        "instanceType": "Condition",
+        "description": "eGFR threshold determined by central laboratory during screening",
+        "text": "Have renal impairment measured as eGFR <30 mL/min/1.73 m2, calculated by eGFRcr-cys formula as per Chronic Kidney Disease Epidemiology Collaboration as determined by central laboratory during screening (Visit 1)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_5",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_5",
+        "name": "Severe, Persistent Hyperglycemia Requiring Rescue",
+        "instanceType": "Condition",
+        "description": "Condition triggering glycemic rescue therapy during the treatment period",
+        "text": "Rescue Therapy for Severe, Persistent Hyperglycemia: participants must continue administering assigned study intervention unless insulin is used as short-term rescue therapy. Urgent use of short-term insulin in a hospital or closely monitored setting may be used as rescue therapy."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_6",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_6",
+        "name": "Prohibited On-Study Insulin Duration",
+        "instanceType": "Condition",
+        "description": "Limit on consecutive days of insulin use during the study",
+        "text": "Insulin use for ≥14 consecutive days is prohibited."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_7",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_7",
+        "name": "Liver Chemistry Stopping Criteria",
+        "instanceType": "Condition",
+        "description": "Hepatic safety monitoring criteria for study drug interruption or discontinuation",
+        "text": "Liver chemistry stopping criteria (Section 7.1.1 and Section 8.2.9) define criteria for study drug interruption or permanent discontinuation."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_8",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_8",
+        "name": "Low BMI Threshold for Dose Modification",
+        "instanceType": "Condition",
+        "description": "Management of participants reaching low BMI during treatment",
+        "text": "Management of Participants with BMI ≤22 kg/m2 (Section 6.6.3)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_9",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_9",
+        "name": "Perceived Excessive Weight Reduction",
+        "instanceType": "Condition",
+        "description": "Condition prompting dose modification per Section 6.6.4",
+        "text": "Management of Participants with Perceived Excessive Weight Reduction (Section 6.6.4)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_10",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_10",
+        "name": "Intestinal Symptoms / Inadequate Nutrition or Dehydration",
+        "instanceType": "Condition",
+        "description": "Gastrointestinal tolerability conditions prompting dose modification",
+        "text": "Management of Participants with Intestinal Symptoms (Section 6.6.1) and Management of Participants with Inadequate Nutrition or Dehydration (Section 6.6.2)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_11",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_11",
+        "name": "Enrollment Cap by Sex Assigned at Birth",
+        "instanceType": "Condition",
+        "description": "Enrollment condition to ensure adequate representation",
+        "text": "An upper limit of approximately 70% enrollment of AFAB participants will be used to ensure a sufficient number of AMAB participants."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_12",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_12",
+        "name": "Randomization Allocation Condition",
+        "instanceType": "Condition",
+        "description": "Approximately 1035 participants randomized to placebo, eloralintide 1.5 mg, 3 mg, 6 mg, 9 mg at 2:1:2:2:2 ratio",
+        "text": "Approximately 1035 participants will be randomly assigned to treatment arms of placebo, eloralintide 1.5 mg, eloralintide 3 mg, eloralintide 6 mg, and eloralintide 9 mg at a randomization ratio of 2:1:2:2:2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_13",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_13",
+        "name": "Unscheduled Visit Condition",
+        "instanceType": "Condition",
+        "description": "Investigator-discretion visit for clinical oversight",
+        "text": "An unscheduled visit may occur per investigator discretion for clinical oversight. The study site will determine if fasting status is needed prior to the visit. Concomitant medications, AEs, and endpoint events are required and should be recorded in the CRF."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "cond_14",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_14",
+        "name": "ED Procedure Exemption",
+        "instanceType": "Condition",
+        "description": "Participants withdrawing before any dose do not require ED procedures",
+        "text": "Participants who withdraw from the study after signing the informed consent but who have not taken a dose of study intervention do not need to complete ED procedures."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_1",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_1",
+        "name": "Screening to Treatment Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_screening",
+        "toElementId": "epoch_treatment",
+        "text": "After an up to 35-day screening period (Visit 1 to Visit 3), participants meeting all eligibility criteria (including fasting glucose ≤270 mg/dL, eGFR ≥30 mL/min/1.73 m2, PHQ-9 <15 at Visit 1 and Visit 3, and baseline fundus photography) are randomized at Visit 3 to placebo or eloralintide 1.5, 3, 6, or 9 mg SC QW (2:1:2:2:2)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_2",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_2",
+        "name": "Dose Escalation to Treatment Maintenance Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_dose_escalation",
+        "toElementId": "epoch_maintenance",
+        "text": "After the 12-week dose escalation period (stepping through 3 mg, 6 mg, and 9 mg every 4 weeks), participants enter the 52-week treatment maintenance period at their randomly assigned final dose."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_3",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_3",
+        "name": "Treatment to Post-treatment Follow-up Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Following the last treatment period visit or final treatment visit (maximum treatment duration 64 weeks), all participants enter a 6-week posttreatment follow-up period and are required to complete the safety follow-up visit (Visit 801) approximately 6 weeks after the last treatment visit."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_4",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_4",
+        "name": "Dose Escalation Step",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "fromElementId": "epoch_dose_escalation",
+        "toElementId": "epoch_dose_escalation",
+        "text": "To reach the doses of 3 mg, 6 mg, and 9 mg QW, a dose-escalation regimen stepping through each of these doses every 4 weeks will be employed."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_5",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_5",
+        "name": "Dose Modification for Intestinal Symptoms",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "Dose modification per Section 6.6.1 for management of participants with intestinal symptoms."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_6",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_6",
+        "name": "Dose Modification for Inadequate Nutrition or Dehydration",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "Dose modification per Section 6.6.2 for management of participants with inadequate nutrition or dehydration."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_7",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_7",
+        "name": "Dose Modification for BMI ≤22 kg/m2",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "Dose modification per Section 6.6.3 for management of participants with BMI ≤22 kg/m2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_8",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_8",
+        "name": "Dose Modification for Perceived Excessive Weight Reduction",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "Dose modification per Section 6.6.4 for management of participants with perceived excessive weight reduction."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_9",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_9",
+        "name": "Rescue Therapy for Severe, Persistent Hyperglycemia",
+        "instanceType": "TransitionRule",
+        "transitionType": "Rescue Therapy",
+        "text": "Participants must continue administering assigned study intervention, unless insulin is used as short-term rescue therapy. Urgent use of short-term insulin in a hospital or closely monitored setting may be used as rescue therapy for severe, persistent hyperglycemia. Insulin use for ≥14 consecutive days is prohibited."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_10",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_10",
+        "name": "Temporary Study Intervention Interruption",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "text": "Temporary study intervention interruption per Section 7.1.2, including interruption triggered by hepatic safety monitoring criteria (Section 8.2.9)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_11",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_11",
+        "name": "Discontinuation of Study Intervention for Liver Chemistry",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Liver chemistry stopping criteria (Section 7.1.1) require permanent discontinuation of study intervention; hepatic safety monitoring and evaluation criteria for study drug interruption or discontinuation are described in Section 8.2.9."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_12",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_12",
+        "name": "Discontinuation of Study Intervention",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Discontinuation of study intervention per Section 7.1; participants permanently discontinuing study intervention should complete early discontinuation (ED) visit procedures and posttreatment follow-up visit(s)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "trans_13",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_13",
+        "name": "Participant Withdrawal from Study",
+        "instanceType": "TransitionRule",
+        "transitionType": "Early Termination",
+        "text": "Participant discontinuation/withdrawal from the study per Section 7.2. If the participant is discontinuing at the time of a scheduled visit, perform that visit as an ED visit."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "exit_1",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_1",
+        "name": "Early Discontinuation (ED) Visit",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "ED visits will be completed by participants permanently discontinuing early from the study. These participants should also complete posttreatment follow-up visit(s). If the participant is discontinuing at the time of a scheduled visit, that visit is performed as an ED visit."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "exit_2",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_2",
+        "name": "Withdrawal Prior to First Dose",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Participants who withdraw from the study after signing the informed consent but who have not taken a dose of study intervention do not need to complete ED procedures."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "exit_3",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_3",
+        "name": "Screen Failure",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Participants not meeting eligibility criteria during the up-to-35-day screening period (Visit 1 to Visit 3) exit prior to randomization (e.g., fasting glucose >270 mg/dL, eGFR <30 mL/min/1.73 m2, PHQ-9 ≥15 at Visit 1 or Visit 3)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "exit_4",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_4",
+        "name": "Lost to Follow-up",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Participant lost to follow up per Section 7.3."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "exit_5",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_5",
+        "name": "Study Completion",
+        "exitType": "Completion",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Completion of up to 64 weeks of treatment (12-week dose escalation plus 52-week maintenance) followed by the 6-week posttreatment follow-up period, including the required safety follow-up visit (Visit 801) approximately 6 weeks after the last treatment visit."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "dec_1",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_1",
+        "name": "Randomization Eligibility Decision",
+        "timepointId": "pt_visit3",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "At Visit 3 (end of up to 35-day screening), eligibility is confirmed and participants are randomized 2:1:2:2:2 to placebo or eloralintide 1.5, 3, 6, or 9 mg SC QW.",
+        "conditionIds": [
+          "cond_1",
+          "cond_2",
+          "cond_3",
+          "cond_4",
+          "cond_11",
+          "cond_12"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "dec_2",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_2",
+        "name": "Dose Escalation Step Decision (every 4 weeks)",
+        "timepointId": "pt_dose_escalation",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "During the 12-week dose escalation period, dose is stepped up every 4 weeks toward the assigned final dose, subject to tolerability and dose modification criteria.",
+        "conditionIds": [
+          "cond_8",
+          "cond_9",
+          "cond_10"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "dec_3",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_3",
+        "name": "Glycemic Rescue Decision",
+        "timepointId": "pt_treatment_visits",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "At treatment visits (every 4 to 12 weeks), investigator assesses severe, persistent hyperglycemia and may initiate short-term insulin rescue therapy in a hospital or closely monitored setting; insulin use for ≥14 consecutive days is prohibited.",
+        "conditionIds": [
+          "cond_5",
+          "cond_6"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "dec_4",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_4",
+        "name": "Hepatic Safety Interruption/Discontinuation Decision",
+        "timepointId": "pt_treatment_visits",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Hepatic safety monitoring at scheduled and unscheduled visits determines temporary interruption or permanent discontinuation of study intervention.",
+        "conditionIds": [
+          "cond_7"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    },
+    {
+      "id": "dec_5",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_5",
+        "name": "End of Treatment Transition Decision",
+        "timepointId": "pt_week64",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "At completion of the maximum 64-week treatment duration, participants transition to the 6-week posttreatment follow-up period and Visit 801."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        5,
+        15,
+        43,
+        44,
+        48,
+        50,
+        51
+      ]
+    }
+  ],
+  "scheduling_summary": {
+    "timing_count": 25,
+    "condition_count": 14,
+    "transition_rule_count": 13,
+    "exit_count": 5,
+    "decision_count": 5
+  }
+}

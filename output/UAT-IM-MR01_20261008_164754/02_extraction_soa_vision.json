@@ -1,0 +1,447 @@
+{
+  "agent_id": "soa_vision_agent",
+  "timestamp": "2026-10-08T16:48:18.590915",
+  "confidence": 0.8,
+  "entity_count": 10,
+  "entities": [
+    {
+      "id": "soa_header_structure",
+      "entity_type": "header_structure",
+      "data": {
+        "source": "vision",
+        "page_numbers": [
+          9,
+          10,
+          11,
+          42,
+          43,
+          44,
+          53,
+          54,
+          55,
+          56
+        ],
+        "image_count": 10,
+        "structure": {
+          "columnHierarchy": {
+            "epochs": [
+              {
+                "id": "epoch_1",
+                "name": "Study Period I: Screening",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "7d9a1318-fdad-4cc7-9dae-53e58cdce921",
+                  "code": "C98779",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Screening Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_2",
+                "name": "Study Period II: Induction and Dose Escalation",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "96d8c4e9-0404-4887-ad01-d4203e2a1d9a",
+                  "code": "C98780",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Treatment Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_3",
+                "name": "Study Period III: Maintenance Treatment",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "543948c8-fc5a-47d3-94e4-c7437bb245d1",
+                  "code": "C98780",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Treatment Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_4",
+                "name": "Safety Follow-up",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "b21ac0fa-550b-4b7b-b429-86a369797748",
+                  "code": "C98781",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up Epoch",
+                  "instanceType": "Code"
+                }
+              }
+            ],
+            "encounters": [
+              {
+                "id": "enc_1",
+                "name": "Screening (Visit 1)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "b9c568d8-f3cc-40b5-82b8-6f1922dd21df",
+                  "code": "C48262",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Screening",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_1"
+              },
+              {
+                "id": "enc_2",
+                "name": "Baseline/Randomization (Visit 2)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "5edb12e6-0dbd-43b7-8cf4-74d4abe2f63b",
+                  "code": "C82517",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Baseline",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_2"
+              },
+              {
+                "id": "enc_3",
+                "name": "Week 24",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "fba09d59-3ba9-4012-a942-46f9e9a5ccfb",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_3"
+              },
+              {
+                "id": "enc_4",
+                "name": "Week 52",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "9e018b0b-a755-4ea5-b7a7-7ed678ef8635",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_3"
+              },
+              {
+                "id": "enc_5",
+                "name": "Safety Follow-up",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "b74a0041-4b6a-4aea-866a-ba1b1f31c927",
+                  "code": "C99158",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_4"
+              }
+            ],
+            "plannedTimepoints": [
+              {
+                "id": "pt_1",
+                "visit": "Up to 5 weeks (≤35 days) prior to baseline",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_1",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_2",
+                "visit": "Week 0 (Baseline)",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_2",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_3",
+                "visit": "Week 24",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_3",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_4",
+                "visit": "Week 52",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_4",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_5",
+                "visit": "4 weeks after the last visit",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_5",
+                "instanceType": "Timing"
+              }
+            ]
+          },
+          "rowGroups": [],
+          "footnotes": [
+            "a. Assessed via DXA scan."
+          ]
+        }
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "epoch_v_1",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Study Period I: Screening",
+        "source": "vision",
+        "order": 0
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "epoch_v_2",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Study Period II: Induction and Dose Escalation",
+        "source": "vision",
+        "order": 1
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "epoch_v_3",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Study Period III: Maintenance Treatment",
+        "source": "vision",
+        "order": 2
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "epoch_v_4",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Safety Follow-up",
+        "source": "vision",
+        "order": 3
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "encounter_v_1",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Screening (Visit 1)",
+        "epochId": "epoch_1",
+        "source": "vision",
+        "order": 0
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "encounter_v_2",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Baseline/Randomization (Visit 2)",
+        "epochId": "epoch_2",
+        "source": "vision",
+        "order": 1
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "encounter_v_3",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Week 24",
+        "epochId": "epoch_3",
+        "source": "vision",
+        "order": 2
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "encounter_v_4",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Week 52",
+        "epochId": "epoch_3",
+        "source": "vision",
+        "order": 3
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    },
+    {
+      "id": "encounter_v_5",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Safety Follow-up",
+        "epochId": "epoch_4",
+        "source": "vision",
+        "order": 4
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        9,
+        10,
+        11,
+        42,
+        43,
+        44,
+        53,
+        54,
+        55,
+        56
+      ]
+    }
+  ],
+  "vision_summary": {
+    "soa_pages": [
+      9,
+      10,
+      11,
+      42,
+      43,
+      44,
+      53,
+      54,
+      55,
+      56
+    ],
+    "image_count": 10,
+    "epoch_count": 4,
+    "encounter_count": 5
+  }
+}

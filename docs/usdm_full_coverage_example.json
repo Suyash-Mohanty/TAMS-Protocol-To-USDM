@@ -1,0 +1,1030 @@
+{
+  "usdmVersion": "4.0.0",
+  "study": {
+    "id": "89bf3d20-bc77-466d-a6e9-275f80d54265",
+    "instanceType": "Study",
+    "name": "Sample Study",
+    "description": "",
+    "label": "",
+    "versions": [
+      {
+        "id": "878ded26-b9d3-49c8-afd1-39c79c668c61",
+        "versionIdentifier": "1",
+        "rationale": "Original protocol version",
+        "titles": [
+          {
+            "id": "c9ab526a-7f21-4f10-8af2-496cf69c5d50",
+            "text": "Sample Study Title",
+            "type": {
+              "id": "79f6323d-c10e-4e83-9876-8e779883c760",
+              "code": "C207616",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Official Study Title",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyTitle"
+          }
+        ],
+        "studyIdentifiers": [
+          {
+            "id": "602f20aa-a61f-4ad4-a16b-d8928adc59dc",
+            "text": "SAMPLE-001",
+            "instanceType": "StudyIdentifier",
+            "scopeId": "8bb6e390-8ddc-418d-bdaa-3b6207067f01"
+          }
+        ],
+        "organizations": [
+          {
+            "id": "8bb6e390-8ddc-418d-bdaa-3b6207067f01",
+            "name": "Sample Sponsor",
+            "type": {
+              "id": "9c25653a-a250-4c80-bd0b-ff6f8014fa60",
+              "code": "C70793",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Clinical Study Sponsor",
+              "instanceType": "Code"
+            },
+            "identifier": "Sample Sponsor",
+            "identifierScheme": "DUNS",
+            "instanceType": "Organization"
+          },
+          {
+            "id": "5939d5a6-10d1-40b6-9f1e-2fbbd3b9935a",
+            "name": "Sample CRO",
+            "type": {
+              "id": "37145b44-b29e-4cc0-83db-400f0268525a",
+              "code": "C54148",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "decode": "Contract Research Organization",
+              "instanceType": "Code"
+            },
+            "identifier": "Sample CRO",
+            "identifierScheme": "DUNS",
+            "instanceType": "Organization"
+          }
+        ],
+        "roles": [
+          {
+            "id": "004f4cda-a876-4a13-8223-f172d704b11d",
+            "name": "Sponsor",
+            "code": {
+              "id": "dda13669-ac51-4e44-b6c6-0a342d29e4a9",
+              "code": "C70793",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Clinical Study Sponsor",
+              "instanceType": "Code"
+            },
+            "organizationIds": [
+              "8bb6e390-8ddc-418d-bdaa-3b6207067f01"
+            ],
+            "instanceType": "StudyRole",
+            "appliesToIds": [
+              "878ded26-b9d3-49c8-afd1-39c79c668c61"
+            ],
+            "organizationId": "8bb6e390-8ddc-418d-bdaa-3b6207067f01"
+          },
+          {
+            "id": "fac336fb-a800-43d2-96ae-59422a1602d5",
+            "name": "Investigator",
+            "code": {
+              "id": "ed1e7417-7bdb-47ad-941d-53bcefa4d86b",
+              "code": "C25936",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Investigator",
+              "instanceType": "Code"
+            },
+            "organizationIds": [
+              "5939d5a6-10d1-40b6-9f1e-2fbbd3b9935a"
+            ],
+            "instanceType": "StudyRole",
+            "appliesToIds": [
+              "878ded26-b9d3-49c8-afd1-39c79c668c61"
+            ],
+            "masking": {
+              "id": "f5178db3-a223-4b7a-b251-8131f63fd27c",
+              "text": "Masked",
+              "isMasked": true,
+              "instanceType": "Masking"
+            }
+          }
+        ],
+        "narrativeContentItems": [
+          {
+            "id": "3285cc5a-00a5-47da-8c88-d58e5d2324c6",
+            "name": "Section 1",
+            "text": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p>Sample narrative text.</p></div>",
+            "instanceType": "NarrativeContentItem"
+          }
+        ],
+        "abbreviations": [
+          {
+            "id": "24d801ea-ac18-4aa4-8a8a-baf0c216e948",
+            "abbreviatedText": "AE",
+            "expandedText": "Adverse Event",
+            "instanceType": "Abbreviation"
+          }
+        ],
+        "amendments": [
+          {
+            "id": "8ead202c-63e3-4775-82b1-7b05bfec4e0d",
+            "number": "1",
+            "name": "Amendment 1",
+            "primaryReason": {
+              "id": "ffd13da5-b0a0-4ba2-91ba-efaa5f603600",
+              "code": {
+                "id": "954f2f1c-6365-41a6-bef1-6cfdfc7a0ebb",
+                "code": "C17649",
+                "codeSystem": "http://www.cdisc.org",
+                "codeSystemVersion": "2024-09-27",
+                "decode": "Other",
+                "instanceType": "Code"
+              },
+              "instanceType": "StudyAmendmentReason",
+              "otherReason": "Other"
+            },
+            "geographicScopes": [
+              {
+                "id": "5d129785-ccea-468d-9741-1639ec4d3aaf",
+                "type": {
+                  "id": "ccb802ad-bb11-4db1-ad88-6b4690ff45fd",
+                  "code": "C25464",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Country",
+                  "instanceType": "Code"
+                },
+                "code": {
+                  "id": "e745d59c-2f2b-4538-a678-4ffd04f2ce8a",
+                  "standardCode": {
+                    "id": "15dc3f4c-e2a2-46ea-ad25-b6557899feea",
+                    "code": "USA",
+                    "codeSystem": "ISO 3166 1 alpha3",
+                    "codeSystemVersion": "2020-08",
+                    "decode": "United States of America",
+                    "instanceType": "Code"
+                  },
+                  "standardCodeAliases": [],
+                  "instanceType": "AliasCode"
+                },
+                "instanceType": "GeographicScope"
+              }
+            ],
+            "instanceType": "StudyAmendment",
+            "summary": "Amendment 1 to the protocol",
+            "changes": [
+              {
+                "id": "41b56d93-3402-408c-9e1f-056caebd0097",
+                "name": "Amendment 1",
+                "summary": "Amendment 1 to the protocol",
+                "rationale": "Amendment 1 to the protocol",
+                "changedSections": [
+                  {
+                    "id": "e7d36ccf-6553-4b58-bb7e-ccfd6061ce41",
+                    "sectionNumber": "1",
+                    "sectionTitle": "General",
+                    "appliesToId": "2a965c7c-903c-4fde-bb11-e168187091e8",
+                    "instanceType": "DocumentContentReference"
+                  }
+                ],
+                "instanceType": "StudyChange"
+              }
+            ]
+          }
+        ],
+        "eligibilityCriterionItems": [
+          {
+            "id": "9f8b5b86-b139-473f-876c-9a5a82c4b26a",
+            "name": "Inclusion Item 1",
+            "text": "Sample inclusion criterion text.",
+            "instanceType": "EligibilityCriterionItem"
+          },
+          {
+            "id": "6bdceac3-c1b8-432f-91e4-6b1e26f425e8",
+            "name": "Exclusion Item 1",
+            "text": "Sample exclusion criterion text.",
+            "instanceType": "EligibilityCriterionItem"
+          }
+        ],
+        "dateValues": [
+          {
+            "id": "8e6be455-a4e5-4952-a3e9-ca8c5035eda0",
+            "name": "Protocol Version Date",
+            "dateValue": "2026-01-15",
+            "geographicScopes": [
+              {
+                "id": "aa5c5631-49a3-4ce6-b1c7-87f60c1935d6",
+                "type": {
+                  "id": "cdebc694-7c17-4679-9b0c-accfed29374b",
+                  "code": "C25464",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Country",
+                  "instanceType": "Code"
+                },
+                "code": {
+                  "id": "31f282d5-ad81-4683-a38c-470dec39aeeb",
+                  "standardCode": {
+                    "id": "c41b3c62-af25-4f77-a67f-696aa2a88e03",
+                    "code": "USA",
+                    "codeSystem": "ISO 3166 1 alpha3",
+                    "codeSystemVersion": "2020-08",
+                    "decode": "United States of America",
+                    "instanceType": "Code"
+                  },
+                  "standardCodeAliases": [],
+                  "instanceType": "AliasCode"
+                },
+                "instanceType": "GeographicScope"
+              }
+            ],
+            "type": {
+              "id": "378b06f2-be8c-443a-9226-09f1b31f7c99",
+              "code": "C99906",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Protocol Version Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "businessTherapeuticAreas": [],
+        "administrableProducts": [
+          {
+            "id": "8e782824-6ee2-479e-866f-8693b8c5f531",
+            "name": "Study Drug A Tablet",
+            "administrableDoseForm": {
+              "id": "b8a40862-1d5d-4252-b9e7-70b50940688f",
+              "standardCode": {
+                "id": "d1bd5881-1eb0-402c-bbbc-8f047c63a49a",
+                "code": "C42998",
+                "codeSystem": "http://www.cdisc.org",
+                "codeSystemVersion": "2026-03-27",
+                "decode": "TABLET",
+                "instanceType": "Code"
+              },
+              "standardCodeAliases": [],
+              "instanceType": "AliasCode"
+            },
+            "productDesignation": {
+              "id": "0a8c2209-af6b-4341-8744-ad724232753d",
+              "code": "C202579",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "decode": "IMP",
+              "instanceType": "Code"
+            },
+            "instanceType": "AdministrableProduct",
+            "ingredients": [
+              {
+                "id": "bf1466c0-271e-43db-b61f-969456473e14",
+                "role": {
+                  "id": "44ee862f-2f6f-471b-a6b8-b5f0fdc01d02",
+                  "code": "C82533",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "26.09d",
+                  "decode": "Active Ingredient",
+                  "instanceType": "Code"
+                },
+                "substance": {
+                  "id": "22e20fce-e962-4657-8670-a6b4ef6094cf",
+                  "name": "Sample Active Ingredient",
+                  "strengths": [
+                    {
+                      "id": "b02d12a6-7a9c-4bb5-835b-59380d134392",
+                      "name": "High Dose",
+                      "numerator": {
+                        "id": "c8118f45-7086-4282-9c69-cf1955cd9b31",
+                        "value": 100.0,
+                        "instanceType": "Quantity",
+                        "unit": {
+                          "id": "8db5f006-6c75-4d46-925f-6cb973df14c2",
+                          "instanceType": "AliasCode",
+                          "standardCode": {
+                            "id": "edc137f1-6be5-4dbc-8e40-f3c7e223cf5d",
+                            "code": "C28253",
+                            "codeSystem": "http://www.cdisc.org",
+                            "codeSystemVersion": "2026-03-27",
+                            "decode": "mg",
+                            "instanceType": "Code"
+                          },
+                          "standardCodeAliases": []
+                        }
+                      },
+                      "instanceType": "Strength"
+                    }
+                  ],
+                  "instanceType": "Substance"
+                },
+                "instanceType": "Ingredient"
+              }
+            ]
+          }
+        ],
+        "medicalDevices": [
+          {
+            "id": "6a946b61-f9bb-469d-963e-4c5b0d59d513",
+            "name": "Sample Injector Device",
+            "instanceType": "MedicalDevice"
+          }
+        ],
+        "biomedicalConcepts": [
+          {
+            "id": "63ab971d-a455-40c3-b770-0fd8d6f98602",
+            "name": "Vital Signs",
+            "label": "Vital Signs",
+            "synonyms": [],
+            "properties": [
+              {
+                "id": "7ad9d09e-f127-4fa0-a403-d5e523251256",
+                "name": "Vital Signs - Systolic Blood Pressure",
+                "label": "Systolic Blood Pressure",
+                "isRequired": false,
+                "datatype": "string",
+                "instanceType": "BiomedicalConceptProperty",
+                "isEnabled": true,
+                "code": {
+                  "id": "ed45c514-fba3-4c7c-86b6-c47281da8c8c",
+                  "instanceType": "AliasCode",
+                  "standardCode": {
+                    "id": "de12ba8e-bfb3-4d6c-a6f5-3304e5270303",
+                    "code": "C17998",
+                    "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+                    "codeSystemVersion": "24.09e",
+                    "decode": "Unknown",
+                    "instanceType": "Code"
+                  },
+                  "standardCodeAliases": []
+                }
+              }
+            ],
+            "instanceType": "BiomedicalConcept",
+            "reference": "Vital Signs",
+            "code": {
+              "id": "036d923d-ef49-4b33-9ea8-aa5a56b547aa",
+              "instanceType": "AliasCode",
+              "standardCode": {
+                "id": "1a562c3a-7f43-4454-a09f-d810bf0ea3cc",
+                "code": "C17998",
+                "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+                "codeSystemVersion": "24.09e",
+                "decode": "Unknown",
+                "instanceType": "Code"
+              },
+              "standardCodeAliases": []
+            }
+          }
+        ],
+        "bcCategories": [
+          {
+            "id": "0c520147-707a-4f79-8ee9-a31c6e9fb35c",
+            "name": "Vital Signs",
+            "label": "Vital Signs",
+            "memberIds": [
+              "63ab971d-a455-40c3-b770-0fd8d6f98602"
+            ],
+            "instanceType": "BiomedicalConceptCategory"
+          }
+        ],
+        "studyDesigns": [
+          {
+            "id": "c45f77ae-00d8-418d-a347-e40d2a9311eb",
+            "name": "Sample Study",
+            "description": "",
+            "arms": [
+              {
+                "id": "8aaaf87e-8d27-4a54-99bc-6ff1b07b364d",
+                "name": "Experimental Arm",
+                "instanceType": "StudyArm",
+                "dataOriginDescription": "Collected during study conduct",
+                "type": {
+                  "id": "e54772fb-161f-464d-aace-7ff5290c0b88",
+                  "code": "C174266",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2026-03-27",
+                  "decode": "Experimental Arm",
+                  "instanceType": "Code"
+                },
+                "dataOriginType": {
+                  "id": "d22e52c1-fadf-406b-b6b1-166f4de2ea02",
+                  "code": "C188866",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Data Generated Within Study",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "f3c36034-25b0-4e58-bcb8-00725f8bb183",
+                "name": "Placebo Arm",
+                "instanceType": "StudyArm",
+                "dataOriginDescription": "Collected during study conduct",
+                "type": {
+                  "id": "ff9c2238-7f3d-4de8-ba85-3f47c6e7e8c4",
+                  "code": "C174268",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2026-03-27",
+                  "decode": "Placebo Comparator Arm",
+                  "instanceType": "Code"
+                },
+                "dataOriginType": {
+                  "id": "74357e4f-d8b0-4849-a2d5-b9f28a1d264c",
+                  "code": "C188866",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Data Generated Within Study",
+                  "instanceType": "Code"
+                }
+              }
+            ],
+            "epochs": [
+              {
+                "id": "496b9534-c2c3-4285-bbc4-df22adf383b3",
+                "name": "Screening",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "25aa14f9-159c-43db-8cd4-300e718e76cc",
+                  "code": "C98779",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Screening Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "559617c7-8187-4d5c-8afc-c34df82323e8",
+                "name": "Treatment",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "c440460a-0f6a-4eb3-aa61-92b7c811a619",
+                  "code": "C101526",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2026-03-27",
+                  "decode": "TREATMENT",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "194a43c0-3d8d-4506-a151-1801efabaa44",
+                "name": "Follow-up",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "202fce14-d057-41de-b484-82351e5f7178",
+                  "code": "C202578",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2026-03-27",
+                  "decode": "FOLLOW-UP",
+                  "instanceType": "Code"
+                }
+              }
+            ],
+            "studyCells": [
+              {
+                "id": "8c1425d5-8fe2-4680-aa71-1849d5cdb734",
+                "armId": "8aaaf87e-8d27-4a54-99bc-6ff1b07b364d",
+                "epochId": "559617c7-8187-4d5c-8afc-c34df82323e8",
+                "elementIds": [
+                  "ff580903-3c9e-4cfc-afa4-1acb0dfc5fab"
+                ],
+                "instanceType": "StudyCell"
+              },
+              {
+                "id": "387f0d19-6259-4341-9117-d4b12f563cb0",
+                "armId": "f3c36034-25b0-4e58-bcb8-00725f8bb183",
+                "epochId": "559617c7-8187-4d5c-8afc-c34df82323e8",
+                "elementIds": [
+                  "ff580903-3c9e-4cfc-afa4-1acb0dfc5fab"
+                ],
+                "instanceType": "StudyCell"
+              },
+              {
+                "id": "b76f12a5-045f-40a1-ba0c-56fa095f1449",
+                "armId": "8aaaf87e-8d27-4a54-99bc-6ff1b07b364d",
+                "epochId": "496b9534-c2c3-4285-bbc4-df22adf383b3",
+                "elementIds": [
+                  "cac4be54-e494-44fc-bdc3-3067c27f2ee1"
+                ],
+                "instanceType": "StudyCell"
+              },
+              {
+                "id": "c1fdb6f1-1448-4575-81f9-4038ac4a4ed0",
+                "armId": "8aaaf87e-8d27-4a54-99bc-6ff1b07b364d",
+                "epochId": "194a43c0-3d8d-4506-a151-1801efabaa44",
+                "elementIds": [
+                  "bfabe18c-4206-42a7-8e5d-55d32ecfe8e7"
+                ],
+                "instanceType": "StudyCell"
+              },
+              {
+                "id": "3cf6411e-2303-4e8c-81dd-5d92f6e56863",
+                "armId": "f3c36034-25b0-4e58-bcb8-00725f8bb183",
+                "epochId": "496b9534-c2c3-4285-bbc4-df22adf383b3",
+                "elementIds": [
+                  "cac4be54-e494-44fc-bdc3-3067c27f2ee1"
+                ],
+                "instanceType": "StudyCell"
+              },
+              {
+                "id": "d3ec5663-50ea-46a8-a6e2-dca16d460b65",
+                "armId": "f3c36034-25b0-4e58-bcb8-00725f8bb183",
+                "epochId": "194a43c0-3d8d-4506-a151-1801efabaa44",
+                "elementIds": [
+                  "bfabe18c-4206-42a7-8e5d-55d32ecfe8e7"
+                ],
+                "instanceType": "StudyCell"
+              }
+            ],
+            "objectives": [
+              {
+                "id": "8272b097-03bf-475b-9e53-a567d1b582b0",
+                "name": "Sample primary objective.",
+                "text": "Sample primary objective.",
+                "level": {
+                  "id": "575bc7c6-89bf-4b24-8021-c0f1375b085b",
+                  "code": "C85826",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Trial Primary Objective",
+                  "instanceType": "Code"
+                },
+                "instanceType": "Objective",
+                "endpoints": [
+                  {
+                    "id": "fe5b4825-2da2-4aa3-a008-dc1ad8e0a015",
+                    "name": "Primary Endpoint",
+                    "text": "Sample primary endpoint.",
+                    "level": {
+                      "id": "2bd62875-8197-455f-b432-c030490d0aad",
+                      "code": "C94496",
+                      "codeSystem": "http://www.cdisc.org",
+                      "codeSystemVersion": "2024-09-27",
+                      "decode": "Primary Endpoint",
+                      "instanceType": "Code"
+                    },
+                    "instanceType": "Endpoint",
+                    "objectiveId": "8272b097-03bf-475b-9e53-a567d1b582b0"
+                  }
+                ]
+              },
+              {
+                "id": "bc34589f-90bf-4ecf-80be-2c9a36f68467",
+                "name": "Sample secondary objective.",
+                "text": "Sample secondary objective.",
+                "level": {
+                  "id": "a8f06d17-0b43-459f-9b9c-8d318d01874b",
+                  "code": "C85827",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Trial Secondary Objective",
+                  "instanceType": "Code"
+                },
+                "instanceType": "Objective",
+                "endpoints": [
+                  {
+                    "id": "4bf6fc45-c8e9-4bb5-8ff6-92e13617db07",
+                    "name": "Secondary Endpoint",
+                    "text": "Sample secondary endpoint.",
+                    "level": {
+                      "id": "369f5a54-8eca-4491-9f1f-38e5caa0e830",
+                      "code": "C139173",
+                      "codeSystem": "http://www.cdisc.org",
+                      "codeSystemVersion": "2024-09-27",
+                      "decode": "Secondary Endpoint",
+                      "instanceType": "Code"
+                    },
+                    "instanceType": "Endpoint",
+                    "objectiveId": "bc34589f-90bf-4ecf-80be-2c9a36f68467"
+                  }
+                ]
+              }
+            ],
+            "estimands": [
+              {
+                "id": "a9d354bb-66ab-44b3-82b7-1c10e2c7d608",
+                "name": "Sample Estimand",
+                "populationSummary": "Study population as defined by eligibility criteria",
+                "analysisPopulationId": "01c03711-634b-44a6-a8a9-a7a4610a0a09",
+                "variableOfInterestId": "35d4553f-d3a7-4fae-b4d1-4ea5740dc166",
+                "interventionIds": [
+                  "fffdd81b-3c07-4b33-80aa-72fc5e6896aa"
+                ],
+                "intercurrentEvents": [
+                  {
+                    "id": "6a76c943-932d-4436-9a6a-04d2c538aed6",
+                    "name": "Treatment discontinuation",
+                    "text": "Subject discontinues study treatment",
+                    "strategy": "Treatment Policy",
+                    "instanceType": "IntercurrentEvent"
+                  }
+                ],
+                "instanceType": "Estimand"
+              }
+            ],
+            "indications": [
+              {
+                "id": "1fe58e62-8fc7-46de-9c64-c58f21d0acda",
+                "name": "Sample Indication",
+                "isRareDisease": false,
+                "instanceType": "Indication"
+              }
+            ],
+            "activities": [
+              {
+                "id": "e273d9cc-56d1-473a-a78f-72a460633397",
+                "name": "Vital Signs",
+                "instanceType": "Activity",
+                "definedProcedures": [
+                  {
+                    "id": "e0d35ad6-891e-492c-802d-da988c1cd92b",
+                    "name": "Vital Signs",
+                    "procedureType": "Vital Signs",
+                    "code": {
+                      "id": "34509d7a-2247-4d86-bebf-d46c374b6128",
+                      "code": "C25714",
+                      "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+                      "codeSystemVersion": "2024-09-27",
+                      "decode": "Vital Signs",
+                      "instanceType": "Code"
+                    },
+                    "instanceType": "Procedure"
+                  }
+                ]
+              }
+            ],
+            "encounters": [
+              {
+                "id": "b3861ca6-05f2-463e-8cbc-9b85ef9ec0e7",
+                "name": "Screening Visit",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "31181533-ddea-4c66-9c2b-64d337771004",
+                  "code": "C48262",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Screening",
+                  "instanceType": "Code"
+                },
+                "nextId": "1d028805-1864-4cef-9969-13a20f739513"
+              },
+              {
+                "id": "1d028805-1864-4cef-9969-13a20f739513",
+                "name": "Treatment Visit",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "2404ca93-0030-49eb-be70-39baba81517f",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                }
+              }
+            ],
+            "soaFootnotes": [],
+            "scheduleTimelines": [
+              {
+                "id": "e82ef89d-db69-4508-b490-f05e3549ca9b",
+                "name": "Main Study Timeline",
+                "description": "Primary schedule of assessments",
+                "mainTimeline": true,
+                "entryCondition": "Informed consent signed",
+                "entryId": "5577407a-0540-4454-9c34-e8fb4d15111c",
+                "instanceType": "ScheduleTimeline",
+                "plannedDuration": {
+                  "id": "1f527275-8de9-4294-95e9-d463281df484",
+                  "durationWillVary": true,
+                  "reasonDurationWillVary": "Duration depends on individual subject progression and follow-up.",
+                  "text": "Variable",
+                  "instanceType": "Duration"
+                },
+                "timings": [],
+                "instances": [
+                  {
+                    "id": "5577407a-0540-4454-9c34-e8fb4d15111c",
+                    "name": "Screening Visit",
+                    "epochId": "496b9534-c2c3-4285-bbc4-df22adf383b3",
+                    "encounterId": "b3861ca6-05f2-463e-8cbc-9b85ef9ec0e7",
+                    "instanceType": "ScheduledActivityInstance",
+                    "activityIds": [
+                      "e273d9cc-56d1-473a-a78f-72a460633397"
+                    ]
+                  },
+                  {
+                    "id": "7dc3b7c9-e138-4b7e-bbd1-fa9ff788ad71",
+                    "name": "Treatment Visit",
+                    "epochId": "559617c7-8187-4d5c-8afc-c34df82323e8",
+                    "encounterId": "1d028805-1864-4cef-9969-13a20f739513",
+                    "instanceType": "ScheduledActivityInstance",
+                    "activityIds": [
+                      "e273d9cc-56d1-473a-a78f-72a460633397"
+                    ]
+                  }
+                ],
+                "exits": [
+                  {
+                    "id": "2945201a-5778-4feb-bc9e-bd257618c641",
+                    "instanceType": "ScheduleTimelineExit"
+                  }
+                ]
+              }
+            ],
+            "eligibilityCriteria": [
+              {
+                "id": "57d8a2aa-716c-4f86-9461-4ff475fb6a9f",
+                "identifier": "I1",
+                "category": {
+                  "id": "14a7563d-11c3-4748-8483-b64b98e39fac",
+                  "code": "C25532",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Inclusion Criteria",
+                  "instanceType": "Code"
+                },
+                "criterionItemId": "9f8b5b86-b139-473f-876c-9a5a82c4b26a",
+                "instanceType": "EligibilityCriterion"
+              },
+              {
+                "id": "6897666c-6c45-4035-8ba1-cd01ce5fb7ee",
+                "identifier": "E1",
+                "category": {
+                  "id": "29126211-5fc0-44c4-8d0d-d1139ba0d281",
+                  "code": "C25370",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Exclusion Criteria",
+                  "instanceType": "Code"
+                },
+                "criterionItemId": "6bdceac3-c1b8-432f-91e4-6b1e26f425e8",
+                "instanceType": "EligibilityCriterion"
+              }
+            ],
+            "elements": [
+              {
+                "id": "ff580903-3c9e-4cfc-afa4-1acb0dfc5fab",
+                "name": "Treatment Element",
+                "instanceType": "StudyElement"
+              },
+              {
+                "id": "cac4be54-e494-44fc-bdc3-3067c27f2ee1",
+                "name": "Screening",
+                "instanceType": "StudyElement"
+              },
+              {
+                "id": "bfabe18c-4206-42a7-8e5d-55d32ecfe8e7",
+                "name": "Follow-up",
+                "instanceType": "StudyElement"
+              }
+            ],
+            "analysisPopulations": [
+              {
+                "id": "01c03711-634b-44a6-a8a9-a7a4610a0a09",
+                "name": "Intent-to-Treat Population",
+                "instanceType": "AnalysisPopulation",
+                "text": "Intent-to-Treat Population"
+              }
+            ],
+            "studyInterventionIds": [
+              "fffdd81b-3c07-4b33-80aa-72fc5e6896aa",
+              "868f58da-67be-485c-a634-3671ee2a17ef"
+            ],
+            "population": {
+              "id": "f912a7c8-db9c-473e-8ede-eed685f7734d",
+              "name": "Study Population",
+              "instanceType": "StudyDesignPopulation",
+              "includesHealthySubjects": false,
+              "criterionIds": [
+                "57d8a2aa-716c-4f86-9461-4ff475fb6a9f",
+                "6897666c-6c45-4035-8ba1-cd01ce5fb7ee"
+              ],
+              "plannedAge": {
+                "id": "5ec936c2-4ac2-48c6-b702-aa62dba2512a",
+                "minValue": {
+                  "id": "5551bdd6-598b-42f9-b52e-dc9100dbae8f",
+                  "value": 18.0,
+                  "unit": {
+                    "id": "e2bb73af-5126-4bf7-946e-62241c8dca87",
+                    "instanceType": "AliasCode",
+                    "standardCode": {
+                      "id": "9851db16-82cc-4f72-a8d4-756468ebaf57",
+                      "code": "C29848",
+                      "codeSystem": "http://www.cdisc.org",
+                      "codeSystemVersion": "2026-03-27",
+                      "decode": "YEARS",
+                      "instanceType": "Code"
+                    },
+                    "standardCodeAliases": []
+                  },
+                  "instanceType": "Quantity"
+                },
+                "maxValue": {
+                  "id": "326843a4-4f30-4341-ab41-d392832194d5",
+                  "value": 65.0,
+                  "unit": {
+                    "id": "a6fce005-b755-433b-bfa9-802fa05cbe2a",
+                    "instanceType": "AliasCode",
+                    "standardCode": {
+                      "id": "707d8cd0-f61f-451b-99b9-40634dc08f57",
+                      "code": "C29848",
+                      "codeSystem": "http://www.cdisc.org",
+                      "codeSystemVersion": "2026-03-27",
+                      "decode": "YEARS",
+                      "instanceType": "Code"
+                    },
+                    "standardCodeAliases": []
+                  },
+                  "instanceType": "Quantity"
+                },
+                "isApproximate": false,
+                "instanceType": "Range"
+              }
+            },
+            "biospecimenRetentions": [
+              {
+                "id": "20173b6e-d78c-4617-b4d6-840af0e346fd",
+                "name": "Retained Biospecimens for Future Research",
+                "isRetained": true,
+                "instanceType": "BiospecimenRetention",
+                "description": "Residual blood samples will be retained for future exploratory research.",
+                "includesDNA": false
+              }
+            ],
+            "notes": [
+              {
+                "id": "63f57088-75e6-4453-97b9-f7fcd9ef296e",
+                "text": "Sample footnote text.",
+                "instanceType": "CommentAnnotation"
+              }
+            ],
+            "blindingSchema": {
+              "id": "6d429f27-55bb-4692-b0be-294b32c86f3c",
+              "instanceType": "AliasCode",
+              "standardCode": {
+                "id": "4764bf42-1f0f-4268-9597-43267191ab9f",
+                "code": "C15228",
+                "codeSystem": "http://www.cdisc.org",
+                "codeSystemVersion": "2026-03-27",
+                "decode": "DOUBLE BLIND",
+                "instanceType": "Code"
+              },
+              "standardCodeAliases": []
+            },
+            "intentTypes": [
+              {
+                "id": "dd18c69f-bec9-4994-a4d8-8f0496adc708",
+                "code": "C49656",
+                "codeSystem": "http://www.cdisc.org",
+                "codeSystemVersion": "2024-09-27",
+                "decode": "Treatment Study",
+                "instanceType": "Code"
+              }
+            ],
+            "therapeuticAreas": [
+              {
+                "id": "99870dca-6b34-4c43-bd20-9827dd369faa",
+                "code": "Oncology",
+                "codeSystem": "http://www.cdisc.org",
+                "codeSystemVersion": "2024-09-27",
+                "decode": "Oncology",
+                "instanceType": "Code"
+              }
+            ],
+            "instanceType": "InterventionalStudyDesign",
+            "studyType": {
+              "id": "df69cb6f-cbc5-4270-8ace-e8ecddd3995b",
+              "code": "C98388",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Interventional Study",
+              "instanceType": "Code"
+            },
+            "model": {
+              "id": "e5a5403c-03c5-498d-a7b0-e2bc92aaaf23",
+              "code": "C82639",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "decode": "PARALLEL",
+              "instanceType": "Code"
+            },
+            "rationale": "See protocol synopsis.",
+            "studyPhase": {
+              "id": "47f8450c-b375-4df1-acf5-72ae2ef472b1",
+              "standardCode": {
+                "id": "acca8f95-f561-4575-94f0-f9ab7ccc3c6c",
+                "code": "C15601",
+                "codeSystem": "http://www.cdisc.org",
+                "codeSystemVersion": "2026-03-27",
+                "decode": "PHASE II TRIAL",
+                "instanceType": "Code"
+              },
+              "standardCodeAliases": [],
+              "instanceType": "AliasCode"
+            }
+          }
+        ],
+        "instanceType": "StudyVersion",
+        "studyInterventions": [
+          {
+            "id": "fffdd81b-3c07-4b33-80aa-72fc5e6896aa",
+            "name": "Study Drug A",
+            "type": {
+              "id": "061d51c7-c212-49b8-8ff6-499c0307d5a4",
+              "code": "C1909",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "DRUG",
+              "instanceType": "Code"
+            },
+            "role": {
+              "id": "c3680a73-fb00-4712-bb5b-0f6f328f54b9",
+              "code": "C41161",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "decode": "Experimental Intervention",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyIntervention"
+          },
+          {
+            "id": "868f58da-67be-485c-a634-3671ee2a17ef",
+            "name": "Placebo",
+            "type": {
+              "id": "02ab2f31-ff36-4615-b535-2d704ff96837",
+              "code": "C1909",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "DRUG",
+              "instanceType": "Code"
+            },
+            "role": {
+              "id": "55ef32b6-84ab-4584-b908-92e756bae6ed",
+              "code": "C753",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "decode": "Placebo",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyIntervention"
+          }
+        ],
+        "documentVersionIds": [
+          "eb61e66a-eebd-401e-9e04-19a81abf5d08"
+        ]
+      }
+    ],
+    "documentedBy": [
+      {
+        "id": "2a965c7c-903c-4fde-bb11-e168187091e8",
+        "name": "Protocol",
+        "language": {
+          "id": "4f369027-5c28-4a83-a909-51d28c3edfbf",
+          "code": "en",
+          "codeSystem": "ISO",
+          "codeSystemVersion": "639-1",
+          "decode": "English",
+          "instanceType": "Code"
+        },
+        "type": {
+          "id": "2784e84a-9b35-4af3-861a-6de92b6108e1",
+          "code": "C70817",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2026-03-27",
+          "decode": "Protocol",
+          "instanceType": "Code"
+        },
+        "templateName": "SPONSOR",
+        "versions": [
+          {
+            "id": "eb61e66a-eebd-401e-9e04-19a81abf5d08",
+            "version": "1.0",
+            "status": {
+              "id": "fca52d55-a05d-4746-89ca-b175a569adac",
+              "code": "C25508",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2026-03-27",
+              "decode": "Final",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyDefinitionDocumentVersion",
+            "contents": [
+              {
+                "id": "b2709239-a947-46e7-b290-7c55179f7153",
+                "name": "Section 1",
+                "displaySectionNumber": false,
+                "displaySectionTitle": true,
+                "contentItemId": "3285cc5a-00a5-47da-8c88-d58e5d2324c6",
+                "instanceType": "NarrativeContent",
+                "sectionTitle": "Section 1"
+              }
+            ]
+          }
+        ],
+        "instanceType": "StudyDefinitionDocument"
+      }
+    ]
+  }
+}

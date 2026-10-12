@@ -1,0 +1,234 @@
+{
+  "agent_id": "eligibility_agent",
+  "timestamp": "2026-09-02T12:37:01.641989",
+  "confidence": 0.85,
+  "entity_count": 11,
+  "entities": [
+    {
+      "id": "eci_1",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_1",
+        "name": "Measurable or evaluable disease",
+        "text": "have either measurable or evaluable disease using standard techniques by the Response Evaluation Criteria in Solid Tumors, Version 1.1 (RECIST 1.1) (Eisenhauer et al. 2009).",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "eci_2",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_2",
+        "name": "Informed consent and authorization",
+        "text": "The patient, or patient's parent/guardian, has given written informed consent (and assent, as applicable) and authorization for release of health/information for research prior to any study-specific procedures being performed (refer to Appendix 2, Study Governance, Regulatory, and Ethical Considerations).",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "eci_3",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_3",
+        "name": "Performance score requirement",
+        "text": "The patient has a Lansky (<16 years of age; Lansky et al. 1987) or Karnofsky (≥16 years of age; Karnofsky et al. 1948) performance score of at least 50.",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "eci_4",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_4",
+        "name": "Discontinuation of previous treatments",
+        "text": "Patients must have discontinued all previous treatments for cancer or investigational agents ≥7 days after the last dose or as shown below, and must have recovered from the acute effects to ≤Grade 2 for alopecia and decreased tendon reflex and to ≤Grade 1 for all other effects at the time of enrollment, unless otherwise noted. For agents with known AEs occurring beyond the required wait period outlined in the table, this period must be extended until after the time during which the AE is known to occur. Consult with the Lilly CRS/CRP for the appropriate length of time prior to the first dose of study treatment on additional therapies not mentioned. Previous treatments and required wait periods: Cytotoxic and myelosuppressive chemotherapy: ≥14 days after the last dose of cytotoxic or myelosuppressive chemotherapy (or ≥42 days if prior nitrosourea); Hematopoietic growth factors: ≥14 days after the last dose of a long-acting growth factor (for example, pegfilgrastim) or ≥48 hours for short-acting growth factor; Cellular therapy: ≥42 days after the completion of any type of cellular therapy (eg modified T cells, NK cells, dendritic cells, etc.) agent; Interleukins, interferons, and cytokines (other than hematopoietic growth factors): ≥21 days after the completion of interleukins, interferon, or cytokines (other than hematopoietic growth factors); Antibody therapy: ≥21 days after the last infusion of antibody therapy; Radiotherapy: ≥14 days since local palliative radiation therapy (RT) (small port); craniospinal XRT, or 50% or greater pelvic radiation; ≥42 days for other substantial radiation (such as metaiodobenzylguanidine therapy); Radiopharmaceutical therapy (eg, radiolabeled antibody, 131I-MIBG): ≥42 days after systemically administered radiopharmaceutical therapy; Stem cell infusion without TBI: ≥84 days must have elapsed after auto-transplant or stem cell infusion; Corticosteroids: ≥14 days for patients who have received a course of systemic corticosteroids (≥5 days) to modify immune AEs related to prior therapy. Note: Patients who are on chronic replacement dose for endocrine disorders or are on a stable or decreasing dose for indications other than treating the underlying cancer, may still be eligible (consult Lilly CRP/CRS); Live vaccines: ≥28 days after last live vaccine.",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "eci_5",
+      "entity_type": "criterion_item",
+      "data": {
+        "id": "eci_5",
+        "name": "Adequate hematologic and organ function",
+        "text": "The patient has adequate hematologic and organ function ≤1 week (7 days) prior to first dose of study drug.",
+        "instanceType": "EligibilityCriterionItem"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "ec_1",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_1",
+        "identifier": "I1",
+        "category": {
+          "code": "Inclusion",
+          "codeSystem": "USDM",
+          "decode": "Inclusion"
+        },
+        "criterionItemId": "eci_1",
+        "instanceType": "EligibilityCriterion",
+        "name": "Measurable or evaluable disease",
+        "nextId": "ec_2"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "ec_2",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_2",
+        "identifier": "I2",
+        "category": {
+          "code": "Inclusion",
+          "codeSystem": "USDM",
+          "decode": "Inclusion"
+        },
+        "criterionItemId": "eci_2",
+        "instanceType": "EligibilityCriterion",
+        "name": "Informed consent and authorization",
+        "previousId": "ec_1",
+        "nextId": "ec_3"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "ec_3",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_3",
+        "identifier": "I3",
+        "category": {
+          "code": "Inclusion",
+          "codeSystem": "USDM",
+          "decode": "Inclusion"
+        },
+        "criterionItemId": "eci_3",
+        "instanceType": "EligibilityCriterion",
+        "name": "Performance score requirement",
+        "previousId": "ec_2",
+        "nextId": "ec_4"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "ec_4",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_4",
+        "identifier": "I4",
+        "category": {
+          "code": "Inclusion",
+          "codeSystem": "USDM",
+          "decode": "Inclusion"
+        },
+        "criterionItemId": "eci_4",
+        "instanceType": "EligibilityCriterion",
+        "name": "Discontinuation of previous treatments",
+        "previousId": "ec_3",
+        "nextId": "ec_5"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "ec_5",
+      "entity_type": "eligibility_criterion",
+      "data": {
+        "id": "ec_5",
+        "identifier": "I5",
+        "category": {
+          "code": "Inclusion",
+          "codeSystem": "USDM",
+          "decode": "Inclusion"
+        },
+        "criterionItemId": "eci_5",
+        "instanceType": "EligibilityCriterion",
+        "name": "Adequate hematologic and organ function",
+        "previousId": "ec_4"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    },
+    {
+      "id": "pop_1",
+      "entity_type": "study_population",
+      "data": {
+        "id": "pop_1",
+        "name": "Study Population",
+        "includesHealthySubjects": false,
+        "criterionIds": [
+          "ec_1",
+          "ec_2",
+          "ec_3",
+          "ec_4",
+          "ec_5"
+        ],
+        "instanceType": "StudyDesignPopulation",
+        "description": "Target population defined by eligibility criteria"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        14,
+        15,
+        16
+      ]
+    }
+  ],
+  "eligibility_summary": {
+    "inclusion_count": 5,
+    "exclusion_count": 0
+  }
+}

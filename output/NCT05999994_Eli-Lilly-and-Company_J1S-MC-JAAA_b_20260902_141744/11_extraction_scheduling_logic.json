@@ -1,0 +1,1902 @@
+{
+  "agent_id": "scheduling_agent",
+  "timestamp": "2026-09-02T14:20:16.534483",
+  "confidence": 1.0,
+  "entity_count": 63,
+  "entities": [
+    {
+      "id": "timing_1",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_1",
+        "name": "Pregnancy Test Before Cycle 1 Day 1",
+        "type": {
+          "id": "bf58e39c-93d1-41fe-b137-abd9ad08b2ab",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P7D",
+        "valueLabel": "Day 7",
+        "relativeToFrom": {
+          "id": "a9f63af6-670a-4f9b-badd-609d3e241a44",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "bc3aab49-8f57-49f7-ad30-49caa33a8370",
+        "instanceType": "Timing",
+        "windowLower": "-P7D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "timing_2",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_2",
+        "name": "Contraception Duration After Last Dose",
+        "type": {
+          "id": "a3ecc989-facb-41fd-b61d-525587b34f46",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "P3D",
+        "valueLabel": "3 months",
+        "relativeToFrom": {
+          "id": "9143799c-32a5-4844-b089-1c1cdaec5abe",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "1e294717-b1e5-4d59-9e7e-b9afd991a597",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "timing_3",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_3",
+        "name": "Continued Access Follow-Up Duration",
+        "type": {
+          "id": "d4040ca5-1e2f-449b-b571-a40687b7ce8c",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P30D",
+        "valueLabel": "Day 30",
+        "relativeToFrom": {
+          "id": "e587512b-9df4-4bd7-8695-c852ea882cb0",
+          "code": "C71160",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "End of Treatment",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "d0ce40cf-24a4-4c10-af1d-0388f76dccc9",
+        "instanceType": "Timing",
+        "windowLower": "-P7D",
+        "windowUpper": "P7D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "timing_4",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_4",
+        "name": "SAE Notification to Sponsor",
+        "type": {
+          "id": "e4722f6b-6380-4a1c-838c-58f5e3624e18",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT24H",
+        "valueLabel": "24 hours",
+        "relativeToFrom": {
+          "id": "2b0577f5-54d0-4522-ab3b-017b64225af8",
+          "code": "C71153",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Study Start",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "30e43b18-ec9f-4228-a4be-5a4cb42f9f37",
+        "instanceType": "Timing",
+        "windowLower": "PT0H",
+        "windowUpper": "PT24H"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "timing_5",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_5",
+        "name": "Master Protocol Total Duration",
+        "type": {
+          "id": "c4310905-439c-49a9-9592-1b8a0cb766e2",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P5D",
+        "valueLabel": "5 years",
+        "relativeToFrom": {
+          "id": "b67ebcb3-beaa-4d07-89d7-1485d0f55be9",
+          "code": "C71153",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Study Start",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "d898df5f-1682-48c8-bb7d-080bce5825c0",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "timing_6",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_6",
+        "name": "Pregnancy Test at Screening Visit",
+        "type": {
+          "id": "eb42673f-64d5-4f85-889a-aa06df43607f",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Day 0",
+        "relativeToFrom": {
+          "id": "a9479070-96cd-4b7d-901c-217c62c3df03",
+          "code": "C71158",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Screening",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "ea8709fb-e45f-44b1-b94f-6d8d7a973f55",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "timing_7",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_7",
+        "name": "Male Condom Use After Last Dose",
+        "type": {
+          "id": "933bc8eb-f637-4ec9-86b7-04857d1bc7be",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "P3D",
+        "valueLabel": "3 months",
+        "relativeToFrom": {
+          "id": "8dc1f5df-ff4e-46e9-b6cf-b1ee401c3376",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "5493a77f-0855-4824-be29-2ddd73020fe0",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_1",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_1",
+        "name": "Negative Pregnancy Test Requirement",
+        "instanceType": "Condition",
+        "description": "Female patients of childbearing potential must have a negative urine or serum pregnancy test within 7 days prior to Cycle 1 Day 1",
+        "text": "Negative urine or serum pregnancy test within 7 days prior to Cycle 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_2",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_2",
+        "name": "Contraception Requirement - Females",
+        "instanceType": "Condition",
+        "description": "Two forms of effective contraception required, at least one highly effective (less than 1% failure rate)",
+        "text": "Two forms of effective contraception where at least one is highly effective (less than 1% failure rate; includes combination oral contraceptives, implanted contraceptives, or intrauterine devices) must be used during trial and for at least 3 months following last dose"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_3",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_3",
+        "name": "Contraception Requirement - Males",
+        "instanceType": "Condition",
+        "description": "Males must use condoms plus one additional highly effective method for duration of study and up to 3 months after last dose",
+        "text": "Males with nonpregnant FOCBP partners must use condoms plus one additional highly effective method (less than 1% failure rate) for duration of study and up to 3 months following last dose"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_4",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_4",
+        "name": "Treatment Compliance Threshold",
+        "instanceType": "Condition",
+        "description": "Minimum compliance level required to maintain compliant status",
+        "text": "A patient will be considered significantly noncompliant if judged to have intentionally or repeatedly taken more or less than prescribed. Compliance threshold is at least 80% unless otherwise specified in addendum Section 3.6.5"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_5",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_5",
+        "name": "Re-screening Permission Requirement",
+        "instanceType": "Condition",
+        "description": "Screen failures may only be re-screened after discussion with and permission from Lilly CRP/CRS or designee",
+        "text": "Individuals who do not meet criteria for participation may be re-screened only after discussion with and permission from the Lilly CRP/CRS or designee. Screening laboratory tests may not be repeated more than twice to meet eligibility during the screening period"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_6",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_6",
+        "name": "Continued Access Clinical Benefit Requirement",
+        "instanceType": "Condition",
+        "description": "Patients may continue treatment during continued access period only if experiencing clinical benefit and no undue risks",
+        "text": "Patients on addendum who are still on study treatment may continue to receive study treatment if they are experiencing clinical benefit and no undue risks"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_7",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_7",
+        "name": "Inadvertent Enrollment Continuation Criteria",
+        "instanceType": "Condition",
+        "description": "Criteria for allowing inadvertently enrolled patients to continue",
+        "text": "If Lilly and investigator both agree it is medically appropriate to continue, investigator must obtain documented approval from Lilly CRP/CRS to allow inadvertently enrolled patient to continue with or without study treatment"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_8",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_8",
+        "name": "Adaptive Randomization Rules",
+        "instanceType": "Condition",
+        "description": "Some addenda may incorporate adaptive treatment randomization methodology",
+        "text": "Some addenda may incorporate adaptive treatment randomization methodology, in which case the adaptation rules will be described in the addendum"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_9",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_9",
+        "name": "Maximum Dose Reduction Threshold",
+        "instanceType": "Condition",
+        "description": "Discontinuation triggered when maximum dose reductions are reached and additional reduction is required",
+        "text": "The patient has had maximum dose reductions allowed per protocol and experiences an AE that would cause an additional dose reduction"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_10",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_10",
+        "name": "Radiographic Progressive Disease",
+        "instanceType": "Condition",
+        "description": "Discontinuation triggered by radiographic progressive disease or significant symptomatic disease deterioration",
+        "text": "The patient has radiographic progressive disease or significant symptomatic disease deterioration characterized as progression of disease, in the opinion of investigator, in the absence of radiographic evidence of PD"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_11",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_11",
+        "name": "Unacceptable Toxicity",
+        "instanceType": "Condition",
+        "description": "Discontinuation triggered by unacceptable toxicity",
+        "text": "The patient experiences unacceptable toxicity (for example, a persistent moderate toxicity that is intolerable to the patient)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_12",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_12",
+        "name": "Competing Investigational Product Enrollment",
+        "instanceType": "Condition",
+        "description": "Discontinuation triggered by enrollment in another clinical study with incompatible investigational product",
+        "text": "The patient is enrolled in any other clinical study involving an investigational product or any other type of medical research judged not to be scientifically or medically compatible with this study"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_13",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_13",
+        "name": "Pregnancy During Study",
+        "instanceType": "Condition",
+        "description": "Discontinuation triggered by patient becoming pregnant during the study",
+        "text": "The patient becomes pregnant during the study"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_14",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_14",
+        "name": "Effective Alternative Therapy Available",
+        "instanceType": "Condition",
+        "description": "Discontinuation from study drug triggered when patient requires treatment with another demonstrated effective therapy",
+        "text": "If the patient, for any reason, requires treatment with another therapeutic agent that has been demonstrated to be effective for treatment of the study indication, discontinuation from the study drug(s) occurs prior to introduction of the other agent"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_15",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_15",
+        "name": "Long-Term Follow-Up Exclusion During Continued Access",
+        "instanceType": "Condition",
+        "description": "Long-term follow-up does not apply during continued access period",
+        "text": "Long-term follow-up during the study treatment period does not apply during the continued access period. Patients who are in long-term follow-up when the continued access period begins will be discontinued from long-term follow-up"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "cond_16",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_16",
+        "name": "Short-Term Follow-Up Completion During Continued Access",
+        "instanceType": "Condition",
+        "description": "Patients in short-term follow-up when continued access begins continue until 30-day visit is completed",
+        "text": "For patients who are in short-term follow-up during the study treatment period when the continued-access period begins, they will continue in short-term follow-up until the 30-day short-term follow-up visit is completed"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_1",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_1",
+        "name": "Screen to Treatment Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_screening",
+        "toElementId": "epoch_treatment",
+        "text": "Subject must meet all general and investigation-specific inclusion and exclusion criteria, including negative pregnancy test within 7 days prior to Cycle 1 Day 1 for females of childbearing potential"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_2",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_2",
+        "name": "Treatment to Continued Access Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_continued_access",
+        "text": "After final analysis of investigation-specific addendum and Lilly declaration that continued access period has begun, patients still on study treatment may continue if experiencing clinical benefit and no undue risks"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_3",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_3",
+        "name": "Continued Access to Follow-Up Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_continued_access",
+        "toElementId": "epoch_followup",
+        "text": "Continued access follow-up begins when patient and investigator agree to discontinue study treatment and lasts approximately 30 (±7) days"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_4",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_4",
+        "name": "Discontinuation from Study Treatment - Disease Progression",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Patient has radiographic progressive disease or significant symptomatic disease deterioration characterized as progression of disease in the opinion of investigator"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_5",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_5",
+        "name": "Discontinuation from Study Treatment - Unacceptable Toxicity",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Patient experiences unacceptable toxicity (e.g., a persistent moderate toxicity that is intolerable to the patient)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_6",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_6",
+        "name": "Discontinuation from Study Treatment - Maximum Dose Reductions Reached",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Patient has had maximum dose reductions allowed per protocol and experiences an AE that would cause an additional dose reduction"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_7",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_7",
+        "name": "Discontinuation from Study Treatment - Noncompliance",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Patient is noncompliant with study procedures and/or treatment; compliance threshold is at least 80% unless otherwise specified. Potential discontinuation will be discussed between investigator and Lilly CRP/CRS before final determination"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_8",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_8",
+        "name": "Discontinuation from Study Treatment - Pregnancy",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Patient becomes pregnant during the study"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_9",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_9",
+        "name": "Discontinuation from Study Treatment - Competing Study Enrollment",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Patient is enrolled in any other clinical study involving an investigational product or any other type of medical research judged not to be scientifically or medically compatible with this study"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_10",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_10",
+        "name": "Discontinuation from Study Treatment - Investigator Decision",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Investigator/physician decides that the patient should be discontinued from the study or study drug(s)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_11",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_11",
+        "name": "Discontinuation from Study Treatment - Patient Decision",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Patient, parent, or legal guardian requests to be discontinued from the study or study drug"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_12",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_12",
+        "name": "Discontinuation from Study Treatment - Sponsor Decision",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Lilly stops the study or stops the patient's participation in the study for medical, safety, regulatory, or other reasons consistent with applicable laws, regulations, and GCP"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_13",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_13",
+        "name": "Discontinuation from Study Treatment - Alternative Effective Therapy",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_followup",
+        "text": "Patient requires treatment with another therapeutic agent that has been demonstrated to be effective for treatment of the study indication; discontinuation from study drug occurs prior to introduction of the other agent"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_14",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_14",
+        "name": "Dose Modification Due to AE",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "fromElementId": "epoch_treatment",
+        "toElementId": "epoch_treatment",
+        "text": "Dose modifications triggered by AEs must be reported to Lilly or designee via CRF/electronic data entry, clarifying circumstances leading to dose modification. Specific dose modification instructions defined in each addendum"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_15",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_15",
+        "name": "Screen Failure to Alternative Investigation",
+        "instanceType": "TransitionRule",
+        "transitionType": "Arm Transition",
+        "fromElementId": "epoch_screening",
+        "toElementId": "epoch_screening_alternative",
+        "text": "Individuals who do not meet criteria for participation in an individual investigation may be considered for another investigation within the CAMPFIRE Master Protocol for which they are eligible"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_16",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_16",
+        "name": "Discontinuation from Long-Term Follow-Up at Continued Access Start",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "fromElementId": "epoch_long_term_followup",
+        "toElementId": "epoch_continued_access",
+        "text": "Patients who are in long-term follow-up when the continued access period begins will be discontinued from long-term follow-up"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_17",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_17",
+        "name": "Study Site Discontinuation",
+        "instanceType": "TransitionRule",
+        "transitionType": "Early Termination",
+        "fromElementId": "epoch_treatment",
+        "text": "Study site participation may be discontinued if Lilly, the investigator, or the ERB/IRB of the study site judges it necessary for medical, safety, regulatory, or other reasons consistent with applicable laws, regulations, and GCP"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "trans_18",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_18",
+        "name": "Full Study Discontinuation",
+        "instanceType": "TransitionRule",
+        "transitionType": "Early Termination",
+        "fromElementId": "epoch_treatment",
+        "text": "The study will be discontinued if Lilly judges it necessary for medical, safety, regulatory, or other reasons consistent with applicable laws, regulations, and GCP"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_1",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_1",
+        "name": "Early Termination - Disease Progression",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued due to radiographic progressive disease or significant symptomatic disease deterioration in the opinion of the investigator"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_2",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_2",
+        "name": "Early Termination - Unacceptable Toxicity",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued due to unacceptable toxicity such as persistent moderate toxicity intolerable to the patient"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_3",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_3",
+        "name": "Early Termination - Maximum Dose Reductions",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued after reaching maximum allowed dose reductions and experiencing an AE requiring further dose reduction"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_4",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_4",
+        "name": "Early Termination - Noncompliance",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued due to significant noncompliance with study procedures and/or treatment below 80% threshold, following discussion between investigator and Lilly CRP/CRS"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_5",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_5",
+        "name": "Early Termination - Pregnancy",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued due to pregnancy occurring during the study; pregnancy must be reported following the SAE process to collect data on outcome for both mother and fetus"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_6",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_6",
+        "name": "Early Termination - Competing Study",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued due to enrollment in another clinical study involving an investigational product judged not to be scientifically or medically compatible with this study"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_7",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_7",
+        "name": "Early Termination - Investigator Decision",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued based on investigator/physician decision"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_8",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_8",
+        "name": "Early Termination - Patient/Guardian Decision",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued at request of patient, parent, or legal guardian"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_9",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_9",
+        "name": "Early Termination - Sponsor Decision",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued by Lilly for medical, safety, regulatory, or other reasons consistent with applicable laws, regulations, and GCP"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_10",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_10",
+        "name": "Early Termination - Alternative Effective Therapy Required",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient discontinued from study drug prior to introduction of another therapeutic agent demonstrated to be effective for the study indication"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_11",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_11",
+        "name": "Study Completion - Investigation-Specific",
+        "exitType": "Completion",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Completion of all protocol-required visits as defined in the investigation-specific addendum, following final analysis as determined by Lilly"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_12",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_12",
+        "name": "Continued Access Period End",
+        "exitType": "Completion",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient's continued access ends when a criterion for discontinuation is met (Section 8); continued access follow-up lasts approximately 30 (±7) days after patient and investigator agree to discontinue study treatment"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_13",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_13",
+        "name": "Lost to Follow-Up",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient considered lost to follow-up if repeatedly failing to return for scheduled visits and unable to be contacted by the study site despite diligent attempts by site personnel"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_14",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_14",
+        "name": "Protocol Deviation - Inadvertent Enrollment",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patient who did not meet enrollment criteria and was inadvertently enrolled may be discontinued unless both Lilly CRP/CRS and investigator agree it is medically appropriate to continue and documented approval is obtained"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_15",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_15",
+        "name": "Study Site Closure",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Study site participation discontinued if Lilly, investigator, or ERB/IRB judges it necessary for medical, safety, regulatory, or other reasons consistent with applicable laws, regulations, and GCP"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "exit_16",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_16",
+        "name": "Full Study Discontinuation by Sponsor",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Entire study discontinued if Lilly judges it necessary for medical, safety, regulatory, or other reasons consistent with applicable laws, regulations, and GCP"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "dec_1",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_1",
+        "name": "Continued Access Eligibility Decision",
+        "timepointId": "pt_final_analysis",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision point after final analysis of investigation-specific addendum to determine if patients may continue in continued access period based on clinical benefit and absence of undue risks",
+        "conditionIds": [
+          "cond_6"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "dec_2",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_2",
+        "name": "Inadvertent Enrollment Continuation Decision",
+        "timepointId": "pt_enrollment",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision point when inadvertent enrollment is identified; Lilly CRP/CRS and investigator must jointly determine if patient may continue in the study",
+        "conditionIds": [
+          "cond_7"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "dec_3",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_3",
+        "name": "Noncompliance Discontinuation Decision",
+        "timepointId": "pt_ongoing_treatment",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision point when patient compliance falls below 80% threshold; potential discontinuation must be discussed between investigator and Lilly CRP/CRS before final determination",
+        "conditionIds": [
+          "cond_4"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "dec_4",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_4",
+        "name": "Screen Failure Re-screening Decision",
+        "timepointId": "pt_screening",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision point for screen failures to determine eligibility for re-screening (requires Lilly CRP/CRS permission) or transfer to alternative investigation within CAMPFIRE",
+        "conditionIds": [
+          "cond_5"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "dec_5",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_5",
+        "name": "Long-Term Follow-Up Discontinuation at Continued Access",
+        "timepointId": "pt_continued_access_start",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision point at start of continued access period to determine follow-up pathway: patients in short-term follow-up continue to 30-day visit; patients in long-term follow-up are discontinued from long-term follow-up",
+        "conditionIds": [
+          "cond_15",
+          "cond_16"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    },
+    {
+      "id": "dec_6",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_6",
+        "name": "Symptomatic Deterioration Documentation Decision",
+        "timepointId": "pt_ongoing_treatment",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "When patient is discontinued due to symptomatic deterioration, every effort should be made to document disease progression unless not medically appropriate",
+        "conditionIds": [
+          "cond_10"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        2,
+        3,
+        9,
+        18,
+        20,
+        22,
+        24,
+        25,
+        26,
+        27,
+        30,
+        37,
+        48
+      ]
+    }
+  ],
+  "scheduling_summary": {
+    "timing_count": 7,
+    "condition_count": 16,
+    "transition_rule_count": 18,
+    "exit_count": 16,
+    "decision_count": 6
+  }
+}

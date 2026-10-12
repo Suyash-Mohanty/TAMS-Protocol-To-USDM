@@ -1,0 +1,755 @@
+"""
+Study Metadata Extractor - Phase 2 of USDM Expansion
+
+Extracts study identity and metadata from protocol title page and synopsis.
+"""
+
+import json
+import logging
+import re
+from dataclasses import dataclass, field
+from pathlib import Path
+from typing import List, Optional, Dict, Any, Tuple
+
+from core.llm_client import call_llm, call_llm_with_image
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
+from .schema import (
+    StudyMetadata,
+    StudyTitle,
+    StudyIdentifier,
+    Organization,
+    StudyRole,
+    Indication,
+    StudyPhase,
+    GovernanceDate,
+    TitleType,
+    OrganizationType,
+    StudyRoleCode,
+    IdentifierType,
+)
+from .prompts import (
+    METADATA_EXTRACTION_PROMPT,
+    build_metadata_extraction_prompt,
+    build_vision_extraction_prompt,
+)
+
+logger = logging.getLogger(__name__)
+
+
+@dataclass
+class MetadataExtractionResult:
+    """Result of metadata extraction."""
+    success: bool
+    metadata: Optional[StudyMetadata] = None
+    raw_response: Optional[Dict[str, Any]] = None
+    error: Optional[str] = None
+    pages_used: List[int] = field(default_factory=list)
+    model_used: Optional[str] = None
+
+
+def extract_study_metadata(
+    pdf_path: str,
+    model_name: str = "gemini-2.5-pro",
+    title_page_images: Optional[List[str]] = None,
+    protocol_text: Optional[str] = None,
+    pages: Optional[List[int]] = None,
+) -> MetadataExtractionResult:
+    """
+    Extract study metadata from a protocol PDF.
+    
+    Args:
+        pdf_path: Path to the protocol PDF
+        model_name: LLM model to use
+        title_page_images: Optional pre-rendered images of title pages
+        protocol_text: Optional pre-extracted text from title/synopsis pages
+        pages: Specific pages to use (0-indexed), defaults to [0, 1, 2]
+        
+    Returns:
+        MetadataExtractionResult with extracted metadata
+    """
+    result = MetadataExtractionResult(success=False, model_used=model_name)
+    
+    try:
+        # Default to first 3 pages if not specified
+        target_pages = pages or [0, 1, 2]
+        result.pages_used = target_pages
+        
+        # Strategy 1: Vision extraction from title page images
+        if title_page_images:
+            logger.info(f"Extracting metadata from {len(title_page_images)} title page images...")
+            vision_result = _extract_with_vision(title_page_images, model_name)
+            if vision_result:
+                result.raw_response = vision_result
+        
+        # Strategy 2: Text extraction if we have protocol text
+        if protocol_text and not result.raw_response:
+            logger.info("Extracting metadata from protocol text...")
+            text_result = _extract_with_text(protocol_text, model_name)
+            if text_result:
+                result.raw_response = text_result
+        
+        # Strategy 3: Extract text from PDF pages directly
+        if not result.raw_response:
+            logger.info(f"Extracting text from PDF pages {target_pages}...")
+            from core.pdf_utils import extract_text_from_pages
+            extracted_text = extract_text_from_pages(pdf_path, target_pages)
+            if extracted_text:
+                text_result = _extract_with_text(extracted_text, model_name)
+                if text_result:
+                    result.raw_response = text_result
+        
+        # Parse the raw response into structured metadata
+        if result.raw_response:
+            result.metadata = _parse_metadata_response(result.raw_response)
+            result.success = result.metadata is not None
+
+        # Governance roles (DMC, adjudication committee, medical monitor, ...)
+        # are described deep in the protocol body, outside the title pages
+        # sent to the LLM — detect them from the full text.
+        if result.metadata is not None:
+            _add_governance_roles(result.metadata, pdf_path)
+
+        if not result.success:
+            result.error = "Failed to extract metadata from protocol"
+            
+    except Exception as e:
+        logger.error(f"Metadata extraction failed: {e}")
+        result.error = str(e)
+        
+    return result
+
+
+def _extract_with_vision(
+    image_paths: List[str],
+    model_name: str,
+) -> Optional[Dict[str, Any]]:
+    """Extract metadata using vision model on title page images."""
+    try:
+        prompt = build_vision_extraction_prompt()
+        
+        # Use first image (title page) for vision extraction
+        response = call_llm_with_image(
+            prompt=prompt,
+            image_path=image_paths[0],
+            model_name=model_name,
+        )
+        
+        if response and 'response' in response:
+            return _parse_json_response(response['response'])
+            
+    except Exception as e:
+        logger.warning(f"Vision extraction failed: {e}")
+        
+    return None
+
+
+def _extract_with_text(
+    protocol_text: str,
+    model_name: str,
+) -> Optional[Dict[str, Any]]:
+    """Extract metadata using text-based LLM call."""
+    try:
+        prompt = build_metadata_extraction_prompt(protocol_text)
+        
+        response = call_llm(
+            prompt=prompt,
+            model_name=model_name,
+            extractor_name="metadata",
+        )
+        
+        if response and 'response' in response:
+            return _parse_json_response(response['response'])
+            
+    except Exception as e:
+        logger.warning(f"Text extraction failed: {e}")
+        
+    return None
+
+
+def _parse_json_response(response_text: str) -> Optional[Dict[str, Any]]:
+    """Parse JSON from LLM response, handling markdown code blocks."""
+    if not response_text:
+        return None
+        
+    # Try to extract JSON from markdown code blocks
+    json_match = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', response_text)
+    if json_match:
+        response_text = json_match.group(1)
+    
+    # Clean up common issues
+    response_text = response_text.strip()
+    
+    try:
+        return json.loads(response_text)
+    except json.JSONDecodeError as e:
+        logger.warning(f"Failed to parse JSON response: {e}")
+        return None
+
+
+def _parse_metadata_response(raw: Dict[str, Any]) -> Optional[StudyMetadata]:
+    """Parse raw LLM response into StudyMetadata object."""
+    try:
+        citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
+        # Extract titles
+        titles = []
+        for i, title_data in enumerate(raw.get('titles', [])):
+            if isinstance(title_data, dict) and title_data.get('text'):
+                title_id = f"title_{i+1}"
+                text_raw = title_data['text']
+                text = _unwrap(text_raw)
+                if not text:
+                    continue
+                title_type = _map_title_type(title_data.get('type', 'Official Study Title'))
+                titles.append(StudyTitle(
+                    id=title_id,
+                    text=text,
+                    type=title_type,
+                ))
+                _collect_citation(citations, title_id, 'text', text_raw)
+
+        # Extract organizations
+        organizations = []
+        org_id_map = {}  # Map org name to ID for reference
+        for i, org_data in enumerate(raw.get('organizations', [])):
+            if isinstance(org_data, dict) and org_data.get('name'):
+                org_id = f"org_{i+1}"
+                name_raw = org_data['name']
+                name = _unwrap(name_raw)
+                if not name:
+                    continue
+                org_type = _map_org_type(org_data.get('type', 'Pharmaceutical Company'))
+                organizations.append(Organization(
+                    id=org_id,
+                    name=name,
+                    type=org_type,
+                ))
+                _collect_citation(citations, org_id, 'name', name_raw)
+                org_id_map[name] = org_id
+
+        # Extract identifiers
+        identifiers = []
+        for i, id_data in enumerate(raw.get('identifiers', [])):
+            if isinstance(id_data, dict):
+                # Accept both 'text' (USDM format) and 'value' (legacy format)
+                text_raw = id_data.get('text') or id_data.get('value')
+                id_text = _unwrap(text_raw)
+                if id_text:
+                    sid = id_data.get('id', f"sid_{i+1}")
+                    # Find scope organization
+                    registry = id_data.get('registry') or id_data.get('issuingOrganization', 'Unknown')
+                    scope_id = _find_scope_org(registry, org_id_map, organizations)
+
+                    # Determine identifier type
+                    id_type = _infer_identifier_type(
+                        id_text,
+                        id_data.get('identifierType'),
+                        id_data.get('issuingOrganization')
+                    )
+
+                    identifiers.append(StudyIdentifier(
+                        id=sid,
+                        text=id_text,
+                        scope_id=scope_id,
+                        identifier_type=id_type,
+                        issuing_organization=registry,
+                    ))
+                    _collect_citation(citations, sid, 'text', text_raw)
+
+        # Extract roles from organizations
+        roles = []
+        for i, org_data in enumerate(raw.get('organizations', [])):
+            if isinstance(org_data, dict) and org_data.get('role'):
+                role_id = f"role_{i+1}"
+                role_raw = org_data['role']
+                role_name = _unwrap(role_raw)
+                if not role_name:
+                    continue
+                role_code = _map_role_code(role_name)
+                org_name = _unwrap(org_data.get('name'))
+                org_id = org_id_map.get(org_name, f"org_{i+1}")
+                roles.append(StudyRole(
+                    id=role_id,
+                    name=role_name,
+                    code=role_code,
+                    organization_ids=[org_id],
+                ))
+                _collect_citation(citations, role_id, 'name', role_raw)
+
+        # Extract indication - handle both singular 'indication' and plural 'indications'
+        indications = []
+        indication_list = raw.get('indications', [])
+        if not indication_list:
+            # Try singular form
+            indication_data = raw.get('indication')
+            if indication_data:
+                indication_list = [indication_data]
+
+        for i, ind_data in enumerate(indication_list):
+            if isinstance(ind_data, dict) and ind_data.get('name'):
+                ind_id = ind_data.get('id', f"indication_{i+1}")
+                name_raw = ind_data['name']
+                name = _unwrap(name_raw)
+                if not name:
+                    continue
+                desc_raw = ind_data.get('description')
+                indications.append(Indication(
+                    id=ind_id,
+                    name=name,
+                    description=_unwrap(desc_raw),
+                    is_rare_disease=_unwrap(ind_data.get('isRareDisease'), False),
+                ))
+                _collect_citation(citations, ind_id, 'name', name_raw)
+                _collect_citation(citations, ind_id, 'description', desc_raw)
+
+        # Extract study phase
+        study_phase = None
+        phase_data = raw.get('studyPhase')
+        if phase_data:
+            # Handle both string and dict formats. A dict may be either the
+            # legacy {code, decode} shape or the new {code, decode, page,
+            # quote} citation-bearing shape - both read the same way, since
+            # the phase code/decode themselves are structural, not wrapped.
+            if isinstance(phase_data, str) and phase_data.lower() != 'null':
+                study_phase = StudyPhase(phase=phase_data)
+            elif isinstance(phase_data, dict):
+                phase_str = phase_data.get('phase') or phase_data.get('code') or phase_data.get('decode')
+                if phase_str:
+                    study_phase = StudyPhase(phase=str(phase_str))
+                    if phase_data.get('page') is not None or phase_data.get('quote') is not None:
+                        _collect_citation(citations, 'study_phase', 'phase', phase_data)
+
+        # Extract protocol version
+        version_data = raw.get('protocolVersion', {})
+        version_raw = version_data.get('version') if isinstance(version_data, dict) else None
+        date_raw = version_data.get('date') if isinstance(version_data, dict) else None
+        amendment_raw = version_data.get('amendment') if isinstance(version_data, dict) else None
+        protocol_version = _unwrap(version_raw)
+        protocol_date = _unwrap(date_raw)
+        amendment = _unwrap(amendment_raw)
+        _collect_citation(citations, 'protocol_version', 'version', version_raw)
+        _collect_citation(citations, 'protocol_version', 'date', date_raw)
+        _collect_citation(citations, 'protocol_version', 'amendment', amendment_raw)
+
+        # Build GovernanceDate objects from extracted protocol dates
+        governance_dates = []
+        gd_counter = [1]
+
+        def _add_governance_date(date_val: str, type_code: str, type_decode: str) -> None:
+            if not date_val:
+                return
+            # Normalize to ISO 8601 YYYY-MM-DD where possible
+            date_str = _normalize_date(date_val)
+            if not date_str:
+                return
+            governance_dates.append(GovernanceDate(
+                id=f"gd_{gd_counter[0]}",
+                name=type_decode,
+                date=date_str,
+                type_code=type_code,
+                type_decode=type_decode,
+            ))
+            gd_counter[0] += 1
+
+        _add_governance_date(protocol_date, "C99906", "Protocol Version Date")
+
+        # Also capture explicit approval / effective dates if the LLM returned them
+        if isinstance(version_data, dict):
+            _add_governance_date(_unwrap(version_data.get('approvalDate')), "C71476", "Approval Date")
+            _add_governance_date(_unwrap(version_data.get('effectiveDate')), "C215663", "Effective Date")
+            _add_governance_date(_unwrap(version_data.get('submissionDate')), "C99905", "Protocol Submission Date")
+
+        # Build study name: prefer sponsor protocol number (short code like "ALXN1840-WD-204"),
+        # then acronym title, then fall back to truncated official title.
+        # Per USDM spec, study.name = the study identifier/code, NOT the full title.
+        study_name = None
+        for ident in identifiers:
+            if ident.identifier_type == IdentifierType.SPONSOR_PROTOCOL:
+                study_name = ident.text
+                break
+        if not study_name:
+            for title in titles:
+                if title.type == TitleType.ACRONYM:
+                    study_name = title.text
+                    break
+        if not study_name:
+            for title in titles:
+                if title.type == TitleType.OFFICIAL:
+                    study_name = title.text[:100]
+                    break
+        if not study_name and titles:
+            study_name = titles[0].text[:100]
+        if not study_name:
+            study_name = "Unknown Study"
+
+        return StudyMetadata(
+            study_name=study_name,
+            titles=titles,
+            identifiers=identifiers,
+            organizations=organizations,
+            roles=roles,
+            indications=indications,
+            study_phase=study_phase,
+            study_type=_unwrap(raw.get('studyType')),
+            protocol_version=protocol_version,
+            protocol_date=protocol_date,
+            amendment_number=amendment,
+            governance_dates=governance_dates,
+            citations=citations,
+        )
+
+    except Exception as e:
+        logger.error(f"Failed to parse metadata response: {e}")
+        return None
+
+
+def _normalize_date(date_str: str) -> Optional[str]:
+    """Attempt to normalise a date string to ISO 8601 YYYY-MM-DD.
+
+    Accepts common formats found in protocol documents:
+      • YYYY-MM-DD  (pass-through)
+      • DD Mon YYYY  (e.g. 15 Jan 2024)
+      • Month DD, YYYY  (e.g. January 15, 2024)
+      • DD/MM/YYYY or MM/DD/YYYY (ambiguous — treated as DD/MM/YYYY)
+    Returns None if the string cannot be parsed.
+    """
+    if not date_str:
+        return None
+    date_str = str(date_str).strip()
+
+    import re as _re
+
+    # Already ISO 8601
+    if _re.match(r'^\d{4}-\d{2}-\d{2}$', date_str):
+        return date_str
+
+    # Try Python's dateutil if available, otherwise fall back to manual parsing
+    try:
+        from dateutil import parser as _dp
+        return _dp.parse(date_str, dayfirst=True).strftime('%Y-%m-%d')
+    except (ImportError, ValueError):
+        pass
+
+    # Manual fallbacks — common protocol formats
+    _MONTH_MAP = {
+        'jan': '01', 'feb': '02', 'mar': '03', 'apr': '04',
+        'may': '05', 'jun': '06', 'jul': '07', 'aug': '08',
+        'sep': '09', 'oct': '10', 'nov': '11', 'dec': '12',
+    }
+    # DD Mon YYYY  or  DD MonthFull YYYY
+    m = _re.match(r'^(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})$', date_str)
+    if m:
+        mo = _MONTH_MAP.get(m.group(2).lower()[:3])
+        if mo:
+            return f"{m.group(3)}-{mo}-{m.group(1).zfill(2)}"
+
+    # Month DD, YYYY
+    m = _re.match(r'^([A-Za-z]+)\s+(\d{1,2}),?\s+(\d{4})$', date_str)
+    if m:
+        mo = _MONTH_MAP.get(m.group(1).lower()[:3])
+        if mo:
+            return f"{m.group(3)}-{mo}-{m.group(2).zfill(2)}"
+
+    # DD/MM/YYYY or MM/DD/YYYY — keep as-is if year-last
+    m = _re.match(r'^(\d{1,2})/(\d{1,2})/(\d{4})$', date_str)
+    if m:
+        return f"{m.group(3)}-{m.group(2).zfill(2)}-{m.group(1).zfill(2)}"
+
+    # YYYY/MM/DD
+    m = _re.match(r'^(\d{4})/(\d{2})/(\d{2})$', date_str)
+    if m:
+        return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+
+    # Could not parse — return the raw value so information is not lost
+    logger.debug(f"Could not normalise date string: {date_str!r}")
+    return date_str
+
+
+def _map_title_type(type_str: str) -> TitleType:
+    """Map string to TitleType enum."""
+    if not type_str:
+        return TitleType.OFFICIAL
+    type_lower = str(type_str).lower()
+    if 'brief' in type_lower or 'short' in type_lower:
+        return TitleType.BRIEF
+    elif 'acronym' in type_lower:
+        return TitleType.ACRONYM
+    elif 'scientific' in type_lower:
+        return TitleType.SCIENTIFIC
+    elif 'public' in type_lower:
+        return TitleType.PUBLIC
+    return TitleType.OFFICIAL
+
+
+def _map_org_type(type_str: str) -> OrganizationType:
+    """Map string to OrganizationType enum."""
+    if not type_str:
+        return OrganizationType.PHARMACEUTICAL_COMPANY
+    type_lower = str(type_str).lower()
+    if 'cro' in type_lower or 'contract' in type_lower:
+        return OrganizationType.CRO
+    elif 'academ' in type_lower or 'university' in type_lower:
+        return OrganizationType.ACADEMIC
+    elif 'regulator' in type_lower or 'fda' in type_lower or 'ema' in type_lower:
+        return OrganizationType.REGULATORY_AGENCY
+    elif 'hospital' in type_lower or 'healthcare' in type_lower or 'clinic' in type_lower:
+        return OrganizationType.HEALTHCARE
+    elif 'government' in type_lower:
+        return OrganizationType.GOVERNMENT
+    elif 'lab' in type_lower:
+        return OrganizationType.LABORATORY
+    elif 'registry' in type_lower:
+        return OrganizationType.REGISTRY
+    elif 'device' in type_lower:
+        return OrganizationType.MEDICAL_DEVICE
+    return OrganizationType.PHARMACEUTICAL_COMPANY
+
+
+# Governance roles detected from the full protocol text. Each rule is
+# (pattern, fallback name, role code); the role name is the protocol's own
+# long-form wording when the pattern matched it, else the fallback name.
+_GOVERNANCE_ROLE_RULES: List[Tuple[re.Pattern, str, StudyRoleCode]] = [
+    (re.compile(r"\bindependent,?\s+(?:external\s+)?(?:data\s+(?:safety\s+)?monitoring\s+committee|DMC|IDMC)\b", re.I),
+     "Independent Data Monitoring Committee", StudyRoleCode.INDEPENDENT_DMC),
+    (re.compile(r"\bdata\s+(?:safety\s+)?monitoring\s+(?:committee|board)\b|\bDSMB\b|\bDMC\b"),
+     "Data Monitoring Committee", StudyRoleCode.DATA_MONITORING_COMMITTEE),
+    (re.compile(r"\b(?:clinical\s+(?:endpoint|events?)\s+committee|adjudication\s+committee)\b", re.I),
+     "Adjudication Committee", StudyRoleCode.ADJUDICATION_COMMITTEE),
+    (re.compile(r"\bdose[\s-]+escalation\s+committee\b", re.I),
+     "Dose Escalation Committee", StudyRoleCode.DOSE_ESCALATION_COMMITTEE),
+    (re.compile(r"\bmedical\s+monitor\b", re.I),
+     "Medical Monitor", StudyRoleCode.MEDICAL_EXPERT),
+    (re.compile(r"\bcentral\s+laborator(?:y|ies)\b", re.I),
+     "Central Laboratory", StudyRoleCode.LABORATORY),
+    (re.compile(r"\bstatistical\s+analysis\s+cent(?:er|re)\b", re.I),
+     "Statistical Analysis Center", StudyRoleCode.STATISTICIAN),
+    (re.compile(r"\bprincipal\s+investigator\b", re.I),
+     "Principal Investigator", StudyRoleCode.PRINCIPAL_INVESTIGATOR),
+    (re.compile(r"\binvestigators?\b", re.I),
+     "Investigator", StudyRoleCode.INVESTIGATOR),
+]
+
+
+def detect_governance_roles(text: str) -> List[Tuple[str, StudyRoleCode]]:
+    """Return (name, code) for each governance role mentioned in the text.
+
+    An independent DMC supersedes a plain DMC so the committee isn't
+    reported twice.
+    """
+    found: List[Tuple[str, StudyRoleCode]] = []
+    codes: set = set()
+    for pattern, fallback, code in _GOVERNANCE_ROLE_RULES:
+        if code in codes:
+            continue
+        if code == StudyRoleCode.DATA_MONITORING_COMMITTEE and StudyRoleCode.INDEPENDENT_DMC in codes:
+            continue
+        match = pattern.search(text)
+        if not match:
+            continue
+        matched = " ".join(match.group(0).split())
+        # Abbreviations (DMC, CEC, ...) and plurals fall back to the canonical name
+        name = matched.title() if " " in matched and not matched.lower().endswith("s") else fallback
+        if code == StudyRoleCode.INDEPENDENT_DMC:
+            name = fallback
+        found.append((name, code))
+        codes.add(code)
+    return found
+
+
+def _add_governance_roles(metadata: StudyMetadata, pdf_path: str) -> None:
+    """Append governance StudyRoles found in the full protocol text."""
+    try:
+        from core.pdf_utils import extract_text_from_pages, get_page_count
+        page_count = get_page_count(pdf_path)
+        if not page_count:
+            return
+        text = extract_text_from_pages(pdf_path, list(range(page_count))) or ""
+    except Exception as e:
+        logger.warning(f"Governance role detection skipped: {e}")
+        return
+
+    existing = {r.code for r in metadata.roles}
+    for name, code in detect_governance_roles(text):
+        if code in existing:
+            continue
+        metadata.roles.append(StudyRole(
+            id=f"role_gov_{len(metadata.roles) + 1}",
+            name=name,
+            code=code,
+        ))
+        existing.add(code)
+        logger.info(f"Detected governance role from protocol text: {name}")
+
+
+def _map_role_code(role_str: str) -> StudyRoleCode:
+    """Map string to StudyRoleCode enum."""
+    if not role_str:
+        return StudyRoleCode.SPONSOR
+    role_lower = str(role_str).lower()
+    if 'independent data monitoring' in role_lower or re.search(r'\bidmc\b', role_lower):
+        return StudyRoleCode.INDEPENDENT_DMC
+    elif 'monitoring committee' in role_lower or 'monitoring board' in role_lower or re.search(r'\b(dmc|dsmb)\b', role_lower):
+        return StudyRoleCode.DATA_MONITORING_COMMITTEE
+    elif 'adjudicat' in role_lower or 'endpoint committee' in role_lower or 'events committee' in role_lower:
+        return StudyRoleCode.ADJUDICATION_COMMITTEE
+    elif 'dose escalation committee' in role_lower:
+        return StudyRoleCode.DOSE_ESCALATION_COMMITTEE
+    elif 'medical monitor' in role_lower:
+        return StudyRoleCode.MEDICAL_EXPERT
+    elif 'laborator' in role_lower:
+        return StudyRoleCode.LABORATORY
+    elif 'co-sponsor' in role_lower or 'cosponsor' in role_lower:
+        return StudyRoleCode.CO_SPONSOR
+    elif 'local sponsor' in role_lower:
+        return StudyRoleCode.LOCAL_SPONSOR
+    elif 'sponsor' in role_lower:
+        return StudyRoleCode.SPONSOR
+    elif re.search(r'\bcro\b', role_lower) or 'contract' in role_lower:
+        return StudyRoleCode.CRO
+    elif 'principal' in role_lower or re.search(r'\bpi\b', role_lower):
+        return StudyRoleCode.PRINCIPAL_INVESTIGATOR
+    elif 'investigator' in role_lower:
+        return StudyRoleCode.INVESTIGATOR
+    elif 'regulator' in role_lower:
+        return StudyRoleCode.REGULATORY
+    elif 'manufacturer' in role_lower:
+        return StudyRoleCode.MANUFACTURER
+    elif 'statistic' in role_lower:
+        return StudyRoleCode.STATISTICIAN
+    elif 'medical' in role_lower:
+        return StudyRoleCode.MEDICAL_EXPERT
+    elif 'project' in role_lower:
+        return StudyRoleCode.PROJECT_MANAGER
+    elif 'site' in role_lower:
+        return StudyRoleCode.STUDY_SITE
+    return StudyRoleCode.SPONSOR
+
+
+def _infer_identifier_type(
+    text: str,
+    explicit_type: Optional[str],
+    issuing_org: Optional[str],
+) -> Optional[IdentifierType]:
+    """
+    Infer identifier type from text pattern, explicit type, or issuing org.
+    
+    Args:
+        text: The identifier text (e.g., "NCT04573309")
+        explicit_type: Type explicitly specified by LLM
+        issuing_org: Organization that issued the identifier
+        
+    Returns:
+        IdentifierType enum value or None
+    """
+    import re
+    
+    # Check explicit type first
+    if explicit_type:
+        type_lower = explicit_type.lower()
+        if 'nct' in type_lower or 'clinicaltrials' in type_lower:
+            return IdentifierType.NCT
+        elif 'eudract' in type_lower:
+            return IdentifierType.EUDRACT
+        elif 'sponsor' in type_lower or 'protocol' in type_lower:
+            return IdentifierType.SPONSOR_PROTOCOL
+        elif 'ind' in type_lower and 'ide' not in type_lower:
+            return IdentifierType.IND
+        elif 'ide' in type_lower:
+            return IdentifierType.IDE
+        elif 'isrctn' in type_lower:
+            return IdentifierType.ISRCTN
+        elif 'ctis' in type_lower:
+            return IdentifierType.CTIS
+        elif 'utn' in type_lower or 'who' in type_lower:
+            return IdentifierType.WHO_UTN
+    
+    # Infer from text pattern
+    text_upper = text.upper().strip()
+    
+    # NCT pattern: NCT followed by 8 digits
+    if re.match(r'^NCT\d{8}$', text_upper):
+        return IdentifierType.NCT
+    
+    # EudraCT pattern: YYYY-NNNNNN-CC
+    if re.match(r'^\d{4}-\d{6}-\d{2}$', text):
+        return IdentifierType.EUDRACT
+    
+    # ISRCTN pattern
+    if re.match(r'^ISRCTN\d+$', text_upper):
+        return IdentifierType.ISRCTN
+    
+    # IND/IDE patterns
+    if re.match(r'^IND\s*\d+', text_upper):
+        return IdentifierType.IND
+    if re.match(r'^IDE\s*\d+', text_upper):
+        return IdentifierType.IDE
+    
+    # Infer from issuing organization
+    if issuing_org:
+        org_lower = issuing_org.lower()
+        if 'clinicaltrials' in org_lower or 'ct.gov' in org_lower:
+            return IdentifierType.NCT
+        elif 'eudract' in org_lower or 'european' in org_lower:
+            return IdentifierType.EUDRACT
+        elif 'fda' in org_lower:
+            if 'ind' in text.lower():
+                return IdentifierType.IND
+            elif 'ide' in text.lower():
+                return IdentifierType.IDE
+        elif 'sponsor' in org_lower:
+            return IdentifierType.SPONSOR_PROTOCOL
+    
+    # Default to sponsor protocol if it looks like an internal ID
+    if re.match(r'^[A-Z]{2,5}[-_]?\d+', text_upper) or '-' in text:
+        return IdentifierType.SPONSOR_PROTOCOL
+    
+    return IdentifierType.OTHER
+
+
+def _find_scope_org(
+    registry: str,
+    org_id_map: Dict[str, str],
+    organizations: List[Organization],
+) -> str:
+    """Find the organization ID for an identifier's scope."""
+    registry_lower = registry.lower()
+    
+    # Check if registry matches an existing org
+    for org_name, org_id in org_id_map.items():
+        if org_name.lower() in registry_lower or registry_lower in org_name.lower():
+            return org_id
+    
+    # Common registries
+    if 'clinicaltrials' in registry_lower or 'nct' in registry_lower:
+        return "org_ct_gov"
+    elif 'eudract' in registry_lower:
+        return "org_eudract"
+    elif 'sponsor' in registry_lower and organizations:
+        # Use first org (usually sponsor)
+        return organizations[0].id
+        
+    return "org_unknown"
+
+
+def save_metadata_result(
+    result: MetadataExtractionResult,
+    output_path: str,
+) -> None:
+    """Save metadata extraction result to JSON file."""
+    output = {
+        "success": result.success,
+        "pagesUsed": result.pages_used,
+        "modelUsed": result.model_used,
+    }
+    
+    if result.metadata:
+        output["metadata"] = result.metadata.to_dict()
+    if result.error:
+        output["error"] = result.error
+    if result.raw_response:
+        output["rawResponse"] = result.raw_response
+        
+    with open(output_path, 'w', encoding='utf-8') as f:
+        json.dump(output, f, indent=2, ensure_ascii=False)
+        
+    logger.info(f"Saved metadata to {output_path}")

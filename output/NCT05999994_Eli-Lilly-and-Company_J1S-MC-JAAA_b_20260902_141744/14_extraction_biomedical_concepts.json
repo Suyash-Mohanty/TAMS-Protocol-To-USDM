@@ -1,0 +1,1147 @@
+{
+  "agent_id": "biomedical_concept_agent",
+  "timestamp": "2026-09-02T14:20:03.446117",
+  "confidence": 0.75,
+  "entity_count": 27,
+  "entities": [
+    {
+      "id": "bc_1",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_1",
+        "name": "Data Management Methods",
+        "label": "General Data Management Methods",
+        "synonyms": [
+          "Data Handling",
+          "Data Collection Methods",
+          "Clinical Data Management"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_1_prop_1",
+            "name": "DMMETHOD",
+            "label": "Data Management Method Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_2",
+            "name": "DMVER",
+            "label": "Data Management Version",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_2",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_2",
+        "name": "Reporting of AEs SAEs and SUSARs",
+        "label": "Adverse Event, Serious Adverse Event, and Suspected Unexpected Serious Adverse Reaction Reporting",
+        "synonyms": [
+          "AE Reporting",
+          "SAE Reporting",
+          "SUSAR Reporting",
+          "Safety Reporting"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_2_prop_1",
+            "name": "AETERM",
+            "label": "Reported Term for the Adverse Event",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_2",
+            "name": "AESEV",
+            "label": "Severity/Intensity",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_3",
+            "name": "AESER",
+            "label": "Serious Event Flag",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_4",
+            "name": "AETYPE",
+            "label": "Event Type (AE/SAE/SUSAR)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "code": {
+          "id": "8600d995-12a8-4689-919c-d833d987a1f4",
+          "code": "C41331",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Adverse Event",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_3",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_3",
+        "name": "List of References (Addendum)",
+        "label": "List of References Cited in the Addendum",
+        "synonyms": [
+          "Addendum References",
+          "Bibliography (Addendum)",
+          "Reference List Addendum"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_3_prop_1",
+            "name": "REFTEXT",
+            "label": "Reference Citation Text",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_2",
+            "name": "REFSRC",
+            "label": "Reference Source Document",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_4",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_4",
+        "name": "Investigation-Specific Synopsis",
+        "label": "Investigation-Specific Protocol Synopsis",
+        "synonyms": [
+          "Sub-study Synopsis",
+          "Addendum Synopsis",
+          "Investigation Synopsis"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_4_prop_1",
+            "name": "SYNOPSVER",
+            "label": "Synopsis Version",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_2",
+            "name": "SYNOPSDT",
+            "label": "Synopsis Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_5",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_5",
+        "name": "Study Drug Administration and Dosage Modifications",
+        "label": "Study Drug Administration and Dosage Modifications for Agents Under Evaluation",
+        "synonyms": [
+          "Dose Administration",
+          "Dosing Instructions",
+          "Dose Modification Guidelines"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_5_prop_1",
+            "name": "EXTRT",
+            "label": "Name of Treatment",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_2",
+            "name": "EXDOSE",
+            "label": "Dose per Administration",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_3",
+            "name": "EXDOSU",
+            "label": "Dose Units",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_4",
+            "name": "EXDOSMOD",
+            "label": "Dose Modification Flag",
+            "isRequired": false,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_6",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_6",
+        "name": "Introduction and Background",
+        "label": "Introduction Including Master Protocol Rationale and Background Information About Unmet Need in Pediatric Oncology",
+        "synonyms": [
+          "Protocol Introduction",
+          "Background and Rationale",
+          "Pediatric Oncology Background"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_6_prop_1",
+            "name": "INTROTEXT",
+            "label": "Introduction and Background Text",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_2",
+            "name": "DISEASEBG",
+            "label": "Disease Background Description",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_7",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_7",
+        "name": "List of Restricted and Prohibited Concomitant Therapy",
+        "label": "List of Restricted and Prohibited Concomitant Therapy",
+        "synonyms": [
+          "Prohibited Medications",
+          "Restricted Concomitant Medications",
+          "Concomitant Therapy Restrictions"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_7_prop_1",
+            "name": "CMTRT",
+            "label": "Reported Name of Drug, Med, or Therapy",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_2",
+            "name": "CMRESTRCT",
+            "label": "Restriction Category (Restricted/Prohibited)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_3",
+            "name": "CMREASON",
+            "label": "Reason for Restriction or Prohibition",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "code": {
+          "id": "8d846ead-c088-4c53-bf40-5a1f781e7383",
+          "code": "C38101",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Concomitant Medications",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_8",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_8",
+        "name": "Investigation-Specific Objectives Endpoints Design and Statistical Plan",
+        "label": "Investigation-Specific Objectives, Endpoints, Study Design, and Statistical Plan",
+        "synonyms": [
+          "Sub-study Objectives",
+          "Investigation Endpoints",
+          "Statistical Analysis Plan",
+          "Study Design"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_8_prop_1",
+            "name": "OBJTEXT",
+            "label": "Objective Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_2",
+            "name": "ENDPTTEXT",
+            "label": "Endpoint Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_3",
+            "name": "STATPLAN",
+            "label": "Statistical Plan Description",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_9",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_9",
+        "name": "Study Governance Regulatory Requirements and Ethics",
+        "label": "Study Governance, Regulatory Requirements, and Ethics Including Informed Consent and Assent",
+        "synonyms": [
+          "Ethics and Governance",
+          "Regulatory Compliance",
+          "Informed Consent Process",
+          "IRB Requirements"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_9_prop_1",
+            "name": "ICFVER",
+            "label": "Informed Consent Form Version",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_2",
+            "name": "ICFDT",
+            "label": "Informed Consent Date",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_3",
+            "name": "ASSENTFL",
+            "label": "Assent Obtained Flag",
+            "isRequired": false,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "code": {
+          "id": "ae479314-7531-4fd2-a11c-18109642305f",
+          "code": "C16735",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Informed Consent",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_10",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_10",
+        "name": "List of References (Master Protocol)",
+        "label": "List of References Cited in the Master Protocol",
+        "synonyms": [
+          "Master Protocol References",
+          "Bibliography (Master Protocol)",
+          "Reference List Master Protocol"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_10_prop_1",
+            "name": "REFTEXT",
+            "label": "Reference Citation Text",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_2",
+            "name": "REFSRC",
+            "label": "Reference Source Document",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_11",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_11",
+        "name": "Investigation-Specific Data Management Methods",
+        "label": "Investigation-Specific Data Management Methods",
+        "synonyms": [
+          "Sub-study Data Management",
+          "Addendum Data Handling",
+          "Investigation Data Collection Methods"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_11_prop_1",
+            "name": "INVDMMETH",
+            "label": "Investigation-Specific Data Management Method Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_11_prop_2",
+            "name": "INVDMVER",
+            "label": "Investigation Data Management Version",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_12",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_12",
+        "name": "Synopsis",
+        "label": "Master Protocol Synopsis",
+        "synonyms": [
+          "Protocol Synopsis",
+          "Study Synopsis",
+          "Master Synopsis"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_12_prop_1",
+            "name": "SYNOPSVER",
+            "label": "Synopsis Version",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_12_prop_2",
+            "name": "SYNOPSDT",
+            "label": "Synopsis Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_13",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_13",
+        "name": "General Discontinuation Criteria",
+        "label": "General Study Discontinuation Criteria",
+        "synonyms": [
+          "Withdrawal Criteria",
+          "Study Stopping Rules",
+          "Discontinuation Rules"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_13_prop_1",
+            "name": "DISCRIT",
+            "label": "Discontinuation Criterion Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_13_prop_2",
+            "name": "DISREASN",
+            "label": "Reason for Discontinuation",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_14",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_14",
+        "name": "Safety Information for Investigation Treatment",
+        "label": "Safety Information Specific to Investigation Treatment(s) and/or Indication(s) Under Evaluation",
+        "synonyms": [
+          "Treatment Safety Profile",
+          "Investigational Drug Safety",
+          "Safety Data Summary"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_14_prop_1",
+            "name": "SAFINFOTEXT",
+            "label": "Safety Information Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_14_prop_2",
+            "name": "SAFINDSRC",
+            "label": "Safety Information Source",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_15",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_15",
+        "name": "Adverse Events of Special Interest",
+        "label": "Adverse Events of Special Interest",
+        "synonyms": [
+          "AESI",
+          "Special Interest AEs",
+          "Targeted Adverse Events"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_15_prop_1",
+            "name": "AETERM",
+            "label": "Reported Term for the Adverse Event of Special Interest",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_15_prop_2",
+            "name": "AESICAT",
+            "label": "AESI Category",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_15_prop_3",
+            "name": "AESEV",
+            "label": "Severity/Intensity",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_15_prop_4",
+            "name": "AEREL",
+            "label": "Causality",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "code": {
+          "id": "7a353f18-351f-4606-afda-1b0f8d2c987d",
+          "code": "C41331",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Adverse Event",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_16",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_16",
+        "name": "General Assessment of Efficacy PK Genetics and Biomarkers",
+        "label": "General Assessment of Efficacy, Pharmacokinetics, Genetics, and Biomarkers",
+        "synonyms": [
+          "Efficacy and PK Assessment",
+          "General Biomarker Assessment",
+          "Pharmacogenomics Overview"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_16_prop_1",
+            "name": "ASSESSCAT",
+            "label": "Assessment Category (Efficacy/PK/Genetics/Biomarker)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_16_prop_2",
+            "name": "ASSESSTEXT",
+            "label": "Assessment Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_16_prop_3",
+            "name": "ASSESSMETH",
+            "label": "Assessment Method",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_17",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_17",
+        "name": "Schedule of Activities and Sample Collection",
+        "label": "Schedule of Activities and Schedule for Collection of Samples for PK, Genetics, and Biomarker Research",
+        "synonyms": [
+          "SoA",
+          "Sample Collection Schedule",
+          "PK Sampling Schedule",
+          "Biomarker Sampling Schedule"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_17_prop_1",
+            "name": "SOAVISIT",
+            "label": "Scheduled Visit Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_17_prop_2",
+            "name": "SOAACTIVITY",
+            "label": "Scheduled Activity Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_17_prop_3",
+            "name": "SAMPLETYPE",
+            "label": "Sample Type (PK/Genetics/Biomarker)",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_17_prop_4",
+            "name": "SOADT",
+            "label": "Scheduled Activity Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_18",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_18",
+        "name": "Safety Lead-In Criteria",
+        "label": "Safety Lead-In Criteria and Associated Terms",
+        "synonyms": [
+          "Safety Run-In Criteria",
+          "Lead-In Safety Rules",
+          "Dose Escalation Safety Criteria"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_18_prop_1",
+            "name": "SLICRIT",
+            "label": "Safety Lead-In Criterion Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_18_prop_2",
+            "name": "SLITERM",
+            "label": "Associated Safety Lead-In Term",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_18_prop_3",
+            "name": "SLIRESULT",
+            "label": "Safety Lead-In Evaluation Result",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_19",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_19",
+        "name": "List of Abbreviations and Definitions (Addendum)",
+        "label": "List of Abbreviations and Definitions Used in the Addendum",
+        "synonyms": [
+          "Addendum Abbreviations",
+          "Addendum Glossary",
+          "Definitions List Addendum"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_19_prop_1",
+            "name": "ABBREVTERM",
+            "label": "Abbreviation or Term",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_19_prop_2",
+            "name": "ABBREVDEF",
+            "label": "Definition or Expansion",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_20",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_20",
+        "name": "Investigation-Specific Inclusion and Exclusion Criteria",
+        "label": "Investigation-Specific Inclusion and Exclusion Criteria",
+        "synonyms": [
+          "Sub-study Eligibility Criteria",
+          "Investigation Inclusion Criteria",
+          "Investigation Exclusion Criteria"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_20_prop_1",
+            "name": "IETEST",
+            "label": "Inclusion/Exclusion Criterion",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_20_prop_2",
+            "name": "IETYPE",
+            "label": "Criterion Type (Inclusion/Exclusion)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_20_prop_3",
+            "name": "IERESULT",
+            "label": "Criterion Met Flag",
+            "isRequired": false,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_21",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_21",
+        "name": "List of Abbreviations and Definitions (Master Protocol)",
+        "label": "List of Abbreviations and Definitions Used in the Master Protocol",
+        "synonyms": [
+          "Master Protocol Abbreviations",
+          "Master Protocol Glossary",
+          "Definitions List Master Protocol"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_21_prop_1",
+            "name": "ABBREVTERM",
+            "label": "Abbreviation or Term",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_21_prop_2",
+            "name": "ABBREVDEF",
+            "label": "Definition or Expansion",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_22",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_22",
+        "name": "Investigation-Specific Discontinuation Criteria",
+        "label": "Investigation-Specific Discontinuation Criteria",
+        "synonyms": [
+          "Sub-study Withdrawal Criteria",
+          "Investigation Stopping Rules",
+          "Addendum Discontinuation Rules"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_22_prop_1",
+            "name": "INVDISCRIT",
+            "label": "Investigation-Specific Discontinuation Criterion",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_22_prop_2",
+            "name": "INVDISREASN",
+            "label": "Reason for Investigation-Specific Discontinuation",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_23",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_23",
+        "name": "Background Information on Investigation Treatment",
+        "label": "Background Information About the Investigation Treatment(s) Under Evaluation",
+        "synonyms": [
+          "Investigational Drug Background",
+          "Treatment Background",
+          "Drug Background Information"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_23_prop_1",
+            "name": "TRTBGTEXT",
+            "label": "Treatment Background Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_23_prop_2",
+            "name": "TRTBGSRC",
+            "label": "Background Information Source",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_24",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_24",
+        "name": "General Inclusion and Exclusion Criteria",
+        "label": "General Inclusion and Exclusion Criteria",
+        "synonyms": [
+          "General Eligibility Criteria",
+          "Master Protocol Inclusion Criteria",
+          "Master Protocol Exclusion Criteria"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_24_prop_1",
+            "name": "IETEST",
+            "label": "Inclusion/Exclusion Criterion",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_24_prop_2",
+            "name": "IETYPE",
+            "label": "Criterion Type (Inclusion/Exclusion)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_24_prop_3",
+            "name": "IERESULT",
+            "label": "Criterion Met Flag",
+            "isRequired": false,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_1",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_1",
+        "name": "Safety Monitoring",
+        "label": "Safety Monitoring and Reporting",
+        "bcIds": [
+          "bc_2",
+          "bc_3",
+          "bc_15",
+          "bc_18"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_2",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_2",
+        "name": "Procedures",
+        "label": "Study Procedures and Administrative Activities",
+        "bcIds": [
+          "bc_1",
+          "bc_5",
+          "bc_9",
+          "bc_11",
+          "bc_13",
+          "bc_17",
+          "bc_20",
+          "bc_22",
+          "bc_24"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_3",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_3",
+        "name": "Other",
+        "label": "Protocol Documentation and Reference Materials",
+        "bcIds": [
+          "bc_4",
+          "bc_6",
+          "bc_7",
+          "bc_8",
+          "bc_10",
+          "bc_12",
+          "bc_14",
+          "bc_16",
+          "bc_19",
+          "bc_21",
+          "bc_23"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    }
+  ],
+  "bc_summary": {
+    "biomedical_concept_count": 24,
+    "category_count": 3,
+    "activity_count": 24
+  }
+}

@@ -1,0 +1,3112 @@
+{
+  "agent_id": "scheduling_agent",
+  "timestamp": "2026-10-07T20:34:51.883636",
+  "confidence": 1.0,
+  "entity_count": 80,
+  "entities": [
+    {
+      "id": "timing_1",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_1",
+        "name": "Screening Window",
+        "type": {
+          "id": "2991108c-6773-4196-8109-b3212ec938eb",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P28D",
+        "valueLabel": "Day 28",
+        "relativeToFrom": {
+          "id": "35b66311-27eb-463a-a908-9de827eceeea",
+          "code": "C71153",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Study Start",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "f43c5b28-d0e3-4147-b3fd-5fdcb13bcb16",
+        "instanceType": "Timing",
+        "windowLower": "-P28D",
+        "windowUpper": "-P2D",
+        "visitName": "Screening (Days -28 to -2)",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_2",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_2",
+        "name": "Period 1 Admission to CRU (Day -1)",
+        "type": {
+          "id": "7a803dfb-753c-4f48-acd2-57d6740ed43d",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P1D",
+        "valueLabel": "Day 1",
+        "relativeToFrom": {
+          "id": "252df8ff-57df-4949-b57d-7d7d87ffed8b",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "2db8fa90-525b-4c9b-879c-fffd455fcc83",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 1 Day -1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_3",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_3",
+        "name": "Genetic Sample Collection Timing",
+        "type": {
+          "id": "bcff1b93-87dc-4764-bece-2dd5b76eb41e",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Day 0",
+        "relativeToFrom": {
+          "id": "665fe509-8f97-4b8f-b531-8b9a8e143ba3",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "e00ab4ec-db31-4dd6-88e3-f3ccd9f0f5d6",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 1 Day -1",
+        "relativeToVisitName": "Period 1 Day -1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_4",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_4",
+        "name": "Washout Period Between Dosing Periods",
+        "type": {
+          "id": "830963e7-6319-46e6-906e-8ee7445c7163",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Washout Period Between Dosing Periods",
+        "relativeToFrom": {
+          "id": "e1b67021-c9d2-4312-94eb-77779600c4cd",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "9cf3a036-cda8-4482-92d4-08482c7b24f1",
+        "instanceType": "Timing",
+        "windowLower": "P3D",
+        "windowUpper": "P14D",
+        "visitName": "Wash out",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_5",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_5",
+        "name": "Period 2 Admission to CRU (Day -1)",
+        "type": {
+          "id": "c523fe2c-8a8a-435b-8d7b-18470b831450",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "P1D",
+        "valueLabel": "Day 1",
+        "relativeToFrom": {
+          "id": "0123f67d-c96a-41cb-8811-ba277c40424b",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "4c402e99-036b-4888-9f15-56ac3cfabe5e",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 2 Day -1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_6",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_6",
+        "name": "Period 2 Dosing Day (after washout)",
+        "type": {
+          "id": "6bb384d3-2a4f-4f30-ad60-377596b00676",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Period 2 Dosing Day (after washout)",
+        "relativeToFrom": {
+          "id": "f4578cd0-7990-44fa-9257-ea9eea3d9c3b",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c457b3c0-5971-4eec-87d1-1b42ef552bb2",
+        "instanceType": "Timing",
+        "windowLower": "P3D",
+        "windowUpper": "P14D",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_7",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_7",
+        "name": "Follow-up/Early Discontinuation Visit Window",
+        "type": {
+          "id": "1138315d-a46e-4c65-b661-7d2808d51d8c",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P28D",
+        "valueLabel": "Day 28",
+        "relativeToFrom": {
+          "id": "e79eed51-5d63-4c4c-93f0-0137f3a7f149",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "70462082-0e08-4b5d-b1f4-ceec1c6cbfa7",
+        "instanceType": "Timing",
+        "windowLower": "-P2D",
+        "windowUpper": "P2D",
+        "visitName": "Follow-up/ED",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_8",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_8",
+        "name": "Follow-up Visit 26 to 30 Days After Last Treatment",
+        "type": {
+          "id": "f4468375-9c67-472f-9288-99b2dfcf3c3d",
+          "code": "C71152",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Between",
+          "instanceType": "Code"
+        },
+        "value": "P0D",
+        "valueLabel": "Follow-up Visit 26 to 30 Days After Last Treatment",
+        "relativeToFrom": {
+          "id": "ccbba1d1-8bbf-42bc-a1db-b4da689ae711",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "75e9a7da-2d6e-4da3-8983-53a1cc407dd0",
+        "instanceType": "Timing",
+        "windowLower": "P26D",
+        "windowUpper": "P30D",
+        "visitName": "Follow-up/ED",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_9",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_9",
+        "name": "Additional Immunogenicity Follow-up Interval (TE ADA)",
+        "type": {
+          "id": "163fc653-2757-4c87-9440-17208259458d",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "P84D",
+        "valueLabel": "Day 84",
+        "relativeToFrom": {
+          "id": "7217c953-8b61-4d22-a361-e5a0bee5fad9",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "5fa560c5-8e1c-425d-a358-da8e6cf4188a",
+        "instanceType": "Timing",
+        "windowLower": "-P7D",
+        "windowUpper": "P7D",
+        "visitName": "Additional Follow-up for TE ADA",
+        "relativeToVisitName": "Follow-up/ED"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_10",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_10",
+        "name": "Maximum Duration of TE ADA Follow-up",
+        "type": {
+          "id": "b86ebd53-ff09-4391-ade7-c75ad051dd5e",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "P1D",
+        "valueLabel": "1 years",
+        "relativeToFrom": {
+          "id": "7691f24d-7030-4f4e-b62b-4a87bfaaeaa4",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "5b5e8d0d-9ab1-476c-9746-7da74235fed2",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Additional Follow-up for TE ADA",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_11",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_11",
+        "name": "Fasting Requirement Before Period Procedures",
+        "type": {
+          "id": "be671db4-e00a-40ca-97f7-c74cf07b55ea",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "PT8H",
+        "valueLabel": "8 hours",
+        "relativeToFrom": {
+          "id": "92e68eb5-1809-4dad-a24b-cc102f38b999",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "08213344-fe3d-4c6d-a58d-bcb0512dbe6f",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_12",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_12",
+        "name": "Fasting Requirement Before Period 2 Procedures",
+        "type": {
+          "id": "43401aa9-4d83-4cc3-8ade-72a986de82bd",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "PT8H",
+        "valueLabel": "8 hours",
+        "relativeToFrom": {
+          "id": "306a1fff-9b89-4866-8e31-53aa399c163f",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "ffeb7c1e-30b2-4e58-8f92-a3272605a4b2",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_13",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_13",
+        "name": "Study Treatment Administration After Insulin Infusion Stop",
+        "type": {
+          "id": "0cd9134c-5e05-42fc-b26a-cb91c365f54d",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "PT5M",
+        "valueLabel": "5 minutes",
+        "relativeToFrom": {
+          "id": "2c14ee0d-5a2e-4663-a64d-514706e748b2",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "da1f25d7-a36f-4acb-9a04-c049b1bc015c",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_14",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_14",
+        "name": "Study Treatment Administration After Insulin Infusion Stop (Period 2)",
+        "type": {
+          "id": "2f965f5b-c3a8-4f68-97b3-9360a2a79182",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "PT5M",
+        "valueLabel": "5 minutes",
+        "relativeToFrom": {
+          "id": "0cb0704f-2763-4fdd-a961-4f7a4ce3a076",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "d31122cf-52e9-4546-af7d-302498fd386d",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_15",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_15",
+        "name": "PK (Glucagon) Sampling Schedule Period 1",
+        "type": {
+          "id": "4e5d7563-d3cd-4618-9320-1ffd555a09be",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "PK (Glucagon) Sampling Schedule Period 1",
+        "relativeToFrom": {
+          "id": "59c8b2be-7ab2-46b5-9e71-8c6716efd2fc",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "80ac42d8-b00b-4059-880f-3d3b8186c412",
+        "instanceType": "Timing",
+        "windowLower": "PT0M",
+        "windowUpper": "PT240M",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_16",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_16",
+        "name": "PK (Glucagon) Sampling Schedule Period 2",
+        "type": {
+          "id": "79b07628-4d1a-4655-9d45-d7b5f1d6b40c",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "PK (Glucagon) Sampling Schedule Period 2",
+        "relativeToFrom": {
+          "id": "94baf99b-cfd7-4e57-80ad-70d6471a5565",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "55a5fadb-06b7-4ffd-9ca7-49ad8a7da3f0",
+        "instanceType": "Timing",
+        "windowLower": "PT0M",
+        "windowUpper": "PT240M",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_17",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_17",
+        "name": "Plasma Glucose PD Sampling Schedule Period 1",
+        "type": {
+          "id": "170b75c6-5d71-4f70-85d0-f39e9ba6d43e",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Plasma Glucose PD Sampling Schedule Period 1",
+        "relativeToFrom": {
+          "id": "e5abf834-05b5-488c-a02f-59827238514c",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "dce5dfdf-474a-488a-853e-5dbee325b080",
+        "instanceType": "Timing",
+        "windowLower": "-PT5M",
+        "windowUpper": "PT240M",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_18",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_18",
+        "name": "Plasma Glucose PD Sampling Schedule Period 2",
+        "type": {
+          "id": "e67e2d40-5d55-45a8-ab91-af61e2d4fbd2",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Plasma Glucose PD Sampling Schedule Period 2",
+        "relativeToFrom": {
+          "id": "a4a3f8d5-812f-4fc0-854a-9f1d0f38e560",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c0318862-ff6e-44f4-9b3f-8d7335d6d4e4",
+        "instanceType": "Timing",
+        "windowLower": "-PT5M",
+        "windowUpper": "PT240M",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_19",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_19",
+        "name": "Vital Signs Timepoints Period 1 (predose, 15, 30, 60, 120, 240 min)",
+        "type": {
+          "id": "3f7e622e-361c-48c9-8aab-eb674094d288",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Vital Signs Timepoints Period 1 (predose, 15, 30, 60, 120, 240 min)",
+        "relativeToFrom": {
+          "id": "ae805e37-a14b-4d81-996b-d239c1016567",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "876f25e3-0c91-4ad1-abc8-d46723fcfecb",
+        "instanceType": "Timing",
+        "windowLower": "PT0M",
+        "windowUpper": "PT240M",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_20",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_20",
+        "name": "Vital Signs Timepoints Period 2 (predose, 15, 30, 60, 120, 240 min)",
+        "type": {
+          "id": "e0ece361-e72f-4c50-9bfb-0195cd8fd88f",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Vital Signs Timepoints Period 2 (predose, 15, 30, 60, 120, 240 min)",
+        "relativeToFrom": {
+          "id": "3bfe11e8-67aa-4d2c-96a1-e689b7069331",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "da125ff8-aa3a-4837-be58-e3732c4f9665",
+        "instanceType": "Timing",
+        "windowLower": "PT0M",
+        "windowUpper": "PT240M",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_21",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_21",
+        "name": "Triplicate 12-lead ECG Pre-induction Timepoints Period 1",
+        "type": {
+          "id": "fc6c1d7d-81a1-4a03-a765-0444d16e57f6",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "PT30M",
+        "valueLabel": "30 minutes",
+        "relativeToFrom": {
+          "id": "7a2e4746-7184-4dba-b53f-ecc30a964499",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "47422d09-c3bf-4fe8-980a-061d43ff1018",
+        "instanceType": "Timing",
+        "windowLower": "-PT30M",
+        "windowUpper": "-PT15M",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_22",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_22",
+        "name": "Triplicate 12-lead ECG Post-dose Timepoints Period 1 (15, 30, 60, 120, 240 min)",
+        "type": {
+          "id": "e96f755d-b265-4680-9716-3fb0b3394246",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Triplicate 12-lead ECG Post-dose Timepoints Period 1 (15, 30, 60, 120, 240 min)",
+        "relativeToFrom": {
+          "id": "f42ecdf7-60fd-41b5-913b-5ca07b535d58",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "b5ffa936-07e8-4136-ab9e-421c741023c0",
+        "instanceType": "Timing",
+        "windowLower": "PT15M",
+        "windowUpper": "PT240M",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_23",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_23",
+        "name": "Triplicate 12-lead ECG Pre-induction Timepoints Period 2",
+        "type": {
+          "id": "2ccab76b-4015-498b-9aa0-322116a02122",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "PT30M",
+        "valueLabel": "30 minutes",
+        "relativeToFrom": {
+          "id": "1e62bb10-a7f2-46f2-820f-4f8881bf6edb",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c44b7f93-9328-4191-b155-a09b9b636c23",
+        "instanceType": "Timing",
+        "windowLower": "-PT30M",
+        "windowUpper": "-PT15M",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_24",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_24",
+        "name": "Triplicate 12-lead ECG Post-dose Timepoints Period 2 (15, 30, 60, 120, 240 min)",
+        "type": {
+          "id": "3729ff5a-d265-49e3-aabc-b65c635ba395",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Triplicate 12-lead ECG Post-dose Timepoints Period 2 (15, 30, 60, 120, 240 min)",
+        "relativeToFrom": {
+          "id": "7414fb15-8fb7-4c60-bf19-7351cb6dfc15",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "933108c2-83be-4545-a2a3-5422334689d3",
+        "instanceType": "Timing",
+        "windowLower": "PT15M",
+        "windowUpper": "PT240M",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_25",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_25",
+        "name": "Injection-Site Assessment (IMG) Period 1",
+        "type": {
+          "id": "26b018db-d3e1-490b-a9f0-65e203eaf47b",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT90M",
+        "valueLabel": "90 minutes",
+        "relativeToFrom": {
+          "id": "8ae7f4aa-18aa-4f30-8fd5-a321bb3e755d",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "0f6f2a16-424e-4594-8f25-cb149356cb4e",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_26",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_26",
+        "name": "Injection-Site Assessment (IMG) Period 2",
+        "type": {
+          "id": "8459e127-97b0-4223-97a8-72f19abb1aca",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT90M",
+        "valueLabel": "90 minutes",
+        "relativeToFrom": {
+          "id": "a86d80f7-276a-4bc4-9db0-ccd734541d45",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "74120741-d314-41d5-887b-8c3b93d35b8b",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_27",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_27",
+        "name": "Nasal Inspection Period 1",
+        "type": {
+          "id": "51c21e4f-0fe9-4909-a343-80c71ad4c7ca",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT90M",
+        "valueLabel": "90 minutes",
+        "relativeToFrom": {
+          "id": "a06133ea-20ec-4d6c-851f-582f65541459",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "4902c979-4959-429f-9f22-8e8fb9cb5f6c",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_28",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_28",
+        "name": "Nasal Inspection Period 2",
+        "type": {
+          "id": "c752c6b1-d9d7-4252-b7f0-db865846be9c",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT90M",
+        "valueLabel": "90 minutes",
+        "relativeToFrom": {
+          "id": "1dcdc54e-ffe9-4366-b769-562b65b7d07d",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "ead71be6-c225-430a-bb40-a7c59643077d",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_29",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_29",
+        "name": "Physical Exam/Medical Assessment Period 1",
+        "type": {
+          "id": "a307de46-cc5f-4987-b22b-e94110eb7d6f",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT240M",
+        "valueLabel": "240 minutes",
+        "relativeToFrom": {
+          "id": "25e8ffe6-2e6c-4de5-8550-9c2b595c7472",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "d121f201-e806-4cf0-83e0-7f2388665f21",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_30",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_30",
+        "name": "Physical Exam/Medical Assessment Period 2",
+        "type": {
+          "id": "ce14ccfa-7ce9-41e1-a79c-f9df8a6ba9fe",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT240M",
+        "valueLabel": "240 minutes",
+        "relativeToFrom": {
+          "id": "de58a424-d0fa-448c-96a7-86cf7b9204fa",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "b5037d51-66c5-4245-83f6-b5e6cee982f0",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_31",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_31",
+        "name": "Nasal and Non-nasal Score Questionnaire Period 1 (15, 30, 60, 120 min)",
+        "type": {
+          "id": "2653f70d-5800-4be4-829a-84bc15714444",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Nasal and Non-nasal Score Questionnaire Period 1 (15, 30, 60, 120 min)",
+        "relativeToFrom": {
+          "id": "e5122783-517c-4b5c-b78f-656268ae3a29",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "80f23ce5-c190-4137-b9dd-2def542c91fd",
+        "instanceType": "Timing",
+        "windowLower": "PT15M",
+        "windowUpper": "PT120M",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_32",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_32",
+        "name": "Nasal and Non-nasal Score Questionnaire Period 2 (15, 30, 60, 120 min)",
+        "type": {
+          "id": "47f92e6c-f967-489e-8035-69adb970d3ae",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Nasal and Non-nasal Score Questionnaire Period 2 (15, 30, 60, 120 min)",
+        "relativeToFrom": {
+          "id": "e68bcc39-97c0-4679-a60e-61ddf51c40c6",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "a499dfa1-d0fd-445d-b709-53a34b450ffa",
+        "instanceType": "Timing",
+        "windowLower": "PT15M",
+        "windowUpper": "PT120M",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_33",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_33",
+        "name": "Edinburgh Hypoglycemia Scale Timepoints Period 1 (predose, 15, 30, 60, 120 min)",
+        "type": {
+          "id": "147821a6-495b-4d30-b58c-0ed64539beb9",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Edinburgh Hypoglycemia Scale Timepoints Period 1 (predose, 15, 30, 60, 120 min)",
+        "relativeToFrom": {
+          "id": "26fa29c8-3212-42fe-9b11-0206ac5d7c66",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "d1c9466d-931b-4440-b9da-75cf45d1902d",
+        "instanceType": "Timing",
+        "windowLower": "PT0M",
+        "windowUpper": "PT120M",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_34",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_34",
+        "name": "Edinburgh Hypoglycemia Scale Timepoints Period 2 (predose, 15, 30, 60, 120 min)",
+        "type": {
+          "id": "574ae374-5cba-42e9-b096-7ccf377732fe",
+          "code": "C71148",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Fixed Reference",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Edinburgh Hypoglycemia Scale Timepoints Period 2 (predose, 15, 30, 60, 120 min)",
+        "relativeToFrom": {
+          "id": "084498de-e27b-444f-98a7-5eeeab9b7c8c",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "da0ae401-d041-4ab3-b041-74a969310357",
+        "instanceType": "Timing",
+        "windowLower": "PT0M",
+        "windowUpper": "PT120M",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_35",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_35",
+        "name": "Bedside PG Monitoring Post Study Treatment Duration",
+        "type": {
+          "id": "e9c6d23c-c003-40f3-be7b-98c90694b66a",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT120M",
+        "valueLabel": "120 minutes",
+        "relativeToFrom": {
+          "id": "0190307a-a68c-4944-a369-957f2dfd0a40",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "6dfcf873-b174-45b4-b3f3-1a7cfd329304",
+        "instanceType": "Timing",
+        "windowLower": "PT0M",
+        "windowUpper": "PT120M",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_36",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_36",
+        "name": "Bedside PG Monitoring Post Study Treatment Duration (Period 2)",
+        "type": {
+          "id": "58729604-a275-4fa7-b64b-ab7bda9debeb",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT120M",
+        "valueLabel": "120 minutes",
+        "relativeToFrom": {
+          "id": "5a175045-2e18-4756-bb9d-2e42200d0148",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "ade15e9a-2bf2-42ea-9167-04ac1a230525",
+        "instanceType": "Timing",
+        "windowLower": "PT0M",
+        "windowUpper": "PT120M",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_37",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_37",
+        "name": "Bedside PG Monitoring Interval when PG >=90 mg/dL",
+        "type": {
+          "id": "bcb812ef-7976-4acc-bac9-79d771feb6cb",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT10M",
+        "valueLabel": "10 minutes",
+        "relativeToFrom": {
+          "id": "d58573ae-0c7a-47e9-b5c2-b2aca24b97a2",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "1be83630-25e8-4fba-8114-decc04ef39c2",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "PT10M",
+        "visitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_38",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_38",
+        "name": "Bedside PG Monitoring Interval when PG <90 mg/dL",
+        "type": {
+          "id": "1ed573ba-58ca-4f87-9266-875855691a76",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT5M",
+        "valueLabel": "5 minutes",
+        "relativeToFrom": {
+          "id": "98ac59dd-8120-4e4c-b6d9-007fdeae11ae",
+          "code": "C71157",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Previous Visit",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "2380ce9e-e783-476c-9169-5eb73cc372b4",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "PT5M",
+        "visitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_39",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_39",
+        "name": "Minimum CRU Stay After Glucagon Administration (Period 1)",
+        "type": {
+          "id": "adec9842-1e35-4d63-9c2b-765482190529",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "PT6H",
+        "valueLabel": "6 hours",
+        "relativeToFrom": {
+          "id": "200d8d94-04fa-4717-9380-7bc36fb38226",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "c5dbec25-2f30-4c9a-bbec-8ce36fd8875a",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_40",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_40",
+        "name": "Minimum CRU Stay After Glucagon Administration (Period 2)",
+        "type": {
+          "id": "fb091222-e9b8-4d49-b890-0b068f9ad2e8",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "PT6H",
+        "valueLabel": "6 hours",
+        "relativeToFrom": {
+          "id": "226569cd-27e3-405b-b8ab-f9dc1b2c8182",
+          "code": "C71156",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Last Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "bf402f2c-b35e-454b-b609-1d6a5dbac7e7",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Period 2 Day 1",
+        "relativeToVisitName": "Period 2 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_41",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_41",
+        "name": "Serial PK/PD Sampling Duration After Glucagon",
+        "type": {
+          "id": "67ebb02d-b81e-412a-9450-f55eaeb114b7",
+          "code": "C71151",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Within",
+          "instanceType": "Code"
+        },
+        "value": "PT4H",
+        "valueLabel": "4 hours",
+        "relativeToFrom": {
+          "id": "df02bf2f-fa29-417c-aaf2-1f484b22da56",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "f9074b40-4f73-4b0f-95cc-32fa4b28cd82",
+        "instanceType": "Timing",
+        "windowLower": "PT0H",
+        "windowUpper": "PT240H",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_42",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_42",
+        "name": "Hypersensitivity Reaction ADA Sample 30 Days Post Event",
+        "type": {
+          "id": "1de11b44-69df-45b5-aca3-5881036a6e54",
+          "code": "C71150",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "After",
+          "instanceType": "Code"
+        },
+        "value": "P30D",
+        "valueLabel": "Day 30",
+        "relativeToFrom": {
+          "id": "24c60e69-a432-4d46-90e3-85e404a03af3",
+          "code": "C71159",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Baseline",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "92e72304-4a28-42a9-bf78-71f84a364870",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "P0D",
+        "visitName": "Additional Follow-up for TE ADA"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "timing_43",
+      "entity_type": "timing",
+      "data": {
+        "id": "timing_43",
+        "name": "Anti-glucagon Antibody Sampling Pre-hypoglycemia Induction (Baseline)",
+        "type": {
+          "id": "cd3b534f-776c-4cf2-9dc1-697141b24c54",
+          "code": "C71149",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Before",
+          "instanceType": "Code"
+        },
+        "value": "PT0M",
+        "valueLabel": "Anti-glucagon Antibody Sampling Pre-hypoglycemia Induction (Baseline)",
+        "relativeToFrom": {
+          "id": "b1d9072f-e5d3-43e5-aae4-570a751ed95d",
+          "code": "C71155",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "First Dose",
+          "instanceType": "Code"
+        },
+        "relativeFromScheduledInstanceId": "0250ca11-3c40-4316-8392-418ace0c4c75",
+        "instanceType": "Timing",
+        "windowLower": "P0D",
+        "windowUpper": "PT0M",
+        "visitName": "Period 1 Day 1",
+        "relativeToVisitName": "Period 1 Day 1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_1",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_1",
+        "name": "Plasma Glucose Range Required for Admission/Dosing",
+        "instanceType": "Condition",
+        "description": "Admission may be rescheduled if plasma glucose is outside the required range on Day 1",
+        "text": "Admission can be rescheduled if PG level is not 90 to 250 mg/dL on Day 1."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_2",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_2",
+        "name": "Hypoglycemia Induction Target (Insulin Infusion Stop Criterion)",
+        "instanceType": "Condition",
+        "description": "Insulin infusion stop trigger and prerequisite for study treatment administration",
+        "text": "Insulin infusion is stopped once bedside PG is <60 mg/dL; approximately 5 minutes later study drug is administered (Time = 0 min)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_3",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_3",
+        "name": "Edinburgh Scale Assessment During Hypoglycemia",
+        "instanceType": "Condition",
+        "description": "Timepoint condition defined by plasma glucose level during hypoglycemia induction",
+        "text": "During hypoglycemia induction will be when PG ≤75 mg/dL."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_4",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_4",
+        "name": "Insulin Regimen Acceptability",
+        "instanceType": "Condition",
+        "description": "Review of insulin regimen prior to hypoglycemia induction procedure",
+        "text": "Review patients' insulin regimens to confirm acceptability to undergo the procedure to induce hypoglycemia."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_5",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_5",
+        "name": "Interim Safety Review After First 6 Patients",
+        "instanceType": "Condition",
+        "description": "Safety gating condition before remaining patients are dosed",
+        "text": "Safety data will be reviewed after the first 6 patients (regardless of type of diabetes) are administered LY900018 in Period 2, and the remaining patients will be dosed after confirmation of the safety. The investigator and Lilly CRP or scientist will review available safety data, including AEs, SAEs, vital signs, ECGs, and safety laboratory tests, from these patients after they complete Period 2 Day 1. If no clinically significant safety findings for treatment or study procedure are noted, the remaining patients will be dosed."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_6",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_6",
+        "name": "Insufficient Response to Glucagon",
+        "instanceType": "Condition",
+        "description": "Protocol-defined procedures to follow if the patient has an insufficient response to glucagon administration",
+        "text": "Procedures for Insufficient Response to Glucagon Administration (Section 9.2.4)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_7",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_7",
+        "name": "Discharge Criteria / Investigator Discretion",
+        "instanceType": "Condition",
+        "description": "Conditions governing discharge from the CRU",
+        "text": "Patient may be discharged 6 hours after glucagon administration. A patient may remain inpatient at the CRU at the discretion of the investigator. All patients will receive a carbohydrate-rich meal prior to discharge and the investigator will ensure the patient's PG is stable; a prandial insulin dose will be administered if needed."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_8",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_8",
+        "name": "TE ADA Additional Follow-up Condition",
+        "instanceType": "Condition",
+        "description": "Condition triggering and ending additional immunogenicity follow-up",
+        "text": "Patients with TE ADA at follow-up/ED will undergo additional follow-up; samples for immunogenicity should be collected every 12 weeks (84±7 days) until the titer returns to baseline (ie, returns to within a single 2-fold dilution of the baseline titer) or until 1 year after the last dose of study treatment."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_9",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_9",
+        "name": "Fasting Condition for Laboratory Samples",
+        "instanceType": "Condition",
+        "description": "Fasting requirement differs between screening/follow-up and treatment periods",
+        "text": "Patients do not need to fast for samples at screening or follow-up. At Periods 1 and 2, samples should be collected from patients who have fasted at least 8 hours before any study procedures."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_10",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_10",
+        "name": "Non-inferiority Decision Criterion",
+        "instanceType": "Condition",
+        "description": "Primary analysis success condition",
+        "text": "Non-inferiority of LY900018 will be declared if the upper limit of the 2-sided 95% CI constructed on the difference in percentage (IMG - LY900018) is less than the NIM of 10%."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_11",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_11",
+        "name": "Patient Replacement Condition",
+        "instanceType": "Condition",
+        "description": "Condition under which discontinued patients may be replaced",
+        "text": "If patients discontinue from the study before completion of both periods with evaluable primary outcome for any reason, the patient may be replaced. Replacement should not occur beyond 75 patients enrolled, if it is expected to have at least 66 patients complete the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_12",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_12",
+        "name": "Postmenopausal Status Confirmation",
+        "instanceType": "Condition",
+        "description": "FSH testing performed only when needed",
+        "text": "FSH (female patients only) performed when needed to confirm postmenopausal status."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "cond_13",
+      "entity_type": "condition",
+      "data": {
+        "id": "cond_13",
+        "name": "Inadvertently Enrolled Patient Continuation",
+        "instanceType": "Condition",
+        "description": "Condition allowing an inadvertently enrolled patient to remain in the study",
+        "text": "If the sponsor or investigator identifies a patient who did not meet enrollment criteria and was inadvertently enrolled, a discussion must occur between the Lilly CP/CRP and the investigator to determine if the patient may continue in the study. If both agree it is medically appropriate to continue, the investigator must obtain documented approval from the Lilly CP/CRP."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_1",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_1",
+        "name": "Screening to Period 1 (Randomization) Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_screening",
+        "toElementId": "epoch_period1",
+        "text": "Patients will undergo a screening examination within 28 days prior to enrollment. Prior to study drug administration on Period 1 Day 1, patients will be randomly assigned to a treatment sequence (either LY900018 in Period 1 and IMG in Period 2, or vice versa)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_2",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_2",
+        "name": "Admission/Dosing Gate on Plasma Glucose",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "visit_period_day_minus1",
+        "toElementId": "visit_period_day1",
+        "text": "Admission can be rescheduled if PG level is not 90 to 250 mg/dL on Day 1."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_3",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_3",
+        "name": "Period 1 to Washout Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_period1",
+        "toElementId": "epoch_washout",
+        "text": "Patients will be administered a single dose in Periods 1 and 2, which will be separated by a washout period of 3 to 14 days."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_4",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_4",
+        "name": "Washout to Period 2 (Crossover) Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Arm Transition",
+        "fromElementId": "epoch_washout",
+        "toElementId": "epoch_period2",
+        "text": "After a washout of 3 to 14 days, patients cross over to the alternate treatment in Period 2; procedures in Period 2 will occur at approximately the same time as those in Period 1."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_5",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_5",
+        "name": "Period 2 to Follow-up Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_period2",
+        "toElementId": "epoch_followup",
+        "text": "Patients will return for a follow-up visit 26 to 30 days (within 28±2 days) after the last study treatment."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_6",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_6",
+        "name": "Follow-up to Additional TE ADA Follow-up Transition",
+        "instanceType": "TransitionRule",
+        "transitionType": "Epoch Transition",
+        "fromElementId": "epoch_followup",
+        "toElementId": "epoch_ada_followup",
+        "text": "Patients with TE ADA at follow-up/ED will undergo additional follow-up with immunogenicity samples every 12 weeks (84±7 days) until titer returns to baseline or until 1 year after the last dose."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_7",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_7",
+        "name": "Dosing Hold Pending Interim Safety Review",
+        "instanceType": "TransitionRule",
+        "transitionType": "Dose Modification",
+        "fromElementId": "epoch_period2",
+        "toElementId": "epoch_period2",
+        "text": "Safety data will be reviewed after the first 6 patients are administered LY900018 in Period 2; the remaining patients will be dosed only after confirmation of safety (no clinically significant safety findings)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_8",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_8",
+        "name": "Rescue for Insufficient Glucagon Response",
+        "instanceType": "TransitionRule",
+        "transitionType": "Rescue Therapy",
+        "text": "Procedures for insufficient response to glucagon administration will be followed (Section 9.2.4); after completion of all PK sampling patients will be provided a carbohydrate-rich meal and a prandial insulin dose will be administered if needed to ensure PG stability."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_9",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_9",
+        "name": "Discontinuation from Study - Other Research Enrollment",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Enrollment in any other clinical study involving an investigational product or enrollment in any other type of medical research judged not to be scientifically or medically compatible with this study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_10",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_10",
+        "name": "Discontinuation for Medical, Safety, or Regulatory Reasons",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "Participation in the study needs to be stopped for medical, safety, regulatory, or other reasons consistent with applicable laws, regulations, and good clinical practice."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_11",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_11",
+        "name": "Discontinuation by Investigator Decision",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "The investigator decides that the patient should be discontinued from the study for any reason. If this decision is made because of an AE, SAE, or a severe hypoglycemia event, appropriate measures are to be taken and Lilly or its designee is to be alerted."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_12",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_12",
+        "name": "Discontinuation by Patient Decision",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "The patient, or legal representative, requests to be withdrawn from the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "trans_13",
+      "entity_type": "transition_rule",
+      "data": {
+        "id": "trans_13",
+        "name": "Discontinuation of Inadvertently Enrolled Patients",
+        "instanceType": "TransitionRule",
+        "transitionType": "Discontinuation",
+        "text": "A patient who did not meet enrollment criteria and was inadvertently enrolled may be discontinued unless the Lilly CP/CRP and investigator agree it is medically appropriate to continue, with documented sponsor approval, with or without continued treatment with investigational product."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "exit_1",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_1",
+        "name": "Early Discontinuation (ED) Visit",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Patients discontinuing from the study prematurely for any reason must complete AE and follow-up procedures as shown in the Schedule of Activities; the Follow-up/ED visit occurs within 28±2 days after last study treatment."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "exit_2",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_2",
+        "name": "Study Completion",
+        "exitType": "Completion",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Completion of both treatment periods (Period 1 and Period 2) with evaluable primary outcome and the follow-up visit 26 to 30 days after the last study treatment; patients with TE ADA complete additional follow-up until titer returns to baseline or 1 year after last dose."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "exit_3",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_3",
+        "name": "Termination of the Study for Safety",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "Following the review of the safety data from the first 6 patients to complete Period 2 Day 1, the study will be stopped if deemed necessary for patient safety in the opinion of the investigator and sponsor."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "exit_4",
+      "entity_type": "schedule_exit",
+      "data": {
+        "id": "exit_4",
+        "name": "Lost to Follow-up",
+        "exitType": "Early Termination",
+        "instanceType": "ScheduleTimelineExit",
+        "description": "A patient will be considered lost to follow-up if he or she repeatedly fails to return for scheduled visits and is unable to be contacted by the study site, after diligent attempts at contact by site personnel."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "dec_1",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_1",
+        "name": "Admission/Dosing Eligibility Decision",
+        "timepointId": "pt_period_day1_pre_induction",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision on Day 1 of each period whether to proceed with hypoglycemia induction or reschedule admission based on PG 90 to 250 mg/dL, insulin regimen review, and fasting status.",
+        "conditionIds": [
+          "cond_1",
+          "cond_4",
+          "cond_9"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "dec_2",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_2",
+        "name": "Insulin Infusion Stop and Study Treatment Administration Decision",
+        "timepointId": "pt_pg_lt60",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Once bedside PG reaches <60 mg/dL, insulin infusion is stopped and approximately 5 minutes later study drug is administered (Time = 0 min).",
+        "conditionIds": [
+          "cond_2"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "dec_3",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_3",
+        "name": "Interim Safety Review Decision (First 6 Patients)",
+        "timepointId": "pt_period2_day1_first6",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "After the first 6 patients complete Period 2 Day 1, the investigator and Lilly CRP/scientist decide whether to dose the remaining patients or stop the study.",
+        "conditionIds": [
+          "cond_5"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "dec_4",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_4",
+        "name": "Discharge Decision",
+        "timepointId": "pt_6h_post_glucagon",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Decision at 6 hours post glucagon administration whether to discharge the patient or keep the patient inpatient at the investigator's discretion.",
+        "conditionIds": [
+          "cond_7"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "dec_5",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_5",
+        "name": "TE ADA Additional Follow-up Decision",
+        "timepointId": "pt_followup_ed",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "At Follow-up/ED, determine whether treatment-emergent antidrug antibodies are present requiring additional follow-up every 84±7 days.",
+        "conditionIds": [
+          "cond_8"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "dec_6",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_6",
+        "name": "Insufficient Glucagon Response Decision",
+        "timepointId": "pt_post_glucagon",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Assessment of response to glucagon administration and initiation of rescue procedures if the response is insufficient.",
+        "conditionIds": [
+          "cond_6"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    },
+    {
+      "id": "dec_7",
+      "entity_type": "decision_instance",
+      "data": {
+        "id": "dec_7",
+        "name": "Primary Non-inferiority Analysis Decision",
+        "timepointId": "pt_end_of_study",
+        "instanceType": "ScheduledDecisionInstance",
+        "description": "Final analysis decision based on the upper limit of the 2-sided 95% CI for the difference in treatment success percentages versus the 10% non-inferiority margin.",
+        "conditionIds": [
+          "cond_10"
+        ]
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        9,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        23,
+        34,
+        57
+      ]
+    }
+  ],
+  "scheduling_summary": {
+    "timing_count": 43,
+    "condition_count": 13,
+    "transition_rule_count": 13,
+    "exit_count": 4,
+    "decision_count": 7
+  }
+}

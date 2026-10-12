@@ -1,0 +1,1012 @@
+{
+  "agent_id": "biomedical_concept_agent",
+  "timestamp": "2026-10-07T20:04:40.735921",
+  "confidence": 0.75,
+  "entity_count": 23,
+  "entities": [
+    {
+      "id": "bc_1",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_1",
+        "name": "Screening Activities",
+        "label": "Screening Period Activities Within 35-Day Window",
+        "synonyms": [
+          "Screening Visit",
+          "Pre-study Screening",
+          "Screening Period"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_1_prop_1",
+            "name": "SVSTDTC",
+            "label": "Screening Visit Start Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_2",
+            "name": "SVSTAT",
+            "label": "Screening Completion Status",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_3",
+            "name": "SVDUR",
+            "label": "Screening Window Duration (Days)",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Screening activities within 35-day window"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_2",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_2",
+        "name": "PK Sample Collection",
+        "label": "Pharmacokinetic Blood Sample Collection",
+        "synonyms": [
+          "Pharmacokinetic Sampling",
+          "PK Blood Draw",
+          "PK Specimen Collection"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_2_prop_1",
+            "name": "PCDTC",
+            "label": "PK Sample Collection Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_2",
+            "name": "PCTPT",
+            "label": "Planned Time Point Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_3",
+            "name": "PCSPEC",
+            "label": "Specimen Type",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_4",
+            "name": "PCSTAT",
+            "label": "Completion Status",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "PK sample collection"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_3",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_3",
+        "name": "Post-Treatment Safety Follow-Up Visit",
+        "label": "Post-Treatment Safety Follow-Up Visit Procedures",
+        "synonyms": [
+          "Safety Follow-Up",
+          "Post-Dose Safety Visit",
+          "End of Treatment Safety Assessment"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_3_prop_1",
+            "name": "SVSTDTC",
+            "label": "Visit Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_2",
+            "name": "SVSTAT",
+            "label": "Visit Completion Status",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_3",
+            "name": "SVREASND",
+            "label": "Reason Visit Not Done",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Posttreatment safety follow-up visit procedures"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_4",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_4",
+        "name": "First Dose Administration",
+        "label": "First Dose of Study Intervention Administration",
+        "synonyms": [
+          "Initial Dose",
+          "First Administration",
+          "Day 1 Dose",
+          "Study Drug First Dose"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_4_prop_1",
+            "name": "EXSTDTC",
+            "label": "First Dose Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_2",
+            "name": "EXTRT",
+            "label": "Study Intervention Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_3",
+            "name": "EXDOSE",
+            "label": "Dose Administered",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_4",
+            "name": "EXDOSU",
+            "label": "Dose Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "First dose of study intervention"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_5",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_5",
+        "name": "Endpoint Events",
+        "label": "Clinical Trial Endpoint Events",
+        "synonyms": [
+          "Primary Endpoint",
+          "Clinical Endpoint",
+          "Outcome Events",
+          "Study Endpoints"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_5_prop_1",
+            "name": "CEDTC",
+            "label": "Endpoint Event Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_2",
+            "name": "CETERM",
+            "label": "Endpoint Event Term",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_3",
+            "name": "CEOCCUR",
+            "label": "Endpoint Event Occurrence",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Endpoint events"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_6",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_6",
+        "name": "Adverse Event",
+        "label": "Adverse Event Assessment and Recording",
+        "synonyms": [
+          "AE",
+          "Adverse Experience",
+          "Untoward Medical Occurrence"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_6_prop_1",
+            "name": "AETERM",
+            "label": "Adverse Event Term",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_2",
+            "name": "AESTDTC",
+            "label": "Adverse Event Start Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_3",
+            "name": "AESEV",
+            "label": "Adverse Event Severity",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_4",
+            "name": "AEREL",
+            "label": "Causality/Relationship to Study Intervention",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Adverse events",
+        "code": {
+          "id": "fc975b1c-bcba-40ba-b1b0-f4ee6eea6d39",
+          "code": "C41331",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Adverse Event",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_7",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_7",
+        "name": "Screening Laboratory Results Review",
+        "label": "Review of Screening Laboratory Results for Eligibility",
+        "synonyms": [
+          "Lab Results Review",
+          "Screening Labs Review",
+          "Laboratory Eligibility Review"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_7_prop_1",
+            "name": "LBDTC",
+            "label": "Laboratory Results Review Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_2",
+            "name": "LBSTAT",
+            "label": "Review Completion Status",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_3",
+            "name": "LBREASND",
+            "label": "Reason Review Not Done",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Review of screening laboratory results"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_8",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_8",
+        "name": "Fundus Photography",
+        "label": "Baseline Fundus Photography Assessment",
+        "synonyms": [
+          "Fundus Photo",
+          "Retinal Photography",
+          "Fundoscopic Imaging",
+          "Fundus Imaging"
+        ],
+        "categories": [
+          "bcc_4"
+        ],
+        "properties": [
+          {
+            "id": "bc_8_prop_1",
+            "name": "MIDTC",
+            "label": "Fundus Photography Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_2",
+            "name": "MIMETHOD",
+            "label": "Imaging Method",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_3",
+            "name": "MILOC",
+            "label": "Eye Laterality",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_4",
+            "name": "MISTAT",
+            "label": "Completion Status",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Baseline fundus photography"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_9",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_9",
+        "name": "Eligibility Assessment",
+        "label": "Participant Eligibility Assessment (Inclusion/Exclusion Criteria)",
+        "synonyms": [
+          "Inclusion/Exclusion Criteria Check",
+          "I/E Criteria Assessment",
+          "Eligibility Review"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_9_prop_1",
+            "name": "IEDTC",
+            "label": "Eligibility Assessment Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_2",
+            "name": "IETEST",
+            "label": "Inclusion/Exclusion Criterion",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_3",
+            "name": "IEORRES",
+            "label": "Eligibility Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Eligibility assessment"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_10",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_10",
+        "name": "Concomitant Medications",
+        "label": "Concomitant Medications Assessment and Recording",
+        "synonyms": [
+          "ConMeds",
+          "Concurrent Medications",
+          "Background Medications",
+          "Co-medications"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_10_prop_1",
+            "name": "CMTRT",
+            "label": "Concomitant Medication Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_2",
+            "name": "CMSTDTC",
+            "label": "Concomitant Medication Start Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_3",
+            "name": "CMDOSE",
+            "label": "Dose",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_4",
+            "name": "CMINDIC",
+            "label": "Indication",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Concomitant medications",
+        "code": {
+          "id": "30190b2b-ee2a-4f7f-b8b9-5bd784e17e3b",
+          "code": "C38101",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Concomitant Medications",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_11",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_11",
+        "name": "Baseline Assessments Including Labs",
+        "label": "Baseline Clinical and Laboratory Assessments",
+        "synonyms": [
+          "Baseline Evaluations",
+          "Pre-treatment Assessments",
+          "Baseline Labs and Assessments"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_11_prop_1",
+            "name": "LBDTC",
+            "label": "Baseline Assessment Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_11_prop_2",
+            "name": "LBSTAT",
+            "label": "Completion Status",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_11_prop_3",
+            "name": "LBREASND",
+            "label": "Reason Not Done",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Baseline assessments including labs"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_12",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_12",
+        "name": "Randomization",
+        "label": "Participant Randomization to Study Treatment",
+        "synonyms": [
+          "Random Assignment",
+          "Treatment Allocation",
+          "Study Randomisation"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_12_prop_1",
+            "name": "RANDTC",
+            "label": "Randomization Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_12_prop_2",
+            "name": "ARMNRS",
+            "label": "Randomized Treatment Arm",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_12_prop_3",
+            "name": "RANDNO",
+            "label": "Randomization Number",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Randomization"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_13",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_13",
+        "name": "Dose Initiation/Escalation Prerequisite Check",
+        "label": "Prerequisite Completion Check Prior to First Dose or Dose Escalation",
+        "synonyms": [
+          "Pre-dose Activity Completion Check",
+          "Dose Initiation Gate",
+          "Visit Completion Prerequisite"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_13_prop_1",
+            "name": "SVSTAT",
+            "label": "All Required Visit Activities Completion Status",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_13_prop_2",
+            "name": "SVSTDTC",
+            "label": "Prerequisite Check Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Participants should not initiate first dose of study intervention or escalate study intervention until all required activities for that visit are complete"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_14",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_14",
+        "name": "Telehealth Visit",
+        "label": "Telehealth Visit Conducted by Telephone or Other Remote Technology",
+        "synonyms": [
+          "Remote Visit",
+          "Telephone Visit",
+          "Virtual Visit",
+          "eVisit",
+          "Telemedicine Visit"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_14_prop_1",
+            "name": "SVSTDTC",
+            "label": "Telehealth Visit Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_14_prop_2",
+            "name": "SVMETHOD",
+            "label": "Visit Method (Telephone/Video/Other)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_14_prop_3",
+            "name": "SVSTAT",
+            "label": "Visit Completion Status",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Telehealth visit by telephone or other technology"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_15",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_15",
+        "name": "Emergency Department Visit Procedures",
+        "label": "Emergency Department Visit Procedures During Study",
+        "synonyms": [
+          "ER Visit",
+          "Emergency Room Visit",
+          "Unscheduled ED Visit",
+          "Emergency Visit"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_15_prop_1",
+            "name": "HOSTDTC",
+            "label": "ED Visit Start Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_15_prop_2",
+            "name": "HOENDTC",
+            "label": "ED Visit End Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_15_prop_3",
+            "name": "HOINDC",
+            "label": "Reason for ED Visit",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "ED visit procedures"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_16",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_16",
+        "name": "Post-Treatment Follow-Up Visit",
+        "label": "Post-Treatment Follow-Up Visit(s)",
+        "synonyms": [
+          "Follow-Up Visit",
+          "Post-Dose Follow-Up",
+          "End of Study Follow-Up",
+          "Post-treatment Assessment"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_16_prop_1",
+            "name": "SVSTDTC",
+            "label": "Follow-Up Visit Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_16_prop_2",
+            "name": "SVVISIT",
+            "label": "Visit Name/Number",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_16_prop_3",
+            "name": "SVSTAT",
+            "label": "Visit Completion Status",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_16_prop_4",
+            "name": "SVREASND",
+            "label": "Reason Visit Not Done",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Posttreatment follow-up visit(s)"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_17",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_17",
+        "name": "Multi-Day Visit Procedures",
+        "label": "Visit Procedures Conducted Over More Than One Day Within Allowed Tolerance Period",
+        "synonyms": [
+          "Extended Visit Window",
+          "Visit Tolerance Period",
+          "Multi-Day Assessment Window"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_17_prop_1",
+            "name": "SVSTDTC",
+            "label": "Visit Start Date/Time",
+            "isRequired": true,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_17_prop_2",
+            "name": "SVENDTC",
+            "label": "Visit End Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_17_prop_3",
+            "name": "SVSTAT",
+            "label": "All Activities Completion Status Within Tolerance",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Visit procedures may be conducted over more than 1 day if all activities are completed within the allowed visit tolerance period"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_18",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_18",
+        "name": "Fasting Condition",
+        "label": "Fasting Condition (Approximately 8 Hours) Prior to Clinic Visits",
+        "synonyms": [
+          "Pre-visit Fast",
+          "8-Hour Fast",
+          "Fasting Status",
+          "Fasting Requirement"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_18_prop_1",
+            "name": "FASTYN",
+            "label": "Fasting Condition Met (Yes/No)",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_18_prop_2",
+            "name": "FASTDUR",
+            "label": "Fasting Duration (Hours)",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_18_prop_3",
+            "name": "FASTDTC",
+            "label": "Fasting Confirmation Date/Time",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Fasting condition (approximately 8 hours without eating/drinking except water) for all clinic visits except PK only visits"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_1",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_1",
+        "name": "Procedures",
+        "label": "Clinical Trial Procedures",
+        "memberIds": [
+          "bc_1",
+          "bc_3",
+          "bc_4",
+          "bc_9",
+          "bc_12",
+          "bc_13",
+          "bc_14",
+          "bc_15",
+          "bc_16",
+          "bc_17",
+          "bc_18"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_2",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_2",
+        "name": "Pharmacokinetics",
+        "label": "Pharmacokinetic Assessments",
+        "memberIds": [
+          "bc_2"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_3",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_3",
+        "name": "Safety Monitoring",
+        "label": "Safety Monitoring Activities",
+        "memberIds": [
+          "bc_5",
+          "bc_6",
+          "bc_7"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_4",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_4",
+        "name": "Imaging",
+        "label": "Imaging Assessments",
+        "memberIds": [
+          "bc_8"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_5",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_5",
+        "name": "Other",
+        "label": "Other Clinical Trial Activities",
+        "memberIds": [
+          "bc_10",
+          "bc_11"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    }
+  ],
+  "bc_summary": {
+    "biomedical_concept_count": 18,
+    "category_count": 5,
+    "activity_count": 18
+  }
+}

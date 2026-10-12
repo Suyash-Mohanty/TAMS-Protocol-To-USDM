@@ -1,0 +1,958 @@
+{
+  "agent_id": "advanced_agent",
+  "timestamp": "2026-10-09T16:26:13.450272",
+  "confidence": 0.85,
+  "entity_count": 7,
+  "entities": [
+    {
+      "id": "amend_1",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_1",
+        "number": "1",
+        "name": "Amendment 1",
+        "scope": {
+          "id": "fe672317-2e7d-46f3-b5ec-066b6e911d1a",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "68b43bd7-d831-4868-ba10-aa6d2886a339",
+          "code": {
+            "id": "c72b8caf-b933-4ff1-81b6-106acebccde3",
+            "code": "C207603",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Inconsistency and/or Error In The Protocol",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "3050783d-abbd-4902-831f-ad0d9cf54bfe",
+            "type": {
+              "id": "4bcc200e-87cb-4b8e-af6a-9cfba5a9acd1",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The main reason for preparation of this amendment was to update procedures outlined in the Schedule of Activities, remove contradictory text on the reporting of serious adverse events, and add details of an interim analysis. Additional, minor changes are included in the table below.",
+        "effectiveDate": "2020-08-18",
+        "dateValues": [
+          {
+            "id": "gd_amend_1_eff",
+            "name": "Amendment 1 Effective Date",
+            "dateValue": "2020-08-18",
+            "geographicScopes": [],
+            "type": {
+              "id": "66451fa8-a781-4f2c-89b9-d967a7476d56",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "secondaryReasons": [
+          {
+            "id": "c6deb8cb-9f3b-4e7d-887a-99c93ac3a64a",
+            "code": {
+              "id": "c0c00289-d12e-4b92-85e4-df8965c3df7a",
+              "code": "C207601",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Change In Strategy",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyAmendmentReason"
+          }
+        ],
+        "changes": [
+          {
+            "id": "a01ea466-106a-41f2-ae9b-e13c650403e9",
+            "name": "Section Multiple Schedule of Activities / Overall Design / Study Intervention Compliance",
+            "summary": "Procedures updated include Wilson disease history and treatment; study intervention compliance during outpatient period captured with study dosing diary; light exercise.",
+            "rationale": "Data collected for analysis of patient population and study intervention compliance, and to compare endpoints with other ALXN1840 studies.",
+            "changedSections": [
+              {
+                "id": "0375a9c4-ee70-4e3c-a11b-d4ce483c89e2",
+                "sectionNumber": "Multiple",
+                "sectionTitle": "Schedule of Activities / Overall Design / Study Intervention Compliance",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "8dabdfdb-f0fa-4cd7-8557-caad0f100873",
+            "name": "Section Multiple Introduction / Background",
+            "summary": "Removal of text relating to primary biliary cholangitis.",
+            "rationale": "To reflect that development of ALXN1840 is for Wilson disease.",
+            "changedSections": [
+              {
+                "id": "03b039b9-0e77-4897-a755-8690db5564d3",
+                "sectionNumber": "Multiple",
+                "sectionTitle": "Introduction / Background",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "8a5596bf-10c1-4c2a-9281-3208a792d9aa",
+            "name": "Section 6.7 Intervention After the End of Study",
+            "summary": "Text updated regarding access to study intervention after the end of study.",
+            "rationale": "To clarify the option for study intervention access at the end of study.",
+            "changedSections": [
+              {
+                "id": "0d4e4a46-9293-486f-8f35-ff78eb8860f6",
+                "sectionNumber": "6.7",
+                "sectionTitle": "Intervention After the End of Study",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "f8a8cd02-6a8e-45d8-b8c7-0fb24690dd39",
+            "name": "Section 9.3 Populations for Analysis",
+            "summary": "Definition of the Per Protocol set was updated.",
+            "rationale": "To align the definition with the Statistical Analysis Plan.",
+            "changedSections": [
+              {
+                "id": "9cd825a6-de20-4cdf-96db-40297e151bec",
+                "sectionNumber": "9.3",
+                "sectionTitle": "Populations for Analysis",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "1c922261-c2a8-4c0c-90f3-3402a57985e5",
+            "name": "Section 9.5 Interim Analyses",
+            "summary": "Text pertaining to an interim analysis was added.",
+            "rationale": "Interim data may support Marketing Authorisation Application(s).",
+            "changedSections": [
+              {
+                "id": "781f5b34-6e65-4293-a1c7-d4b7044c9eb2",
+                "sectionNumber": "9.5",
+                "sectionTitle": "Interim Analyses",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "2985235a-8fce-46ad-b90e-0f76f96b466c",
+            "name": "Section 10.3.2 Definition of SAE",
+            "summary": "Definition of SUSAR was added.",
+            "rationale": "To align with current Alexion approved language",
+            "changedSections": [
+              {
+                "id": "b205c59f-da7e-480e-8bb9-00f512449680",
+                "sectionNumber": "10.3.2",
+                "sectionTitle": "Definition of SAE",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "d2c66efd-9de8-473d-83b1-adda1d359f66",
+            "name": "Section 10.3.4 Reporting of SAEs",
+            "summary": "Removal of contradictory text on SAE reporting via an electronic data collection tool.",
+            "rationale": "SAE reporting will be via a paper safety reporting form.",
+            "changedSections": [
+              {
+                "id": "0ac170ba-846b-41e1-bcf2-3a61dc54bf24",
+                "sectionNumber": "10.3.4",
+                "sectionTitle": "Reporting of SAEs",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "8a230da3-cdf0-48d6-91a7-bec2057b468b",
+            "name": "Section All All",
+            "summary": "Minor editorial updates and corrections",
+            "rationale": "For clarification, and to ensure accuracy and consistency throughout the protocol",
+            "changedSections": [
+              {
+                "id": "87660ae3-8388-48ac-988c-16ffd9cf5e31",
+                "sectionNumber": "All",
+                "sectionTitle": "All",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "Original Protocol",
+        "newVersion": "Amendment 1"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        69,
+        70,
+        71
+      ]
+    },
+    {
+      "id": "amend_2",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_2",
+        "number": "2",
+        "name": "Amendment 2",
+        "scope": {
+          "id": "56197079-89d7-4dc0-827c-604d3c05381c",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "9f23dae9-8005-42db-a4f1-7477144f396a",
+          "code": {
+            "id": "951de8ac-d298-4750-86b7-608efa5eb330",
+            "code": "C207603",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Inconsistency and/or Error In The Protocol",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "36e53715-f9aa-434d-90c7-32d26139474e",
+            "type": {
+              "id": "a3f01a44-41dd-4cc6-9553-232b442244d5",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The main reason for preparation of this amendment was to revise the exclusion criterion for a urine drug screen. Changes implemented via Administrative Letter 1 and Administrative Letter 2, as well as COVID vaccination guidance, have also been incorporated.",
+        "effectiveDate": "2021-03-19",
+        "dateValues": [
+          {
+            "id": "gd_amend_2_eff",
+            "name": "Amendment 2 Effective Date",
+            "dateValue": "2021-03-19",
+            "geographicScopes": [],
+            "type": {
+              "id": "999e1ec2-654c-4ad4-be47-ba9f275ed6fb",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "secondaryReasons": [
+          {
+            "id": "12480339-3969-4054-bd31-b7d5b98b0424",
+            "code": {
+              "id": "454687b1-fa85-4f41-adf2-627db837c91d",
+              "code": "C207609",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "New Safety Information Available",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyAmendmentReason"
+          }
+        ],
+        "changes": [
+          {
+            "id": "01c271e4-10aa-4a4a-a914-f2c91d400e6a",
+            "name": "Section Multiple Synopsis / Sample Size Determination",
+            "summary": "The number of participants changed from \"up to 10\" to \"approximately 10\".",
+            "rationale": "Clarification of sample size.",
+            "changedSections": [
+              {
+                "id": "00f1a82d-6cfb-4cc5-8582-2130b959ba84",
+                "sectionNumber": "Multiple",
+                "sectionTitle": "Synopsis / Sample Size Determination",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "508a9078-a514-4f00-ad06-4f223089deaa",
+            "name": "Section Multiple Synopsis / Schema / Schedule of Activities / Overall Design / Study Intervention Compliance",
+            "summary": "SMS text messaging will replace the dosing diary as the method of confirming treatment compliance during the outpatient period.",
+            "rationale": "Site processes does not allow use of paper diary.",
+            "changedSections": [
+              {
+                "id": "dbb49914-7e54-4113-9cbe-e40c557ab7d8",
+                "sectionNumber": "Multiple",
+                "sectionTitle": "Synopsis / Schema / Schedule of Activities / Overall Design / Study Intervention Compliance",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "08481c0b-9c2a-424a-96f1-37d8b34a7c97",
+            "name": "Section Multiple Coronavirus Disease 2019 / COVID-19 Vaccine Risk Assessment",
+            "summary": "COVID-19 vaccination guidance added.",
+            "rationale": "To provide guidance on potential risks identified and mitigation measures put in place regarding the COVID-19 vaccination rollout.",
+            "changedSections": [
+              {
+                "id": "b278493d-e9d7-4546-893b-21fc203f6f6b",
+                "sectionNumber": "Multiple",
+                "sectionTitle": "Coronavirus Disease 2019 / COVID-19 Vaccine Risk Assessment",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "86253ed7-8491-40b7-a603-01d15f661fbb",
+            "name": "Section 5.1 Inclusion criteria",
+            "summary": "Inclusion criterion for confirmation of diagnosis of WD changed to Leipzig score ≥ 4 and expanded to include historical test results.",
+            "rationale": "To clarify the process for confirming the score for patients who were diagnosed prior to the establishment of the 2012 European Association for the Study of Liver WD Clinical Practice Guidelines.",
+            "changedSections": [
+              {
+                "id": "88b8b5e1-2e2a-4179-b7e9-9003daa38e7c",
+                "sectionNumber": "5.1",
+                "sectionTitle": "Inclusion criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "abb655b3-6111-45d2-9ec5-5480a7dde14e",
+            "name": "Section 5.2 Exclusion criteria",
+            "summary": "Exclusion criterion for drug screen revised to state that cannabinoids will not be tested.",
+            "rationale": "• To align with other ALXN1840 Phase 2 and Phase 3 study protocols which did not reference this criterion\n• Recreational use of cannabis use is being decriminalized in many countries\n• Medicinal use of cannabis would potentially relieve symptoms of WD\n• Recent use of cannabis is not expected to alter copper or molybdenum balance",
+            "changedSections": [
+              {
+                "id": "9042a238-c0cc-42a3-9eec-9058ffb3ad3b",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "7ea0d2ba-fc99-483d-a97f-0e42bca2dda0",
+            "name": "Section 5.2 Exclusion criteria",
+            "summary": "Exclusion criterion 11 revised to \"The use of an experimental or unapproved/unlicensed therapy at the same time or within 90 days or 5 half-lives, whichever is longer, prior to the Screening Visit.\"",
+            "rationale": "For consistency across all ALXN1840 protocols.",
+            "changedSections": [
+              {
+                "id": "33200714-1c0e-4f6d-9201-b86570650e76",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "727cd596-f84d-4c68-9779-27202f728fb7",
+            "name": "Section 10.1.1 Regulatory and Ethical Considerations",
+            "summary": "Added: \"The Investigator will notify the IRB/IEC of deviations from the study protocol or GCP as defined by UK legislation as a serious breach or as required by IRB/IEC procedures.\"",
+            "rationale": "To align with UK legislation",
+            "changedSections": [
+              {
+                "id": "5dfe3e7b-040e-4d4f-916f-1f0a93af9e07",
+                "sectionNumber": "10.1.1",
+                "sectionTitle": "Regulatory and Ethical Considerations",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "05998c38-85db-4ede-a85a-e1eed8a472ec",
+            "name": "Section All All sections",
+            "summary": "Minor editorial updates and corrections",
+            "rationale": "For clarification, and to ensure accuracy and consistency throughout the protocol",
+            "changedSections": [
+              {
+                "id": "35ec83c4-528d-457b-948b-02e2298ffd7e",
+                "sectionNumber": "All",
+                "sectionTitle": "All sections",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "Amendment 1",
+        "newVersion": "Amendment 2"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        69,
+        70,
+        71
+      ]
+    },
+    {
+      "id": "amend_3",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_3",
+        "number": "3",
+        "name": "Amendment 3",
+        "scope": {
+          "id": "2def3f90-49c5-475a-a8a3-ac614328f073",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "d63e5c1a-3a9a-40fe-9e1d-d38abdb1bb06",
+          "code": {
+            "id": "ed98b883-2aad-4f3b-8bd0-9d8d4dbf678d",
+            "code": "C207603",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Inconsistency and/or Error In The Protocol",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "eeac8520-42a7-414c-95e2-050502824b0c",
+            "type": {
+              "id": "4b209994-4c5a-44ba-b5b5-7a5e9a03c176",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The main reason for preparation of this amendment was to update the washout period for zinc. Additional changes are listed below.",
+        "effectiveDate": "2021-08-31",
+        "dateValues": [
+          {
+            "id": "gd_amend_3_eff",
+            "name": "Amendment 3 Effective Date",
+            "dateValue": "2021-08-31",
+            "geographicScopes": [],
+            "type": {
+              "id": "85f718b2-9b22-4c2f-83c0-5f2f08ca5692",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "changes": [
+          {
+            "id": "b3b1bd94-28a0-4c6e-8c4b-ad6847e366c5",
+            "name": "Section Multiple Schedule of Activities / Scientific Rationale for Study Design / Exclusion Criteria",
+            "summary": "Previous treatment with zinc changed to 21 days prior to Day 1.",
+            "rationale": "To align with feasibility of study participation.",
+            "changedSections": [
+              {
+                "id": "f2ccb6aa-fbd7-43b1-822d-ea76e649819b",
+                "sectionNumber": "Multiple",
+                "sectionTitle": "Schedule of Activities / Scientific Rationale for Study Design / Exclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "2a68c9b5-3928-4b97-b2ae-ac0478c75557",
+            "name": "Section 4.1 Overall Design, Table 4",
+            "summary": "Deleted the Adaptive Protocol Feature 1 that allowed enrollment of participants who had completed other ALXN1840 studies.",
+            "rationale": "To remove contradiction of the exclusion for previous treatment with ALXN1840.",
+            "changedSections": [
+              {
+                "id": "c974ccc6-4dd2-422a-9378-dd7b1c21a534",
+                "sectionNumber": "4.1",
+                "sectionTitle": "Overall Design, Table 4",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "dfe3ba47-2693-4e52-aa46-a4b959759ab0",
+            "name": "Section 6.7 Intervention after the End of Study",
+            "summary": "Updated the options for intervention after study completion to include both therapy that was discontinued before enrollment and other standard of care therapy.",
+            "rationale": "To clarify treatment options at end of study.",
+            "changedSections": [
+              {
+                "id": "693b9b2f-da22-490f-9a10-644d848fbb73",
+                "sectionNumber": "6.7",
+                "sectionTitle": "Intervention after the End of Study",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "Amendment 2",
+        "newVersion": "Amendment 3"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        69,
+        70,
+        71
+      ]
+    },
+    {
+      "id": "amend_4",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_4",
+        "number": "3.1 (US)",
+        "name": "Amendment 3.1 (US)",
+        "scope": {
+          "id": "8092381e-88e1-4763-a167-eb1a8bb25778",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "08d13c9a-8667-4785-931e-e3c3ae7350d7",
+          "code": {
+            "id": "9f31cd1e-1516-442c-aea1-13ea309725a9",
+            "code": "C207611",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Recruitment Difficulty",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "f5657edf-bd86-416b-bc3f-42346951126b",
+            "type": {
+              "id": "f219e95b-950e-4bce-824c-c451399a14a2",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The main reason for preparation of this amendment was to clarify study procedures occurring across different sites in the US, so as to facilitate participant recruitment across different regions of the US, and to lessen inconvenience for participants without compromising the quality of the study.",
+        "effectiveDate": "2022-03-18",
+        "dateValues": [
+          {
+            "id": "gd_amend_4_eff",
+            "name": "Amendment 3.1 (US) Effective Date",
+            "dateValue": "2022-03-18",
+            "geographicScopes": [],
+            "type": {
+              "id": "ee1d46b5-926e-422c-913e-c2578c97d4d3",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "changes": [
+          {
+            "id": "f18ef389-40f2-4812-89b7-a70df89c2188",
+            "name": "Section 1.3 Schedule of Activities (SoA), Table 1",
+            "summary": "Addition of text to the footnote to state that procedures specific to screening sites (only in the US) detailed in Section 8",
+            "rationale": "As per Section 8 (below).",
+            "changedSections": [
+              {
+                "id": "eee1d09c-66c8-47f8-9828-815b77edecf1",
+                "sectionNumber": "1.3",
+                "sectionTitle": "Schedule of Activities (SoA), Table 1",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "82ef417e-4dfc-4dac-a751-19bc0663e38f",
+            "name": "Section 4.2 Scientific Rationale for Study Design",
+            "summary": "Number of days changed from 30 days to 21 days in the following sentence:\n• However, the physiologic turnover of human gastrointestinal epithelial cells is 3 - 5 days (Darwich, 2014); therefore, the inhibitory effect of zinc on intestinal copper absorption is expected to be minimal 30 21 days after discontinuation of zinc.",
+            "rationale": "To align the number of days with the mention of zinc discontinuation elsewhere in the protocol.",
+            "changedSections": [
+              {
+                "id": "a58c801f-77f1-4e79-bbca-2bb1f6bcd452",
+                "sectionNumber": "4.2",
+                "sectionTitle": "Scientific Rationale for Study Design",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "6ee23fee-247d-4009-b51c-1a7cdda434c4",
+            "name": "Section 8 Study Assessments and Procedures",
+            "summary": "Addition of text applicable only to the US that details the possibility for sites in the US to only perform screening procedures and not any of the remaining study procedures.",
+            "rationale": "To facilitate participant recruitment across different regions of the US and to lessen inconvenience for participants without compromising the quality of the study.",
+            "changedSections": [
+              {
+                "id": "73bfd8f6-d044-4adc-aaa3-9bb0874469cd",
+                "sectionNumber": "8",
+                "sectionTitle": "Study Assessments and Procedures",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "Amendment 3",
+        "newVersion": "Amendment 3.1 (US)"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        69,
+        70,
+        71
+      ]
+    },
+    {
+      "id": "gd_original_protocol",
+      "entity_type": "governance_date",
+      "data": {
+        "id": "gd_original_protocol",
+        "name": "Original Protocol Issued Date",
+        "dateValue": "2020-05-12",
+        "geographicScopes": [],
+        "type": {
+          "id": "3672a426-2806-4b91-9f01-51a903b5548a",
+          "code": "C215664",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Issued Date",
+          "instanceType": "Code"
+        },
+        "instanceType": "GovernanceDate",
+        "description": "Date the original protocol version was issued (Document History)",
+        "documentVersionLabel": "Original"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        69,
+        70,
+        71
+      ]
+    },
+    {
+      "id": "geo_1",
+      "entity_type": "geographic_scope",
+      "data": {
+        "id": "geo_1",
+        "name": "Study Geographic Scope",
+        "scopeType": "Global",
+        "instanceType": "GeographicScope",
+        "countryIds": [
+          "country_1"
+        ]
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        69,
+        70,
+        71
+      ]
+    },
+    {
+      "id": "country_1",
+      "entity_type": "country",
+      "data": {
+        "id": "country_1",
+        "name": "United States",
+        "instanceType": "Country",
+        "code": "US"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        69,
+        70,
+        71
+      ]
+    }
+  ],
+  "advanced_summary": {
+    "amendment_count": 4,
+    "country_count": 1,
+    "site_count": 0,
+    "has_geographic_scope": true
+  }
+}

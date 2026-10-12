@@ -1,0 +1,721 @@
+{
+  "agent_id": "soa_vision_agent",
+  "timestamp": "2026-09-29T14:28:23.848054",
+  "confidence": 0.8,
+  "entity_count": 15,
+  "entities": [
+    {
+      "id": "soa_header_structure",
+      "entity_type": "header_structure",
+      "data": {
+        "source": "vision",
+        "page_numbers": [
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19
+        ],
+        "image_count": 10,
+        "structure": {
+          "columnHierarchy": {
+            "epochs": [
+              {
+                "id": "epoch_1",
+                "name": "Screening",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "605d4f08-dc3b-45e4-9fb4-63d389e8bbbc",
+                  "code": "C98779",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Screening Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_2",
+                "name": "Period 1",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "feee9a64-7825-4cb7-b113-f81bd277453f",
+                  "code": "C98780",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Treatment Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_3",
+                "name": "Wash out",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "9168dcc6-6339-487f-8c50-86553ddf7df0",
+                  "code": "C98780",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Treatment Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_4",
+                "name": "Period 2",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "fdf69764-5d36-4dd8-9ba7-531b89bb739b",
+                  "code": "C98780",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Treatment Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_5",
+                "name": "Follow-up/ED",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "cfeb7ab1-8857-47c4-9b8e-0d1ff4461604",
+                  "code": "C98781",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_6",
+                "name": "Additional Follow-up for TE ADAa",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "e19f1222-bfa6-4da2-ab74-bdc07e3739ad",
+                  "code": "C98781",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up Epoch",
+                  "instanceType": "Code"
+                }
+              }
+            ],
+            "encounters": [
+              {
+                "id": "enc_1",
+                "name": "Days -28 to -2",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "0cf70202-fb28-4bb9-85ca-3ccf32060d1f",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_1"
+              },
+              {
+                "id": "enc_2",
+                "name": "Period 1 Day -1",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "1f1de932-cc29-4f38-b2bc-5167fd3bad24",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_2"
+              },
+              {
+                "id": "enc_3",
+                "name": "Period 1 Day 1",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "c9ff28a0-8bdc-4858-a0f0-0ed1c940c41f",
+                  "code": "C82517",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Baseline",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_2"
+              },
+              {
+                "id": "enc_4",
+                "name": "Wash out (3 to 14 days)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "55d517fa-92b7-4706-b450-44ad87f2a79f",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_3"
+              },
+              {
+                "id": "enc_5",
+                "name": "Period 2 Day -1",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "4f2afad7-17a8-4aca-bce0-d6ce96cc505d",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_4"
+              },
+              {
+                "id": "enc_6",
+                "name": "Period 2 Day 1",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "618d7bba-8675-4c35-8983-d688ce32d623",
+                  "code": "C82517",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Baseline",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_4"
+              },
+              {
+                "id": "enc_7",
+                "name": "Follow-up/ED",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "6effbff1-4822-4fbf-a384-23c12e1d6030",
+                  "code": "C99158",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_5"
+              },
+              {
+                "id": "enc_8",
+                "name": "Additional Follow-up for TE ADA",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "952bb000-c6e5-41b2-b257-ce64365a1c72",
+                  "code": "C99158",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_6"
+              }
+            ],
+            "plannedTimepoints": [
+              {
+                "id": "pt_1",
+                "visit": "Days -28 to -2",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_1",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_2",
+                "visit": "Day -1",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_2",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_3",
+                "visit": "Day 1",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_3",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_4",
+                "visit": "3 to 14 days",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_4",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_5",
+                "visit": "Day -1",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_5",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_6",
+                "visit": "Day 1",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_6",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_7",
+                "visit": "Within 28±2 days after last study treatment",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±2 days",
+                "encounterId": "enc_7",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_8",
+                "visit": "Additional follow-up for treatment-emergent antidrug antibodies",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_8",
+                "instanceType": "Timing"
+              }
+            ]
+          },
+          "rowGroups": [
+            {
+              "id": "grp_1",
+              "name": "Clinical Assessments",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Informed Consent",
+                "Randomization",
+                "Admission to CRU",
+                "Discharge from CRU",
+                "Medical History",
+                "Collect Pre-existing Conditions and Adverse Events",
+                "Physical Exam",
+                "Height and Weight",
+                "Collect Hypoglycemic Events",
+                "Collect Concomitant Medications",
+                "Meal",
+                "Insulin infusion to Induce Hypoglycemia",
+                "Bedside PG Monitoring for Safety",
+                "Study Treatment Administration",
+                "Injection-Site Assessment",
+                "Nasal Inspection",
+                "Vital Signs (Supine Blood Pressure, Pulse Rate, and Body Temperature)",
+                "Single 12-lead ECG (Local)",
+                "Triplicate 12-lead ECG (Central)"
+              ]
+            },
+            {
+              "id": "grp_2",
+              "name": "Laboratory Tests",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Clinical Serology Tests",
+                "Clinical Lab Tests (Hematology, Clinical Chemistry, and Urinalysis)",
+                "HbA1c",
+                "Pregnancy Test (Female patients of childbearing potential only)",
+                "FSH (Female patients only)",
+                "Ethanol Testing",
+                "Urine Drug Screen",
+                "PK (Glucagon)",
+                "Plasma Glucose for PD",
+                "Genetic Sample (Stored)",
+                "Anti-glucagon Antibodies"
+              ]
+            },
+            {
+              "id": "grp_3",
+              "name": "Health Outcome Instruments",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Clarke Hypoglycemia Awareness Survey",
+                "Nasal and Non-nasal Score Questionnaire",
+                "Edinburgh Hypoglycemia Scale: Experimental Hypoglycemia"
+              ]
+            }
+          ],
+          "footnotes": [
+            "Abbreviations: CRU = clinical research unit; ECG = electrocardiogram; ED = early discontinuation; FSH = follicle-stimulating hormone; HbA1c = hemoglobin A1c; IMG = intramuscular glucagon; min = minutes; PD = pharmacodynamics; PG = plasma glucose; PK = pharmacokinetics; TE ADA = treatment-emergent antidrug antibodies.",
+            "a. Samples for immunogenicity, should be collected every 12 weeks (84±7 days) until the titer returns to baseline (ie, returns to within a single 2-fold dilution of the baseline titer) or until 1 year after the last dose of study treatment. A time-matched PK (glucagon) sample may be collected at the follow-up immunogenicity assessment(s) if warranted and agreed upon between both the investigator and sponsor.",
+            "Note: if multiple procedures take place at the same time point, the following order of the procedure should be used: ECG, vital signs, and venipuncture. Plasma glucose sample should be collected as close as possible of protocol-specified time point."
+          ]
+        }
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "epoch_v_1",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Screening",
+        "source": "vision",
+        "order": 0
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "epoch_v_2",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Period 1",
+        "source": "vision",
+        "order": 1
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "epoch_v_3",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Wash out",
+        "source": "vision",
+        "order": 2
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "epoch_v_4",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Period 2",
+        "source": "vision",
+        "order": 3
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "epoch_v_5",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Follow-up/ED",
+        "source": "vision",
+        "order": 4
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "epoch_v_6",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Additional Follow-up for TE ADAa",
+        "source": "vision",
+        "order": 5
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "encounter_v_1",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Days -28 to -2",
+        "epochId": "epoch_1",
+        "source": "vision",
+        "order": 0
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "encounter_v_2",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Period 1 Day -1",
+        "epochId": "epoch_2",
+        "source": "vision",
+        "order": 1
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "encounter_v_3",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Period 1 Day 1",
+        "epochId": "epoch_2",
+        "source": "vision",
+        "order": 2
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "encounter_v_4",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Wash out (3 to 14 days)",
+        "epochId": "epoch_3",
+        "source": "vision",
+        "order": 3
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "encounter_v_5",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Period 2 Day -1",
+        "epochId": "epoch_4",
+        "source": "vision",
+        "order": 4
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "encounter_v_6",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Period 2 Day 1",
+        "epochId": "epoch_4",
+        "source": "vision",
+        "order": 5
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "encounter_v_7",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Follow-up/ED",
+        "epochId": "epoch_5",
+        "source": "vision",
+        "order": 6
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    },
+    {
+      "id": "encounter_v_8",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Additional Follow-up for TE ADA",
+        "epochId": "epoch_6",
+        "source": "vision",
+        "order": 7
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ]
+    }
+  ],
+  "vision_summary": {
+    "soa_pages": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "image_count": 10,
+    "epoch_count": 6,
+    "encounter_count": 8
+  }
+}

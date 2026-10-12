@@ -1,0 +1,2419 @@
+{
+  "agent_id": "biomedical_concept_agent",
+  "timestamp": "2026-10-08T16:01:14.464372",
+  "confidence": 0.75,
+  "entity_count": 56,
+  "entities": [
+    {
+      "id": "bc_1",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_1",
+        "name": "Clinical Response",
+        "label": "Clinical Response Assessment at Week 24 and Week 52",
+        "synonyms": [
+          "UC Clinical Response",
+          "Clinical Improvement"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_1_prop_1",
+            "name": "QSSTRESC",
+            "label": "Clinical Response Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_1_prop_3",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Clinical response at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_2",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_2",
+        "name": "Clinical Remission with 10% Weight Reduction",
+        "label": "Proportion Achieving Clinical Remission and ≥10% Weight Reduction at Week 52",
+        "synonyms": [
+          "Combined Remission and Weight Loss Endpoint"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_2_prop_1",
+            "name": "QSSTRESC",
+            "label": "Composite Endpoint Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_2_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Proportion of participants who simultaneously achieve clinical remission and at least 10% weight reduction at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_3",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_3",
+        "name": "HbA1c Change from Baseline",
+        "label": "Change in Hemoglobin A1c from Baseline at Week 24 and Week 52",
+        "synonyms": [
+          "Glycated Hemoglobin Change",
+          "HbA1c",
+          "Glycosylated Hemoglobin"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_3_prop_1",
+            "name": "LBORRES",
+            "label": "HbA1c Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_2",
+            "name": "LBORRESU",
+            "label": "HbA1c Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_3",
+            "name": "LBCHG",
+            "label": "Change from Baseline",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_3_prop_4",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in HbA1c at Week 24 and Week 52",
+        "code": {
+          "id": "660c3606-5f0e-47a4-93f3-64276b364f56",
+          "code": "C64489",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Hemoglobin A1c",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_4",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_4",
+        "name": "Endoscopic Response Week 52",
+        "label": "Endoscopic Response Assessment at Week 52",
+        "synonyms": [
+          "Colonoscopic Response",
+          "Endoscopy Response"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_4_prop_1",
+            "name": "PEORRES",
+            "label": "Endoscopic Response Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_4_prop_2",
+            "name": "PEDY",
+            "label": "Study Day of Endoscopy",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Endoscopic response at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_5",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_5",
+        "name": "EQ-5D-5L Change from Baseline",
+        "label": "Change from Baseline in EQ-5D-5L Health-Related Quality of Life at Week 24 and Week 52",
+        "synonyms": [
+          "EuroQol 5-Dimension 5-Level",
+          "EQ5D5L",
+          "Health Utility Score"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_5_prop_1",
+            "name": "QSORRES",
+            "label": "EQ-5D-5L Score Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_2",
+            "name": "QSCHG",
+            "label": "Change from Baseline in EQ-5D-5L Score",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_5_prop_3",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change from baseline in EQ-5D-5L at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_6",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_6",
+        "name": "UC-Related Surgeries",
+        "label": "Ulcerative Colitis-Related Surgeries through Week 52",
+        "synonyms": [
+          "Colectomy",
+          "UC Surgery",
+          "Surgical Intervention for UC"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_6_prop_1",
+            "name": "MHTERM",
+            "label": "UC-Related Surgery Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_2",
+            "name": "MHOCCUR",
+            "label": "Surgery Occurrence Indicator",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_6_prop_3",
+            "name": "MHSTDTC",
+            "label": "Surgery Start Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "UC-related surgeries at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_7",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_7",
+        "name": "HDL Cholesterol Change from Baseline",
+        "label": "Change in High-Density Lipoprotein Cholesterol from Baseline at Week 52",
+        "synonyms": [
+          "HDL-C",
+          "High-Density Lipoprotein",
+          "Good Cholesterol"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_7_prop_1",
+            "name": "LBORRES",
+            "label": "HDL Cholesterol Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_2",
+            "name": "LBORRESU",
+            "label": "HDL Cholesterol Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_7_prop_3",
+            "name": "LBCHG",
+            "label": "Change from Baseline in HDL",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in HDL at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_8",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_8",
+        "name": "UC-Related Emergency Room Visits",
+        "label": "Ulcerative Colitis-Related Emergency Room Visits through Week 52",
+        "synonyms": [
+          "UC ER Visit",
+          "Emergency Department Visit for UC"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_8_prop_1",
+            "name": "MHTERM",
+            "label": "UC-Related ER Visit Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_2",
+            "name": "MHOCCUR",
+            "label": "ER Visit Occurrence Indicator",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_8_prop_3",
+            "name": "MHSTDTC",
+            "label": "ER Visit Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "UC-related emergency room visits at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_9",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_9",
+        "name": "Clinical Remission with 5% Weight Reduction",
+        "label": "Proportion Achieving Clinical Remission and ≥5% Weight Reduction at Week 24 and Week 52",
+        "synonyms": [
+          "Combined Remission and Weight Loss Endpoint 5%"
+        ],
+        "categories": [
+          "bcc_8"
+        ],
+        "properties": [
+          {
+            "id": "bc_9_prop_1",
+            "name": "QSSTRESC",
+            "label": "Composite Endpoint Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_9_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Simultaneously achieve clinical remission and at least 5% weight reduction at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_10",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_10",
+        "name": "Endoscopic Response Week 24",
+        "label": "Endoscopic Response Assessment at Week 24",
+        "synonyms": [
+          "Colonoscopic Response Week 24",
+          "Endoscopy Response Week 24"
+        ],
+        "categories": [
+          "bcc_8"
+        ],
+        "properties": [
+          {
+            "id": "bc_10_prop_1",
+            "name": "PEORRES",
+            "label": "Endoscopic Response Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_10_prop_2",
+            "name": "PEDY",
+            "label": "Study Day of Endoscopy",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Endoscopic response at Week 24"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_11",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_11",
+        "name": "Trough Drug Concentrations",
+        "label": "Trough Serum Concentrations of Mirikizumab and Trough Plasma Concentrations of Tirzepatide",
+        "synonyms": [
+          "Ctrough Mirikizumab",
+          "Ctrough Tirzepatide",
+          "Minimum Drug Concentration"
+        ],
+        "categories": [
+          "bcc_4"
+        ],
+        "properties": [
+          {
+            "id": "bc_11_prop_1",
+            "name": "PCTPTNUM",
+            "label": "Planned Time Point Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_11_prop_2",
+            "name": "PCORRES",
+            "label": "Trough Concentration Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_11_prop_3",
+            "name": "PCORRESU",
+            "label": "Concentration Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_11_prop_4",
+            "name": "PCSPEC",
+            "label": "Specimen Type (Serum/Plasma)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Trough serum concentrations of mirikizumab and trough plasma concentrations of tirzepatide"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_12",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_12",
+        "name": "Maintenance of Clinical Remission",
+        "label": "Maintenance of Clinical Remission at Week 52",
+        "synonyms": [
+          "Sustained Clinical Remission",
+          "Durable Remission"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_12_prop_1",
+            "name": "QSSTRESC",
+            "label": "Remission Maintenance Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_12_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Maintenance of clinical remission at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_13",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_13",
+        "name": "Visceral Fat Mass Percentage Change",
+        "label": "Change in Percentage of Visceral Fat Mass of Total Body Mass from Baseline to Week 52",
+        "synonyms": [
+          "Visceral Adipose Tissue Percentage",
+          "VAT % Change"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_13_prop_1",
+            "name": "VSORRES",
+            "label": "Visceral Fat Mass Percentage Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_13_prop_2",
+            "name": "VSORRESU",
+            "label": "Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_13_prop_3",
+            "name": "VSCHG",
+            "label": "Change from Baseline in Visceral Fat Mass Percentage",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in percentage of visceral fat mass of total body mass from baseline to Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_14",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_14",
+        "name": "Weight Reduction Thresholds",
+        "label": "Achievement of ≥5% and ≥15% Body Weight Reduction at Week 24 and Week 52",
+        "synonyms": [
+          "5% Weight Loss",
+          "15% Weight Loss",
+          "Weight Reduction Responder"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_14_prop_1",
+            "name": "VSORRES",
+            "label": "Body Weight Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_14_prop_2",
+            "name": "VSORRESU",
+            "label": "Body Weight Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_14_prop_3",
+            "name": "VSPCHG",
+            "label": "Percent Change from Baseline in Body Weight",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "At least 5% and at least 15% weight reduction at Week 24 and Week 52",
+        "code": {
+          "id": "4929255f-5710-487f-9a80-1ed2610449bf",
+          "code": "C81328",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Body Weight",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_15",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_15",
+        "name": "UC-Related Hospitalizations",
+        "label": "Ulcerative Colitis-Related Hospitalizations through Week 52",
+        "synonyms": [
+          "UC Hospitalization",
+          "Inpatient Admission for UC"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_15_prop_1",
+            "name": "MHTERM",
+            "label": "UC-Related Hospitalization Description",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_15_prop_2",
+            "name": "MHOCCUR",
+            "label": "Hospitalization Occurrence Indicator",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_15_prop_3",
+            "name": "MHSTDTC",
+            "label": "Hospitalization Start Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "UC-related hospitalizations at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_16",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_16",
+        "name": "Serious Adverse Events",
+        "label": "Serious Adverse Events",
+        "synonyms": [
+          "SAE",
+          "Serious Adverse Experience"
+        ],
+        "categories": [
+          "bcc_6"
+        ],
+        "properties": [
+          {
+            "id": "bc_16_prop_1",
+            "name": "AETERM",
+            "label": "Adverse Event Term",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_16_prop_2",
+            "name": "AESER",
+            "label": "Serious Adverse Event Indicator",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_16_prop_3",
+            "name": "AESTDTC",
+            "label": "Adverse Event Start Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_16_prop_4",
+            "name": "AESEV",
+            "label": "Adverse Event Severity",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "SAEs",
+        "code": {
+          "id": "78b0e541-6e74-4229-a7a0-01abdb26b0df",
+          "code": "C41331",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Adverse Event",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_17",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_17",
+        "name": "Histologic Remission",
+        "label": "Histologic Remission Assessment at Week 24 and Week 52",
+        "synonyms": [
+          "Histological Remission",
+          "Mucosal Histologic Remission"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_17_prop_1",
+            "name": "MISTRESC",
+            "label": "Histologic Remission Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_17_prop_2",
+            "name": "MIDY",
+            "label": "Study Day of Biopsy",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Histologic remission at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_18",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_18",
+        "name": "Endoscopic Remission",
+        "label": "Endoscopic Remission Assessment at Week 24 and Week 52",
+        "synonyms": [
+          "Mucosal Healing",
+          "Endoscopic Mucosal Remission"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_18_prop_1",
+            "name": "PEORRES",
+            "label": "Endoscopic Remission Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_18_prop_2",
+            "name": "PEDY",
+            "label": "Study Day of Endoscopy",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Endoscopic remission at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_19",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_19",
+        "name": "Total Cholesterol Change from Baseline",
+        "label": "Change in Total Cholesterol from Baseline at Week 52",
+        "synonyms": [
+          "TC Change",
+          "Total Cholesterol"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_19_prop_1",
+            "name": "LBORRES",
+            "label": "Total Cholesterol Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_19_prop_2",
+            "name": "LBORRESU",
+            "label": "Total Cholesterol Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_19_prop_3",
+            "name": "LBCHG",
+            "label": "Change from Baseline in Total Cholesterol",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in total cholesterol at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_20",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_20",
+        "name": "10% Body Weight Reduction",
+        "label": "Achievement of ≥10% Body Weight Reduction at Week 24 and Week 52",
+        "synonyms": [
+          "10% Weight Loss",
+          "Body Weight Reduction Responder"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_20_prop_1",
+            "name": "VSORRES",
+            "label": "Body Weight Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_20_prop_2",
+            "name": "VSORRESU",
+            "label": "Body Weight Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_20_prop_3",
+            "name": "VSPCHG",
+            "label": "Percent Change from Baseline in Body Weight",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "At least 10% reduction in body weight at Week 24 and Week 52",
+        "code": {
+          "id": "7010f236-26cb-4a82-9cd2-ed500d357d96",
+          "code": "C81328",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Body Weight",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_21",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_21",
+        "name": "Clinical Remission Week 52",
+        "label": "Clinical Remission Assessment at Week 52",
+        "synonyms": [
+          "UC Clinical Remission Week 52"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_21_prop_1",
+            "name": "QSSTRESC",
+            "label": "Clinical Remission Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_21_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Clinical remission at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_22",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_22",
+        "name": "Waist Circumference Change from Baseline",
+        "label": "Change in Waist Circumference from Baseline at Weeks 8, 12, 24, 40, and 52",
+        "synonyms": [
+          "Abdominal Circumference",
+          "WC Change"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_22_prop_1",
+            "name": "VSORRES",
+            "label": "Waist Circumference Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_22_prop_2",
+            "name": "VSORRESU",
+            "label": "Waist Circumference Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_22_prop_3",
+            "name": "VSCHG",
+            "label": "Change from Baseline in Waist Circumference",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_22_prop_4",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in waist circumference at Weeks 8, 12, 24, 40, and 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_23",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_23",
+        "name": "Discontinuation Due to Adverse Events",
+        "label": "Discontinuation of Study Intervention Due to Adverse Events",
+        "synonyms": [
+          "AE-Related Discontinuation",
+          "Withdrawal Due to AE"
+        ],
+        "categories": [
+          "bcc_6"
+        ],
+        "properties": [
+          {
+            "id": "bc_23_prop_1",
+            "name": "DSTERM",
+            "label": "Discontinuation Reason",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_23_prop_2",
+            "name": "DSOCCUR",
+            "label": "Discontinuation Occurrence Indicator",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_23_prop_3",
+            "name": "DSSTDTC",
+            "label": "Discontinuation Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Discontinuation of study intervention due to AEs",
+        "code": {
+          "id": "0d2097f5-68c8-4bc0-bcd7-7fa0aa9b2e90",
+          "code": "C41331",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Adverse Event",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_24",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_24",
+        "name": "Injection Site Reactions",
+        "label": "Injection Site Reactions",
+        "synonyms": [
+          "ISR",
+          "Local Injection Site Reaction",
+          "Injection Site Adverse Event"
+        ],
+        "categories": [
+          "bcc_6"
+        ],
+        "properties": [
+          {
+            "id": "bc_24_prop_1",
+            "name": "AETERM",
+            "label": "Injection Site Reaction Term",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_24_prop_2",
+            "name": "AESEV",
+            "label": "Injection Site Reaction Severity",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_24_prop_3",
+            "name": "AESTDTC",
+            "label": "Reaction Start Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Injection site reactions"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_25",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_25",
+        "name": "Clinical Remission with 10% Weight Reduction Week 24",
+        "label": "Proportion Achieving Clinical Remission and ≥10% Weight Reduction at Week 24",
+        "synonyms": [
+          "Combined Remission and Weight Loss Endpoint Week 24"
+        ],
+        "categories": [
+          "bcc_8"
+        ],
+        "properties": [
+          {
+            "id": "bc_25_prop_1",
+            "name": "QSSTRESC",
+            "label": "Composite Endpoint Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_25_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Simultaneously achieve clinical remission and at least 10% weight reduction at Week 24"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_26",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_26",
+        "name": "IBDQ Change from Baseline",
+        "label": "Change from Baseline in Inflammatory Bowel Disease Questionnaire at Week 24 and Week 52",
+        "synonyms": [
+          "Inflammatory Bowel Disease Questionnaire",
+          "IBDQ Score Change"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_26_prop_1",
+            "name": "QSORRES",
+            "label": "IBDQ Total Score Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_26_prop_2",
+            "name": "QSCHG",
+            "label": "Change from Baseline in IBDQ Score",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_26_prop_3",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change from baseline in IBDQ at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_27",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_27",
+        "name": "Non-Fasting Glucose Change from Baseline",
+        "label": "Change in Non-Fasting Glucose from Baseline at Week 24 and Week 52",
+        "synonyms": [
+          "Random Glucose Change",
+          "Non-Fasting Blood Glucose"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_27_prop_1",
+            "name": "LBORRES",
+            "label": "Non-Fasting Glucose Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_27_prop_2",
+            "name": "LBORRESU",
+            "label": "Glucose Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_27_prop_3",
+            "name": "LBCHG",
+            "label": "Change from Baseline in Non-Fasting Glucose",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_27_prop_4",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in glucose (non-fasting) at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_28",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_28",
+        "name": "Symptomatic Response",
+        "label": "Symptomatic Response Assessment at Weeks 4, 8, 12, 24, and 52",
+        "synonyms": [
+          "UC Symptomatic Response",
+          "Symptom Response"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_28_prop_1",
+            "name": "QSSTRESC",
+            "label": "Symptomatic Response Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_28_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_28_prop_3",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Symptomatic response at Weeks 4, 8, 12, 24, and 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_29",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_29",
+        "name": "Blood Pressure Change from Baseline",
+        "label": "Change in Systolic and Diastolic Blood Pressure from Baseline at Week 52",
+        "synonyms": [
+          "SBP and DBP Change",
+          "Blood Pressure Change"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_29_prop_1",
+            "name": "SYSBP",
+            "label": "Systolic Blood Pressure Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_29_prop_2",
+            "name": "DIABP",
+            "label": "Diastolic Blood Pressure Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_29_prop_3",
+            "name": "VSORRESU",
+            "label": "Blood Pressure Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_29_prop_4",
+            "name": "VSCHG",
+            "label": "Change from Baseline in Blood Pressure",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in systolic and diastolic blood pressure at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_30",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_30",
+        "name": "Histologic-Endoscopic Mucosal Improvement Week 52",
+        "label": "Histologic-Endoscopic Mucosal Improvement Plus Absence of Neutrophils at Week 52",
+        "synonyms": [
+          "HEMI Week 52",
+          "Mucosal Improvement with Neutrophil Absence"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_30_prop_1",
+            "name": "MISTRESC",
+            "label": "Histologic-Endoscopic Mucosal Improvement Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_30_prop_2",
+            "name": "MIDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Histologic-endoscopic mucosal improvement plus absence of neutrophils at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_31",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_31",
+        "name": "Waist-to-Height Ratio Category Shift",
+        "label": "Shift in Waist-to-Height Ratio Categories at Week 24 and Week 52",
+        "synonyms": [
+          "WHtR Category Change",
+          "Waist-Height Ratio Shift"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_31_prop_1",
+            "name": "VSORRES",
+            "label": "Waist-to-Height Ratio Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_31_prop_2",
+            "name": "VSSTRESC",
+            "label": "Waist-to-Height Ratio Category",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_31_prop_3",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Shift in waist-to-height ratio categories at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_32",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_32",
+        "name": "Bowel Urgency Remission",
+        "label": "Bowel Urgency Remission at Week 24 and Week 52",
+        "synonyms": [
+          "Urgency Remission",
+          "Fecal Urgency Remission"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_32_prop_1",
+            "name": "QSSTRESC",
+            "label": "Bowel Urgency Remission Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_32_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Bowel Urgency remission at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_33",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_33",
+        "name": "Symptomatic Remission",
+        "label": "Symptomatic Remission Assessment at Weeks 4, 8, 12, 24, and 52",
+        "synonyms": [
+          "UC Symptomatic Remission",
+          "Symptom Remission"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_33_prop_1",
+            "name": "QSSTRESC",
+            "label": "Symptomatic Remission Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_33_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_33_prop_3",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Symptomatic remission at Weeks 4, 8, 12, 24, and 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_34",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_34",
+        "name": "Treatment-Emergent Adverse Events",
+        "label": "Treatment-Emergent Adverse Events",
+        "synonyms": [
+          "TEAE",
+          "Treatment-Emergent AE"
+        ],
+        "categories": [
+          "bcc_6"
+        ],
+        "properties": [
+          {
+            "id": "bc_34_prop_1",
+            "name": "AETERM",
+            "label": "Adverse Event Term",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_34_prop_2",
+            "name": "AESEV",
+            "label": "Adverse Event Severity",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_34_prop_3",
+            "name": "AESTDTC",
+            "label": "Adverse Event Start Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_34_prop_4",
+            "name": "AEOUT",
+            "label": "Adverse Event Outcome",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "TEAEs",
+        "code": {
+          "id": "4da26a64-0230-4f87-8252-80f0f40f6ac9",
+          "code": "C41331",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Adverse Event",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_35",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_35",
+        "name": "LDL Cholesterol Change from Baseline",
+        "label": "Change in Low-Density Lipoprotein Cholesterol from Baseline at Week 52",
+        "synonyms": [
+          "LDL-C Change",
+          "Low-Density Lipoprotein Change",
+          "Bad Cholesterol Change"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_35_prop_1",
+            "name": "LBORRES",
+            "label": "LDL Cholesterol Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_35_prop_2",
+            "name": "LBORRESU",
+            "label": "LDL Cholesterol Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_35_prop_3",
+            "name": "LBCHG",
+            "label": "Change from Baseline in LDL Cholesterol",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in LDL at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_36",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_36",
+        "name": "Histologic Improvement",
+        "label": "Histologic Improvement Assessment at Week 24 and Week 52",
+        "synonyms": [
+          "Histological Improvement",
+          "Mucosal Histologic Improvement"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_36_prop_1",
+            "name": "MISTRESC",
+            "label": "Histologic Improvement Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_36_prop_2",
+            "name": "MIDY",
+            "label": "Study Day of Biopsy",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Histologic improvement at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_37",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_37",
+        "name": "Clinical Remission Week 24",
+        "label": "Clinical Remission Assessment at Week 24",
+        "synonyms": [
+          "UC Clinical Remission Week 24"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_37_prop_1",
+            "name": "QSSTRESC",
+            "label": "Clinical Remission Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_37_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Clinical remission at Week 24"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_38",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_38",
+        "name": "BMI Change from Baseline",
+        "label": "Change in Body Mass Index from Baseline at Weeks 24, 40, and 52",
+        "synonyms": [
+          "Body Mass Index Change",
+          "BMI Change"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_38_prop_1",
+            "name": "VSORRES",
+            "label": "BMI Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_38_prop_2",
+            "name": "VSORRESU",
+            "label": "BMI Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_38_prop_3",
+            "name": "VSCHG",
+            "label": "Change from Baseline in BMI",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_38_prop_4",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in BMI at Weeks 24, 40, and 52",
+        "code": {
+          "id": "d69f294c-12eb-4ed1-b18d-01be83f5b271",
+          "code": "C16358",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Body Mass Index",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_39",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_39",
+        "name": "Percent Change in Body Weight",
+        "label": "Percent Change in Body Weight from Baseline at Weeks 24, 40, and 52",
+        "synonyms": [
+          "Body Weight Percent Change",
+          "% Weight Change"
+        ],
+        "categories": [
+          "bcc_5"
+        ],
+        "properties": [
+          {
+            "id": "bc_39_prop_1",
+            "name": "VSORRES",
+            "label": "Body Weight Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_39_prop_2",
+            "name": "VSORRESU",
+            "label": "Body Weight Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_39_prop_3",
+            "name": "VSPCHG",
+            "label": "Percent Change from Baseline in Body Weight",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_39_prop_4",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Percent change in body weight at Weeks 24, 40, and 52",
+        "code": {
+          "id": "61ed9373-b487-4862-ab59-3a021cddceeb",
+          "code": "C81328",
+          "codeSystem": "http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl",
+          "codeSystemVersion": "25.01d",
+          "decode": "Body Weight",
+          "instanceType": "Code"
+        }
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_40",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_40",
+        "name": "CRP and Fecal Calprotectin Change from Baseline",
+        "label": "Change from Baseline in C-Reactive Protein and Fecal Calprotectin at Weeks 4, 12, 24, and 52",
+        "synonyms": [
+          "CRP Change",
+          "Fecal Calprotectin Change",
+          "Inflammatory Biomarker Change"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_40_prop_1",
+            "name": "LBORRES",
+            "label": "CRP / Fecal Calprotectin Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_40_prop_2",
+            "name": "LBORRESU",
+            "label": "Result Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_40_prop_3",
+            "name": "LBCHG",
+            "label": "Change from Baseline",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_40_prop_4",
+            "name": "VISITNUM",
+            "label": "Visit Number",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change from baseline in CRP and fecal calprotectin at Weeks 4, 12, 24, and 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_41",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_41",
+        "name": "Corticosteroid-Free Remission",
+        "label": "Corticosteroid-Free Remission at Week 52",
+        "synonyms": [
+          "Steroid-Free Remission",
+          "CS-Free Remission"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_41_prop_1",
+            "name": "QSSTRESC",
+            "label": "Corticosteroid-Free Remission Result (Character)",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_41_prop_2",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Corticosteroid-free remission at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_42",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_42",
+        "name": "WPAI:UC Change from Baseline",
+        "label": "Change from Baseline in Work Productivity and Activity Impairment Questionnaire: Ulcerative Colitis at Week 24 and Week 52",
+        "synonyms": [
+          "Work Productivity and Activity Impairment UC",
+          "WPAI UC Score Change"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_42_prop_1",
+            "name": "QSORRES",
+            "label": "WPAI:UC Score Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_42_prop_2",
+            "name": "QSCHG",
+            "label": "Change from Baseline in WPAI:UC Score",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_42_prop_3",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change from baseline in WPAI:UC at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_43",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_43",
+        "name": "Bowel Movement Urgency NRS Improvement",
+        "label": "Bowel Movement Urgency Improvement Assessed by Urgency Numeric Rating Scale at Week 24 and Week 52",
+        "synonyms": [
+          "Urgency NRS",
+          "Bowel Urgency NRS",
+          "Fecal Urgency Numeric Rating Scale"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_43_prop_1",
+            "name": "QSORRES",
+            "label": "Urgency NRS Score Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_43_prop_2",
+            "name": "QSCHG",
+            "label": "Change from Baseline in Urgency NRS Score",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_43_prop_3",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Bowel Movement Urgency improvement (Urgency NRS) at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_44",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_44",
+        "name": "Resolution of Extra-Intestinal Manifestations",
+        "label": "Resolution of Extra-Intestinal Manifestations at Week 52",
+        "synonyms": [
+          "EIM Resolution",
+          "Extra-Intestinal Manifestation Resolution"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_44_prop_1",
+            "name": "MHTERM",
+            "label": "Extra-Intestinal Manifestation Term",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_44_prop_2",
+            "name": "MHOCCUR",
+            "label": "EIM Resolution Indicator",
+            "isRequired": true,
+            "datatype": "boolean",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_44_prop_3",
+            "name": "MHENDTC",
+            "label": "EIM Resolution Date",
+            "isRequired": false,
+            "datatype": "datetime",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Resolution of EIMs at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_45",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_45",
+        "name": "Triglycerides Change from Baseline",
+        "label": "Change in Triglycerides from Baseline at Week 52",
+        "synonyms": [
+          "TG Change",
+          "Triglyceride Change",
+          "Serum Triglycerides Change"
+        ],
+        "categories": [
+          "bcc_2"
+        ],
+        "properties": [
+          {
+            "id": "bc_45_prop_1",
+            "name": "LBORRES",
+            "label": "Triglycerides Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_45_prop_2",
+            "name": "LBORRESU",
+            "label": "Triglycerides Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_45_prop_3",
+            "name": "LBCHG",
+            "label": "Change from Baseline in Triglycerides",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change in TG at Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_46",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_46",
+        "name": "Exploratory Biomarker Changes",
+        "label": "Changes in Exploratory Biomarkers",
+        "synonyms": [
+          "Exploratory Biomarkers",
+          "Investigational Biomarkers"
+        ],
+        "categories": [
+          "bcc_7"
+        ],
+        "properties": [
+          {
+            "id": "bc_46_prop_1",
+            "name": "LBORRES",
+            "label": "Exploratory Biomarker Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_46_prop_2",
+            "name": "LBTEST",
+            "label": "Biomarker Test Name",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_46_prop_3",
+            "name": "LBORRESU",
+            "label": "Biomarker Units",
+            "isRequired": false,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_46_prop_4",
+            "name": "LBCHG",
+            "label": "Change from Baseline in Biomarker",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Changes in exploratory biomarkers"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_47",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_47",
+        "name": "PGR-S Change from Baseline",
+        "label": "Change from Baseline in Patient Global Rating of Severity at Week 24 and Week 52",
+        "synonyms": [
+          "Patient Global Rating of Severity",
+          "PGR-S Score Change"
+        ],
+        "categories": [
+          "bcc_1"
+        ],
+        "properties": [
+          {
+            "id": "bc_47_prop_1",
+            "name": "QSORRES",
+            "label": "PGR-S Score Result",
+            "isRequired": true,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_47_prop_2",
+            "name": "QSCHG",
+            "label": "Change from Baseline in PGR-S Score",
+            "isRequired": false,
+            "datatype": "float",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_47_prop_3",
+            "name": "QSDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Change from baseline in PGR-S at Week 24 and Week 52"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bc_48",
+      "entity_type": "biomedical_concept",
+      "data": {
+        "id": "bc_48",
+        "name": "Histologic-Endoscopic Mucosal Improvement Week 24",
+        "label": "Histologic-Endoscopic Mucosal Improvement Plus Absence of Neutrophils at Week 24",
+        "synonyms": [
+          "HEMI Week 24",
+          "Mucosal Improvement with Neutrophil Absence Week 24"
+        ],
+        "categories": [
+          "bcc_3"
+        ],
+        "properties": [
+          {
+            "id": "bc_48_prop_1",
+            "name": "MISTRESC",
+            "label": "Histologic-Endoscopic Mucosal Improvement Result",
+            "isRequired": true,
+            "datatype": "string",
+            "instanceType": "BiomedicalConceptProperty"
+          },
+          {
+            "id": "bc_48_prop_2",
+            "name": "MIDY",
+            "label": "Study Day of Assessment",
+            "isRequired": false,
+            "datatype": "integer",
+            "instanceType": "BiomedicalConceptProperty"
+          }
+        ],
+        "instanceType": "BiomedicalConcept",
+        "sourceActivity": "Histologic-endoscopic mucosal improvement plus absence of neutrophils at Week 24"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_1",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_1",
+        "name": "Questionnaires/PRO",
+        "label": "Patient-Reported Outcomes and Clinical Questionnaires",
+        "memberIds": [
+          "bc_1",
+          "bc_2",
+          "bc_5",
+          "bc_12",
+          "bc_21",
+          "bc_26",
+          "bc_28",
+          "bc_32",
+          "bc_33",
+          "bc_37",
+          "bc_41",
+          "bc_42",
+          "bc_43",
+          "bc_47"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_2",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_2",
+        "name": "Laboratory Tests",
+        "label": "Laboratory Test Measurements",
+        "memberIds": [
+          "bc_3",
+          "bc_7",
+          "bc_19",
+          "bc_27",
+          "bc_35",
+          "bc_40",
+          "bc_45"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_3",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_3",
+        "name": "Procedures",
+        "label": "Clinical and Surgical Procedures",
+        "memberIds": [
+          "bc_4",
+          "bc_6",
+          "bc_8",
+          "bc_15",
+          "bc_17",
+          "bc_18",
+          "bc_30",
+          "bc_36",
+          "bc_44",
+          "bc_48"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_4",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_4",
+        "name": "Pharmacokinetics",
+        "label": "Pharmacokinetic Assessments",
+        "memberIds": [
+          "bc_11"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_5",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_5",
+        "name": "Vital Signs",
+        "label": "Vital Signs Measurements",
+        "memberIds": [
+          "bc_13",
+          "bc_14",
+          "bc_20",
+          "bc_22",
+          "bc_29",
+          "bc_31",
+          "bc_38",
+          "bc_39"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_6",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_6",
+        "name": "Safety Monitoring",
+        "label": "Safety Monitoring Assessments",
+        "memberIds": [
+          "bc_16",
+          "bc_23",
+          "bc_24",
+          "bc_34"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_7",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_7",
+        "name": "Biomarker",
+        "label": "Biomarker Assessments",
+        "memberIds": [
+          "bc_46"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    },
+    {
+      "id": "bcc_8",
+      "entity_type": "biomedical_concept_category",
+      "data": {
+        "id": "bcc_8",
+        "name": "Imaging",
+        "label": "Imaging Assessments",
+        "memberIds": [
+          "bc_9",
+          "bc_10",
+          "bc_25"
+        ],
+        "instanceType": "BiomedicalConceptCategory"
+      },
+      "confidence": 0.75,
+      "source_pages": []
+    }
+  ],
+  "bc_summary": {
+    "biomedical_concept_count": 48,
+    "category_count": 8,
+    "activity_count": 48
+  }
+}

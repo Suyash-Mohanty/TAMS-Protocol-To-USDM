@@ -1,0 +1,464 @@
+{
+  "agent_id": "objectives_agent",
+  "timestamp": "2026-10-07T16:12:14.434723",
+  "confidence": 0.85,
+  "entity_count": 16,
+  "entities": [
+    {
+      "id": "obj_1",
+      "entity_type": "objective",
+      "data": {
+        "id": "obj_1",
+        "name": "Primary Efficacy Objective",
+        "text": "To demonstrate that 3 mg LY900018 is non-inferior to 1 mg IMG for the proportion of patients achieving treatment success from insulin-induced hypoglycemia using a non-inferiority margin of 10%",
+        "level": {
+          "code": "C85826",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Trial Primary Objective",
+          "instanceType": "Code"
+        },
+        "endpointIds": [
+          "ep_1"
+        ],
+        "instanceType": "Objective"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "obj_2",
+      "entity_type": "objective",
+      "data": {
+        "id": "obj_2",
+        "name": "Secondary Safety and Tolerability Objective",
+        "text": "To compare the safety and tolerability of 3 mg LY900018 with 1 mg IMG",
+        "level": {
+          "code": "C85827",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Trial Secondary Objective",
+          "instanceType": "Code"
+        },
+        "endpointIds": [
+          "ep_2"
+        ],
+        "instanceType": "Objective"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "obj_3",
+      "entity_type": "objective",
+      "data": {
+        "id": "obj_3",
+        "name": "Secondary Pharmacokinetic Objective",
+        "text": "To characterize the PK profile of 3 mg LY900018 compared to 1 mg IMG",
+        "level": {
+          "code": "C85827",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Trial Secondary Objective",
+          "instanceType": "Code"
+        },
+        "endpointIds": [
+          "ep_3"
+        ],
+        "instanceType": "Objective"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "obj_4",
+      "entity_type": "objective",
+      "data": {
+        "id": "obj_4",
+        "name": "Secondary Pharmacodynamic Objective",
+        "text": "To characterize the PD profile of 3 mg LY900018 compared to 1 mg IMG",
+        "level": {
+          "code": "C85827",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Trial Secondary Objective",
+          "instanceType": "Code"
+        },
+        "endpointIds": [
+          "ep_4"
+        ],
+        "instanceType": "Objective"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "ep_1",
+      "entity_type": "endpoint",
+      "data": {
+        "id": "ep_1",
+        "name": "Primary Efficacy Endpoint",
+        "text": "The proportion of patients achieving treatment success defined as either an increase in PG to >70 mg/dL or an increase of >20 mg/dL from nadir within 30 minutes after administration of glucagon. The nadir is defined as the minimum PG value at the time of or within 10 minutes following glucagon administration.",
+        "level": {
+          "code": "C98772",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Primary Outcome Measure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Endpoint",
+        "purpose": "Efficacy"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "ep_2",
+      "entity_type": "endpoint",
+      "data": {
+        "id": "ep_2",
+        "name": "Secondary Safety and Tolerability Endpoint",
+        "text": "SAE, TEAEs (including gastrointestinal, nasal, and non-nasal AEs), vital signs",
+        "level": {
+          "code": "C98781",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Secondary Outcome Measure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Endpoint",
+        "purpose": "Safety"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "ep_3",
+      "entity_type": "endpoint",
+      "data": {
+        "id": "ep_3",
+        "name": "Secondary Pharmacokinetic Endpoint",
+        "text": "PK parameters include AUC, Cmax, Tmax",
+        "level": {
+          "code": "C98781",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Secondary Outcome Measure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Endpoint",
+        "purpose": "Pharmacokinetic"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "ep_4",
+      "entity_type": "endpoint",
+      "data": {
+        "id": "ep_4",
+        "name": "Secondary Pharmacodynamic Endpoint",
+        "text": "PD parameters include BGmax and Tmax",
+        "level": {
+          "code": "C98781",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Secondary Outcome Measure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Endpoint",
+        "purpose": "Pharmacodynamic"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "est_1",
+      "entity_type": "estimand",
+      "data": {
+        "id": "est_1",
+        "name": "Primary Efficacy Estimand - Non-inferiority of Nasal Glucagon vs Intramuscular Glucagon",
+        "populationSummary": "Japanese patients with type 1 diabetes mellitus (T1DM) or type 2 diabetes mellitus (T2DM) who undergo controlled insulin-induced hypoglycemia, meeting all eligibility criteria (Intent-to-Treat (ITT) Population - all randomized patients completing both periods with evaluable primary outcome (at least 66 patients, including at least 30 T1DM and 30 T2DM)) Summary measure: Difference in proportions (percentage of patients achieving treatment success: IMG minus LY900018) with a 2-sided 95% confidence interval derived from the 1-sample mean of paired differences; non-inferiority declared if upper limit of 95% CI is less than the non-inferiority margin of 10%.",
+        "analysisPopulationId": "ap_1",
+        "variableOfInterestId": "ep_1",
+        "interventionIds": [
+          "int_1",
+          "int_2"
+        ],
+        "intercurrentEvents": [
+          {
+            "id": "ice_1",
+            "name": "Study discontinuation before completion of both periods",
+            "text": "Patient discontinues from the study before completing both treatment periods with evaluable primary outcome for any reason (e.g., withdrawal of consent, adverse event, protocol deviation)",
+            "strategy": "Composite",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_2",
+            "name": "Administration of additional treatments to increase plasma glucose",
+            "text": "Patient receives additional treatments to increase plasma glucose within 30 minutes after glucagon administration, which is incorporated directly into the definition of treatment failure (i.e., treatment success requires no additional glucose-raising interventions)",
+            "strategy": "Composite",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_3",
+            "name": "Failure to achieve adequate insulin-induced hypoglycemia",
+            "text": "Patient does not achieve the required hypoglycemic nadir during the controlled insulin-induced hypoglycemia procedure, resulting in non-evaluable primary outcome data",
+            "strategy": "Hypothetical",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_4",
+            "name": "Device or administration failure",
+            "text": "Patient experiences a device malfunction or incorrect administration of nasal glucagon or intramuscular glucagon by study site personnel, resulting in non-evaluable or missing primary outcome data",
+            "strategy": "Hypothetical",
+            "instanceType": "IntercurrentEvent"
+          }
+        ],
+        "instanceType": "Estimand",
+        "treatment": "3 mg LY900018 (nasal glucagon) administered intranasally by study site personnel versus 1 mg IMG (GlucaGen, Novo Nordisk A/S) administered by intramuscular injection by study site personnel, as a single dose in a 2-treatment, 2-period crossover design",
+        "analysisPopulation": "Intent-to-Treat (ITT) Population - all randomized patients completing both periods with evaluable primary outcome (at least 66 patients, including at least 30 T1DM and 30 T2DM)",
+        "variableOfInterest": "The proportion of patients achieving treatment success defined as either an increase in plasma glucose (PG) to ≥70 mg/dL or an increase of ≥20 mg/dL from PG nadir within 30 minutes after administration of glucagon, without receiving additional treatments to increase PG",
+        "summaryMeasure": "Difference in proportions (percentage of patients achieving treatment success: IMG minus LY900018) with a 2-sided 95% confidence interval derived from the 1-sample mean of paired differences; non-inferiority declared if upper limit of 95% CI is less than the non-inferiority margin of 10%"
+      },
+      "confidence": 0.75,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "est_2",
+      "entity_type": "estimand",
+      "data": {
+        "id": "est_2",
+        "name": "Secondary Safety and Tolerability Estimand",
+        "populationSummary": "Japanese patients with T1DM or T2DM who received at least one dose of study treatment (LY900018 or IMG) during the crossover study (Safety Population - all patients who received at least one dose of study treatment) Summary measure: Frequency and percentage of patients experiencing SAEs and TEAEs by system organ class and preferred term; descriptive statistics for vital signs; comparison between treatment groups.",
+        "analysisPopulationId": "ap_2",
+        "variableOfInterestId": "ep_2",
+        "interventionIds": [
+          "int_1",
+          "int_2"
+        ],
+        "intercurrentEvents": [
+          {
+            "id": "ice_5",
+            "name": "Study discontinuation due to adverse event",
+            "text": "Patient discontinues study participation due to an adverse event prior to completion of the follow-up visit (26 to 30 days after last study treatment)",
+            "strategy": "Treatment Policy",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_6",
+            "name": "Use of concomitant medications affecting safety assessments",
+            "text": "Patient uses concomitant medications during the study period that may confound the interpretation of adverse events or vital sign measurements",
+            "strategy": "Treatment Policy",
+            "instanceType": "IntercurrentEvent"
+          }
+        ],
+        "instanceType": "Estimand",
+        "treatment": "3 mg LY900018 (nasal glucagon) administered intranasally versus 1 mg IMG (GlucaGen, Novo Nordisk A/S) administered by intramuscular injection, as a single dose in a 2-treatment, 2-period crossover design",
+        "analysisPopulation": "Safety Population - all patients who received at least one dose of study treatment",
+        "variableOfInterest": "Incidence and nature of serious adverse events (SAEs), treatment-emergent adverse events (TEAEs) including gastrointestinal, nasal, and non-nasal adverse events, and changes in vital signs following single-dose administration",
+        "summaryMeasure": "Frequency and percentage of patients experiencing SAEs and TEAEs by system organ class and preferred term; descriptive statistics for vital signs; comparison between treatment groups"
+      },
+      "confidence": 0.75,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "est_3",
+      "entity_type": "estimand",
+      "data": {
+        "id": "est_3",
+        "name": "Secondary Pharmacokinetic Estimand",
+        "populationSummary": "Japanese patients with T1DM or T2DM who received at least one dose of study treatment and have evaluable pharmacokinetic samples (Pharmacokinetic (PK) Population - all patients who received at least one dose of study treatment with sufficient evaluable PK concentration-time data) Summary measure: Descriptive statistics (geometric mean, coefficient of variation) for AUC and Cmax; median and range for Tmax; geometric mean ratios with 90% confidence intervals for AUC and Cmax comparing LY900018 to IMG.",
+        "analysisPopulationId": "ap_3",
+        "variableOfInterestId": "ep_3",
+        "interventionIds": [
+          "int_1",
+          "int_2"
+        ],
+        "intercurrentEvents": [
+          {
+            "id": "ice_7",
+            "name": "Missing or non-evaluable PK samples",
+            "text": "Patient has missing, hemolyzed, or otherwise non-evaluable pharmacokinetic blood samples that prevent derivation of one or more PK parameters",
+            "strategy": "Hypothetical",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_8",
+            "name": "Vomiting or nasal obstruction affecting drug absorption",
+            "text": "Patient experiences vomiting shortly after dosing or has nasal obstruction that may affect absorption and derived PK parameters",
+            "strategy": "Treatment Policy",
+            "instanceType": "IntercurrentEvent"
+          }
+        ],
+        "instanceType": "Estimand",
+        "treatment": "3 mg LY900018 (nasal glucagon) administered intranasally versus 1 mg IMG (GlucaGen, Novo Nordisk A/S) administered by intramuscular injection, as a single dose in a 2-treatment, 2-period crossover design",
+        "analysisPopulation": "Pharmacokinetic (PK) Population - all patients who received at least one dose of study treatment with sufficient evaluable PK concentration-time data",
+        "variableOfInterest": "Pharmacokinetic parameters including area under the concentration-time curve (AUC), maximum observed plasma concentration (Cmax), and time to maximum concentration (Tmax) following single-dose administration of glucagon",
+        "summaryMeasure": "Descriptive statistics (geometric mean, coefficient of variation) for AUC and Cmax; median and range for Tmax; geometric mean ratios with 90% confidence intervals for AUC and Cmax comparing LY900018 to IMG"
+      },
+      "confidence": 0.75,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "est_4",
+      "entity_type": "estimand",
+      "data": {
+        "id": "est_4",
+        "name": "Secondary Pharmacodynamic Estimand",
+        "populationSummary": "Japanese patients with T1DM or T2DM who received at least one dose of study treatment and have evaluable pharmacodynamic plasma glucose measurements (Pharmacodynamic (PD) Population - all patients who received at least one dose of study treatment with sufficient evaluable PD plasma glucose concentration-time data) Summary measure: Descriptive statistics (mean, standard deviation, median, range) for BGmax and Tmax; comparison of PD parameters between LY900018 and IMG treatment groups within the crossover design.",
+        "analysisPopulationId": "ap_4",
+        "variableOfInterestId": "ep_4",
+        "interventionIds": [
+          "int_1",
+          "int_2"
+        ],
+        "intercurrentEvents": [
+          {
+            "id": "ice_9",
+            "name": "Administration of additional glucose-raising treatments",
+            "text": "Patient receives additional treatments to increase plasma glucose (e.g., intravenous dextrose) during the 30-minute assessment window, which may confound the pharmacodynamic plasma glucose profile",
+            "strategy": "Treatment Policy",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_10",
+            "name": "Missing or non-evaluable plasma glucose measurements",
+            "text": "Patient has missing or non-evaluable plasma glucose measurements that prevent derivation of BGmax or Tmax",
+            "strategy": "Hypothetical",
+            "instanceType": "IntercurrentEvent"
+          }
+        ],
+        "instanceType": "Estimand",
+        "treatment": "3 mg LY900018 (nasal glucagon) administered intranasally versus 1 mg IMG (GlucaGen, Novo Nordisk A/S) administered by intramuscular injection, as a single dose in a 2-treatment, 2-period crossover design",
+        "analysisPopulation": "Pharmacodynamic (PD) Population - all patients who received at least one dose of study treatment with sufficient evaluable PD plasma glucose concentration-time data",
+        "variableOfInterest": "Pharmacodynamic parameters including maximum plasma glucose concentration (BGmax) and time to maximum plasma glucose concentration (Tmax) following single-dose administration of glucagon during controlled insulin-induced hypoglycemia",
+        "summaryMeasure": "Descriptive statistics (mean, standard deviation, median, range) for BGmax and Tmax; comparison of PD parameters between LY900018 and IMG treatment groups within the crossover design"
+      },
+      "confidence": 0.75,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "ap_1",
+      "entity_type": "analysis_population",
+      "data": {
+        "id": "ap_1",
+        "name": "Intent-to-Treat (ITT) Population - all randomized patients completing both periods with evaluable primary outcome (at least 66 patients, including at least 30 T1DM and 30 T2DM)",
+        "instanceType": "AnalysisPopulation",
+        "description": "Analysis population referenced by estimand: Primary Efficacy Estimand - Non-inferiority of Nasal Glucagon vs Intramuscular Glucagon",
+        "level": "ITT"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "ap_2",
+      "entity_type": "analysis_population",
+      "data": {
+        "id": "ap_2",
+        "name": "Safety Population - all patients who received at least one dose of study treatment",
+        "instanceType": "AnalysisPopulation",
+        "description": "Analysis population referenced by estimand: Secondary Safety and Tolerability Estimand",
+        "level": "Safety"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "ap_3",
+      "entity_type": "analysis_population",
+      "data": {
+        "id": "ap_3",
+        "name": "Pharmacokinetic (PK) Population - all patients who received at least one dose of study treatment with sufficient evaluable PK concentration-time data",
+        "instanceType": "AnalysisPopulation",
+        "description": "Analysis population referenced by estimand: Secondary Pharmacokinetic Estimand",
+        "level": "PK"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "ap_4",
+      "entity_type": "analysis_population",
+      "data": {
+        "id": "ap_4",
+        "name": "Pharmacodynamic (PD) Population - all patients who received at least one dose of study treatment with sufficient evaluable PD plasma glucose concentration-time data",
+        "instanceType": "AnalysisPopulation",
+        "description": "Analysis population referenced by estimand: Secondary Pharmacodynamic Estimand"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        8,
+        9,
+        10
+      ]
+    }
+  ],
+  "objectives_summary": {
+    "primary_count": 1,
+    "secondary_count": 3,
+    "exploratory_count": 0,
+    "endpoint_count": 4,
+    "estimand_count": 4
+  }
+}

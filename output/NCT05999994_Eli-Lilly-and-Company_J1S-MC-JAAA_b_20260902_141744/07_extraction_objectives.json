@@ -1,0 +1,193 @@
+{
+  "agent_id": "objectives_agent",
+  "timestamp": "2026-09-02T14:19:04.052164",
+  "confidence": 0.85,
+  "entity_count": 4,
+  "entities": [
+    {
+      "id": "obj_1",
+      "entity_type": "objective",
+      "data": {
+        "id": "obj_1",
+        "name": "Master Protocol Framework Objective",
+        "text": "The main purpose of the CAMPFIRE Master Protocol is to create a framework to seamlessly evaluate the efficacy and safety of each investigational agent or study drug regimen eligible for development in specified populations of pediatric and young adult patients.",
+        "level": {
+          "code": "C85826",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Trial Primary Objective",
+          "instanceType": "Code"
+        },
+        "endpointIds": [
+          "ep_1"
+        ],
+        "instanceType": "Objective"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "ep_1",
+      "entity_type": "endpoint",
+      "data": {
+        "id": "ep_1",
+        "name": "Investigation-Specific Endpoints",
+        "text": "The clinical research objectives and endpoints for specific investigations are detailed in each individual addendum.",
+        "level": {
+          "code": "C98772",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Primary Outcome Measure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Endpoint",
+        "purpose": "Efficacy"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "est_1",
+      "entity_type": "estimand",
+      "data": {
+        "id": "est_1",
+        "name": "Investigation-Specific Efficacy Estimand (CAMPFIRE Master Protocol)",
+        "populationSummary": "Pediatric and young adult patients with cancer meeting investigation-specific eligibility criteria as defined in each individual addendum (Investigation-Specific Analysis Population (defined per addendum; may include ITT, mITT, or Per-Protocol populations as specified in each addendum's Statistical Analysis Plan)) Summary measure: Investigation-specific summary measure as defined in each addendum's statistical analysis plan (e.g., objective response rate, hazard ratio for progression-free or overall survival, difference in means).",
+        "analysisPopulationId": "ap_1",
+        "variableOfInterestId": "ep_1",
+        "interventionIds": [
+          "int_1",
+          "int_2"
+        ],
+        "intercurrentEvents": [
+          {
+            "id": "ice_1",
+            "name": "Discontinuation of study treatment",
+            "text": "Patient discontinues investigational study treatment prior to the investigation-specific primary endpoint assessment, for any reason including adverse events, disease progression, withdrawal of consent, or investigator decision",
+            "strategy": "Treatment Policy",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_2",
+            "name": "Use of prohibited or rescue concomitant therapy",
+            "text": "Patient initiates prohibited concomitant therapy or rescue medication as defined in the investigation-specific addendum prior to the primary endpoint assessment",
+            "strategy": "Hypothetical",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_3",
+            "name": "Death prior to primary endpoint assessment",
+            "text": "Patient dies before the primary efficacy endpoint can be assessed, particularly relevant for non-survival endpoints such as tumor response",
+            "strategy": "Composite",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_4",
+            "name": "Transition to continued-access phase",
+            "text": "Patient transitions to the continued-access phase (Section 7.8.1.1) prior to completion of the primary endpoint assessment period",
+            "strategy": "While on Treatment",
+            "instanceType": "IntercurrentEvent"
+          },
+          {
+            "id": "ice_5",
+            "name": "Dose modification",
+            "text": "Patient undergoes a dose reduction or dose interruption of the investigational agent as defined in the investigation-specific addendum",
+            "strategy": "Treatment Policy",
+            "instanceType": "IntercurrentEvent"
+          }
+        ],
+        "instanceType": "Estimand",
+        "treatment": "Lilly investigational drug(s) alone or in combination with available treatments or other investigational agents vs. comparator/control arm as specified in each individual addendum",
+        "analysisPopulation": "Investigation-Specific Analysis Population (defined per addendum; may include ITT, mITT, or Per-Protocol populations as specified in each addendum's Statistical Analysis Plan)",
+        "variableOfInterest": "Investigation-specific efficacy endpoint(s) as defined in each individual addendum (e.g., tumor response, survival, disease progression); linked to investigation-specific endpoints detailed in each addendum",
+        "summaryMeasure": "Investigation-specific summary measure as defined in each addendum's statistical analysis plan (e.g., objective response rate, hazard ratio for progression-free or overall survival, difference in means)"
+      },
+      "confidence": 0.75,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    },
+    {
+      "id": "ap_1",
+      "entity_type": "analysis_population",
+      "data": {
+        "id": "ap_1",
+        "name": "Investigation-Specific Analysis Population (defined per addendum; may include ITT, mITT, or Per-Protocol populations as specified in each addendum's Statistical Analysis Plan)",
+        "instanceType": "AnalysisPopulation",
+        "description": "Analysis population referenced by estimand: Investigation-Specific Efficacy Estimand (CAMPFIRE Master Protocol)",
+        "level": "ITT"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ]
+    }
+  ],
+  "objectives_summary": {
+    "primary_count": 1,
+    "secondary_count": 0,
+    "exploratory_count": 0,
+    "endpoint_count": 1,
+    "estimand_count": 1
+  }
+}
