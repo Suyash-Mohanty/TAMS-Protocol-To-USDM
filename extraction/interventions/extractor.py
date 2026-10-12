@@ -334,6 +334,7 @@ def _parse_interventions_response(raw: Dict[str, Any]) -> Optional[Interventions
             owner = _best_intervention(product.name, interventions)
             if owner is not None:
                 owner.product_ids.append(product.id)
+        _check_escalation_steps(administrations)
         
         # Link substances to products by name — one substance is typically
         # shared by several products (one per strength), so positional
@@ -439,33 +440,79 @@ def _best_intervention(product_name: str, interventions: List[StudyIntervention]
     return best
 
 
+_GENERIC_PRODUCT_WORDS = {
+    "dose", "doses", "dosing", "step", "escalation", "maintenance", "induction", "injection",
+    "infusion", "solution", "tablet", "tablets", "capsule", "capsules", "oral", "subcutaneous",
+    "intravenous", "weekly", "daily", "once", "every", "week", "weeks", "prefilled", "syringe",
+    "match", "matching", "with", "study", "treatment", "period", "standard",
+}
+
+
 def _best_product(name: str, dose: Optional[str], products: List[AdministrableProduct]) -> Optional[AdministrableProduct]:
     """The product an administration gives.
 
-    The dose actually given decides the strength ("Eloralintide 6 mg QW –
-    escalation step 1" with dose "3 mg" gives the 3 mg product); among
-    products of that strength (or all, when the dose isn't numeric) the one
-    sharing the most name words wins.
+    Only a product whose own name (its first word: the substance or code, e.g.
+    "Mirikizumab", "Tirzepatide", "Placebo") appears in the administration's name
+    qualifies, so an administration is never linked to another substance's product.
+    Among those, the dose actually given decides the strength ("Eloralintide 6 mg QW -
+    escalation step 1" with dose "3 mg" gives the 3 mg product); a dose given as several
+    units of one strength (200 mg as 2 x 100 mg) matches that strength. Ties go to the
+    product sharing the most name words (e.g. the route: "SC", "IV").
     """
     words = set(re.findall(r"[a-z0-9]+", f"{name} {dose or ''}".lower()))
+
+    def _tokens(product: AdministrableProduct) -> List[str]:
+        return re.findall(r"[a-z0-9]+", (product.name or "").lower())
+
+    def _strength(product: AdministrableProduct) -> Optional[float]:
+        if product.strength_value is not None:
+            return float(product.strength_value)
+        m = re.search(r"(\d+(?:\.\d+)?)", product.name or "")
+        return float(m.group(1)) if m else None
+
+    same_drug = [p for p in products if _tokens(p) and _tokens(p)[0] in words]
+    if not same_drug:
+        # e.g. a trade-name product ("GlucaGen") given under its generic wording: any shared
+        # distinctive word, never only route/form/schedule words
+        same_drug = [p for p in products
+                     if {t for t in _tokens(p) if len(t) >= 4 and t not in _GENERIC_PRODUCT_WORDS} & words]
+    if not same_drug:
+        return None
+    candidates = same_drug
     dose_match = re.match(r"\s*(\d+(?:\.\d+)?)", dose or "")
-    candidates = products
     if dose_match:
         amount = float(dose_match.group(1))
-        same_strength = [
-            p for p in products
-            if (p.strength_value is not None and abs(p.strength_value - amount) < 1e-9)
-            or f"{amount:g}" in re.findall(r"\d+(?:\.\d+)?", p.name or "")
-        ]
-        candidates = same_strength or [
-            p for p in products if p.strength_value is None and not re.search(r"\d", p.name or "")
-        ]
-    best, best_score = None, 0
-    for product in candidates:
-        score = len(words & set(re.findall(r"[a-z0-9]+", (product.name or "").lower())))
-        if score > best_score:
-            best, best_score = product, score
-    return best
+        exact = [p for p in same_drug if _strength(p) is not None and abs(_strength(p) - amount) < 1e-9]
+        multiple = [p for p in same_drug if _strength(p) and abs(amount / _strength(p) - round(amount / _strength(p))) < 1e-9]
+        candidates = exact or multiple or same_drug
+    return max(candidates, key=lambda p: len(words & set(_tokens(p))))
+
+
+_WEEK_RANGE_RE = re.compile(r"weeks?\s*(\d+)\s*(?:-|\u2013|to|through)\s*(?:weeks?\s*)?(\d+)", re.IGNORECASE)
+_STEP_RE = re.compile(r"\s*(?:-|\u2013|\u2014)?\s*(?:dose[- ]escalation|escalation|titration)?\s*step.*$|\s*(?:-|\u2013|\u2014)\s*maintenance.*$", re.IGNORECASE)
+
+
+def _check_escalation_steps(administrations: List[Administration]) -> List[str]:
+    """Warn when one arm's escalation/maintenance administrations leave a gap or overlap in
+    weeks (e.g. step 1 weeks 0-4, maintenance from week 12). The model's dosing table is not
+    changed - the warning makes a misread regimen visible."""
+    arms: Dict[str, List[tuple]] = {}
+    for admin in administrations:
+        if not _STEP_RE.search(admin.name or ""):
+            continue
+        weeks = _WEEK_RANGE_RE.search(admin.duration or "")
+        if weeks:
+            arms.setdefault(_STEP_RE.sub("", admin.name).strip().lower(), []).append(
+                (int(weeks.group(1)), int(weeks.group(2)), admin.name))
+    problems = []
+    for arm, steps in arms.items():
+        steps.sort()
+        for (s1, e1, n1), (s2, e2, n2) in zip(steps, steps[1:]):
+            if s2 != e1:
+                problems.append(f"{n1!r} ends week {e1} but {n2!r} starts week {s2}")
+    for problem in problems:
+        logger.warning(f"Dose-escalation steps not contiguous: {problem}")
+    return problems
 
 
 def _drop_concomitant(interventions: List[StudyIntervention], products: List[AdministrableProduct]):

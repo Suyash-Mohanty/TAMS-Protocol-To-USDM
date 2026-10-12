@@ -41,6 +41,7 @@ For each product extract:
 - Substance codes if available (UNII, CAS)
 
 ### 4. Administration Details
+- Dose escalation / titration: give one administration per step with the dose ACTUALLY RECEIVED in that step, starting from the protocol's stated starting dose (e.g. "start at 2 mg and step up every 2 weeks to the assigned dose of 2, 4 or 8 mg": the 8 mg arm is 2 mg weeks 0-2, 4 mg weeks 2-4, then 8 mg from week 4; the 4 mg arm is 2 mg weeks 0-2, then 4 mg from week 2). Steps of one arm follow each other without gaps or overlaps, and the maintenance administration starts when that arm reaches its target dose - not at the end of the longest arm's escalation. Name each step by the arm and step (e.g. "<drug> 8 mg arm - step 1") and state its weeks in the duration
 - Dose (e.g., "15 mg", "100 mg/m2")
 - Frequency (e.g., "once daily", "every 2 weeks")
 - Route (oral, IV, SC, IM, etc.)

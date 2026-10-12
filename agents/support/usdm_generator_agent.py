@@ -6,6 +6,7 @@ into the USDM v4.0 hierarchy:
   Study → StudyVersion → StudyDesign → (arms, epochs, activities, etc.)
 """
 
+import copy
 import json
 import logging
 import os
@@ -3365,6 +3366,7 @@ def _post_normalize_cleanup(usdm: Dict[str, Any]) -> None:
     study.pop("_pendingDocVersionDates", None)
     study.pop("_pendingTransitionRules", None)
     study.pop("_pendingConditions", None)
+    study.pop("_pendingObjectiveEndpoints", None)
 
     # Strip 'type' from all StudyIdentifiers (not in USDM 4.0 — DDF00125)
     for sid in version.get("studyIdentifiers", []):
@@ -3733,6 +3735,7 @@ def _ensure_primary_objective(usdm: Dict[str, Any]) -> None:
 
     # --- Merge multiple primary objectives into one ---
     primary_objs = [o for o in objectives if isinstance(o.get("level"), dict) and o["level"].get("code") == "C85826"]
+    merged_primaries: Dict[str, str] = {}
     if len(primary_objs) > 1:
         # Keep the first, merge names/text from others
         keeper = primary_objs[0]
@@ -3745,52 +3748,51 @@ def _ensure_primary_objective(usdm: Dict[str, Any]) -> None:
             extra_name = extra.get("name", "")
             if extra_name and extra_name not in keeper.get("name", ""):
                 keeper["name"] = keeper["name"] + " / " + extra_name
+            merged_primaries[extra.get("id")] = keeper.get("id")
             objectives.remove(extra)
 
-    # --- Assign endpoints to objectives by matching level ---
+    # --- Nest endpoints under their objectives ---
+    # The objectives extraction pairs each objective with its endpoints (the protocol's
+    # objectives/endpoints table); that pairing is used as is. An endpoint keeps its id,
+    # so Estimand.variableOfInterestId keeps resolving; an endpoint listed under a second
+    # objective is nested there as a copy with a new id. Endpoints no objective lists go
+    # to the first objective of the matching level.
     LEVEL_MAP = {
         "C85826": "C94496",    # Primary Objective -> Primary Endpoint
         "C85827": "C139173",   # Secondary Objective -> Secondary Endpoint
         "C163559": "C170559",  # Exploratory Objective -> Exploratory Endpoint
     }
+    links = usdm["study"].pop("_pendingObjectiveEndpoints", {}) or {}
+    for extra_id, keeper_id in merged_primaries.items():
+        links[keeper_id] = list(dict.fromkeys(links.get(keeper_id, []) + links.get(extra_id, [])))
+    ep_by_id = {ep.get("id"): ep for ep in endpoints}
+    nested: set = set()
 
-    # Group objectives by level code
-    objs_by_level: Dict[str, list] = {}
-    for obj in objectives:
-        obj_level = obj.get("level", {})
-        obj_code = obj_level.get("code", "") if isinstance(obj_level, dict) else ""
-        objs_by_level.setdefault(obj_code, []).append(obj)
-
-    for obj_code, obj_group in objs_by_level.items():
-        ep_code = LEVEL_MAP.get(obj_code, "")
-        matching_eps = eps_by_level.get(ep_code, [])
-        if not matching_eps:
-            continue
-
-        if len(obj_group) == 1:
-            # Single objective gets all matching endpoints
-            embedded = []
-            for ep in matching_eps:
-                ep_copy = dict(ep)
-                ep_copy["id"] = str(uuid.uuid4())
-                if ep_copy.get("level"):
-                    lv_copy = dict(ep_copy["level"])
-                    lv_copy["id"] = str(uuid.uuid4())
-                    ep_copy["level"] = lv_copy
-                embedded.append(ep_copy)
-            obj_group[0]["endpoints"] = embedded
+    def _nest(obj: Dict[str, Any], ep: Dict[str, Any]) -> None:
+        if ep.get("id") in nested:
+            ep = copy.deepcopy(ep)
+            ep["id"] = str(uuid.uuid4())
+            if isinstance(ep.get("level"), dict):
+                ep["level"]["id"] = str(uuid.uuid4())
         else:
-            # Multiple objectives: distribute endpoints round-robin
-            # so each endpoint name appears exactly once
-            for idx, ep in enumerate(matching_eps):
-                target_obj = obj_group[idx % len(obj_group)]
-                ep_copy = dict(ep)
-                ep_copy["id"] = str(uuid.uuid4())
-                if ep_copy.get("level"):
-                    lv_copy = dict(ep_copy["level"])
-                    lv_copy["id"] = str(uuid.uuid4())
-                    ep_copy["level"] = lv_copy
-                target_obj.setdefault("endpoints", []).append(ep_copy)
+            nested.add(ep.get("id"))
+        obj.setdefault("endpoints", []).append(ep)
+
+    for obj in objectives:
+        for ep_id in links.get(obj.get("id"), []):
+            if ep_id in ep_by_id:
+                _nest(obj, ep_by_id[ep_id])
+
+    for ep in endpoints:
+        if ep.get("id") in nested:
+            continue
+        lv = ep.get("level", {})
+        ep_code = lv.get("code", "") if isinstance(lv, dict) else ""
+        target = next((o for o in objectives
+                       if LEVEL_MAP.get((o.get("level") or {}).get("code", "") if isinstance(o.get("level"), dict) else "") == ep_code),
+                      objectives[0] if len(objectives) == 1 else None)
+        if target is not None:
+            _nest(target, ep)
 
     # Remove top-level endpoints array after embedding into objectives
     # to avoid DDF00010 (duplicate names) and DDF00096 (orphaned endpoints).
@@ -4323,6 +4325,11 @@ class USDMGeneratorAgent(BaseAgent):
             if etype in ("study_intervention", "intervention") and entity_data.get("administrationIds"):
                 usdm["study"].setdefault("_pendingInterventionAdmins", {})[entity_data.get("id")] = \
                     list(entity_data.get("administrationIds") or [])
+
+            # Objective.endpointIds (the protocol's objective -> endpoint pairing) is not
+            # a USDM attribute and is stripped below; keep it to nest the endpoints
+            if etype == "objective" and entity_data.get("endpointIds"):
+                usdm["study"].setdefault("_pendingObjectiveEndpoints", {})[entity_data.get("id")] =                     list(entity_data.get("endpointIds") or [])
 
             # Strip entity-specific extra properties not in USDM v4.0
             extras = _ENTITY_EXTRA_PROPERTIES.get(etype)

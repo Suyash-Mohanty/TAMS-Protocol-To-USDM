@@ -7,6 +7,7 @@ Rules (the SDR document is the base and always wins):
 - nothing is marked in the merged JSON - provenance lives in the returned report.
 """
 import copy
+import re
 import uuid
 from typing import Any, Dict, List, Optional, Set, Tuple
 
@@ -18,7 +19,12 @@ from .text import is_empty, norm
 _SKIP_KEYS = {"id", "instanceType", "extensionAttributes"}
 # processing order inside one object: lower first (matching of later keys needs earlier id pairs)
 _RANK = {"documentedBy": -2, "contents": -1, "studyDesigns": 2, "studyCells": 3, "scheduleTimelines": 3,
-         "eligibilityCriteria": 2, "instances": 3, "narrativeContentItems": 1}
+         "eligibilityCriteria": 2, "instances": 3, "narrativeContentItems": 1, "encounters": 1, "timings": 4}
+# The SDR schedule is authoritative: where the SDR document already lists items of these
+# classes, generated items only enrich the matching SDR items - unmatched ones are not added
+_ENRICH_ONLY = {"StudyEpoch", "Encounter", "Timing", "ScheduledActivityInstance", "Activity"}
+# A filled-in item that lost one of these references (its target was not added) is incomplete
+_REQUIRED_REFS = {"Timing": ("relativeFromScheduledInstanceId",), "StudyCell": ("armId", "epochId")}
 _LINK_KEYS = ("previousId", "nextId")
 
 
@@ -43,8 +49,11 @@ class Merger:
         self.added_roots: List[Dict[str, Any]] = []
         self.report: Dict[str, Any] = {
             "matched": [], "added": [], "possible_duplicates": [], "filled": [], "conflicts": [],
-            "skipped_schedule": [], "dangling_removed": [],
+            "skipped_schedule": [], "dangling_removed": [], "not_added": [], "incomplete_removed": [],
         }
+        # encounter -> epoch, read from each document's scheduled instances (Encounter has no epochId)
+        self.sdr_enc_epoch = _encounter_epochs(sdr)
+        self.ours_enc_epoch = _encounter_epochs(ours)
         self.filled_fields: Set[Tuple[str, str]] = set()   # (node id, field) filled from ours
         self.added_ids: Set[str] = set()
 
@@ -52,6 +61,7 @@ class Merger:
     def run(self) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         self._merge_dict(self.merged, self.ours, "$", None)
         self._finalise()
+        self._prune_orphan_concepts()
         self._complete_study_cells()
         self._verify()
         self._summarise()
@@ -110,7 +120,12 @@ class Merger:
             self.idmap[ov["id"]] = sv["id"]
             self.report["matched"].append({"class": cls, "sdr": _label(sv), "generated": _label(ov), "by": how})
             self._merge_dict(sv, ov, f"{path}[{_label(sv)}]", cls)
+        sdr_has_items = any(isinstance(v, dict) for v in s)
         for ov in rest:
+            if cls in _ENRICH_ONLY and sdr_has_items:
+                self.report["not_added"].append({"class": cls, "item": _label(ov), "path": path,
+                                                 "reason": "the SDR schedule is authoritative; no SDR item matches"})
+                continue
             best, score = best_candidate(ov, [v for v in s if isinstance(v, dict)], cls, self.idmap)
             if best is not None and score >= max(NEW_BELOW, threshold(cls)) and cls not in ("StudyCell", "EligibilityCriterion"):
                 self.idmap[ov["id"]] = best["id"]
@@ -179,6 +194,26 @@ class Merger:
                 if left:
                     take(left.pop(0), sv, "placeholder")
             free = [sv for sv in s_items if id(sv) not in used]
+        # an SDR amendment with no content (no summary, changes or reasons) and no number match is
+        # a placeholder: it takes the latest generated amendment; the others are added beside it
+        if left and free and cls == "StudyAmendment":
+            for sv in [v for v in free if _amendment_is_placeholder(v)]:
+                if left:
+                    latest = max(left, key=lambda a: _natural_key(a.get("number")))
+                    left.remove(latest)
+                    take(latest, sv, "placeholder amendment")
+            free = [sv for sv in s_items if id(sv) not in used]
+        # visits of the same (matched) epoch pair in order when both sides list as many there
+        # (SDR "16" / generated "ED" in the early-discontinuation epoch)
+        if left and free and cls == "Encounter":
+            for epoch in {self.sdr_enc_epoch.get(v.get("id")) for v in free} - {None}:
+                mine = [ov for ov in left if self.idmap.get(self.ours_enc_epoch.get(ov.get("id"))) == epoch]
+                theirs = [sv for sv in free if self.sdr_enc_epoch.get(sv.get("id")) == epoch]
+                if mine and len(mine) == len(theirs):
+                    for ov, sv in zip(mine, theirs):
+                        take(ov, sv, "same epoch")
+            left = [ov for ov in left if all(ov is not p[1] for p in pairs)]
+            free = [sv for sv in s_items if id(sv) not in used]
         # structural fallbacks
         if left and free:
             if cls in POSITIONAL and len(left) == len(free):
@@ -219,6 +254,9 @@ class Merger:
                 self.report["skipped_schedule"].append({"encounter": enc, "activities": sorted(acts)})
             elif enc in self.sdr_ids:
                 self.report["skipped_schedule"].append({"encounter": enc, "activities": sorted(acts)})
+            elif sdr_by_enc:
+                self.report["not_added"].append({"class": "ScheduledActivityInstance", "item": _label(ov), "path": path,
+                                                 "reason": "the SDR schedule is authoritative; no SDR item matches"})
             else:
                 self._add(s, ov, "ScheduledActivityInstance", path)
 
@@ -253,11 +291,69 @@ class Merger:
                     container[key] = proxy[key]
                 else:
                     del container[key]
+        self._remove_incomplete(proxies)
         for s_list, o_list in self.child_unions:
             for ref in o_list:
                 ref = self.idmap.get(ref, ref)
                 if ref in self.added_ids and ref not in s_list:
                     s_list.append(ref)
+
+    def _remove_incomplete(self, proxies) -> None:
+        """Drop filled-in items that lost a reference they cannot do without (a timing whose
+        'relative from' instance was not added) - an incomplete item is worse than none."""
+        def broken(item: Any) -> bool:
+            need = _REQUIRED_REFS.get(item.get("instanceType")) if isinstance(item, dict) else None
+            return bool(need) and any(not item.get(k) for k in need)
+
+        for container, key, proxy in proxies:
+            if key is None:          # an added list item
+                item = proxy["_"]
+                if broken(item) and item in container:
+                    container.remove(item)
+                    self.report["incomplete_removed"].append({"class": item.get("instanceType"), "item": _label(item)})
+            elif isinstance(container.get(key), list):
+                kept = [v for v in container[key] if not broken(v)]
+                for v in container[key]:
+                    if broken(v):
+                        self.report["incomplete_removed"].append({"class": v.get("instanceType"), "item": _label(v)})
+                container[key] = kept
+
+    def _prune_orphan_concepts(self) -> None:
+        """Added biomedical concepts that no activity (or other item) uses - their generated
+        activities were not added to the SDR schedule - are dropped, and so are added concept
+        categories left without members."""
+        for version in self.merged.get("study", {}).get("versions", []):
+            concepts = version.get("biomedicalConcepts") or []
+            categories = version.get("bcCategories") or []
+            added = {c.get("id") for c in concepts if c.get("id") in self.added_ids and c.get("id") not in self.sdr_ids}
+            if not added:
+                continue
+            used: Set[str] = set()
+
+            def refs(o, inside_category=False):
+                if isinstance(o, dict):
+                    in_cat = inside_category or o.get("instanceType") == "BiomedicalConceptCategory" or o is categories
+                    for k, v in o.items():
+                        if _is_ref_key(k) and not in_cat:
+                            used.update(x for x in (v if isinstance(v, list) else [v]) if isinstance(x, str))
+                        else:
+                            refs(v, in_cat)
+                elif isinstance(o, list):
+                    for v in o:
+                        refs(v, inside_category)
+            refs({k: v for k, v in self.merged.items()})
+            orphans = added - used
+            if not orphans:
+                continue
+            version["biomedicalConcepts"] = [c for c in concepts if c.get("id") not in orphans]
+            for cat in categories:
+                if cat.get("id") in self.added_ids and isinstance(cat.get("memberIds"), list):
+                    cat["memberIds"] = [m for m in cat["memberIds"] if m not in orphans]
+            version["bcCategories"] = [c for c in categories
+                                       if not (c.get("id") in self.added_ids and c.get("id") not in self.sdr_ids
+                                               and not c.get("memberIds") and not c.get("childIds"))]
+            self.report["incomplete_removed"].append(
+                {"class": "BiomedicalConcept", "count": len(orphans), "reason": "used by no activity in the SDR schedule"})
 
     def _complete_study_cells(self) -> None:
         """Every arm x epoch of a design with arms needs a cell: epochs that only the SDR document
@@ -337,6 +433,8 @@ class Merger:
             "attributes_filled": len(self.report["filled"]), "conflicts": len(self.report["conflicts"]),
             "schedule_cells_skipped": len(self.report["skipped_schedule"]),
             "dangling_references_removed": len(self.report["dangling_removed"]),
+            "not_added_sdr_schedule": len(self.report["not_added"]),
+            "incomplete_removed": len(self.report["incomplete_removed"]),
             "by_class": by_class,
         }
 
@@ -387,6 +485,34 @@ def _separate_content_ids(doc: Any) -> Any:
     gather(doc)
     fix(doc)
     return doc
+
+
+def _amendment_is_placeholder(amendment: Dict[str, Any]) -> bool:
+    """An amendment that states nothing: no summary, changes or reasons (its number aside)."""
+    return all(is_empty(amendment.get(k)) for k in ("summary", "changes", "primaryReason", "secondaryReasons"))
+
+
+def _natural_key(value: Any) -> tuple:
+    """Order amendment numbers naturally: 2 < 10, a < b < e."""
+    return tuple((0, int(t), "") if t.isdigit() else (1, 0, t)
+                 for t in re.findall(r"\d+|[a-z]+", str(value or "").lower()))
+
+
+def _encounter_epochs(doc: Any) -> Dict[str, str]:
+    """encounter id -> epoch id, from the scheduled activity instances of every timeline."""
+    out: Dict[str, str] = {}
+
+    def walk(o):
+        if isinstance(o, dict):
+            if o.get("instanceType") == "ScheduledActivityInstance" and o.get("encounterId") and o.get("epochId"):
+                out.setdefault(o["encounterId"], o["epochId"])
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    walk(doc)
+    return out
 
 
 def _taken_value(container: Any, key: Any) -> Any:

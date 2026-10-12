@@ -222,6 +222,7 @@ def extract_objectives_endpoints(
                 logger.warning("Phase 2: No estimands extracted (non-fatal)")
 
         # Derive AnalysisPopulation entities from estimand population text
+        _drop_placeholder_endpoints(objectives_data)
         _resolve_analysis_populations(objectives_data)
         if objectives_data.analysis_populations:
             logger.info(
@@ -317,6 +318,23 @@ def _extract_with_retry(
             break  # Not truncated, just failed
     
     return None
+
+
+_PLACEHOLDER_RE = re.compile(r"^\s*(?:placeholder\w*|tbd|to be (?:defined|determined)|n/?a)(?:\W|$)", re.IGNORECASE)
+
+
+def _drop_placeholder_endpoints(data: ObjectivesData) -> None:
+    """Remove endpoints the model invented as fillers ("Placeholder31", "Placeholder - see ep_5 ...")
+    and their references from objectives; no protocol states such an endpoint."""
+    fillers = {e.id for e in data.endpoints
+               if _PLACEHOLDER_RE.match(e.text or "") or _PLACEHOLDER_RE.match(e.name or "")}
+    if not fillers:
+        return
+    logger.info(f"Dropping {len(fillers)} placeholder endpoint(s) not stated in the protocol")
+    data.endpoints = [e for e in data.endpoints if e.id not in fillers]
+    for obj in data.objectives:
+        if getattr(obj, "endpoint_ids", None):
+            obj.endpoint_ids = [i for i in obj.endpoint_ids if i not in fillers]
 
 
 def _parse_objectives_only(raw: Dict[str, Any]) -> Optional[ObjectivesData]:

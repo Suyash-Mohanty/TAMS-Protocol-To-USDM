@@ -1,0 +1,1685 @@
+{
+  "agent_id": "procedures_agent",
+  "timestamp": "2026-10-12T15:51:24.467621",
+  "confidence": 1.0,
+  "entity_count": 45,
+  "entities": [
+    {
+      "id": "proc_1",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_1",
+        "name": "Venipuncture / Blood Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "7a6a7a2f-25d8-4aa6-8e28-2f880e0572f6",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Blood Draw",
+        "description": "Collection of venous blood samples for laboratory analysis including hematology, clinical chemistry, lipid panel, HbA1c, pharmacokinetics, anti-drug antibodies, and other biomarkers"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_2",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_2",
+        "name": "Urinalysis",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "06b0ed8a-c064-4554-b331-2eccda91ac2f",
+          "code": "81001",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Urinalysis, by dip stick or tablet reagent for bilirubin, glucose, hemoglobin, ketones, leukocytes, nitrite, pH, protein, specific gravity, urobilinogen, any number of these constituents",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Urine Sample Collection",
+        "description": "Collection of urine samples for urinalysis and urinary albumin creatinine ratio (UACR) testing"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_3",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_3",
+        "name": "Urine Pregnancy Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "ce59cc22-d71e-45c1-bd10-557c441d40be",
+          "code": "81025",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Urine pregnancy test, by visual color comparison methods",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "UPT",
+        "description": "Local urine pregnancy test performed for individuals of childbearing potential (IOCBP) at specified visits; results must be available before first administration of study intervention"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_4",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_4",
+        "name": "Serum Pregnancy Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "a461568e-0dbf-4678-ae70-a0fe554a7c50",
+          "code": "84702",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Gonadotropin, chorionic (hCG); quantitative",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Serum Pregnancy Test",
+        "description": "Serum pregnancy test performed by central laboratory for individuals of childbearing potential (IOCBP) at screening; a second negative serum test required if initial test performed more than 30 days before first dose"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_5",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_5",
+        "name": "12-Lead Electrocardiogram",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "3ed33274-3208-4eb3-be35-9f3e2c10e3bd",
+          "code": "93000",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Electrocardiogram, routine ECG with at least 12 leads; with interpretation and report",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "ECG",
+        "description": "Central 12-lead ECG collected before blood sample collection for laboratory testing; performed at screening, randomization, and selected maintenance visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_6",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_6",
+        "name": "DXA Scan",
+        "procedureType": "Imaging Technique",
+        "code": {
+          "id": "671ca4d4-4379-41f7-822d-fa7aa7690cf5",
+          "code": "77080",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Dual-energy X-ray absorptiometry (DXA), bone density study, 1 or more sites",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Dual-Energy X-Ray Absorptiometry",
+        "description": "Dual-energy x-ray absorptiometry scan for body composition assessment; participants unable to undergo DXA due to physical limitations of the machine or implants/hardware are not excluded"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_7",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_7",
+        "name": "Fundus Photography",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "ff88d62b-15dd-42ef-911b-af5521e66157",
+          "code": "92250",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Fundus photography with interpretation and report",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Fundus Photography",
+        "description": "Fundus photography for diabetic retinopathy screening and evaluation; performed at screening for all participants; repeated every 6 months for participants with retinopathy at baseline and annually for those without retinopathy at baseline; evaluated by a qualified eye care professional"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_8",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_8",
+        "name": "Ophthalmological Assessment",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "f923dbe9-fd35-445a-8654-8f2184f2f737",
+          "code": "92004",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Ophthalmological services: medical examination and evaluation with initiation of diagnostic and treatment program; comprehensive, new patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Further Ophthalmological Assessment",
+        "description": "Further ophthalmological assessment performed as applicable in addition to fundus photography for diabetic retinopathy evaluation per Section 8.2.11"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_9",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_9",
+        "name": "Physical Examination",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "469c0e4f-1a57-48a5-946b-d47a2460d25c",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit for the evaluation and management of an established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Physical Exam",
+        "description": "Complete physical examination required at Visit 1 and Visit 19 (or early discontinuation); symptom-directed physical assessment may be conducted at other visits at investigator discretion"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_10",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_10",
+        "name": "Vital Signs Measurement",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "ef3920a5-c7f9-4001-bd9e-a2a2cca387de",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Vital signs monitoring including blood pressure and pulse rate",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Vital Signs",
+        "description": "Collection of 3 measures of sitting vital signs including blood pressure and pulse rate; performed before ECG and before blood sample collection for laboratory testing"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_11",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_11",
+        "name": "Height Measurement",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "b9e7eaf2-ce9e-470f-bb41-6aea91ed7b0d",
+          "code": "3008F",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Body mass index (BMI), documented",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Height",
+        "description": "Measurement of participant height per instructions in Section 10.7; collected at screening"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_12",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_12",
+        "name": "Weight Measurement",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "71e70ae3-bae5-40a6-a44d-5f09c409c770",
+          "code": "3008F",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Body mass index (BMI), documented",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Body Weight",
+        "description": "Measurement of participant body weight in fasting state per instructions in Section 10.7; collected at multiple visits throughout the study"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_13",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_13",
+        "name": "Waist Circumference Measurement",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "414ea959-ec46-413c-91ed-c484ff839310",
+          "code": "3008F",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Body mass index (BMI), documented",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Waist Circumference",
+        "description": "Measurement of waist circumference per instructions in Section 10.7; collected at randomization and multiple subsequent visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_14",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_14",
+        "name": "Self-Monitoring of Blood Glucose",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "4bb65bc4-ffc4-4696-a9ff-3900b3c24210",
+          "code": "82962",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Glucose, blood by glucose monitoring device(s) cleared by the FDA specifically for home use",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "SMBG",
+        "description": "Self-monitoring of blood glucose using a BG meter; participants required to collect two 7-point SMBGs on non-consecutive days within 2 weeks prior to the next visit; a 7-point SMBG consists of measurements before and 2 hours after each of 3 main meals within the same day and at bedtime; hypoglycemic events also recorded"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_15",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_15",
+        "name": "Continuous Blood Glucose Monitoring",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "e1d24318-52b8-4bce-bb69-0bf528fdfa8d",
+          "code": "95250",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Ambulatory continuous glucose monitoring of interstitial tissue fluid via a subcutaneous sensor for a minimum of 72 hours; sensor placement, hook-up, calibration of monitor, patient training, removal of sensor, and printout of recording",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "CGM",
+        "description": "Continuous blood glucose monitoring performed as part of a CGM substudy (Appendix 9); separate CGM substudy schedule of activities applies"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_16",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_16",
+        "name": "Hematology Laboratory Testing",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "2846dbf7-5f04-402f-a06c-286d753fca09",
+          "code": "85025",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Blood count; complete (CBC), automated (Hgb, Hct, RBC, WBC and platelet count) and automated differential WBC count",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Hematology",
+        "description": "Blood sample collection and analysis for hematology panel at specified visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_17",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_17",
+        "name": "Hemoglobin A1c Testing",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "73c80822-d2c8-41e1-8bee-ef00338e66d0",
+          "code": "83036",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Hemoglobin; glycosylated (A1C)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "HbA1c",
+        "description": "Blood sample collection and analysis for hemoglobin A1c at specified visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_18",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_18",
+        "name": "Clinical Chemistry Laboratory Testing",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "af860e48-b8f0-4f91-a930-c87f98f58e80",
+          "code": "80053",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Comprehensive metabolic panel",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Clinical Chemistry",
+        "description": "Blood sample collection and analysis for clinical chemistry panel including liver function tests, renal function, and other metabolic markers at specified visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_19",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_19",
+        "name": "Lipid Panel Testing",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "6db45273-d9df-4b72-8f7f-d96b99427e21",
+          "code": "80061",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Lipid panel",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Lipid Panel",
+        "description": "Blood sample collection and analysis for lipid panel including apolipoprotein B (ApoB) and apolipoprotein C3 (ApoC3) at specified visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_20",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_20",
+        "name": "Pharmacokinetic Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "601ed2c3-0e39-42cc-9fb7-13eb9135ae6c",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture for pharmacokinetic analysis",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "PK Sample Collection",
+        "description": "Blood sample collection for pharmacokinetic analysis at designated PK-only visits; the only procedure performed at PK-only visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_21",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_21",
+        "name": "Anti-Drug Antibody Testing",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "823ebd4a-10bd-4f64-bbab-df29136400fa",
+          "code": "86849",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Unlisted antibody procedure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "ADA Testing",
+        "description": "Blood sample collection and analysis for anti-drug antibodies at specified visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_22",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_22",
+        "name": "Subcutaneous Injection of Study Intervention",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "33e13b4c-e86d-4161-a63a-65c8da7b4bf1",
+          "code": "96372",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Therapeutic, prophylactic, or diagnostic injection; subcutaneous or intramuscular",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "SC Injection",
+        "description": "Self-administered subcutaneous injection of study intervention by participant; first injection observed by site personnel; weekly injections recorded in electronic diary"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_23",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_23",
+        "name": "Suicidal Ideation and Behavior Risk Monitoring",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "8c60647a-1f4b-454a-a9f1-bb6d779f8c41",
+          "code": "96127",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Brief emotional/behavioral assessment",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "C-SSRS Assessment",
+        "description": "Assessment of suicidal ideation and behavior using the Columbia-Suicide Severity Rating Scale (C-SSRS); Screening/Baseline Category Version at Visit 1; Since Last Assessed Clinical Categories Version at subsequent visits; adverse events collected before C-SSRS"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_24",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_24",
+        "name": "Depression Monitoring",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "b490c4a0-2291-4ac7-889c-9aafa119d4f7",
+          "code": "96127",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Brief emotional/behavioral assessment using standardized instrument",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "PHQ-9 Assessment",
+        "description": "Assessment of depression using the Patient Health Questionnaire-9 (PHQ-9) at specified visits; adverse events collected before PHQ-9 collection per Sections 8.2.7 and 8.2.7.1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_25",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_25",
+        "name": "Fatigue Assessment Scale",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "422fb8ef-d556-471e-9574-f71019360a8d",
+          "code": "96127",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Brief emotional/behavioral assessment using standardized instrument",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Fatigue Assessment",
+        "description": "Assessment of fatigue using a standardized fatigue assessment scale per Section 8.2.8"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_26",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_26",
+        "name": "Patient-Reported Outcome Assessments",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "94225981-b425-457b-bc43-14cbbfc2d023",
+          "code": "96160",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Administration of patient-focused health risk assessment instrument with scoring and documentation",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "PRO Assessments",
+        "description": "Electronic patient-reported outcome assessments including SF-36v2 (Short Form 36 Version 2 Health Survey, Acute Form), IWQOL-Lite-CT (Impact of Weight on Quality of Life-Lite Clinical Trials Version), EQ-5D-5L, PGIS Physical Function Weight, CoEQ (Control of Eating Questionnaire), and FNQ (Food Noise Questionnaire)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_27",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_27",
+        "name": "Hepatic Safety Monitoring",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "fd6b0c52-eef4-4e63-9518-ee14c80277d1",
+          "code": "80076",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Hepatic function panel",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Liver Chemistry Monitoring",
+        "description": "Hepatic safety monitoring including evaluation of liver chemistry tests; criteria for study drug interruption or discontinuation per Section 8.2.9; suggested actions and follow-up assessments per Appendix 6"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_28",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_28",
+        "name": "Diabetic Retinopathy Screening and Evaluation",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "34389d7d-ce34-4d72-9205-6fb60da1fe8a",
+          "code": "2022F",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Dilated macular or fundus exam performed, including documentation of the presence or absence of macular edema and level of diabetic retinopathy",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Retinopathy Screening",
+        "description": "Screening and evaluation for diabetic retinopathy per Section 8.2.11; includes fundus photography evaluated by a qualified eye care professional; baseline fundus photography must be evaluated prior to randomization"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_29",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_29",
+        "name": "Lifestyle Counseling",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "7b9f53d2-61c7-4973-ba44-02ebf8c21384",
+          "code": "97802",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Medical nutrition therapy; initial assessment and intervention, individual, face-to-face with the patient, each 15 minutes",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Lifestyle Counseling",
+        "description": "Lifestyle counseling provided at randomization and maintenance visits; may occur on a separate day from other visit procedures; may be delivered by telehealth; includes nutrition and physical activity guidance per Sections 5.3, 5.3.1, and 5.3.2"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_30",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_30",
+        "name": "Injection Training",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "6a2a7d3e-f180-4327-9276-84c960692914",
+          "code": "99071",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Educational supplies, e.g., books, tapes, provided by the physician for the patient's education at cost to physician",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Injection Training",
+        "description": "Training of participants on self-administration of subcutaneous study intervention injection at randomization visit; repeated as needed"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_31",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_31",
+        "name": "Diabetes Education and SMBG Training",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "0f3d1d8f-04b7-49e4-a09b-d2d113f21392",
+          "code": "98960",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Education and training for patient self-management by a qualified, nonphysician health care professional",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Diabetes Education",
+        "description": "Diabetes education including blood glucose meter dispensing and self-monitoring blood glucose (SMBG) training at Visit 2"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_32",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_32",
+        "name": "Genetics Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "6284dde8-ee27-4183-95ea-6633e1e47cf7",
+          "code": "81479",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Unlisted molecular pathology procedure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Genetics",
+        "description": "Genetic sample collection per Appendix 5"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_33",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_33",
+        "name": "High Sensitivity C-Reactive Protein Testing",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "373d99a9-3597-48f8-b29a-d0cd79e2d437",
+          "code": "86141",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "C-reactive protein; high sensitivity (hsCRP)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "hsCRP",
+        "description": "Blood sample collection and analysis for high sensitivity C-reactive protein (hsCRP) at specified visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_34",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_34",
+        "name": "Thyroid Stimulating Hormone Testing",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "f2f94f8e-768e-44d6-a179-95732af47e93",
+          "code": "84443",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Thyroid stimulating hormone (TSH)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "TSH",
+        "description": "Blood sample collection and analysis for thyroid stimulating hormone (TSH) at specified visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_35",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_35",
+        "name": "Follicle Stimulating Hormone Testing",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "6deda683-b443-40fa-91d8-5bc2f79b9e0e",
+          "code": "83001",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Gonadotropin; follicle stimulating hormone (FSH)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "FSH",
+        "description": "Blood sample collection and analysis for follicle stimulating hormone (FSH) at specified visits"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "proc_36",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_36",
+        "name": "eGFR Assessment",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "8581d304-82c1-4dd5-a18a-e78b5fc99ca4",
+          "code": "33914-3",
+          "codeSystem": "LOINC",
+          "codeSystemVersion": "",
+          "decode": "Glomerular filtration rate/1.73 sq M.predicted",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "eGFR",
+        "description": "Estimated glomerular filtration rate (eGFR) calculated using the CKD Epidemiology Collaboration (CKD-EPI) equation from clinical chemistry results"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "dev_1",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_1",
+        "name": "Electronic Diary Device",
+        "instanceType": "MedicalDevice",
+        "label": "Electronic Diary",
+        "description": "Electronic diary device provided to participants for recording hypoglycemic events, 7-point SMBG values, and weekly study medication injections; returned by participant at last visit",
+        "deviceType": {
+          "code": "Monitoring Device",
+          "codeSystem": "USDM",
+          "decode": "Monitoring Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "dev_2",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_2",
+        "name": "Blood Glucose Meter",
+        "instanceType": "MedicalDevice",
+        "label": "BG Meter",
+        "description": "Blood glucose meter dispensed to participants for self-monitoring of blood glucose (SMBG); used for 7-point SMBG measurements and hypoglycemia monitoring; dispensed with supplies as needed throughout the study",
+        "deviceType": {
+          "code": "Monitoring Device",
+          "codeSystem": "USDM",
+          "decode": "Monitoring Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "dev_3",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_3",
+        "name": "Continuous Glucose Monitor",
+        "instanceType": "MedicalDevice",
+        "label": "CGM",
+        "description": "Continuous glucose monitoring device used in the CGM substudy (Appendix 9) for interstitial tissue fluid glucose monitoring",
+        "deviceType": {
+          "code": "Monitoring Device",
+          "codeSystem": "USDM",
+          "decode": "Monitoring Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "dev_4",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_4",
+        "name": "DXA Machine",
+        "instanceType": "MedicalDevice",
+        "label": "DXA Scanner",
+        "description": "Dual-energy x-ray absorptiometry machine used for body composition scanning; participants with implants, hardware, or other foreign materials that may interfere with the scan per manufacturer specifications may be unable to undergo the procedure",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "dev_5",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_5",
+        "name": "12-Lead ECG Device",
+        "instanceType": "MedicalDevice",
+        "label": "ECG Machine",
+        "description": "Central 12-lead electrocardiogram device used for cardiac monitoring at specified visits",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "dev_6",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_6",
+        "name": "Fundus Camera",
+        "instanceType": "MedicalDevice",
+        "label": "Fundus Camera",
+        "description": "Fundus photography equipment used for diabetic retinopathy screening and evaluation; photographs evaluated by a qualified eye care professional",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "dev_7",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_7",
+        "name": "Autoinjector / Injection Device",
+        "instanceType": "MedicalDevice",
+        "label": "Study Intervention Injection Device",
+        "description": "Injection device used by participants for weekly self-administration of subcutaneous study intervention; ancillary supplies dispensed as needed; first injection observed by site personnel",
+        "deviceType": {
+          "code": "Drug Delivery Device",
+          "codeSystem": "USDM",
+          "decode": "Drug Delivery Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "dev_8",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_8",
+        "name": "Interactive Web Response System",
+        "instanceType": "MedicalDevice",
+        "label": "IWRS",
+        "description": "Interactive web response system used for participant registration, randomization to treatment, and dispensing of study intervention at each visit",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    },
+    {
+      "id": "bior_1",
+      "entity_type": "biospecimen_retention",
+      "data": {
+        "id": "bior_1",
+        "name": "Genetics Specimens",
+        "isRetained": true,
+        "instanceType": "BiospecimenRetention",
+        "description": "Genetic sample collection is referenced in Appendix 5 (Genetics), indicating specimens are collected and retained for genetic analysis. The protocol references genetics as a separate appendix topic, implying retention of genetic/DNA-containing specimens.",
+        "includesDNA": true
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        5,
+        7,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        23,
+        25,
+        26,
+        27,
+        34,
+        47
+      ]
+    }
+  ],
+  "procedures_summary": {
+    "procedure_count": 36,
+    "device_count": 8,
+    "ingredient_count": 0,
+    "strength_count": 0,
+    "biospecimen_retention_count": 1
+  }
+}

@@ -80,6 +80,11 @@ def keys_of(item: Dict[str, Any], cls: str, idmap: Dict[str, str]) -> List[str]:
         return [str(idmap.get(cid, cid))] if cid else []
     if cls == "Masking":
         return []
+    if cls == "Timing":
+        # the instances it connects plus its value: SDR timings carry no meaningful names
+        frm, to = item.get("relativeFromScheduledInstanceId"), item.get("relativeToScheduledInstanceId")
+        sig = f"t|{idmap.get(frm, frm)}|{idmap.get(to, to)}|{norm(item.get('value'))}" if frm else ""
+        return [k for k in (sig, norm(item.get("name"))) if k]
     keys = [norm(item.get(f)) for f in _KEY_FIELDS if item.get(f)]
     if cls in ("Encounter", "StudyEpoch"):
         keys += [_visit_sig(item.get(f)) for f in ("name", "label") if item.get(f)]

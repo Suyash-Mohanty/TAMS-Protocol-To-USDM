@@ -48,7 +48,13 @@ _TITLE_HEADING_RE = re.compile(r"^\s*\d{1,2}\.?\s+((?:[A-Z][\w/&,()-]*|and|or|of
 _ELIGIBILITY_WORDS_RE = re.compile(r"inclusion|exclusion|eligib|criteri", re.IGNORECASE)
 
 
+# A criterion starts with a verb ("39. Have ...", "12. Are ..."); a title-style heading doesn't
+_CRITERION_VERB_RE = re.compile(r"^\s*\d{1,3}\.?\s+(?:Have|Has|Had|Are|Is|Be|Were|Was|Must|Can|Will|Should|Do|Does)\b")
+
+
 def _is_section_heading(line: str) -> bool:
+    if _CRITERION_VERB_RE.match(line):
+        return False
     return bool(_MULTILEVEL_HEADING_RE.match(line) or _BARE_NUMBER_RE.match(line) or _TITLE_HEADING_RE.match(line))
 
 
@@ -91,9 +97,67 @@ def _criteria_continuation_pages(doc, last_page: int, max_extra: int = 5) -> Lis
     return pages
 
 
+# A numbered section heading for the criteria: "5.1." + "Inclusion Criteria" (or on one line)
+_CRITERIA_HEADING_RE = re.compile(
+    r"^[ \t]*(\d{1,2}(?:\.\d{1,2})+)\.?[ \t]*(?:\n[ \t]*)?(inclusion|exclusion)[ \t]+criteria[ \t]*$",
+    re.IGNORECASE | re.MULTILINE)
+
+
+def _eligibility_section_pages(doc, total_pages: int, toc_pattern, amendment_pattern) -> List[int]:
+    """0-indexed pages of the body's numbered Inclusion/Exclusion Criteria sections.
+
+    Starts at the first numbered "Inclusion Criteria" heading and runs through the first
+    numbered "Exclusion Criteria" heading of the same chapter, then follows the exclusion
+    list onto later pages until the next non-eligibility section heading. TOC pages and
+    amendment change tables are ignored. Empty when no such headings exist.
+    """
+    headings = []  # (page, kind, chapter)
+    for page_num in range(total_pages):
+        text = doc[page_num].get_text()
+        if len(re.findall(r"\.{5,}", text)) >= 3 or amendment_pattern.search(text):
+            continue
+        for m in _CRITERIA_HEADING_RE.finditer(text):
+            headings.append((page_num, m.group(2).lower(), m.group(1).split(".")[0]))
+    inclusion = next((h for h in headings if h[1] == "inclusion"), None)
+    if inclusion is None:
+        return []
+    exclusion = next((h for h in headings if h[1] == "exclusion" and h[0] >= inclusion[0]
+                      and h[2] == inclusion[2]), None)
+    last = exclusion[0] if exclusion else inclusion[0]
+    pages = list(range(inclusion[0], last + 1))
+    # The exclusion list (tables inside it included) runs until the next numbered section that
+    # isn't about eligibility ("5.3. Lifestyle Considerations", or the next chapter); the page
+    # holding that heading is included because the list ends on it
+    chapter = int(inclusion[2])
+    last_lines = doc[last].get_text().splitlines()
+    start = next((i for i, l in enumerate(last_lines) if re.search(r"(inclusion|exclusion)\s+criteria", l, re.IGNORECASE)), 0)
+    if not _ends_eligibility(last_lines[start + 1:], chapter):
+        for page_num in range(last + 1, min(total_pages, last + 1 + 20)):
+            pages.append(page_num)
+            if _ends_eligibility(doc[page_num].get_text().splitlines(), chapter):
+                break
+    return sorted(set(pages))
+
+
+_SECTION_NUMBER_RE = re.compile(r"^\s*(\d{1,2})((?:\.\d{1,2})+)\.?(?:\s+\S.*)?\s*$")
+
+
+def _ends_eligibility(lines: List[str], chapter: int) -> bool:
+    """True when the lines hold a multi-level section heading of this chapter or the next
+    ("5.3.", "6.1. Study Intervention") that isn't about eligibility."""
+    for i, line in enumerate(lines):
+        m = _SECTION_NUMBER_RE.match(line)
+        if not m or int(m.group(1)) not in (chapter, chapter + 1):
+            continue
+        context = line + " " + (lines[i + 1] if i + 1 < len(lines) else "")
+        if not _ELIGIBILITY_WORDS_RE.search(context):
+            return True
+    return False
+
+
 def find_eligibility_pages(
     pdf_path: str,
-    max_pages_to_scan: int = 50,
+    max_pages_to_scan: Optional[int] = None,
 ) -> List[int]:
     """
     Find pages containing eligibility criteria using heuristics.
@@ -103,7 +167,8 @@ def find_eligibility_pages(
     
     Args:
         pdf_path: Path to the protocol PDF
-        max_pages_to_scan: Maximum pages to scan from start
+        max_pages_to_scan: Maximum pages to scan from start (default: the whole document;
+            the eligibility section can sit beyond page 50 in long protocols)
         
     Returns:
         List of 0-indexed page numbers likely containing eligibility criteria
@@ -130,20 +195,33 @@ def find_eligibility_pages(
     
     content_pattern = re.compile('|'.join(content_patterns), re.IGNORECASE | re.DOTALL)
     toc_pattern = re.compile('|'.join(toc_indicators), re.IGNORECASE)
+    # Amendment summary-of-changes tables quote criteria ("Inclusion Criterion 4: added ...");
+    # they are change logs, not the eligibility section
+    amendment_table_pattern = re.compile(
+        r'summary\s+of\s+changes|description\s+of\s+(?:the\s+)?change', re.IGNORECASE)
     
     eligibility_pages = []
     
     try:
         doc = fitz.open(pdf_path)
-        total_pages = min(len(doc), max_pages_to_scan)
-        
+        total_pages = len(doc) if not max_pages_to_scan else min(len(doc), max_pages_to_scan)
+
+        # The protocol body's own numbered "Inclusion Criteria" / "Exclusion Criteria" sections
+        # are the source; everything else that mentions criteria (synopsis, amendment tables,
+        # appendices) is only used when the body sections can't be found
+        anchored = _eligibility_section_pages(doc, total_pages, toc_pattern, amendment_table_pattern)
+        if anchored:
+            doc.close()
+            logger.info(f"Eligibility section pages: {[p + 1 for p in anchored]}")
+            return anchored
+
         for page_num in range(total_pages):
             page = doc[page_num]
             text = page.get_text()
             text_lower = text.lower()
             
-            # Skip TOC pages
-            if toc_pattern.search(text):
+            # Skip TOC pages and amendment change tables
+            if toc_pattern.search(text) or amendment_table_pattern.search(text):
                 continue
             
             # Look for actual eligibility content

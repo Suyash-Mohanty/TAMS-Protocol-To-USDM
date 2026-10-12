@@ -71,7 +71,9 @@ Extract ALL objectives and their associated endpoints. Output must conform to US
 4. Extract exact text verbatim from protocol
 5. Classify correctly by level
 6. Be complete - extract ALL objectives and endpoints
-7. Return ONLY valid JSON - no markdown, no explanations
+7. Each objective's `endpointIds` lists exactly the endpoints the protocol's objectives/endpoints table places beside that objective - an endpoint belongs to one objective unless the protocol repeats it
+8. Only endpoints stated in the protocol - never filler or placeholder entries (e.g. "Placeholder", "see ep_5 through ep_29")
+9. Return ONLY valid JSON - no markdown, no explanations
 
 Now extract objectives and endpoints from the protocol:
 """

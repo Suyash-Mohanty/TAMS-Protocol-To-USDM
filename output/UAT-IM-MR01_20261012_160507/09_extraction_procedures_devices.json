@@ -1,0 +1,1903 @@
+{
+  "agent_id": "procedures_agent",
+  "timestamp": "2026-10-12T16:08:23.614988",
+  "confidence": 1.0,
+  "entity_count": 52,
+  "entities": [
+    {
+      "id": "proc_1",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_1",
+        "name": "Venipuncture / Blood Draw",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "8c6588ee-0786-40bd-bfbd-f9389590d5e6",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Blood Sample Collection",
+        "description": "Collection of venous blood samples for laboratory analysis, including clinical safety laboratory tests, exploratory biomarkers, and genetics samples"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_2",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_2",
+        "name": "Colonoscopy with Biopsy",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "d8e8e083-8814-457e-b115-4416c01c36ee",
+          "code": "45378",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Colonoscopy, flexible; diagnostic",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Colonoscopy",
+        "description": "Colonoscopy with biopsy collection performed at screening and Week 52 (and early discontinuation if applicable). Sigmoidoscopy is allowed but colonoscopy is preferred. Biopsies obtained for histological assessment and exploratory biomarker analysis of colon/rectum tissue."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_3",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_3",
+        "name": "Sigmoidoscopy with Biopsy",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "c2d04630-7471-4b29-8e27-ea8a517c8cd8",
+          "code": "45330",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Sigmoidoscopy, flexible; diagnostic",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Sigmoidoscopy",
+        "description": "Flexible sigmoidoscopy with biopsy as an alternative to colonoscopy; biopsies obtained for histological assessment and exploratory biomarker analysis"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_4",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_4",
+        "name": "12-Lead Electrocardiogram",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "72d0c744-95d3-4b27-9997-eaa9db210e78",
+          "code": "93000",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Electrocardiogram, routine ECG with at least 12 leads",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "ECG",
+        "description": "Single 12-lead ECG performed locally at screening. May be repeated at investigator's discretion at any visit. Collected before blood samples for laboratory testing."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_5",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_5",
+        "name": "Chest X-Ray",
+        "procedureType": "Imaging Technique",
+        "code": {
+          "id": "835bc8b4-0f8c-43e8-8829-41e96e73ae98",
+          "code": "71046",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Radiologic examination, chest; 2 views",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Chest Radiograph",
+        "description": "Posterior-anterior (and if needed, lateral view) chest x-ray performed locally. Required if skin TB test, QuantiFERON-TB Gold, or T-SPOT.TB is positive or other TB indications are present. Not required if performed within 6 months before Visit 1."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_6",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_6",
+        "name": "Chest CT Scan",
+        "procedureType": "Imaging Technique",
+        "code": {
+          "id": "eb52486c-2bd6-49fe-a0bd-fb7eb5485e9b",
+          "code": "71250",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Computed tomography, thorax; without contrast material",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Chest CT",
+        "description": "Chest computed tomography scan; may be used instead of chest x-ray for TB evaluation if performed within the same time window"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_7",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_7",
+        "name": "DXA Scan, Whole Body",
+        "procedureType": "Imaging Technique",
+        "code": {
+          "id": "c75f8369-66ee-44b2-990b-a3cd4740da0f",
+          "code": "77080",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Dual-energy X-ray absorptiometry (DXA), bone density study",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Dual-Energy X-Ray Absorptiometry",
+        "description": "Whole body DXA scan performed as an exploratory efficacy assessment. Recommended at baseline between Visits 1 and 2 and no later than Visit 3. Participants must fast for at least 8 hours (no water within 2 hours) before each scan."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_8",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_8",
+        "name": "Intravenous Infusion of Mirikizumab",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "c92c37f0-d80d-4c6f-8ba4-15e7db2c0d33",
+          "code": "96365",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Intravenous infusion, for therapy, prophylaxis, or diagnosis; initial, up to 1 hour",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "IV Infusion",
+        "description": "Intravenous infusion of mirikizumab 300 mg at Weeks 0, 4, and 8 during induction. Administered only by authorized study personnel at a maximum rate of 10 mg/min by IV infusion over no less than 30 minutes."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_9",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_9",
+        "name": "Subcutaneous Injection of Mirikizumab",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "78be9c97-09bd-43e1-a2fb-2caf1769d4aa",
+          "code": "96372",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Therapeutic, prophylactic, or diagnostic injection; subcutaneous or intramuscular",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "SC Injection - Mirikizumab",
+        "description": "Subcutaneous injection of mirikizumab 200 mg Q4W (given as 2 consecutive injections of 100 mg each) starting at Week 12 during maintenance. Administered onsite or offsite by participant or caregiver after training."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_10",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_10",
+        "name": "Subcutaneous Injection of Tirzepatide",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "c04e4d50-e6a3-4db7-bd6e-4daa2e91e490",
+          "code": "96372",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Therapeutic, prophylactic, or diagnostic injection; subcutaneous or intramuscular",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "SC Injection - Tirzepatide",
+        "description": "Subcutaneous injection of tirzepatide administered weekly (QW) with dose escalation from 2.5 mg up to 15 mg. Initial administration onsite; subsequent doses may be self-administered offsite by participant or caregiver after training."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_11",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_11",
+        "name": "Vital Signs Measurement",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "f09cce8a-7396-4938-8ae8-178f4285956a",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit; evaluation and management",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Vital Signs",
+        "description": "Measurement of pulse rate, blood pressure, respiratory rate, and body temperature. Measured after participant has been sitting for at least 5 minutes. Performed at screening and multiple study visits."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_12",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_12",
+        "name": "Complete Physical Examination",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "9c9b8f87-92c5-47ac-91f2-0b46b5463a0c",
+          "code": "99205",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, new patient; comprehensive",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Complete Physical Exam",
+        "description": "Complete physical examination excluding pelvic, rectal, and breast examinations unless clinically indicated. Includes examination of heart, lungs, abdomen, neurological system, thyroid, and visual examination of skin. Assessment for TB risk factors and signs/symptoms of active TB including peripheral lymph nodes."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_13",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_13",
+        "name": "Symptom-Directed Physical Assessment",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "95340bc7-10e0-4d80-a333-0a7dc54f329a",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient; low complexity",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Symptom-Directed Exam",
+        "description": "Symptom-directed physical evaluation performed as indicated based on participant status and standard of care. Includes examination of heart, lungs, abdomen, neurological system, thyroid, and visual examination of skin. At least every third month, includes assessment for TB risk factors and peripheral lymph nodes."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_14",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_14",
+        "name": "Height Measurement",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "c3140062-e16c-46b7-a8e7-628a6e28e56c",
+          "code": "3008F",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Body mass index (BMI), documented",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Height",
+        "description": "Measurement of participant height at screening per standardized protocol (Section 10.9)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_15",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_15",
+        "name": "Weight Measurement",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "07ecf2ee-f308-4e17-96f3-a8def826785e",
+          "code": "3008F",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Body mass index (BMI), documented",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Body Weight",
+        "description": "Measurement of participant body weight at multiple visits throughout the study per standardized protocol (Section 10.9)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_16",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_16",
+        "name": "Waist Circumference Measurement",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "fed6da88-e90b-4b00-832a-c776725e4bd8",
+          "code": "3008F",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Body mass index (BMI), documented",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Waist Circumference",
+        "description": "Measurement of waist circumference at multiple visits throughout the study per standardized protocol (Section 10.9)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_17",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_17",
+        "name": "Fecal Calprotectin Test",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "d6414f3a-8307-4b78-a9d2-6f69ac88d6f9",
+          "code": "86849",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Unlisted immunology procedure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Fecal Calprotectin",
+        "description": "Stool sample collection for fecal calprotectin measurement as a biomarker of intestinal inflammation at Weeks 0, 4, 12, and 24"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_18",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_18",
+        "name": "Stool Culture",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "27d42d36-4177-46b1-a1d8-3c1ec0dfb5b3",
+          "code": "87046",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Culture, bacterial; stool, aerobic, with isolation and presumptive identification of isolates",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Stool Culture",
+        "description": "Stool sample collection for culture at screening and Week 12. Additional stool culture testing allowed throughout the study at investigator's discretion, including testing for ova and parasites."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_19",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_19",
+        "name": "Urine Pregnancy Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "88383500-3886-47ca-b122-062491f73c0d",
+          "code": "81025",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Urine pregnancy test, by visual color comparison methods",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Pregnancy Test",
+        "description": "Pregnancy testing performed as part of safety assessments per Section 8.2.6"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_20",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_20",
+        "name": "Clinical Safety Laboratory Tests",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "49aa1606-0a29-4669-80d3-6be0f6255c6d",
+          "code": "80053",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Comprehensive metabolic panel",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Clinical Lab Tests",
+        "description": "Blood and urine samples collected for clinical safety laboratory testing including standard hematology, chemistry, and urinalysis panels per Appendix 2"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_21",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_21",
+        "name": "Exploratory Biomarker Sample Collection - Blood",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "4fd3638a-b954-49bf-a18b-ab52597fdddf",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Exploratory Biomarkers (Blood)",
+        "description": "Blood samples collected and stored for exploratory biomarker analysis at Weeks 0, 4, 12, and 24"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_22",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_22",
+        "name": "Exploratory Biomarker Sample Collection - Stool Supernatant",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "18855328-3d64-4250-a2ad-44dfe58f2efc",
+          "code": "89220",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Sputum obtaining specimen, aerosol induced technique",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Exploratory Biomarkers (Stool)",
+        "description": "Stool supernatant samples collected and stored for exploratory biomarker analysis at Weeks 0, 4, 12, and 24"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_23",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_23",
+        "name": "Exploratory Biomarker Sample Collection - Colon/Rectum Tissue",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "a6b23278-167c-46e3-8708-88d01fa76c1c",
+          "code": "88305",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Level IV - Surgical pathology, gross and microscopic examination",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Exploratory Biomarkers (Tissue)",
+        "description": "Colonic/rectal biopsy tissue samples collected and stored for exploratory biomarker analysis; obtained during endoscopic procedures at screening and Week 24/52"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_24",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_24",
+        "name": "Genetics Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "2583cf82-3053-4543-aa93-63b5bfd73a7c",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Genetics Sample",
+        "description": "Blood sample collected for genetics analysis; can be obtained at or after Visit 2 (Week 0)"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_25",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_25",
+        "name": "Tuberculosis Skin Test / QuantiFERON-TB Gold / T-SPOT.TB",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "fe2c1f80-cd43-4eaf-8981-f19f1d1b24e9",
+          "code": "86480",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Tuberculosis test, cell mediated immunity antigen response measurement",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "TB Testing",
+        "description": "TB screening via skin test, QuantiFERON-TB Gold test, or T-SPOT.TB test. A positive result triggers chest x-ray evaluation."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_26",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_26",
+        "name": "Suicidal Ideation and Behavior Risk Monitoring (C-SSRS)",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "4c1a8efb-9f98-431d-8eba-454fa6daa737",
+          "code": "96127",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Brief emotional/behavioral assessment",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "C-SSRS Assessment",
+        "description": "Columbia-Suicide Severity Rating Scale (C-SSRS) administered at screening (Screening/Baseline Category Version) and at subsequent visits (Since Last Assessed Category Version) to monitor suicidal ideation and behavior risk"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_27",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_27",
+        "name": "Depression Monitoring (QIDS-SR16)",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "59e31f66-45a6-495c-8956-7a414503819b",
+          "code": "96127",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Brief emotional/behavioral assessment",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Depression Assessment",
+        "description": "Quick Inventory for Depressive Symptomatology – Self-Report 16 items (QIDS-SR16) administered at screening, Week 12, and Week 24 to monitor depression"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_28",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_28",
+        "name": "Extraintestinal Manifestations Assessment",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "b16af7b3-7e48-47d9-b5bb-d3c434912736",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "EIM Assessment",
+        "description": "Assessment of extraintestinal manifestations (EIMs) of ulcerative colitis at screening and Week 24/52 per Section 8.2.1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_29",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_29",
+        "name": "Modified Mayo Score (mMS) Review",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "4814e894-74ca-4781-a282-e0f480b1d562",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "mMS Assessment",
+        "description": "Clinician-administered electronic assessment of modified Mayo Score for ulcerative colitis disease activity at Week 0 and other timepoints per Section 8.1.1.1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_30",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_30",
+        "name": "Laboratory Sample Collection at Systemic Hypersensitivity Event",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "dbfd141b-0e40-4083-baab-c156eb7f83e4",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Hypersensitivity Lab Samples",
+        "description": "Blood and other laboratory samples obtained at the time of a systemic hypersensitivity event per Appendix 2, Section 10.2.1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_31",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_31",
+        "name": "Nutritional Monitoring Panel",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "01e4472e-20e6-4ccb-9050-d17453425b09",
+          "code": "80051",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Electrolyte panel",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Nutritional Assessment Lab",
+        "description": "Laboratory samples obtained in case of suspected malnutrition per Appendix 2, Section 10.2.2"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_32",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_32",
+        "name": "Lifestyle Counseling",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "c710ace2-4731-40be-ba61-0188d1611042",
+          "code": "97802",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Medical nutrition therapy; initial assessment and intervention, individual",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Diet, Exercise, and Lifestyle Counseling",
+        "description": "Structured counseling on diet, exercise, and lifestyle goals provided at each visit during induction and maintenance periods per Sections 5.3.1 and 5.3.2"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_1",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_1",
+        "name": "Prefilled Syringe",
+        "instanceType": "MedicalDevice",
+        "label": "PFS - Mirikizumab SC",
+        "description": "Prefilled syringe used for subcutaneous administration of mirikizumab 100 mg during maintenance phase (2 consecutive injections of 100 mg each for a total of 200 mg Q4W)",
+        "deviceType": {
+          "code": "Drug Delivery Device",
+          "codeSystem": "USDM",
+          "decode": "Drug Delivery Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_2",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_2",
+        "name": "Prefilled Syringe",
+        "instanceType": "MedicalDevice",
+        "label": "PFS - Tirzepatide SC",
+        "description": "Prefilled syringe used for subcutaneous self-administration of tirzepatide at escalating weekly doses (2.5 mg, 5 mg, 7.5 mg, 10 mg, 12.5 mg, 15 mg)",
+        "deviceType": {
+          "code": "Drug Delivery Device",
+          "codeSystem": "USDM",
+          "decode": "Drug Delivery Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_3",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_3",
+        "name": "IV Infusion System",
+        "instanceType": "MedicalDevice",
+        "label": "IV Infusion - Mirikizumab",
+        "description": "Intravenous infusion system used to administer mirikizumab 300 mg at a maximum rate of 10 mg/min over no less than 30 minutes during induction (Weeks 0, 4, 8)",
+        "deviceType": {
+          "code": "Drug Delivery Device",
+          "codeSystem": "USDM",
+          "decode": "Drug Delivery Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_4",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_4",
+        "name": "12-Lead ECG Device",
+        "instanceType": "MedicalDevice",
+        "label": "ECG Machine",
+        "description": "Local 12-lead electrocardiogram device used for cardiac safety monitoring at screening and as needed throughout the study",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_5",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_5",
+        "name": "DXA Scanner",
+        "instanceType": "MedicalDevice",
+        "label": "Dual-Energy X-Ray Absorptiometry Scanner",
+        "description": "Whole body DXA scanner used for exploratory body composition assessment; participants must fast at least 8 hours prior to scan",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_6",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_6",
+        "name": "Electronic Diary (eDiary)",
+        "instanceType": "MedicalDevice",
+        "label": "eDiary",
+        "description": "Electronic diary used by participants to record daily symptom data including bowel movement urgency (Urgency NRS) and other patient-reported outcomes required for mMS assessment and colonoscopy scheduling compliance",
+        "deviceType": {
+          "code": "Monitoring Device",
+          "codeSystem": "USDM",
+          "decode": "Monitoring Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_7",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_7",
+        "name": "Interactive Web-Response System (IWRS)",
+        "instanceType": "MedicalDevice",
+        "label": "IWRS",
+        "description": "Interactive web-response system used for randomization, study intervention dispensing, and visit registration throughout the study",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "ing_1",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_1",
+        "name": "Mirikizumab",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "ing_2",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_2",
+        "name": "Tirzepatide",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_2"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_1",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_1",
+        "instanceType": "Strength",
+        "value": 300,
+        "unit": "mg",
+        "numerator": {
+          "value": 300,
+          "unit": "mg"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_2",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_2",
+        "instanceType": "Strength",
+        "value": 200,
+        "unit": "mg",
+        "numerator": {
+          "value": 200,
+          "unit": "mg"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_3",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_3",
+        "instanceType": "Strength",
+        "value": 100,
+        "unit": "mg",
+        "numerator": {
+          "value": 100,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "injection"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_4",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_4",
+        "instanceType": "Strength",
+        "value": 2.5,
+        "unit": "mg",
+        "numerator": {
+          "value": 2.5,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "injection"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_5",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_5",
+        "instanceType": "Strength",
+        "value": 5,
+        "unit": "mg",
+        "numerator": {
+          "value": 5,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "injection"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_6",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_6",
+        "instanceType": "Strength",
+        "value": 7.5,
+        "unit": "mg",
+        "numerator": {
+          "value": 7.5,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "injection"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_7",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_7",
+        "instanceType": "Strength",
+        "value": 10,
+        "unit": "mg",
+        "numerator": {
+          "value": 10,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "injection"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_8",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_8",
+        "instanceType": "Strength",
+        "value": 12.5,
+        "unit": "mg",
+        "numerator": {
+          "value": 12.5,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "injection"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_9",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_9",
+        "instanceType": "Strength",
+        "value": 15,
+        "unit": "mg",
+        "numerator": {
+          "value": 15,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "injection"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "bior_1",
+      "entity_type": "biospecimen_retention",
+      "data": {
+        "id": "bior_1",
+        "name": "Stored Exploratory Biomarker Samples",
+        "isRetained": true,
+        "instanceType": "BiospecimenRetention",
+        "description": "Exploratory biomarker samples (blood, stool supernatant, and colon/rectum tissue obtained from endoscopic biopsy) are collected and stored for future analysis. Sample retention details are described in Section 10.1.12.",
+        "includesDNA": false
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "bior_2",
+      "entity_type": "biospecimen_retention",
+      "data": {
+        "id": "bior_2",
+        "name": "Genetics Sample",
+        "isRetained": true,
+        "instanceType": "BiospecimenRetention",
+        "description": "A genetics sample (blood) is collected at or after Visit 2 and stored. Genetics-related details are described in Appendix 13 (Section 10.13).",
+        "includesDNA": true
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        6,
+        8,
+        9,
+        10,
+        13,
+        17,
+        18,
+        19,
+        20,
+        21,
+        25,
+        27,
+        34,
+        35
+      ]
+    }
+  ],
+  "procedures_summary": {
+    "procedure_count": 32,
+    "device_count": 7,
+    "ingredient_count": 2,
+    "strength_count": 9,
+    "biospecimen_retention_count": 2
+  }
+}
