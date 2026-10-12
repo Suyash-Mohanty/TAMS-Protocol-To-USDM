@@ -52,6 +52,7 @@ class Merger:
     def run(self) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         self._merge_dict(self.merged, self.ours, "$", None)
         self._finalise()
+        self._complete_study_cells()
         self._verify()
         self._summarise()
         return self.merged, self.report
@@ -257,6 +258,35 @@ class Merger:
                 ref = self.idmap.get(ref, ref)
                 if ref in self.added_ids and ref not in s_list:
                     s_list.append(ref)
+
+    def _complete_study_cells(self) -> None:
+        """Every arm x epoch of a design with arms needs a cell: epochs that only the SDR document
+        lists (e.g. unscheduled visit, early discontinuation, follow-up) get one cell per arm, all
+        sharing one generic element named after the epoch."""
+        for version in self.merged.get("study", {}).get("versions", []):
+            for design in version.get("studyDesigns", []):
+                arms, epochs = design.get("arms") or [], design.get("epochs") or []
+                if not arms or not epochs:
+                    continue
+                cells = design.setdefault("studyCells", [])
+                covered = {(c.get("armId"), c.get("epochId")) for c in cells}
+                elements = design.setdefault("elements", [])
+                for epoch in epochs:
+                    missing = [a for a in arms if (a.get("id"), epoch.get("id")) not in covered]
+                    if not missing:
+                        continue
+                    element = next((e for e in elements if e.get("name") == epoch.get("name")), None)
+                    if element is None:
+                        element = {"id": str(uuid.uuid4()), "name": epoch.get("name") or "Element",
+                                   "instanceType": "StudyElement"}
+                        elements.append(element)
+                        self.report["added"].append({"class": "StudyElement", "item": element["name"],
+                                                     "path": "generic element for an SDR epoch"})
+                    for arm in missing:
+                        cells.append({"id": str(uuid.uuid4()), "armId": arm["id"], "epochId": epoch["id"],
+                                      "elementIds": [element["id"]], "instanceType": "StudyCell"})
+                        self.report["added"].append({"class": "StudyCell", "item": f"{arm.get('name')} x {epoch.get('name')}",
+                                                     "path": "arm x epoch gap"})
 
     def _drop_dangling(self, node: Any, final_ids: Set[str]) -> None:
         if isinstance(node, dict):

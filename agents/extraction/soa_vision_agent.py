@@ -40,7 +40,7 @@ class SoAVisionAgent(BaseExtractionAgent):
 
     def extract(self, pdf_path: str, protocol_text: str, model: str,
                 output_dir: str, task: AgentTask) -> Optional[Dict[str, Any]]:
-        from extraction.soa_finder import find_soa_pages, extract_soa_images
+        from extraction.soa_finder import MAX_SOA_PAGES, find_soa_pages, extract_soa_images
         from extraction.header_analyzer import analyze_soa_headers
 
         soa_pages = task.input_data.get("soa_pages")
@@ -53,10 +53,10 @@ class SoAVisionAgent(BaseExtractionAgent):
                 self._logger.warning("No SoA pages detected")
                 return None
 
-        # Cap pages to keep vision API fast (increased to 10 to handle multi-page SOA tables)
-        if len(soa_pages) > 10:
-            self._logger.info(f"Capping SoA pages from {len(soa_pages)} to 10 for vision")
-            soa_pages = soa_pages[:10]
+        # Cap pages to keep vision API fast (long protocols carry several multi-page SoA tables)
+        if len(soa_pages) > MAX_SOA_PAGES:
+            self._logger.info(f"Capping SoA pages from {len(soa_pages)} to {MAX_SOA_PAGES} for vision")
+            soa_pages = soa_pages[:MAX_SOA_PAGES]
 
         # Step 2: Extract images if not provided
         if not image_paths:

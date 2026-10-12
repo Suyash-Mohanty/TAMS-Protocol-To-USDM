@@ -42,6 +42,12 @@ HEADER_ANALYSIS_PROMPT = """You are analyzing a Schedule of Activities (SoA) tab
 Your task is to extract ONLY the STRUCTURE of the table - the column headers and row group headers.
 Do NOT extract the activity details or tick marks - only the structural elements.
 
+MULTIPLE TABLES: the images may hold SEVERAL SoA tables that continue one another - for example
+"SoA Table 1" (screening and induction visits) followed by "SoA Table 2" (maintenance visits, early
+discontinuation, unscheduled and follow-up visits), each with its own visit columns. Pages that repeat the
+same header belong to the same table and count once. Report the UNION: every epoch and every visit column
+of EVERY table, in protocol order (earlier tables first). Never return only one of the tables.
+
 EXTRACT:
 1. **Epochs** - Study phases from the TOP-LEVEL merged header row
    - These span multiple columns (e.g., "Screening", "Treatment", "Follow-up")

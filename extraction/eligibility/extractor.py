@@ -37,7 +37,8 @@ class EligibilityExtractionResult:
 
 
 # A numbered criterion line: "[34] ...", "34. ...", "12) ...", "E12 ...", "a) ..."
-_CRITERION_LINE_RE = re.compile(r"^\s*(?:\[\d{1,3}\]|\(?\d{1,3}[.)]|[IE]\d{1,3}[.:)]?|[a-z][.)])\s+\S")
+# A bracketed number may stand alone on its line, with the text on the next ("[1016]" / "Have been ...").
+_CRITERION_LINE_RE = re.compile(r"^\s*(?:\[\d{1,4}\]\s*$|(?:\[\d{1,4}\]|\(?\d{1,3}[.)]|[IE]\d{1,3}[.:)]?|[a-z][.)])\s+\S)")
 # Section headings: a multi-level number ("6.3.", "6.3.1 Meals ..."), a bare
 # number ("7."), or a short title-case heading ("7. Study Interventions").
 # Single-level "N. Sentence ..." lines are criteria, not headings.

@@ -3267,6 +3267,21 @@ def _remap_study_cells(design: Dict[str, Any], epochs: List[Dict[str, Any]]) -> 
             merged[key] = cell
     cells = list(merged.values())
 
+    # Arms differ only in what they are given, i.e. in treatment epochs. In an epoch whose
+    # type is known to be something else (screening, follow-up, washout...) the arm-specific
+    # elements built from "arm x epoch" carry nothing distinct, so those cells share the
+    # epoch's one generic element instead.
+    def _is_non_treatment(ep: Dict[str, Any]) -> bool:
+        etype = ep.get("type")
+        if not isinstance(etype, dict) or not (etype.get("code") or etype.get("decode")):
+            return False        # type unknown: keep the arm-specific elements
+        return not (etype.get("code") in ("C49656", "C101526") or "treatment" in str(etype.get("decode", "")).lower())
+
+    non_treatment = {ep["id"] for ep in epochs if _is_non_treatment(ep)}
+    for cell in cells:
+        if cell.get("epochId") in non_treatment:
+            cell["elementIds"] = []
+
     # One cell per arm x epoch; fill gaps (and empty cells) with a generic
     # per-epoch element, created only when needed
     generic: Dict[str, str] = {}

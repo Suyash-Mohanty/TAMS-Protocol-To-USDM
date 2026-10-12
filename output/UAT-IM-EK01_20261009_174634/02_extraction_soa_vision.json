@@ -1,0 +1,1274 @@
+{
+  "agent_id": "soa_vision_agent",
+  "timestamp": "2026-10-09T17:47:57.885095",
+  "confidence": 0.8,
+  "entity_count": 19,
+  "entities": [
+    {
+      "id": "soa_header_structure",
+      "entity_type": "header_structure",
+      "data": {
+        "source": "vision",
+        "page_numbers": [
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          25,
+          26,
+          27,
+          42,
+          43
+        ],
+        "image_count": 20,
+        "structure": {
+          "columnHierarchy": {
+            "epochs": [
+              {
+                "id": "epoch_1",
+                "name": "Screening",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "55af0a3e-4d88-4fbd-8845-2a60db6fee10",
+                  "code": "C98779",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Screening Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_2",
+                "name": "Study Period 1",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "dc699af6-1feb-4bdb-b5e6-2b1187549d77",
+                  "code": "C98780",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Treatment Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_3",
+                "name": "Study Period 2",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "88180077-c702-4089-9dda-c20d9e09db53",
+                  "code": "C98780",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Treatment Epoch",
+                  "instanceType": "Code"
+                }
+              },
+              {
+                "id": "epoch_4",
+                "name": "Unscheduled Visits, Early Discontinuation, and Safety Follow-Up",
+                "instanceType": "StudyEpoch",
+                "type": {
+                  "id": "872f63af-c32c-45c0-8f47-74f6ec83c053",
+                  "code": "C98781",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up Epoch",
+                  "instanceType": "Code"
+                }
+              }
+            ],
+            "encounters": [
+              {
+                "id": "enc_1",
+                "name": "Visit 1 (Screening)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "9937b84d-2038-43dd-b848-18e4ddd2c683",
+                  "code": "C48262",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Screening",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_1"
+              },
+              {
+                "id": "enc_2",
+                "name": "Visit 2 (Week 0, Baseline/Randomization)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "bec24a68-b29c-486e-94f7-e002909d8369",
+                  "code": "C82517",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Baseline",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_2"
+              },
+              {
+                "id": "enc_3",
+                "name": "Visit 3 (Week 2)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "c6ee2831-7dae-4a78-97a3-466795eed8f1",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_2"
+              },
+              {
+                "id": "enc_4",
+                "name": "Visit 4 (Week 4)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "a247f8ec-65ef-4e58-9928-f107bf079bc6",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_2"
+              },
+              {
+                "id": "enc_5",
+                "name": "Visit 5 (Week 8)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "2ecfb562-9c92-4059-b4bb-36cc83ba319b",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_2"
+              },
+              {
+                "id": "enc_6",
+                "name": "Visit 6 (Week 12, Primary Endpoint)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "db856df3-7d13-4f9e-baef-2d9d762ee40c",
+                  "code": "C126070",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "End of Study",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_2"
+              },
+              {
+                "id": "enc_7",
+                "name": "Visit 7 (Study Period 2, Week 0)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "f8fa8bfa-f20c-464a-b264-56b1ef4837a4",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_3"
+              },
+              {
+                "id": "enc_8",
+                "name": "Visit 9 (Study Period 2, Week 8)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "30059899-77b4-4412-bb47-b6bf910cc545",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_3"
+              },
+              {
+                "id": "enc_9",
+                "name": "Visit 11 (Study Period 2, Week 16)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "54f4f79e-d6f3-432c-81c3-97f44daa68ad",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_3"
+              },
+              {
+                "id": "enc_10",
+                "name": "Visit 12 (Study Period 2, Week 28)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "e7c98c1d-053e-4210-8fc3-101a4a0e4967",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_3"
+              },
+              {
+                "id": "enc_11",
+                "name": "Visit 13 (Study Period 2, Week 40)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "29f45e57-0ade-45e7-a315-57d82d56e84e",
+                  "code": "C99156",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Scheduled Visit",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_3"
+              },
+              {
+                "id": "enc_12",
+                "name": "Unscheduled Visit (UV)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "682f48d3-d37a-46ff-bcd9-816878e1c146",
+                  "code": "C99157",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Unscheduled",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_4"
+              },
+              {
+                "id": "enc_13",
+                "name": "Early Discontinuation (ED)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "48de0698-25cd-4842-827a-d41abaaf6dd6",
+                  "code": "C49631",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Early Termination",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_4"
+              },
+              {
+                "id": "enc_14",
+                "name": "Safety Follow-Up (Visit 801)",
+                "instanceType": "Encounter",
+                "type": {
+                  "id": "c3a4a2d0-4553-4161-adf4-16226868dc8d",
+                  "code": "C99158",
+                  "codeSystem": "http://www.cdisc.org",
+                  "codeSystemVersion": "2024-09-27",
+                  "decode": "Follow-up",
+                  "instanceType": "Code"
+                },
+                "epochId": "epoch_4"
+              }
+            ],
+            "plannedTimepoints": [
+              {
+                "id": "pt_1",
+                "visit": "Day -42",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_1",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_2",
+                "visit": "Week 0",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_2",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_3",
+                "visit": "Week 2",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±3",
+                "encounterId": "enc_3",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_4",
+                "visit": "Week 4",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±3",
+                "encounterId": "enc_4",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_5",
+                "visit": "Week 8",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±3",
+                "encounterId": "enc_5",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_6",
+                "visit": "Week 12",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±7",
+                "encounterId": "enc_6",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_7",
+                "visit": "Week 0",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_7",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_8",
+                "visit": "Week 8",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±3",
+                "encounterId": "enc_8",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_9",
+                "visit": "Week 16",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±7",
+                "encounterId": "enc_9",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_10",
+                "visit": "Week 28",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±7",
+                "encounterId": "enc_10",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_11",
+                "visit": "Week 40",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±7",
+                "encounterId": "enc_11",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_12",
+                "visit": "-",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_12",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_13",
+                "visit": "-",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": null,
+                "encounterId": "enc_13",
+                "instanceType": "Timing"
+              },
+              {
+                "id": "pt_14",
+                "visit": "† The timing for the safety follow-up will occur 8 weeks after the last dose of study drug",
+                "epoch": "",
+                "epochId": "",
+                "day": "",
+                "window": "±7",
+                "encounterId": "enc_14",
+                "instanceType": "Timing"
+              }
+            ]
+          },
+          "rowGroups": [
+            {
+              "id": "grp_1",
+              "name": "Physical evaluation",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Height",
+                "Weight",
+                "Complete physical examination",
+                "Symptom-directed physical assessment",
+                "Vital signs",
+                "ECG, 12-lead (single, local)",
+                "ECG",
+                "X-ray of chest",
+                "Fistula evaluation",
+                "Crohn's Disease activity index (CDAI)",
+                "CDAI",
+                "DXA scan"
+              ]
+            },
+            {
+              "id": "grp_2",
+              "name": "Clinician-administered assessments (electronic)",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Review CDAI",
+                "C-SSRS screening/baseline (Categories version)"
+              ]
+            },
+            {
+              "id": "grp_3",
+              "name": "Patient-reported outcomes (electronic)",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "QIDS-SR16"
+              ]
+            },
+            {
+              "id": "grp_4",
+              "name": "Participant daily diary (electronic)",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Daily eDiary training",
+                "Dispense daily eDiary",
+                "Review daily eDiary",
+                "Return daily eDiary"
+              ]
+            },
+            {
+              "id": "grp_5",
+              "name": "Participant education",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Lifestyle counseling (vitamin D/calcium counseling)",
+                "Contraceptive counseling",
+                "Contraceptive counselling"
+              ]
+            },
+            {
+              "id": "grp_6",
+              "name": "Laboratory tests and sample collections",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Hematology",
+                "Clinical chemistry",
+                "Coagulation",
+                "Lipids (fasting)",
+                "Serum pregnancy",
+                "Urine pregnancy (local)",
+                "Follicle-stimulating hormone (FSH)",
+                "Parathyroid hormone (PTH)",
+                "Urinalysis",
+                "HIV testing",
+                "Hepatitis B virus (HBV) screening tests",
+                "HBV DNA",
+                "Hepatitis C virus (HCV) screening tests",
+                "Tuberculosis (TB) Test",
+                "C-reactive protein, high sensitivity (hsCRP)",
+                "Synthetic glucocorticoid testing",
+                "Serum 25-hydroxy vitamin D",
+                "eGFR (CKD-EPI) calculated using creatinine",
+                "Urinary albumin/creatinine ratio (UACR)",
+                "IgG, IgA, IgM (quantitative immunoglobulins)",
+                "Calcium (urine)",
+                "P1NP",
+                "CTX-1",
+                "Bone-specific ALP",
+                "FGF19",
+                "7alphaC4 bile acid",
+                "Pharmacokinetics (PK) samples for LY4395089"
+              ]
+            },
+            {
+              "id": "grp_7",
+              "name": "Stool tests and sample collections",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Dispense stool collection kit",
+                "C. difficile testing",
+                "Stool culture",
+                "Fecal calprotectin"
+              ]
+            },
+            {
+              "id": "grp_8",
+              "name": "Stored samples",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Genetics sample",
+                "Exploratory biomarker, blood",
+                "Exploratory biomarkers, stool supernatant",
+                "Exploratory biomarkers, colonic tissue"
+              ]
+            },
+            {
+              "id": "grp_9",
+              "name": "Endoscopy",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Pre-endoscopy instructions and reminders",
+                "Endoscopy with biopsy"
+              ]
+            },
+            {
+              "id": "grp_10",
+              "name": "Randomization and dosing related activities",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Register visit with IWRS",
+                "Randomization or assignment to ISA via IWRS",
+                "Randomization to study intervention via IWRS",
+                "Administer study intervention - mirikizumab IV",
+                "Dispense LY4395089",
+                "Return and accountability of LY4395089",
+                "Dispense ancillary supplies to participant",
+                "Assess study intervention compliance",
+                "Injection training - mirikizumab SC",
+                "Dispense study intervention - mirikizumab (for at-home dosing)",
+                "Participant returns study intervention and ancillary supplies"
+              ]
+            },
+            {
+              "id": "grp_11",
+              "name": "Participant dosing diary for Mirikizumab (paper)",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Dosing diary training",
+                "Dispense dosing diary",
+                "Dosing diary return",
+                "Dosing diary review"
+              ]
+            },
+            {
+              "id": "grp_12",
+              "name": "Visit registration activities",
+              "description": null,
+              "childIds": [],
+              "instanceType": "Activity",
+              "activityNames": [
+                "Register visit with IWRS",
+                "Participant returns study intervention and ancillary supplies",
+                "Assess study intervention compliance"
+              ]
+            }
+          ],
+          "footnotes": [
+            "a. Screening for the master protocol and the relevant ISA(s) will occur at the same time. If participants are eligible for more than 1 open ISA, they will be randomly assigned to an ISA and then to the treatment group using the IWRS.",
+            "b. As stated in Section 4.1 of the IIBD master protocol, responders at Week 12 of Study Period 1 will be defined as endoscopic response or clinical response (by CDAI). For detailed definitions, see Section 8.1 of the IIBD master protocol.",
+            "c. As stated in the SoA, the timing for the safety follow-up will be 8 weeks after the last dose.",
+            "† Baseline/randomization (SoA Table 1, Visit 2)",
+            "†† Primary endpoint (SoA Table 1, Visit 6)",
+            "† V7 will be conducted on same day as V6 (SoA Table 2)",
+            "† The timing for the safety follow-up will occur 8 weeks after the last dose of study drug (SoA Table 3)",
+            "Abbreviations: Ab = antibody; AE = adverse event; AESI = adverse event of special interest; AFAB = assigned female at birth; anti-HBc = hepatitis B core antibody; ALP = alkaline phosphatase; CD = Crohn's disease; CDAI = Crohn's Disease Activity Index; CRF = case report form; C-SSRS = Columbia Suicide-Severity Rating Scale; CT = computed tomography; CTX-1 = C-terminal telopeptide; DXA = dual-energy x-ray absorptiometry; ECG = electrocardiogram; ED = early discontinuation; eDiary = electronic diary; eGFR (CKD-EPI) = estimated glomerular filtration rate using the CKD-EPI equations; FGF19 = fibroblast growth factor 19; FSH = follicle-stimulating hormone; HBsAg = hepatitis B surface antigen; HBV = hepatitis B virus; HCV = hepatitis C virus; HIV = human immunodeficiency virus; hsCRP = C-reactive protein, high sensitivity; ICF = informed consent form; Ig = immunoglobulin; IOCBP = individuals of childbearing potential; IV = intravenous; IWRS = interactive web-response system; LY = study intervention other than an active comparator; P1NP = procollagen type I N-propeptide; PK = pharmacokinetics; PPD = purified-protein derivative; PTH = parathyroid hormone; QIDS-SR16 = Quick Inventory for Depressive Symptomatology - Self Report 16 items; SC = subcutaneous; SoA = schedule of activities; TB = tuberculosis; TST = tuberculin skin test; UACR = urinary albumin/creatinine ratio; UV = unscheduled visit; V = visit.",
+            "Abbreviations (schema): CDAI = Crohn's Disease Activity Index; FU = follow-up; FXR = LY4395089; IV = intravenous; IWRS = interactive web-response system; N = number of participants; NR = nonresponder; R = responder; SC = subcutaneous."
+          ]
+        }
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "epoch_v_1",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Screening",
+        "source": "vision",
+        "order": 0
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "epoch_v_2",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Study Period 1",
+        "source": "vision",
+        "order": 1
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "epoch_v_3",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Study Period 2",
+        "source": "vision",
+        "order": 2
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "epoch_v_4",
+      "entity_type": "epoch",
+      "data": {
+        "name": "Unscheduled Visits, Early Discontinuation, and Safety Follow-Up",
+        "source": "vision",
+        "order": 3
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_1",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 1 (Screening)",
+        "epochId": "epoch_1",
+        "source": "vision",
+        "order": 0
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_2",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 2 (Week 0, Baseline/Randomization)",
+        "epochId": "epoch_2",
+        "source": "vision",
+        "order": 1
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_3",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 3 (Week 2)",
+        "epochId": "epoch_2",
+        "source": "vision",
+        "order": 2
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_4",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 4 (Week 4)",
+        "epochId": "epoch_2",
+        "source": "vision",
+        "order": 3
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_5",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 5 (Week 8)",
+        "epochId": "epoch_2",
+        "source": "vision",
+        "order": 4
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_6",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 6 (Week 12, Primary Endpoint)",
+        "epochId": "epoch_2",
+        "source": "vision",
+        "order": 5
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_7",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 7 (Study Period 2, Week 0)",
+        "epochId": "epoch_3",
+        "source": "vision",
+        "order": 6
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_8",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 9 (Study Period 2, Week 8)",
+        "epochId": "epoch_3",
+        "source": "vision",
+        "order": 7
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_9",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 11 (Study Period 2, Week 16)",
+        "epochId": "epoch_3",
+        "source": "vision",
+        "order": 8
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_10",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 12 (Study Period 2, Week 28)",
+        "epochId": "epoch_3",
+        "source": "vision",
+        "order": 9
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_11",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Visit 13 (Study Period 2, Week 40)",
+        "epochId": "epoch_3",
+        "source": "vision",
+        "order": 10
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_12",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Unscheduled Visit (UV)",
+        "epochId": "epoch_4",
+        "source": "vision",
+        "order": 11
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_13",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Early Discontinuation (ED)",
+        "epochId": "epoch_4",
+        "source": "vision",
+        "order": 12
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    },
+    {
+      "id": "encounter_v_14",
+      "entity_type": "encounter",
+      "data": {
+        "name": "Safety Follow-Up (Visit 801)",
+        "epochId": "epoch_4",
+        "source": "vision",
+        "order": 13
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        25,
+        26,
+        27,
+        42,
+        43
+      ]
+    }
+  ],
+  "vision_summary": {
+    "soa_pages": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      25,
+      26,
+      27,
+      42,
+      43
+    ],
+    "image_count": 20,
+    "epoch_count": 4,
+    "encounter_count": 14
+  }
+}

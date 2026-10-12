@@ -1,0 +1,2247 @@
+{
+  "agent_id": "procedures_agent",
+  "timestamp": "2026-10-09T14:16:32.420898",
+  "confidence": 1.0,
+  "entity_count": 60,
+  "entities": [
+    {
+      "id": "proc_1",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_1",
+        "name": "Complete Physical Examination",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "aa9d282c-b3ac-40b3-8446-d842cfb0343a",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Complete Physical Exam",
+        "description": "Full physical examination excluding pelvic, rectal, and breast examinations unless clinically indicated. Includes assessment for TB risk factors and signs/symptoms of active TB including peripheral lymph nodes."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_2",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_2",
+        "name": "Symptom-Directed Physical Assessment",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "ec3fba05-0857-4a3f-9eef-84ae0971cf36",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Symptom-Directed Exam",
+        "description": "Includes examination of eyes, throat, heart, lungs, abdomen, and visual examination of the skin. Includes assessment for TB risk factors and signs/symptoms of active TB including peripheral lymph nodes."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_3",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_3",
+        "name": "Vital Signs Measurement",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "17478340-f2af-414f-acd3-abc6afb1a751",
+          "code": "99211",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, minimal",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Vital Signs",
+        "description": "Measurement of pulse rate, blood pressure, respiratory rate, and body temperature."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_4",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_4",
+        "name": "12-Lead Electrocardiogram",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "f862fdc8-b1de-40f2-9833-c1843d1351bb",
+          "code": "93000",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Electrocardiogram, routine ECG with at least 12 leads",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "ECG 12-Lead",
+        "description": "Single, local 12-lead electrocardiogram performed at screening, Week 2, and Week 12 of Study Period 1, and at early discontinuation if prior to Week 12."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_5",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_5",
+        "name": "Chest X-Ray",
+        "procedureType": "Imaging Technique",
+        "code": {
+          "id": "0261ccd4-ac8c-4a85-94d5-4c90f8aca4db",
+          "code": "71046",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Radiologic examination, chest; 2 views",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Chest X-Ray",
+        "description": "Posterior-anterior view chest x-ray and lateral view if needed, performed locally, interpreted and reported by a radiologist or pulmonologist. Used for TB evaluation. A chest CT scan can be used instead."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_6",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_6",
+        "name": "Chest CT Scan",
+        "procedureType": "Imaging Technique",
+        "code": {
+          "id": "bb53e23d-dee5-435e-baa1-2e13df80cc40",
+          "code": "71250",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Computed tomography, thorax; without contrast material",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Chest CT",
+        "description": "Computed tomography of the chest, used as an alternative to chest x-ray for TB evaluation within the same time window."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_7",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_7",
+        "name": "Dual-Energy X-Ray Absorptiometry Scan",
+        "procedureType": "Imaging Technique",
+        "code": {
+          "id": "ae30d705-43f4-4c90-8ffc-09350df970ca",
+          "code": "77080",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Dual-energy X-ray absorptiometry (DXA), bone density study, 1 or more sites",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "DXA Scan",
+        "description": "DXA scan performed for bone density assessment. Radiation exposure (effective dose) of approximately 5 μSv or 0.005 mSv. Performed at unscheduled visits and early discontinuation if during Study Period 1."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_8",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_8",
+        "name": "Endoscopy with Biopsy",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "da779f5e-6e5e-49b9-8019-9d308d75900a",
+          "code": "44389",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Colonoscopy through stoma; with biopsy, single or multiple",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Endoscopy with Biopsy",
+        "description": "Endoscopy performed on all participants during screening within 21 days before randomization and at Week 12 of Study Period 1. A second endoscopy is allowed if inadequate preparation or equipment issues. Colonic tissue biopsies obtained for exploratory biomarkers."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_9",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_9",
+        "name": "Venipuncture / Blood Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "2f87391c-0052-4446-a4a7-457f8803c135",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Blood Draw",
+        "description": "Collection of venous blood samples for hematology, clinical chemistry, coagulation, lipids, serum pregnancy, FSH, PTH, serum 25-hydroxy vitamin D, P1NP, CTX-1, bone-specific ALP, HBV DNA, HCV, HIV, pharmacokinetics, pharmacodynamics, immunogenicity, and exploratory biomarker assessments."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_10",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_10",
+        "name": "Urine Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "00c9b550-394e-48c7-a5b4-eb491ad9f029",
+          "code": "81003",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Urinalysis, by dip stick or tablet reagent",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Urine Sample Collection",
+        "description": "Collection of urine samples for urinalysis and urine pregnancy testing."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_11",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_11",
+        "name": "Stool Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "293abd1a-07ef-4ce6-8447-c29bfcdb838d",
+          "code": "89220",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Sputum obtaining specimen, aerosol induced technique",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Stool Collection",
+        "description": "Collection of stool samples for fecal calprotectin testing, C. difficile testing, stool culture, ova and parasites testing, and exploratory biomarker stool supernatant collection."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_12",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_12",
+        "name": "Tuberculosis Skin Test (TST/PPD)",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "6e57c67b-0b48-4bd3-915a-06909db07907",
+          "code": "86580",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Skin test, tuberculosis, intradermal",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "TB Skin Test",
+        "description": "Tuberculin skin test (purified protein derivative). Participants return 48 to 72 hours after placement to have results read. Must be read by a trained medical professional."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_13",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_13",
+        "name": "Hematology Laboratory Tests",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "67b9e587-55ee-4275-adb3-78dd11d12bbb",
+          "code": "85025",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Blood count; complete (CBC), automated (Hgb, Hct, RBC, WBC and platelet count) and automated differential WBC count",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Hematology",
+        "description": "Clinical safety laboratory hematology tests performed at multiple visits throughout the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_14",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_14",
+        "name": "Clinical Chemistry Laboratory Tests",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "b86e7f1f-4210-4f38-ad78-3a18f13aae70",
+          "code": "80053",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Comprehensive metabolic panel",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Clinical Chemistry",
+        "description": "Clinical safety laboratory chemistry tests performed at multiple visits throughout the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_15",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_15",
+        "name": "Coagulation Tests",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "94ee3f4e-63d1-42bc-9506-b0212d1d2761",
+          "code": "85610",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Prothrombin time",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Coagulation",
+        "description": "Coagulation laboratory tests performed at screening."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_16",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_16",
+        "name": "Fasting Lipid Panel",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "456e2862-ecfc-465e-8ea4-d3a1d023578a",
+          "code": "80061",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Lipid panel",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Lipids (Fasting)",
+        "description": "Fasting lipid panel performed at baseline (Week 0) and Week 12 of Study Period 1."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_17",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_17",
+        "name": "Serum Pregnancy Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "07855ba7-6f24-4a2d-afbd-5e9586802828",
+          "code": "84702",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Gonadotropin, chorionic (hCG); quantitative",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Serum Pregnancy Test",
+        "description": "Serum pregnancy test for individuals of childbearing potential (IOCBP) at screening."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_18",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_18",
+        "name": "Urine Pregnancy Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "c240da01-9ad1-4096-b695-3781da81dbb6",
+          "code": "81025",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Urine pregnancy test, by visual color comparison methods",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Urine Pregnancy Test",
+        "description": "Urine pregnancy test for IOCBP; negative test required prior to dosing at marked visits. In Study Period 1, done on site only. In Study Period 2, can be done on-site or at home."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_19",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_19",
+        "name": "Follicle-Stimulating Hormone Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "fdfdce16-9f58-405f-b4a0-03d0e2791bf4",
+          "code": "83001",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Follicle stimulating hormone (FSH)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "FSH Test",
+        "description": "Optional FSH test to confirm postmenopausal status in individuals assigned female at birth (AFAB)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_20",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_20",
+        "name": "HIV Testing",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "0b82a65d-8d4f-401f-b2df-5f9969ae70f4",
+          "code": "86703",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Antibody; HIV-1 and HIV-2, single result",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "HIV Test",
+        "description": "HIV testing performed at screening."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_21",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_21",
+        "name": "Hepatitis B Virus Screening",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "955aebc3-585c-49c2-a8f5-cf14b35d0698",
+          "code": "87340",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Infectious agent antigen detection by immunoassay technique, hepatitis B surface antigen (HBsAg)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "HBV Screening",
+        "description": "Hepatitis B virus screening including HBsAg and anti-HBc. If HBsAg is negative and anti-HBc is positive, further testing for HBV DNA is required."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_22",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_22",
+        "name": "Hepatitis B Virus DNA Testing",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "fe56b580-86a0-44fb-b662-512fb3a429ec",
+          "code": "87517",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Infectious agent detection by nucleic acid (DNA or RNA); Hepatitis B virus, quantitative",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "HBV DNA Test",
+        "description": "HBV DNA testing for participants who are anti-HBc positive at screening, performed at multiple visits throughout the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_23",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_23",
+        "name": "Hepatitis C Virus Screening",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "c69d354e-facc-4058-8d32-474696850b1a",
+          "code": "86803",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Hepatitis C antibody",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "HCV Screening",
+        "description": "Hepatitis C virus antibody screening. If HCV Ab test is positive, perform HCV RNA test."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_24",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_24",
+        "name": "Urinalysis",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "43ef67c0-a0ff-4b79-ac34-8f1437652e43",
+          "code": "81001",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Urinalysis, by dip stick or tablet reagent for bilirubin, glucose, hemoglobin, ketones, leukocytes, nitrite, pH, protein, specific gravity, and urobilinogen; with microscopy",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Urinalysis",
+        "description": "Urinalysis performed at screening."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_25",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_25",
+        "name": "C-Reactive Protein (High Sensitivity) Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "ef95be5d-d169-41d9-9113-3015453d24a1",
+          "code": "86141",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "C-reactive protein; high sensitivity (hsCRP)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "hsCRP",
+        "description": "High sensitivity C-reactive protein blood test performed at multiple visits in Study Period 2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_26",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_26",
+        "name": "Parathyroid Hormone Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "3d13b3d9-c89c-4c2b-9df4-160fd53ec3a7",
+          "code": "83970",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Parathormone (parathyroid hormone)",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "PTH",
+        "description": "Parathyroid hormone blood test performed at baseline and Week 12 of Study Period 1, and at Week 40 of Study Period 2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_27",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_27",
+        "name": "Serum 25-Hydroxy Vitamin D Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "86db6849-23cc-42a0-a88e-4b6b6024099a",
+          "code": "82306",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Vitamin D; 25 hydroxy, includes fraction(s), if performed",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Vitamin D Test",
+        "description": "Serum 25-hydroxy vitamin D test performed at Week 40 of Study Period 2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_28",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_28",
+        "name": "Procollagen Type I N-Propeptide Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "16164eff-0e52-49f3-92e3-2417ef22bfa9",
+          "code": "86849",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Unlisted immunology procedure",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "P1NP",
+        "description": "P1NP bone formation marker blood test performed at Week 40 of Study Period 2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_29",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_29",
+        "name": "C-Terminal Telopeptide Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "55cd3979-740c-4d10-8888-de3e61206888",
+          "code": "82523",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collagen cross links, any method",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "CTX-1",
+        "description": "CTX-1 bone resorption marker blood test performed at Week 40 of Study Period 2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_30",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_30",
+        "name": "Bone-Specific Alkaline Phosphatase Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "dd296d81-16eb-4a20-8e8a-6ade6758e9d0",
+          "code": "83519",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Immunoassay for analyte other than antibody or infectious agent antigen, quantitative",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Bone-Specific ALP",
+        "description": "Bone-specific alkaline phosphatase blood test performed at Week 40 of Study Period 2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_31",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_31",
+        "name": "Fecal Calprotectin Test",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "a29f94bb-7962-42f9-9a4c-f6bf4b2f7d80",
+          "code": "83993",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Calprotectin, fecal",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Fecal Calprotectin",
+        "description": "Stool test for fecal calprotectin performed at multiple visits. Stool supernatant from the same sample is also used for exploratory biomarkers."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_32",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_32",
+        "name": "Clostridium difficile Testing",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "60cf5f0a-bb8f-42b1-9c11-ef414ac45ee4",
+          "code": "87493",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Infectious agent detection by nucleic acid (DNA or RNA); Clostridium difficile, toxin gene(s), amplified probe technique",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "C. difficile Test",
+        "description": "Stool test for C. difficile performed at Week 16 of Study Period 2. Additional testing allowed throughout the study at investigator's discretion."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_33",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_33",
+        "name": "Stool Culture",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "8eef45bd-436f-42b6-84bc-7cf19e6e3155",
+          "code": "87046",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Culture, bacterial; stool, aerobic, with isolation and presumptive identification of isolates",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Stool Culture",
+        "description": "Stool culture performed at Week 16 of Study Period 2. Additional testing allowed throughout the study at investigator's discretion. Other local stool testing (e.g., ova and parasites) allowed at investigator's discretion."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_34",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_34",
+        "name": "Genetics Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "76a0c34c-cb61-42d2-b551-d1f42f058505",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Genetics Sample",
+        "description": "Blood sample collected for genetics analysis. Collected at or after Visit 2 (Week 0) if country regulations allow."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_35",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_35",
+        "name": "Exploratory Biomarker Blood Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "b64f000a-ccf5-49cb-b3a9-c6d5df75bafa",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Exploratory Biomarker Blood",
+        "description": "Blood samples collected for exploratory biomarker analysis at multiple visits in Study Period 1 and Study Period 2."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_36",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_36",
+        "name": "Exploratory Biomarker Stool Supernatant Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "4665f63e-341b-4a66-88ae-752a4046b9d3",
+          "code": "89220",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Sputum obtaining specimen, aerosol induced technique",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Exploratory Biomarker Stool",
+        "description": "Stool supernatant collected from the same stool sample used for fecal calprotectin testing for exploratory biomarker analysis."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_37",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_37",
+        "name": "Exploratory Biomarker Colonic Tissue Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "ba9f0724-10ec-47e6-b303-6b500d5fb5d0",
+          "code": "44389",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Colonoscopy through stoma; with biopsy, single or multiple",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Colonic Tissue Biopsy",
+        "description": "Colonic tissue samples obtained from endoscopic biopsy at screening and Week 12 of Study Period 1 for exploratory biomarker analysis."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_38",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_38",
+        "name": "Mirikizumab Intravenous Infusion",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "be4d3c69-17ad-489d-90b0-f38c11a1c658",
+          "code": "96413",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Chemotherapy administration, intravenous infusion technique; up to 1 hour, single or initial substance/drug",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Mirikizumab IV Infusion",
+        "description": "Intravenous administration of mirikizumab performed on-site at Weeks 0, 4, and 8 of Study Period 1."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_39",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_39",
+        "name": "Mirikizumab Subcutaneous Injection",
+        "procedureType": "Therapeutic Procedure",
+        "code": {
+          "id": "a0763da5-0d69-4add-ba61-09e70152b921",
+          "code": "96372",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Therapeutic, prophylactic, or diagnostic injection; subcutaneous or intramuscular",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Mirikizumab SC Injection",
+        "description": "Subcutaneous administration of mirikizumab starting at Week 0 of Study Period 2 for responders. Initial administration on-site; subsequent doses can be self-administered off-site by participant or caregiver after training."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_40",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_40",
+        "name": "Crohn's Disease Activity Index Assessment",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "1ff7c4d9-595a-4df2-b3a9-e63204dee193",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "CDAI Assessment",
+        "description": "Assessment of Crohn's Disease Activity Index. Patient-reported items recorded daily via eDiary; clinician-reported items recorded at specified site visits."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_41",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_41",
+        "name": "Fistula Evaluation",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "af1b0e05-bcf0-4e50-b410-3216642ecf96",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Fistula Evaluation",
+        "description": "Evaluation for existing perianal fistulas (if present at baseline) and for any newly developed fistulas, performed at multiple visits in Study Period 1."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_42",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_42",
+        "name": "Depression and Suicidal Ideation and Behavior Risk Monitoring",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "b7aaafc4-839c-47fd-a2c8-4df68ca31ba1",
+          "code": "96127",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Brief emotional/behavioral assessment",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Depression/Suicidality Monitoring",
+        "description": "Monitoring for depression and suicidal ideation and behavior risk using Columbia Suicide-Severity Rating Scale (C-SSRS) and Quick Inventory for Depressive Symptomatology - Self Report 16 items (QIDS-SR16)."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_43",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_43",
+        "name": "Pharmacokinetic Sample Collection",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "b32943ce-b22e-48e7-b4d3-0a29f9b43d3a",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "PK Sample Collection",
+        "description": "Blood samples collected for pharmacokinetic analysis of LY4395089 and mirikizumab."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_44",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_44",
+        "name": "Immunogenicity Assessment",
+        "procedureType": "Biospecimen Collection",
+        "code": {
+          "id": "53d028e9-afcc-4d35-afe0-617343b44e75",
+          "code": "36415",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Collection of venous blood by venipuncture",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Immunogenicity",
+        "description": "Blood samples collected for immunogenicity assessments (anti-drug antibody testing) for LY4395089 and mirikizumab."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_45",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_45",
+        "name": "Injection/Infusion Site Reaction Assessment",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "710d57a4-50b0-4e70-a9d2-2635dff8c1ae",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "ISR Assessment",
+        "description": "Monitoring and assessment of injection and infusion site reactions."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_46",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_46",
+        "name": "Hypersensitivity Reaction Assessment",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "eaaa538d-2008-4d51-b7e4-f0786320c516",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Hypersensitivity Assessment",
+        "description": "Assessment and monitoring for hypersensitivity reactions. Laboratory samples to be obtained at the time of systemic hypersensitivity reaction."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_47",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_47",
+        "name": "Hepatic Safety Monitoring",
+        "procedureType": "Monitoring",
+        "code": {
+          "id": "deaab846-2ea8-41d1-a303-92c338aff1d7",
+          "code": "80076",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Hepatic function panel",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Hepatic Safety Monitoring",
+        "description": "Hepatic safety monitoring, evaluation, and criteria for study drug interruption or discontinuation."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_48",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_48",
+        "name": "Height Measurement",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "2341c9a6-395d-4168-bba6-5151d55358dd",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Height",
+        "description": "Height measurement performed at screening."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_49",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_49",
+        "name": "Weight Measurement",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "63375747-9ff0-48b1-ad0e-8b5d731a7b7b",
+          "code": "99213",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Office or other outpatient visit, established patient",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Weight",
+        "description": "Weight measurement performed at multiple visits throughout the study."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_50",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_50",
+        "name": "Simple Endoscopic Score for Crohn's Disease Assessment",
+        "procedureType": "Assessment",
+        "code": {
+          "id": "a866776b-568b-465e-b30f-65830dbb63ac",
+          "code": "44389",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Colonoscopy through stoma; with biopsy, single or multiple",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "SES-CD",
+        "description": "Endoscopic assessment using the Simple Endoscopic Score for Crohn's Disease (SES-CD) during endoscopy procedures."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_51",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_51",
+        "name": "Histological Scoring",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "4da1bcbf-2b52-40c2-9243-e045194ae723",
+          "code": "88305",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Level IV - Surgical pathology, gross and microscopic examination",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "Histological Assessment",
+        "description": "Histological scoring of biopsy samples obtained during endoscopy."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "proc_52",
+      "entity_type": "procedure",
+      "data": {
+        "id": "proc_52",
+        "name": "Urinary Albumin/Creatinine Ratio",
+        "procedureType": "Diagnostic Procedure",
+        "code": {
+          "id": "65d9aa42-a8d9-44b4-88c3-e5c01935fa14",
+          "code": "82043",
+          "codeSystem": "CPT",
+          "codeSystemVersion": "",
+          "decode": "Albumin; urine, microalbumin, quantitative",
+          "instanceType": "Code"
+        },
+        "instanceType": "Procedure",
+        "label": "UACR",
+        "description": "Urinary albumin/creatinine ratio measurement."
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_1",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_1",
+        "name": "Prefilled Syringe",
+        "instanceType": "MedicalDevice",
+        "label": "PFS",
+        "description": "Prefilled syringe used for subcutaneous self-administration of mirikizumab by participant or caregiver after appropriate training. Initial administration on-site under supervision; subsequent doses can be administered off-site.",
+        "deviceType": {
+          "code": "Drug Delivery Device",
+          "codeSystem": "USDM",
+          "decode": "Drug Delivery Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_2",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_2",
+        "name": "Electronic Diary (eDiary)",
+        "instanceType": "MedicalDevice",
+        "label": "eDiary",
+        "description": "Electronic diary used by participants to record daily patient-reported outcomes including CDAI stool frequency, CDAI abdominal pain, CDAI general well-being, and bowel movement count. Applicable to Study Period 1 and early discontinuation if during Study Period 1.",
+        "deviceType": {
+          "code": "Monitoring Device",
+          "codeSystem": "USDM",
+          "decode": "Monitoring Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "dev_3",
+      "entity_type": "medical_device",
+      "data": {
+        "id": "dev_3",
+        "name": "Interactive Web-Response System",
+        "instanceType": "MedicalDevice",
+        "label": "IWRS",
+        "description": "Interactive web-response system used for visit registration, randomization or assignment to ISA, and randomization to study intervention.",
+        "deviceType": {
+          "code": "Diagnostic Device",
+          "codeSystem": "USDM",
+          "decode": "Diagnostic Device"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "ing_1",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_1",
+        "name": "LY4395089",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_1"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "ing_2",
+      "entity_type": "ingredient",
+      "data": {
+        "id": "ing_2",
+        "name": "Mirikizumab",
+        "role": "Active",
+        "instanceType": "Ingredient",
+        "substanceId": "subst_2"
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "str_1",
+      "entity_type": "strength",
+      "data": {
+        "id": "str_1",
+        "instanceType": "Strength",
+        "value": 6,
+        "unit": "mg",
+        "numerator": {
+          "value": 6,
+          "unit": "mg"
+        },
+        "denominator": {
+          "value": 1,
+          "unit": "dose"
+        }
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "bior_1",
+      "entity_type": "biospecimen_retention",
+      "data": {
+        "id": "bior_1",
+        "name": "Genetics Sample Retention",
+        "isRetained": true,
+        "instanceType": "BiospecimenRetention",
+        "description": "A genetics blood sample is collected at or after Visit 2 (Week 0) if country regulations allow, and is stored. The protocol references a dedicated Genetics appendix (Appendix 5), indicating these samples are retained for genetic analysis. Country-specific regulations govern collection and retention.",
+        "includesDNA": true
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    },
+    {
+      "id": "bior_2",
+      "entity_type": "biospecimen_retention",
+      "data": {
+        "id": "bior_2",
+        "name": "Exploratory Biomarker Sample Retention",
+        "isRetained": true,
+        "instanceType": "BiospecimenRetention",
+        "description": "Exploratory biomarker samples (blood, stool supernatant, and colonic tissue from endoscopic biopsy) are collected and stored at multiple visits throughout the study for future exploratory research purposes.",
+        "includesDNA": false
+      },
+      "confidence": 1.0,
+      "source_pages": [
+        3,
+        4,
+        5,
+        9,
+        10,
+        12,
+        14,
+        16,
+        17,
+        19,
+        21,
+        24,
+        31,
+        34,
+        35
+      ]
+    }
+  ],
+  "procedures_summary": {
+    "procedure_count": 52,
+    "device_count": 3,
+    "ingredient_count": 2,
+    "strength_count": 1,
+    "biospecimen_retention_count": 2
+  }
+}

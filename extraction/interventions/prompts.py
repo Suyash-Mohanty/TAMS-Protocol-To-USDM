@@ -27,7 +27,7 @@ For each intervention give a `role` (CDISC study intervention role) and a `type`
 
 ### 2. Products (AdministrableProduct)
 For each product extract:
-- Product name (generic and/or trade name)
+- Product name (generic and/or trade name) exactly as the protocol states it. Do not add a dose form, route or formulation to the name unless the protocol itself uses it as part of the product name or to tell two products apart (e.g. "Mirikizumab IV" vs "Mirikizumab SC"); never guess a form such as "tablet/capsule" that the protocol does not state
 - activeIngredients — the active substance name(s) the product contains, matching names in "substances" (e.g. a product "GlucaGen" or "LY900018 nasal powder" contains "glucagon"); empty for placebo
 - Dose form — as the protocol words it, keeping detail (e.g. "film-coated tablet", "lyophilized powder for solution for injection", "nasal powder", "solution for injection"); omit if the protocol doesn't state it
 - designation — "IMP" if the product is being tested or used as a reference in the trial (investigational product, active comparator, placebo); "NIMP" for auxiliary products used per protocol but not under test (challenge agents such as insulin used to induce hypoglycemia, rescue, background or concomitant medication)

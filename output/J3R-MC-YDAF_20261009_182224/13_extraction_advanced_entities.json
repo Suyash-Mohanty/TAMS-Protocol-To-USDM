@@ -1,0 +1,185 @@
+{
+  "agent_id": "advanced_agent",
+  "timestamp": "2026-10-09T18:24:18.300636",
+  "confidence": 0.85,
+  "entity_count": 3,
+  "entities": [
+    {
+      "id": "amend_1",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_1",
+        "number": "a",
+        "name": "Amendment a",
+        "scope": {
+          "id": "c55cd7e3-c444-400a-b062-a9fcc5c91b31",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "cc302c44-c7d6-4bdb-869d-63de275d04ac",
+          "code": {
+            "id": "4d6a25c1-b511-4005-b696-12be03121624",
+            "code": "C207609",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "New Safety Information Available",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "096587c9-a74f-49e0-9fac-90b6313da41c",
+            "type": {
+              "id": "7ae32372-535e-452d-94b4-76ceb37daa09",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The overall rationale for the changes implemented in this protocol amendment is to address feedback received from an internal safety committee.",
+        "changes": [
+          {
+            "id": "7384fe0d-731e-4cbd-8f5b-34a5bef9b023",
+            "name": "Section 5.2 Exclusion Criteria",
+            "summary": "Exclusion Criterion #16: removed \"Exception: Short-term treatment with insulin for <14 days is allowed for certain clinical situations, such as, elective surgery, during hospitalization, hyperosmolar states, or acute illness.\"\nEdited Exclusion Criterion #36 to remove \", except for the use of insulin for treatment of gestational diabetes or acute, temporary use of insulin (≤14 days), for example, for acute illness, hospitalization, elective surgery.\"\nEdited Exclusion Criterion #40 to add \"Note: Insulin therapy is not allowed within 90 days prior to Visit 1.\"",
+            "rationale": "Updated internal safety guidance.",
+            "changedSections": [
+              {
+                "id": "3a34bfd7-9ffc-4f12-af56-56cfed148f94",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "39fd9da1-695f-46d0-a2ec-84abfd08ab40",
+            "name": "Section 6.9.1 Initiation of new Antihyperglycemic Medications",
+            "summary": "Added \"Insulin use for ≥14 consecutive days is prohibited.\"",
+            "rationale": "Updated internal safety guidance.",
+            "changedSections": [
+              {
+                "id": "e601592b-d8ae-4f78-840f-e12347b80cfa",
+                "sectionNumber": "6.9.1",
+                "sectionTitle": "Initiation of new Antihyperglycemic Medications",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "1a9acaf2-0cd6-4ea8-aa1f-a9f028057ed9",
+            "name": "Section 6.9.2 Rescue Therapy for Severe, Persistent Hyperglycemia",
+            "summary": "Updated from \"Participants should\" to \"Participants must\" continue administering assigned study intervention, and added clarification \"unless insulin is used as short-term rescue therapy.\"\nUpdated Recommended glycemic rescue therapy section to state that urgent use of short-term insulin in a hospital or closely monitored setting may be used as rescue therapy, and added respective instructions to temporarily interrupt study intervention.\nRemoved \"Short-term treatment with insulin not as rescue therapy\" section.",
+            "rationale": "Updated internal safety guidance.",
+            "changedSections": [
+              {
+                "id": "6421ea4f-f108-405c-9578-675ffe86a444",
+                "sectionNumber": "6.9.2",
+                "sectionTitle": "Rescue Therapy for Severe, Persistent Hyperglycemia",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "2eb72d29-b890-4566-8748-b5b785c0f953",
+            "name": "Section 6.9.3 Prohibited Medications",
+            "summary": "Updated Note regarding short-term insulin use to clarify that it is allowed for urgent use.",
+            "rationale": "Updated internal safety guidance.",
+            "changedSections": [
+              {
+                "id": "44c877cc-289e-4962-bb8b-db39e5558bc9",
+                "sectionNumber": "6.9.3",
+                "sectionTitle": "Prohibited Medications",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "Original Protocol",
+        "newVersion": "YDAF(a)"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        15
+      ]
+    },
+    {
+      "id": "gd_original_protocol",
+      "entity_type": "governance_date",
+      "data": {
+        "id": "gd_original_protocol",
+        "name": "Original Protocol Issued Date",
+        "dateValue": "2025-09-09",
+        "geographicScopes": [],
+        "type": {
+          "id": "70c9d185-7ab0-4710-85fc-3a41f5779243",
+          "code": "C215664",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Issued Date",
+          "instanceType": "Code"
+        },
+        "instanceType": "GovernanceDate",
+        "description": "Date the original protocol version was issued (Document History)",
+        "documentVersionLabel": "Original"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        15
+      ]
+    },
+    {
+      "id": "geo_1",
+      "entity_type": "geographic_scope",
+      "data": {
+        "id": "geo_1",
+        "name": "Study Geographic Scope",
+        "scopeType": "Global",
+        "instanceType": "GeographicScope"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        15
+      ]
+    }
+  ],
+  "advanced_summary": {
+    "amendment_count": 1,
+    "country_count": 0,
+    "site_count": 0,
+    "has_geographic_scope": true
+  }
+}

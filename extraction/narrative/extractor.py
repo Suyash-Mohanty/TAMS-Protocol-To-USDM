@@ -214,6 +214,16 @@ def extract_narrative_structure(
                 abbreviations = abbrev_result.get("abbreviations", [])
                 raw_responses["abbreviations"] = abbrev_result
         
+        # Table footnotes define terms inline ("Abbreviations: ACTH = ...; CYP = ...") that the
+        # model may skip; take those definitions straight from the text.
+        if extract_abbreviations and pdf_path:
+            known = {str(x.get("abbreviation") or x.get("abbreviatedText") or "").strip()
+                     for x in abbreviations if isinstance(x, dict)}
+            for abbr in _footnote_abbreviations(pdf_path):
+                if abbr["abbreviation"] not in known:
+                    abbreviations.append(abbr)
+                    known.add(abbr["abbreviation"])
+
         # Extract document structure
         if extract_sections:
             logger.info("Extracting document structure...")
@@ -474,6 +484,33 @@ def _repair_json(text: str) -> Optional[str]:
         text = text.rstrip() + ']' * open_brackets
     
     return text
+
+
+_FOOTNOTE_ABBREV_RE = re.compile(r"\bAbbreviations?\s*:\s*(.{10,900}?)(?:\n\s*\n|\n\s*[a-z]\s|\Z)", re.S)
+_ABBREV_PAIR_RE = re.compile(r"^\s*([A-Z][A-Za-z0-9/\-]{1,11})\s*=\s*(\S.*?)\s*$", re.S)
+
+
+def _footnote_abbreviations(pdf_path: str) -> List[Dict[str, str]]:
+    """'ABBR = expansion' pairs from "Abbreviations: A = ...; B = ..." footnote lists."""
+    try:
+        import fitz
+        doc = fitz.open(pdf_path)
+        text = "\n".join(page.get_text() for page in doc)
+        doc.close()
+    except Exception as e:
+        logger.warning(f"Footnote abbreviation scan failed: {e}")
+        return []
+    found: Dict[str, str] = {}
+    for block in _FOOTNOTE_ABBREV_RE.finditer(text):
+        body = re.sub(r"\s+", " ", block.group(1))
+        for part in body.split(";"):
+            pair = _ABBREV_PAIR_RE.match(part)
+            if not pair:
+                continue
+            expansion = re.split(r"\.(?:\s|$)", pair.group(2))[0].strip(" .")
+            if len(expansion) >= 3 and re.search(r"[a-z]", expansion) and pair.group(1) not in found:
+                found[pair.group(1)] = expansion
+    return [{"abbreviation": k, "expansion": v} for k, v in found.items()]
 
 
 def _build_narrative_data(

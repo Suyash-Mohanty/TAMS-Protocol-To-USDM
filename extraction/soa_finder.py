@@ -25,6 +25,13 @@ from core.json_utils import parse_llm_json
 
 logger = logging.getLogger(__name__)
 
+# Upper bound of SoA pages sent to extraction (long protocols carry several SoA tables, e.g.
+# main schedule, extension, and unscheduled/early-discontinuation/follow-up tables)
+MAX_SOA_PAGES = 20
+
+# Running header repeated on every page of a numbered SoA table ("SoA Table 3")
+_SOA_RUNNING_HEADER_RE = re.compile(r"\bSoA\s+Table\s*\d+\b", re.IGNORECASE)
+
 
 # Keywords that indicate SoA presence
 SOA_KEYWORDS = [
@@ -248,6 +255,10 @@ def find_soa_pages(
     toc_pages = _find_toc_pages(pdf_path)
     logger.info(f"TOC pages to exclude: {toc_pages}")
     
+    # Every page carrying a numbered SoA table's running header is an SoA page
+    header_pages = [p for p in _find_soa_running_header_pages(pdf_path) if p not in toc_pages]
+    title_pages = list(dict.fromkeys(title_pages + header_pages))
+
     # Remove TOC pages from candidates
     heuristic_pages = [p for p in heuristic_pages if p not in toc_pages]
     title_pages = [p for p in title_pages if p not in toc_pages]
@@ -261,21 +272,21 @@ def find_soa_pages(
     
     if not use_llm or not model_name:
         final_pages = _expand_adjacent_pages(all_candidates, pdf_path)
-        return sorted(final_pages)[:10]
-    
+        return _cap_pages(final_pages, header_pages)
+
     # Second pass: LLM refinement
     llm_pages = find_soa_pages_llm(pdf_path, model_name, all_candidates)
     
     if llm_pages:
         # Expand to include adjacent pages (tables often span pages)
-        final_pages = _expand_adjacent_pages(llm_pages, pdf_path)
+        final_pages = _expand_adjacent_pages(sorted(set(llm_pages) | set(header_pages)), pdf_path)
         if set(final_pages) != set(llm_pages):
             logger.info(f"Expanded pages from {sorted(llm_pages)} to {sorted(final_pages)} (adjacent page detection)")
-        return sorted(final_pages)
-    
+        return _cap_pages(final_pages, header_pages)
+
     # Fallback to heuristics if LLM fails
     final_pages = _expand_adjacent_pages(all_candidates, pdf_path)
-    return sorted(final_pages)[:10]
+    return _cap_pages(final_pages, header_pages)
 
 
 def _find_toc_pages(pdf_path: str) -> List[int]:
@@ -308,6 +319,16 @@ def _find_toc_pages(pdf_path: str) -> List[int]:
     
     doc.close()
     return toc_pages
+
+
+def _find_soa_running_header_pages(pdf_path: str) -> List[int]:
+    """0-indexed pages whose text carries a numbered SoA table's running header."""
+    doc = fitz.open(pdf_path)
+    try:
+        # only the page top: a cross-reference ("see SoA Table 1") elsewhere in the text is not a header
+        return [i for i in range(len(doc)) if _SOA_RUNNING_HEADER_RE.search(doc[i].get_text()[:400])]
+    finally:
+        doc.close()
 
 
 def _find_soa_title_pages(pdf_path: str) -> List[int]:
@@ -478,3 +499,13 @@ def extract_soa_images(
     
     doc.close()
     return image_paths
+
+
+def _cap_pages(pages: List[int], header_pages: List[int]) -> List[int]:
+    """At most MAX_SOA_PAGES pages; pages with an SoA table's running header are kept first."""
+    pages = sorted(set(pages))
+    if len(pages) <= MAX_SOA_PAGES:
+        return pages
+    keep = [p for p in pages if p in set(header_pages)][:MAX_SOA_PAGES]
+    keep += [p for p in pages if p not in keep][:MAX_SOA_PAGES - len(keep)]
+    return sorted(keep)
