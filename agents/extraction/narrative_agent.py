@@ -62,6 +62,7 @@ class NarrativeAgent(BaseExtractionAgent):
                 "data": section.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(section.id, {}),
             })
 
         for item in data.items:
@@ -71,6 +72,7 @@ class NarrativeAgent(BaseExtractionAgent):
                 "data": item.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(item.id, {}),
             })
 
         for abbrev in data.abbreviations:
@@ -80,6 +82,7 @@ class NarrativeAgent(BaseExtractionAgent):
                 "data": abbrev.to_dict(),
                 "confidence": 0.9,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(abbrev.id, {}),
             })
 
         if data.document:
@@ -89,6 +92,7 @@ class NarrativeAgent(BaseExtractionAgent):
                 "data": data.document.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(data.document.id, {}),
             })
 
         return {

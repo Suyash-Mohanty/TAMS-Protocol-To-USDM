@@ -72,6 +72,24 @@ If the protocol has no changes table for an amendment, return an empty `changes`
 
 ## Output Format
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text (not a structural field
+like `id`, `number`, `primaryReason`, `secondaryReasons`, `otherReason`, `code`, or
+`sectionNumber`) MUST be written as an object with three keys instead of a bare
+value:
+```json
+"fieldName": {"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}
+```
+- `page` is the 0-indexed page where you found this specific value (not the whole
+  section's page range).
+- `quote` must be copied verbatim from the protocol — not a paraphrase.
+- If a value is a reasonable default rather than something the protocol states, set
+  `quote` and `page` to `null`.
+- Structural/classification fields (`id`, `number`, `primaryReason`,
+  `secondaryReasons`, `otherReason`, `previousVersion`, `newVersion`, `code`,
+  `sectionNumber`) stay bare, exactly as before — do NOT wrap these.
+
 Return a JSON object with this exact structure:
 
 ```json
@@ -79,9 +97,9 @@ Return a JSON object with this exact structure:
   "amendments": [
     {
       "number": "1",
-      "effectiveDate": "2020-06-15",
-      "approvalDate": "2020-06-01",
-      "summary": "The main reason for preparation of this amendment was to update procedures outlined in the Schedule of Activities, remove contradictory text on the reporting of serious adverse events, and add details of an interim analysis.",
+      "effectiveDate": {"value": "2020-06-15", "page": 85, "quote": "Approval Date: 15 June 2020"},
+      "approvalDate": {"value": "2020-06-01", "page": 85, "quote": "Signed 01 June 2020"},
+      "summary": {"value": "The main reason for preparation of this amendment was to update procedures outlined in the Schedule of Activities, remove contradictory text on the reporting of serious adverse events, and add details of an interim analysis.", "page": 85, "quote": "The main reason for preparation of this amendment was to update procedures outlined in the Schedule of Activities, remove contradictory text on the reporting of serious adverse events, and add details of an interim analysis."},
       "previousVersion": "Original Protocol",
       "newVersion": "1",
       "primaryReason": "Inconsistency and/or Error In The Protocol",
@@ -90,23 +108,23 @@ Return a JSON object with this exact structure:
       "changes": [
         {
           "sectionNumber": "1.3",
-          "sectionTitle": "Schedule of Activities",
-          "description": "Added an ECG assessment at Visit 4.",
-          "rationale": "Alignment with safety monitoring plan."
+          "sectionTitle": {"value": "Schedule of Activities", "page": 86, "quote": "Schedule of Activities"},
+          "description": {"value": "Added an ECG assessment at Visit 4.", "page": 86, "quote": "Added an ECG assessment at Visit 4."},
+          "rationale": {"value": "Alignment with safety monitoring plan.", "page": 86, "quote": "Alignment with safety monitoring plan."}
         },
         {
           "sectionNumber": "8.3.1",
-          "sectionTitle": "Time Period and Frequency for Collecting AE and SAE Information",
-          "description": "Removed contradictory text on SAE reporting timelines.",
-          "rationale": "Correction of inconsistency."
+          "sectionTitle": {"value": "Time Period and Frequency for Collecting AE and SAE Information", "page": 87, "quote": "Time Period and Frequency for Collecting AE and SAE Information"},
+          "description": {"value": "Removed contradictory text on SAE reporting timelines.", "page": 87, "quote": "Removed contradictory text on SAE reporting timelines."},
+          "rationale": {"value": "Correction of inconsistency.", "page": 87, "quote": "Correction of inconsistency."}
         }
       ]
     },
     {
       "number": "2",
-      "effectiveDate": "2021-03-19",
-      "approvalDate": null,
-      "summary": "The main reason for preparation of this amendment was to revise the exclusion criterion for a urine drug screen and incorporate COVID vaccination guidance.",
+      "effectiveDate": {"value": "2021-03-19", "page": 90, "quote": "Approval Date: 19 March 2021"},
+      "approvalDate": {"value": null, "page": null, "quote": null},
+      "summary": {"value": "The main reason for preparation of this amendment was to revise the exclusion criterion for a urine drug screen and incorporate COVID vaccination guidance.", "page": 90, "quote": "The main reason for preparation of this amendment was to revise the exclusion criterion for a urine drug screen and incorporate COVID vaccination guidance."},
       "previousVersion": "1",
       "newVersion": "2",
       "primaryReason": "Regulatory Agency Request To Amend",
@@ -115,22 +133,22 @@ Return a JSON object with this exact structure:
       "changes": [
         {
           "sectionNumber": "5.2",
-          "sectionTitle": "Exclusion Criteria",
-          "description": "Revised exclusion criterion #12 for urine drug screen.",
-          "rationale": "Per FDA request."
+          "sectionTitle": {"value": "Exclusion Criteria", "page": 91, "quote": "Exclusion Criteria"},
+          "description": {"value": "Revised exclusion criterion #12 for urine drug screen.", "page": 91, "quote": "Revised exclusion criterion #12 for urine drug screen."},
+          "rationale": {"value": "Per FDA request.", "page": 91, "quote": "Per FDA request."}
         }
       ]
     }
   ],
-  "originalProtocolDate": "2020-01-15",
+  "originalProtocolDate": {"value": "2020-01-15", "page": 2, "quote": "Original Protocol: 15 January 2020"},
   "geographicScope": {
     "type": "Global",
     "countries": [
-      {"name": "United States", "code": "US"},
-      {"name": "Germany", "code": "DE"}
+      {"name": {"value": "United States", "page": 10, "quote": "United States"}, "code": "US"},
+      {"name": {"value": "Germany", "page": 10, "quote": "Germany"}, "code": "DE"}
     ],
     "regions": ["North America", "Europe"],
-    "plannedSites": 20
+    "plannedSites": {"value": 20, "page": 10, "quote": "approximately 20 sites"}
   },
   "sites": []
 }
@@ -143,9 +161,15 @@ Return a JSON object with this exact structure:
 3. **Check amendment history section** - Usually in Section 10.x near end of document
 4. **Check title page** - May contain current version and date
 5. **Standard country codes** - Use ISO 3166-1 alpha-2 codes when possible
-6. **Amendment reasons** - primaryReason/secondaryReasons MUST be terms from the CDISC Amendment Reason list above, spelled exactly
+6. **Amendment reasons** - primaryReason/secondaryReasons MUST be terms from the CDISC Amendment Reason list above, spelled exactly (bare values, not wrapped)
 7. **Amendment changes** - one entry per row of the Summary of Changes table, text copied verbatim; empty list if there is no table
-8. **Return ONLY valid JSON** - no markdown, no explanations
+8. **Wrap every citable scalar field** - every value you extract from the protocol
+   (not `id`/`number`/`primaryReason`/`secondaryReasons`/`otherReason`/
+   `previousVersion`/`newVersion`/`code`/`sectionNumber`) must be
+   `{"value": ..., "page": ..., "quote": ...}` as shown above. Use `page: null,
+   quote: null` only when the value is a reasonable default, not something the
+   protocol states.
+9. **Return ONLY valid JSON** - no markdown, no explanations
 
 Now analyze the protocol content and extract the advanced entities:
 """

@@ -12,6 +12,7 @@ from dataclasses import dataclass, field
 from typing import Dict, Any, List, Optional, Tuple
 
 from core.llm_client import call_llm
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     BiomedicalConcept,
     BiomedicalConceptCategory,
@@ -32,6 +33,8 @@ class BCExtractionResult:
     raw_response: Optional[Dict[str, Any]] = None
     error: Optional[str] = None
     model_used: Optional[str] = None
+    # Per-entity field citations: entity_id -> field_name -> {"page", "quote"}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
 
 
 def extract_biomedical_concepts(
@@ -104,10 +107,11 @@ def extract_biomedical_concepts(
         return result
 
     # Build structured objects from raw LLM response
-    bcs, cats = _build_bc_objects(all_raw_bcs, all_raw_cats, unique_names)
+    bcs, cats, citations = _build_bc_objects(all_raw_bcs, all_raw_cats, unique_names)
 
     result.biomedical_concepts = bcs
     result.categories = cats
+    result.citations = citations
     result.raw_response = {
         "biomedicalConceptCount": len(bcs),
         "categoryCount": len(cats),
@@ -131,12 +135,13 @@ def _build_bc_objects(
     raw_bcs: List[Dict],
     raw_cats: List[Dict],
     activity_names: Optional[List[str]] = None,
-) -> Tuple[List[BiomedicalConcept], List[BiomedicalConceptCategory]]:
+) -> Tuple[List[BiomedicalConcept], List[BiomedicalConceptCategory], Dict[str, Dict[str, Dict[str, Any]]]]:
     """Build BiomedicalConcept and BiomedicalConceptCategory objects from raw LLM dicts."""
 
     # Build category name → id map (from LLM-provided cats, dedup by name)
     cat_name_to_id: Dict[str, str] = {}
     cats_map: Dict[str, BiomedicalConceptCategory] = {}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
 
     for i, cat_raw in enumerate(raw_cats):
         if not isinstance(cat_raw, dict):
@@ -177,15 +182,24 @@ def _build_bc_objects(
             continue
 
         bc_id = bc_raw.get("id") or f"bc_{i+1}"
-        bc_name = (bc_raw.get("name") or "").strip()
+        name_raw = bc_raw.get("name")
+        bc_name = (_unwrap(name_raw) or "").strip()
         if not bc_name:
             continue
 
-        bc_label = bc_raw.get("label") or bc_name
+        label_raw = bc_raw.get("label")
+        bc_label = _unwrap(label_raw) or bc_name
+        # code/nciCode are a hardcoded-lookup-table match, not something read
+        # from the protocol — deliberately left bare/unwrapped (no citation).
         nci_code = bc_raw.get("nciCode") or None
         nci_decode = bc_raw.get("nciDecode") or None
-        synonyms = bc_raw.get("synonyms") or []
+        synonyms_raw = bc_raw.get("synonyms")
+        synonyms = _unwrap(synonyms_raw) or []
         category_name = bc_raw.get("categoryName") or "Other"
+
+        _collect_citation(citations, bc_id, 'name', name_raw)
+        _collect_citation(citations, bc_id, 'label', label_raw)
+        _collect_citation(citations, bc_id, 'synonyms', synonyms_raw)
 
         # Resolve or create category
         cat_id = _get_or_create_cat(category_name)
@@ -227,7 +241,7 @@ def _build_bc_objects(
     # Also update from the auto-tracking above (already done)
     categories = list(cats_map.values())
 
-    return bcs, categories
+    return bcs, categories, citations
 
 
 def _parse_json_response(response_text: str) -> Optional[Dict[str, Any]]:

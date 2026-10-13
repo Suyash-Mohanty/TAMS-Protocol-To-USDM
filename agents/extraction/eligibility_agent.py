@@ -77,6 +77,7 @@ class EligibilityAgent(BaseExtractionAgent):
                 "data": item.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(item.id, {}),
             })
 
         # Criteria
@@ -87,6 +88,7 @@ class EligibilityAgent(BaseExtractionAgent):
                 "data": crit.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(crit.id, {}),
             })
 
         # Population
@@ -97,6 +99,7 @@ class EligibilityAgent(BaseExtractionAgent):
                 "data": data.population.to_dict(),
                 "confidence": 0.8,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(data.population.id, {}),
             })
 
         return {

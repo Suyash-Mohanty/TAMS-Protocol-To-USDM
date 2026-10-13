@@ -27,6 +27,8 @@ class EntityProvenance:
     model_used: str = ""
     version: int = 1
     parent_entity_id: Optional[str] = None
+    # Per-field citations: field_name -> {"page": int|None, "quote": str|None}
+    field_citations: Dict[str, Dict[str, Any]] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -38,6 +40,7 @@ class EntityProvenance:
             "model_used": self.model_used,
             "version": self.version,
             "parent_entity_id": self.parent_entity_id,
+            "field_citations": self.field_citations,
         }
 
     @classmethod
@@ -51,6 +54,7 @@ class EntityProvenance:
             model_used=data.get("model_used", ""),
             version=data.get("version", 1),
             parent_entity_id=data.get("parent_entity_id"),
+            field_citations=data.get("field_citations", {}),
         )
 
 

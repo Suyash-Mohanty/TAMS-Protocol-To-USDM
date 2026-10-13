@@ -81,6 +81,7 @@ class BiomedicalConceptAgent(BaseExtractionAgent):
                 "data": bc.to_dict(),
                 "confidence": 0.75,
                 "source_pages": [],
+                "citations": result.citations.get(bc.id, {}),
             })
 
         for cat in result.categories:

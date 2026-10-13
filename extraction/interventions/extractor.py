@@ -13,6 +13,7 @@ from typing import List, Optional, Dict, Any
 
 from core.llm_client import call_llm
 from core.pdf_utils import extract_text_from_pages, get_page_count
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     InterventionsData,
     StudyIntervention,
@@ -230,44 +231,76 @@ def _parse_interventions_response(raw: Dict[str, Any]) -> Optional[Interventions
         administrations = []
         substances = []
         devices = []
-        
+        citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
         # Process interventions - accept both 'interventions' and 'studyInterventions' keys
         int_list = raw.get('interventions', []) or raw.get('studyInterventions', [])
         for i, int_data in enumerate(int_list):
             if not isinstance(int_data, dict):
                 continue
-            
+
             role_str = int_data.get('role')
             role = _map_intervention_role(role_str) if role_str else None
-            
+
+            int_id = int_data.get('id', f"int_{i+1}")
+            name_raw = int_data.get('name', f'Intervention {i+1}')
+            desc_raw = int_data.get('description')
+            name = _unwrap(name_raw, f'Intervention {i+1}')
+            description = _unwrap(desc_raw)
+            _collect_citation(citations, int_id, 'name', name_raw)
+            _collect_citation(citations, int_id, 'description', desc_raw)
+
             interventions.append(StudyIntervention(
-                id=int_data.get('id', f"int_{i+1}"),
-                name=int_data.get('name', f'Intervention {i+1}'),
-                description=int_data.get('description'),
+                id=int_id,
+                name=name,
+                description=description,
                 role=role,
                 intervention_type=int_data.get('type') or int_data.get('interventionType'),
             ))
-        
+
         # Process products - accept both 'products' and 'administrableProducts' keys
         prod_list = raw.get('products', []) or raw.get('administrableProducts', [])
         for i, prod_data in enumerate(prod_list):
             if not isinstance(prod_data, dict):
                 continue
-            
-            dose_form = _map_dose_form(prod_data.get('doseForm', ''))
-            strength_value, strength_unit = _extract_strength(prod_data)
-            denominator_value, denominator_unit = _extract_strength_denominator(prod_data)
+
+            prod_id = prod_data.get('id', f"prod_{i+1}")
+            name_raw = prod_data.get('name', f'Product {i+1}')
+            desc_raw = prod_data.get('description')
+            dose_form_raw = prod_data.get('doseForm', '')
+            dose_form_text = _unwrap(dose_form_raw, '')
+            manufacturer_raw = prod_data.get('manufacturer')
+
+            dose_form = _map_dose_form(dose_form_text)
+            strength_value, strength_unit, strength_value_raw, strength_unit_raw = _extract_strength(prod_data)
+            (denominator_value, denominator_unit,
+             denom_value_raw, denom_unit_raw) = _extract_strength_denominator(prod_data)
             if denominator_value is not None and strength_unit and "/" in strength_unit:
                 strength_unit = strength_unit.split("/")[0].strip()  # "mg/mL" -> "mg" over 1 mL
-            strength_name = prod_data.get('strengthName') or prod_data.get('strength_name')
+            strength_name_raw = prod_data.get('strengthName') or prod_data.get('strength_name')
+            strength_name = _unwrap(strength_name_raw)
+
+            name = _unwrap(name_raw, f'Product {i+1}')
+            description = _unwrap(desc_raw)
+            manufacturer = _unwrap(manufacturer_raw)
+
+            _collect_citation(citations, prod_id, 'name', name_raw)
+            _collect_citation(citations, prod_id, 'description', desc_raw)
+            _collect_citation(citations, prod_id, 'doseForm', dose_form_raw)
+            _collect_citation(citations, prod_id, 'strengthValue', strength_value_raw)
+            _collect_citation(citations, prod_id, 'strengthUnit', strength_unit_raw)
+            _collect_citation(citations, prod_id, 'strengthDenominatorValue', denom_value_raw)
+            _collect_citation(citations, prod_id, 'strengthDenominatorUnit', denom_unit_raw)
+            _collect_citation(citations, prod_id, 'strengthName', strength_name_raw)
+            _collect_citation(citations, prod_id, 'manufacturer', manufacturer_raw)
 
             products.append(AdministrableProduct(
-                id=prod_data.get('id', f"prod_{i+1}"),
-                name=prod_data.get('name', f'Product {i+1}'),
-                description=prod_data.get('description'),
+                id=prod_id,
+                name=name,
+                description=description,
                 dose_form=dose_form,
-                dose_form_text=prod_data.get('doseForm'),
-                designation=next((v for v in (prod_data.get('designation'), prod_data.get('productDesignation'))
+                dose_form_text=dose_form_text or None,
+                designation=next((v for v in (_unwrap(prod_data.get('designation')), _unwrap(prod_data.get('productDesignation')))
                                   if isinstance(v, str) and v.strip()), None),
                 active_ingredients=[n for n in (prod_data.get('activeIngredients') or []) if isinstance(n, str)],
                 strength_value=strength_value,
@@ -275,49 +308,89 @@ def _parse_interventions_response(raw: Dict[str, Any]) -> Optional[Interventions
                 strength_denominator_value=denominator_value,
                 strength_denominator_unit=denominator_unit,
                 strength_name=strength_name,
-                manufacturer=prod_data.get('manufacturer'),
+                manufacturer=manufacturer,
             ))
-        
+
         # Process administrations
         for i, admin_data in enumerate(raw.get('administrations', [])):
             if not isinstance(admin_data, dict):
                 continue
-            
-            route = _map_route(admin_data.get('route', ''))
-            
+
+            admin_id = admin_data.get('id', f"admin_{i+1}")
+            name_raw = admin_data.get('name', f'Administration {i+1}')
+            dose_raw = admin_data.get('dose')
+            freq_raw = admin_data.get('frequency') or admin_data.get('doseFrequency')
+            route_raw = admin_data.get('route', '')
+            duration_raw = admin_data.get('duration')
+            desc_raw = admin_data.get('description')
+
+            route_text = _unwrap(route_raw, '')
+            route = _map_route(route_text)
+
+            name = _unwrap(name_raw, f'Administration {i+1}')
+            dose = _unwrap(dose_raw)
+            dose_frequency = _unwrap(freq_raw)
+            duration = _unwrap(duration_raw)
+            description = _unwrap(desc_raw)
+
+            _collect_citation(citations, admin_id, 'name', name_raw)
+            _collect_citation(citations, admin_id, 'dose', dose_raw)
+            _collect_citation(citations, admin_id, 'frequency', freq_raw)
+            _collect_citation(citations, admin_id, 'duration', duration_raw)
+            _collect_citation(citations, admin_id, 'description', desc_raw)
+
             administrations.append(Administration(
-                id=admin_data.get('id', f"admin_{i+1}"),
-                name=admin_data.get('name', f'Administration {i+1}'),
-                dose=admin_data.get('dose'),
-                dose_frequency=admin_data.get('frequency') or admin_data.get('doseFrequency'),
+                id=admin_id,
+                name=name,
+                dose=dose,
+                dose_frequency=dose_frequency,
                 route=route,
-                route_text=admin_data.get('route'),
-                duration=admin_data.get('duration'),
-                description=admin_data.get('description'),
+                route_text=route_text or None,
+                duration=duration,
+                description=description,
             ))
-        
+
         # Process substances
         for i, sub_data in enumerate(raw.get('substances', [])):
             if not isinstance(sub_data, dict):
                 continue
-            
+
+            sub_id = sub_data.get('id', f"sub_{i+1}")
+            name_raw = sub_data.get('name', f'Substance {i+1}')
+            desc_raw = sub_data.get('description')
+            name = _unwrap(name_raw, f'Substance {i+1}')
+            description = _unwrap(desc_raw)
+            _collect_citation(citations, sub_id, 'name', name_raw)
+            _collect_citation(citations, sub_id, 'description', desc_raw)
+
             substances.append(Substance(
-                id=sub_data.get('id', f"sub_{i+1}"),
-                name=sub_data.get('name', f'Substance {i+1}'),
-                description=sub_data.get('description'),
+                id=sub_id,
+                name=name,
+                description=description,
             ))
-        
+
         # Process devices - accept both 'devices' and 'medicalDevices' keys
         dev_list = raw.get('devices', []) or raw.get('medicalDevices', [])
         for i, dev_data in enumerate(dev_list):
             if not isinstance(dev_data, dict):
                 continue
-            
+
+            dev_id = dev_data.get('id', f"dev_{i+1}")
+            name_raw = dev_data.get('name', f'Device {i+1}')
+            desc_raw = dev_data.get('description')
+            manufacturer_raw = dev_data.get('manufacturer')
+            name = _unwrap(name_raw, f'Device {i+1}')
+            description = _unwrap(desc_raw)
+            manufacturer = _unwrap(manufacturer_raw)
+            _collect_citation(citations, dev_id, 'name', name_raw)
+            _collect_citation(citations, dev_id, 'description', desc_raw)
+            _collect_citation(citations, dev_id, 'manufacturer', manufacturer_raw)
+
             devices.append(MedicalDevice(
-                id=dev_data.get('id', f"dev_{i+1}"),
-                name=dev_data.get('name', f'Device {i+1}'),
-                description=dev_data.get('description'),
-                manufacturer=dev_data.get('manufacturer'),
+                id=dev_id,
+                name=name,
+                description=description,
+                manufacturer=manufacturer,
             ))
         
         # Link administrations and products to interventions by name — the
@@ -360,6 +433,7 @@ def _parse_interventions_response(raw: Dict[str, Any]) -> Optional[Interventions
             administrations=administrations,
             substances=substances,
             devices=devices,
+            citations=citations,
         )
         
     except Exception as e:
@@ -560,16 +634,20 @@ def _map_intervention_role(role_str: str) -> InterventionRole:
 
 
 def _extract_strength(prod_data: Dict[str, Any]) -> tuple:
-    """Get (value, unit) for a product's strength numerator.
+    """Get (value, unit, value_raw, unit_raw) for a product's strength numerator.
 
-    Prefers the structured strengthValue/strengthUnit fields; falls back to
-    parsing the legacy composite "strength" string (e.g. "15 mg") for
-    responses that don't follow the current prompt format.
+    Prefers the structured strengthValue/strengthUnit fields (each possibly
+    citation-wrapped); falls back to parsing the legacy composite "strength"
+    string (e.g. "15 mg") for responses that don't follow the current prompt
+    format. value_raw/unit_raw are the original (possibly wrapped) fields, for
+    citation collection by the caller.
     """
-    value = prod_data.get('strengthValue')
+    value_raw = prod_data.get('strengthValue')
+    unit_raw = prod_data.get('strengthUnit')
+    value = _unwrap(value_raw)
     if value is not None:
         try:
-            return float(value), (prod_data.get('strengthUnit') or None)
+            return float(value), (_unwrap(unit_raw) or None), value_raw, unit_raw
         except (TypeError, ValueError):
             pass
 
@@ -578,28 +656,32 @@ def _extract_strength(prod_data: Dict[str, Any]) -> tuple:
         match = re.match(r'^\s*([\d.]+)\s*([^/]*)', raw)
         if match:
             try:
-                return float(match.group(1)), (match.group(2).strip() or None)
+                return float(match.group(1)), (match.group(2).strip() or None), None, None
             except ValueError:
                 pass
 
-    return None, None
+    return None, None, None, None
 
 
 def _extract_strength_denominator(prod_data: Dict[str, Any]) -> tuple:
-    """(value, unit) of a concentration's denominator ("1 mg/mL" -> (1.0, "mL")),
-    from strengthDenominatorValue/Unit or the unit text after "/"."""
-    value = prod_data.get('strengthDenominatorValue')
-    unit = prod_data.get('strengthDenominatorUnit')
+    """(value, unit, value_raw, unit_raw) of a concentration's denominator
+    ("1 mg/mL" -> (1.0, "mL")), from strengthDenominatorValue/Unit (each
+    possibly citation-wrapped) or the unit text after "/"."""
+    value_raw = prod_data.get('strengthDenominatorValue')
+    unit_raw = prod_data.get('strengthDenominatorUnit')
+    value = _unwrap(value_raw)
+    unit = _unwrap(unit_raw)
     if value is None and unit is None:
-        unit_text = prod_data.get('strengthUnit') or prod_data.get('strength') or ''
+        unit_text = _unwrap(prod_data.get('strengthUnit')) or prod_data.get('strength') or ''
         match = re.search(r'/\s*(\d+(?:\.\d+)?)?\s*(mL|ml|L|dL|g|mg|kg)\b', str(unit_text))
         if not match:
-            return None, None
+            return None, None, None, None
         value, unit = match.group(1) or 1, match.group(2)
+        value_raw, unit_raw = None, None
     try:
-        return (float(value) if value is not None else 1.0), unit
+        return (float(value) if value is not None else 1.0), unit, value_raw, unit_raw
     except (TypeError, ValueError):
-        return None, None
+        return None, None, None, None
 
 
 def _map_dose_form(form_str: str) -> Optional[DoseForm]:

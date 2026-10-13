@@ -76,6 +76,7 @@ class ObjectivesAgent(BaseExtractionAgent):
                 "data": obj.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(obj.id, {}),
             })
 
         for ep in data.endpoints:
@@ -85,6 +86,7 @@ class ObjectivesAgent(BaseExtractionAgent):
                 "data": ep.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(ep.id, {}),
             })
 
         for est in data.estimands:
@@ -94,6 +96,7 @@ class ObjectivesAgent(BaseExtractionAgent):
                 "data": est.to_dict(),
                 "confidence": 0.75,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(est.id, {}),
             })
 
         for ap in data.analysis_populations:
@@ -103,6 +106,7 @@ class ObjectivesAgent(BaseExtractionAgent):
                 "data": ap.to_dict(),
                 "confidence": 0.8,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(ap.id, {}),
             })
 
         return {

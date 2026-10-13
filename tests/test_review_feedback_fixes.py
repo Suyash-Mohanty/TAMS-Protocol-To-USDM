@@ -136,3 +136,21 @@ def test_empty_sdr_amendment_takes_the_latest_generated_one():
     amendments = merged["study"]["versions"][0]["amendments"]
     assert [(a["number"], a["summary"]) for a in amendments] == [("1", "Changes e"), ("a", "Changes a"), ("b", "Changes b")]
     assert amendments[0]["name"] == "INITIAL"          # SDR's own values stay
+
+
+def test_citation_pages_are_set_from_the_pdf(tmp_path):
+    import fitz
+    from extraction.citations import verify_citation_pages
+    pdf = tmp_path / "p.pdf"
+    doc = fitz.open()
+    for text in ("Title page", "Inclusion criteria", "1. Participants must be at least 18 years of age."):
+        doc.new_page().insert_text((72, 72), text)
+    doc.save(str(pdf))
+    data = {"citations": {"c1": {"instanceType": "EligibilityCriterionItem", "fields": {
+        "text": {"page": 3, "quote": "Participants must be at least 18 years of age."},   # 1-based label
+        "identifier": {"page": 3, "quote": "1."},                                          # too short to look up
+        "name": {"page": 1, "quote": "not in this document at all"}}}}}
+    stats = verify_citation_pages(data, str(pdf))
+    fields = data["citations"]["c1"]["fields"]
+    assert fields["text"]["page"] == 2 and fields["identifier"]["page"] == 2
+    assert fields["name"]["page"] == 1 and stats["not_found"] == 1

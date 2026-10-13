@@ -12,6 +12,7 @@ from pathlib import Path
 from typing import List, Optional, Dict, Any, Tuple
 
 from core.llm_client import call_llm, call_llm_with_image
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     StudyMetadata,
     StudyTitle,
@@ -188,70 +189,93 @@ def _parse_json_response(response_text: str) -> Optional[Dict[str, Any]]:
 def _parse_metadata_response(raw: Dict[str, Any]) -> Optional[StudyMetadata]:
     """Parse raw LLM response into StudyMetadata object."""
     try:
+        citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
         # Extract titles
         titles = []
         for i, title_data in enumerate(raw.get('titles', [])):
             if isinstance(title_data, dict) and title_data.get('text'):
+                title_id = f"title_{i+1}"
+                text_raw = title_data['text']
+                text = _unwrap(text_raw)
+                if not text:
+                    continue
                 title_type = _map_title_type(title_data.get('type', 'Official Study Title'))
                 titles.append(StudyTitle(
-                    id=f"title_{i+1}",
-                    text=title_data['text'],
+                    id=title_id,
+                    text=text,
                     type=title_type,
                 ))
-        
+                _collect_citation(citations, title_id, 'text', text_raw)
+
         # Extract organizations
         organizations = []
         org_id_map = {}  # Map org name to ID for reference
         for i, org_data in enumerate(raw.get('organizations', [])):
             if isinstance(org_data, dict) and org_data.get('name'):
                 org_id = f"org_{i+1}"
+                name_raw = org_data['name']
+                name = _unwrap(name_raw)
+                if not name:
+                    continue
                 org_type = _map_org_type(org_data.get('type', 'Pharmaceutical Company'))
                 organizations.append(Organization(
                     id=org_id,
-                    name=org_data['name'],
+                    name=name,
                     type=org_type,
                 ))
-                org_id_map[org_data['name']] = org_id
-        
+                _collect_citation(citations, org_id, 'name', name_raw)
+                org_id_map[name] = org_id
+
         # Extract identifiers
         identifiers = []
         for i, id_data in enumerate(raw.get('identifiers', [])):
             if isinstance(id_data, dict):
                 # Accept both 'text' (USDM format) and 'value' (legacy format)
-                id_text = id_data.get('text') or id_data.get('value')
+                text_raw = id_data.get('text') or id_data.get('value')
+                id_text = _unwrap(text_raw)
                 if id_text:
+                    sid = id_data.get('id', f"sid_{i+1}")
                     # Find scope organization
                     registry = id_data.get('registry') or id_data.get('issuingOrganization', 'Unknown')
                     scope_id = _find_scope_org(registry, org_id_map, organizations)
-                    
+
                     # Determine identifier type
                     id_type = _infer_identifier_type(
                         id_text,
                         id_data.get('identifierType'),
                         id_data.get('issuingOrganization')
                     )
-                    
+
                     identifiers.append(StudyIdentifier(
-                        id=id_data.get('id', f"sid_{i+1}"),
+                        id=sid,
                         text=id_text,
                         scope_id=scope_id,
                         identifier_type=id_type,
                         issuing_organization=registry,
                     ))
-        
+                    _collect_citation(citations, sid, 'text', text_raw)
+
         # Extract roles from organizations
         roles = []
         for i, org_data in enumerate(raw.get('organizations', [])):
             if isinstance(org_data, dict) and org_data.get('role'):
-                role_code = _map_role_code(org_data['role'])
-                org_id = org_id_map.get(org_data.get('name', ''), f"org_{i+1}")
+                role_id = f"role_{i+1}"
+                role_raw = org_data['role']
+                role_name = _unwrap(role_raw)
+                if not role_name:
+                    continue
+                role_code = _map_role_code(role_name)
+                org_name = _unwrap(org_data.get('name'))
+                org_id = org_id_map.get(org_name, f"org_{i+1}")
                 roles.append(StudyRole(
-                    id=f"role_{i+1}",
-                    name=org_data['role'],
+                    id=role_id,
+                    name=role_name,
                     code=role_code,
                     organization_ids=[org_id],
                 ))
-        
+                _collect_citation(citations, role_id, 'name', role_raw)
+
         # Extract indication - handle both singular 'indication' and plural 'indications'
         indications = []
         indication_list = raw.get('indications', [])
@@ -260,33 +284,52 @@ def _parse_metadata_response(raw: Dict[str, Any]) -> Optional[StudyMetadata]:
             indication_data = raw.get('indication')
             if indication_data:
                 indication_list = [indication_data]
-        
+
         for i, ind_data in enumerate(indication_list):
             if isinstance(ind_data, dict) and ind_data.get('name'):
+                ind_id = ind_data.get('id', f"indication_{i+1}")
+                name_raw = ind_data['name']
+                name = _unwrap(name_raw)
+                if not name:
+                    continue
+                desc_raw = ind_data.get('description')
                 indications.append(Indication(
-                    id=ind_data.get('id', f"indication_{i+1}"),
-                    name=ind_data['name'],
-                    description=ind_data.get('description'),
-                    is_rare_disease=ind_data.get('isRareDisease', False),
+                    id=ind_id,
+                    name=name,
+                    description=_unwrap(desc_raw),
+                    is_rare_disease=_unwrap(ind_data.get('isRareDisease'), False),
                 ))
-        
+                _collect_citation(citations, ind_id, 'name', name_raw)
+                _collect_citation(citations, ind_id, 'description', desc_raw)
+
         # Extract study phase
         study_phase = None
         phase_data = raw.get('studyPhase')
         if phase_data:
-            # Handle both string and dict formats
+            # Handle both string and dict formats. A dict may be either the
+            # legacy {code, decode} shape or the new {code, decode, page,
+            # quote} citation-bearing shape - both read the same way, since
+            # the phase code/decode themselves are structural, not wrapped.
             if isinstance(phase_data, str) and phase_data.lower() != 'null':
                 study_phase = StudyPhase(phase=phase_data)
             elif isinstance(phase_data, dict):
                 phase_str = phase_data.get('phase') or phase_data.get('code') or phase_data.get('decode')
                 if phase_str:
                     study_phase = StudyPhase(phase=str(phase_str))
-        
+                    if phase_data.get('page') is not None or phase_data.get('quote') is not None:
+                        _collect_citation(citations, 'study_phase', 'phase', phase_data)
+
         # Extract protocol version
         version_data = raw.get('protocolVersion', {})
-        protocol_version = version_data.get('version') if isinstance(version_data, dict) else None
-        protocol_date = version_data.get('date') if isinstance(version_data, dict) else None
-        amendment = version_data.get('amendment') if isinstance(version_data, dict) else None
+        version_raw = version_data.get('version') if isinstance(version_data, dict) else None
+        date_raw = version_data.get('date') if isinstance(version_data, dict) else None
+        amendment_raw = version_data.get('amendment') if isinstance(version_data, dict) else None
+        protocol_version = _unwrap(version_raw)
+        protocol_date = _unwrap(date_raw)
+        amendment = _unwrap(amendment_raw)
+        _collect_citation(citations, 'protocol_version', 'version', version_raw)
+        _collect_citation(citations, 'protocol_version', 'date', date_raw)
+        _collect_citation(citations, 'protocol_version', 'amendment', amendment_raw)
 
         # Build GovernanceDate objects from extracted protocol dates
         governance_dates = []
@@ -312,9 +355,9 @@ def _parse_metadata_response(raw: Dict[str, Any]) -> Optional[StudyMetadata]:
 
         # Also capture explicit approval / effective dates if the LLM returned them
         if isinstance(version_data, dict):
-            _add_governance_date(version_data.get('approvalDate'), "C71476", "Approval Date")
-            _add_governance_date(version_data.get('effectiveDate'), "C215663", "Effective Date")
-            _add_governance_date(version_data.get('submissionDate'), "C99905", "Protocol Submission Date")
+            _add_governance_date(_unwrap(version_data.get('approvalDate')), "C71476", "Approval Date")
+            _add_governance_date(_unwrap(version_data.get('effectiveDate')), "C215663", "Effective Date")
+            _add_governance_date(_unwrap(version_data.get('submissionDate')), "C99905", "Protocol Submission Date")
 
         # Build study name: prefer sponsor protocol number (short code like "ALXN1840-WD-204"),
         # then acronym title, then fall back to truncated official title.
@@ -338,7 +381,7 @@ def _parse_metadata_response(raw: Dict[str, Any]) -> Optional[StudyMetadata]:
             study_name = titles[0].text[:100]
         if not study_name:
             study_name = "Unknown Study"
-        
+
         return StudyMetadata(
             study_name=study_name,
             titles=titles,
@@ -347,13 +390,14 @@ def _parse_metadata_response(raw: Dict[str, Any]) -> Optional[StudyMetadata]:
             roles=roles,
             indications=indications,
             study_phase=study_phase,
-            study_type=raw.get('studyType'),
+            study_type=_unwrap(raw.get('studyType')),
             protocol_version=protocol_version,
             protocol_date=protocol_date,
             amendment_number=amendment,
             governance_dates=governance_dates,
+            citations=citations,
         )
-        
+
     except Exception as e:
         logger.error(f"Failed to parse metadata response: {e}")
         return None

@@ -169,7 +169,10 @@ class EligibilityData:
     
     # Population definition
     population: Optional[StudyDesignPopulation] = None
-    
+
+    # Per-entity field citations: entity_id -> field_name -> {"page": int|None, "quote": str|None}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
+
     # Summary counts
     inclusion_count: int = 0
     exclusion_count: int = 0

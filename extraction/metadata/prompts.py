@@ -59,12 +59,27 @@ Look for organizations on the title page, in the synopsis, and in the "Sponsor I
 Every entity MUST have `id` and `instanceType` fields.
 Code fields MUST use the {"code": "...", "codeSystem": "...", "decode": "..."} structure.
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text (not a structural field
+like `id`, `instanceType`, `type`, `identifierType`) MUST be written as an object with
+three keys instead of a bare value:
+```json
+"fieldName": {"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}
+```
+- `page` is the 0-indexed page where you found this specific value.
+- `quote` must be copied verbatim from the protocol — not a paraphrase.
+- If a value is a reasonable default rather than something the protocol states, set
+  `quote` and `page` to `null`.
+- Structural/linking fields (`id`, `instanceType`, `type`, `identifierType`) stay bare,
+  exactly as before — do NOT wrap these.
+
 ```json
 {
   "titles": [
     {
       "id": "title_1",
-      "text": "A Phase 2, Randomized Study of Drug X in Patients with Condition Y",
+      "text": {"value": "A Phase 2, Randomized Study of Drug X in Patients with Condition Y", "page": 0, "quote": "A Phase 2, Randomized Study of Drug X in Patients with Condition Y"},
       "type": {
         "code": "OfficialStudyTitle",
         "codeSystem": "http://www.cdisc.org/USDM/titleType",
@@ -74,7 +89,7 @@ Code fields MUST use the {"code": "...", "codeSystem": "...", "decode": "..."} s
     },
     {
       "id": "title_2",
-      "text": "Drug X Phase 2 Study",
+      "text": {"value": "Drug X Phase 2 Study", "page": 0, "quote": "Short Title: Drug X Phase 2 Study"},
       "type": {
         "code": "BriefStudyTitle",
         "codeSystem": "http://www.cdisc.org/USDM/titleType",
@@ -86,28 +101,28 @@ Code fields MUST use the {"code": "...", "codeSystem": "...", "decode": "..."} s
   "identifiers": [
     {
       "id": "sid_1",
-      "text": "NCT04123456",
+      "text": {"value": "NCT04123456", "page": 0, "quote": "ClinicalTrials.gov Identifier: NCT04123456"},
       "identifierType": "NCT",
       "issuingOrganization": "ClinicalTrials.gov",
       "instanceType": "StudyIdentifier"
     },
     {
       "id": "sid_2",
-      "text": "SPONSOR-2020-001",
+      "text": {"value": "SPONSOR-2020-001", "page": 0, "quote": "Protocol Number: SPONSOR-2020-001"},
       "identifierType": "SponsorProtocolNumber",
       "issuingOrganization": "Sponsor",
       "instanceType": "StudyIdentifier"
     },
     {
       "id": "sid_3",
-      "text": "2020-001234-56",
+      "text": {"value": "2020-001234-56", "page": 0, "quote": "EudraCT Number 2020-001234-56"},
       "identifierType": "EudraCT",
       "issuingOrganization": "EudraCT",
       "instanceType": "StudyIdentifier"
     },
     {
       "id": "sid_4",
-      "text": "IND 123456",
+      "text": {"value": "IND 123456", "page": 0, "quote": "IND 123456"},
       "identifierType": "IND",
       "issuingOrganization": "FDA",
       "instanceType": "StudyIdentifier"
@@ -116,7 +131,7 @@ Code fields MUST use the {"code": "...", "codeSystem": "...", "decode": "..."} s
   "organizations": [
     {
       "id": "org_1",
-      "name": "Acme Pharmaceuticals, Inc.",
+      "name": {"value": "Acme Pharmaceuticals, Inc.", "page": 0, "quote": "Sponsor: Acme Pharmaceuticals, Inc."},
       "type": {
         "code": "Sponsor",
         "codeSystem": "http://www.cdisc.org/USDM/organizationType",
@@ -127,7 +142,7 @@ Code fields MUST use the {"code": "...", "codeSystem": "...", "decode": "..."} s
     },
     {
       "id": "org_2",
-      "name": "PRA Health Sciences",
+      "name": {"value": "PRA Health Sciences", "page": 0, "quote": "CRO: PRA Health Sciences"},
       "type": {
         "code": "CRO",
         "codeSystem": "http://www.cdisc.org/USDM/organizationType",
@@ -138,7 +153,7 @@ Code fields MUST use the {"code": "...", "codeSystem": "...", "decode": "..."} s
     },
     {
       "id": "org_3",
-      "name": "ClinicalTrials.gov",
+      "name": {"value": "ClinicalTrials.gov", "page": null, "quote": null},
       "type": {
         "code": "Registry",
         "codeSystem": "http://www.cdisc.org/USDM/organizationType",
@@ -151,14 +166,20 @@ Code fields MUST use the {"code": "...", "codeSystem": "...", "decode": "..."} s
   "studyPhase": {
     "code": "Phase2",
     "codeSystem": "http://www.cdisc.org/USDM/studyPhase",
-    "decode": "Phase 2"
+    "decode": "Phase 2",
+    "page": 0,
+    "quote": "Phase 2 Study"
   },
   "studyType": "Interventional",
   "indication": {
     "id": "ind_1",
-    "name": "Type 2 Diabetes Mellitus",
-    "description": "Patients with inadequately controlled T2DM",
+    "name": {"value": "Type 2 Diabetes Mellitus", "page": 0, "quote": "Indication: Type 2 Diabetes Mellitus"},
+    "description": {"value": "Patients with inadequately controlled T2DM", "page": 1, "quote": "patients with inadequately controlled T2DM"},
     "instanceType": "Indication"
+  },
+  "protocolVersion": {
+    "version": {"value": "3.0", "page": 0, "quote": "Protocol Version 3.0"},
+    "date": {"value": "2020-06-15", "page": 0, "quote": "15 June 2020"}
   }
 }
 ```
@@ -195,11 +216,16 @@ Code fields MUST use the {"code": "...", "codeSystem": "...", "decode": "..."} s
 
 ## Rules
 
-1. **Every entity must have `id` and `instanceType`** - this is mandatory
+1. **Every entity must have `id` and `instanceType`** - this is mandatory, bare values
 2. **Use sequential IDs** - title_1, title_2, sid_1, sid_2, org_1, etc.
 3. **Extract exactly what you see** - do not infer information
 4. **Use null** for optional fields where information is not found
-5. **Return ONLY valid JSON** - no markdown fences, no explanations
+5. **Wrap every citable scalar field** - every value you extract from the protocol
+   (not `id`/`instanceType`/`type`/`identifierType`) must be
+   `{"value": ..., "page": ..., "quote": ...}` as shown above. Use `page: null,
+   quote: null` only when the value is a reasonable default, not something the
+   protocol states.
+6. **Return ONLY valid JSON** - no markdown fences, no explanations
 
 Now analyze the protocol content and extract the metadata:
 """

@@ -78,6 +78,7 @@ class InterventionsAgent(BaseExtractionAgent):
                 "data": intv.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(intv.id, {}),
             })
 
         for prod in data.products:
@@ -87,6 +88,7 @@ class InterventionsAgent(BaseExtractionAgent):
                 "data": prod.to_dict(),
                 "confidence": 0.8,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(prod.id, {}),
             })
 
         for admin in data.administrations:
@@ -96,6 +98,7 @@ class InterventionsAgent(BaseExtractionAgent):
                 "data": admin.to_dict(),
                 "confidence": 0.8,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(admin.id, {}),
             })
 
         for sub in data.substances:
@@ -105,6 +108,7 @@ class InterventionsAgent(BaseExtractionAgent):
                 "data": sub.to_dict(),
                 "confidence": 0.8,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(sub.id, {}),
             })
 
         for dev in data.devices:
@@ -114,6 +118,7 @@ class InterventionsAgent(BaseExtractionAgent):
                 "data": dev.to_dict(),
                 "confidence": 0.75,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(dev.id, {}),
             })
 
         return {

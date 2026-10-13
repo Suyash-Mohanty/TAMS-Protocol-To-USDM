@@ -113,6 +113,7 @@ class PipelineResult:
     success: bool = False
     usdm_path: Optional[str] = None
     provenance_path: Optional[str] = None
+    citations_path: Optional[str] = None
     entity_count: int = 0
     agent_results: Dict[str, bool] = field(default_factory=dict)
     failed_agents: List[str] = field(default_factory=list)
@@ -126,6 +127,7 @@ class PipelineResult:
             "success": self.success,
             "usdm_path": self.usdm_path,
             "provenance_path": self.provenance_path,
+            "citations_path": self.citations_path,
             "entity_count": self.entity_count,
             "agent_results": self.agent_results,
             "failed_agents": self.failed_agents,
@@ -361,6 +363,80 @@ class ExtractionPipeline:
             prov_result = prov_agent.execute(prov_task)
             if prov_result.success:
                 result.provenance_path = prov_path
+
+            # Per-field citations (page + verbatim quote), piloted on the
+            # eligibility module: generate the raw (internal-id-keyed)
+            # sidecar, then remap entity ids to the final USDM UUIDs using
+            # the same id_map the USDM generator just wrote.
+            citations_path = os.path.join(output_dir, f"{protocol_id}_citations.json")
+            citations_task = AgentTask(
+                task_id=f"{protocol_id}_citations_final",
+                agent_id="provenance",
+                task_type="citations_generate",
+                input_data={"output_path": citations_path},
+            )
+            citations_result = prov_agent.execute(citations_task)
+            if citations_result.success:
+                id_map_path = os.path.join(output_dir, "id_mapping.json")
+                if os.path.exists(id_map_path):
+                    try:
+                        from core.validation import convert_citations_to_uuids
+                        with open(id_map_path, "r", encoding="utf-8") as f:
+                            id_map = json.load(f)
+                        with open(citations_path, "r", encoding="utf-8") as f:
+                            raw_citations = json.load(f)
+
+                        # "study_metadata_1" (agents/extraction/
+                        # metadata_agent.py) carries the protocol
+                        # version/date/amendment citations, but its own id
+                        # is never placed anywhere in the final USDM —
+                        # _place_metadata() in usdm_generator_agent.py
+                        # copies its name/description/versionIdentifier
+                        # straight onto Study/StudyVersion fields rather
+                        # than placing it as its own object, so
+                        # "study_metadata_1" never appears in id_map. Point
+                        # this citation at the StudyVersion it actually
+                        # lands in (versionIdentifier lives there), using
+                        # its real final id, so the citation survives
+                        # remapping instead of being silently dropped as
+                        # unmapped.
+                        if result.usdm_path and os.path.exists(result.usdm_path):
+                            try:
+                                with open(result.usdm_path, "r", encoding="utf-8") as f:
+                                    usdm_doc = json.load(f)
+                                version_id = (
+                                    usdm_doc.get("study", {})
+                                    .get("versions", [{}])[0]
+                                    .get("id")
+                                )
+                                if version_id:
+                                    id_map = dict(id_map)
+                                    id_map.setdefault("study_metadata_1", version_id)
+                            except Exception as e:
+                                logger.warning(f"Could not resolve StudyVersion id for citations: {e}")
+
+                        remapped = convert_citations_to_uuids(raw_citations, id_map)
+                        with open(citations_path, "w", encoding="utf-8") as f:
+                            json.dump(remapped, f, indent=2, ensure_ascii=False)
+                        result.citations_path = citations_path
+                    except Exception as e:
+                        logger.warning(f"Failed to remap citations to UUIDs: {e}")
+                else:
+                    result.citations_path = citations_path
+
+            # The model reads page labels from the text it was given, which needn't match the
+            # 0-indexed page convention; set every page from where its quote actually is
+            if result.citations_path and os.path.exists(result.citations_path):
+                try:
+                    from extraction.citations import verify_citation_pages
+                    with open(result.citations_path, "r", encoding="utf-8") as f:
+                        cited = json.load(f)
+                    stats = verify_citation_pages(cited, pdf_path)
+                    with open(result.citations_path, "w", encoding="utf-8") as f:
+                        json.dump(cited, f, indent=2, ensure_ascii=False)
+                    logger.info(f"Citation pages checked against the PDF: {stats}")
+                except Exception as e:
+                    logger.warning(f"Failed to verify citation pages: {e}")
 
         # Run CDISC CORE engine validation on the final USDM JSON
         if result.usdm_path and os.path.exists(result.usdm_path):

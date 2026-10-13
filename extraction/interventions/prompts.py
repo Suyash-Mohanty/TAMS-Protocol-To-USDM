@@ -56,59 +56,76 @@ For each product extract:
 
 Return a JSON object with this exact structure:
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text (not a structural field
+like `id`, `instanceType`, `role`, `type`, `designation`, `route`, or `activeIngredients`)
+MUST be written as an object with three keys instead of a bare value:
+```json
+"fieldName": {"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}
+```
+- `page` is the 0-indexed page number where you found this specific value (not the
+  whole section's page range).
+- `quote` must be copied verbatim from the protocol — not a paraphrase. If the value
+  is a reasonable default rather than something the protocol explicitly states, set
+  `quote` to `null` and `page` to `null`.
+- `id`, `instanceType`, `role`, `type`, `designation`, `route`, and `activeIngredients`
+  are classification/linking fields chosen from a controlled vocabulary — write these
+  as bare values, exactly as before — do NOT wrap these.
+
 ```json
 {
   "interventions": [
     {
-      "name": "ALXN1840",
+      "name": {"value": "ALXN1840", "page": 2, "quote": "ALXN1840"},
       "role": "Experimental Intervention",
       "type": "Drug",
-      "description": "Investigational product for Wilson disease"
+      "description": {"value": "Investigational product for Wilson disease", "page": 2, "quote": "ALXN1840 is being developed for the treatment of Wilson disease"}
     },
     {
-      "name": "Placebo",
+      "name": {"value": "Placebo", "page": 2, "quote": "matching placebo"},
       "role": "Placebo",
       "type": "Drug",
-      "description": "Matching placebo tablets"
+      "description": {"value": "Matching placebo tablets", "page": 2, "quote": "matching placebo tablets"}
     },
     {
-      "name": "Paracetamol/acetaminophen",
+      "name": {"value": "Paracetamol/acetaminophen", "page": 10, "quote": "paracetamol/acetaminophen"},
       "role": "Concomitant Medication",
       "type": "Drug",
-      "description": "Permitted for mild pain relief"
+      "description": {"value": "Permitted for mild pain relief", "page": 10, "quote": "permitted for the treatment of mild pain"}
     }
   ],
   "products": [
     {
-      "name": "ALXN1840 tablets",
-      "doseForm": "Film-coated tablet",
+      "name": {"value": "ALXN1840 tablets", "page": 3, "quote": "ALXN1840 film-coated tablets"},
+      "doseForm": {"value": "Film-coated tablet", "page": 3, "quote": "film-coated tablet"},
       "designation": "IMP",
       "activeIngredients": ["bis-choline tetrathiomolybdate"],
-      "strengthValue": 15,
-      "strengthUnit": "mg",
-      "manufacturer": "Alexion Pharmaceuticals"
+      "strengthValue": {"value": 15, "page": 3, "quote": "15 mg"},
+      "strengthUnit": {"value": "mg", "page": 3, "quote": "15 mg"},
+      "manufacturer": {"value": "Alexion Pharmaceuticals", "page": 3, "quote": "manufactured by Alexion Pharmaceuticals"}
     }
   ],
   "substances": [
     {
-      "name": "bis-choline tetrathiomolybdate",
-      "description": "Active pharmaceutical ingredient"
+      "name": {"value": "bis-choline tetrathiomolybdate", "page": 3, "quote": "bis-choline tetrathiomolybdate"},
+      "description": {"value": "Active pharmaceutical ingredient", "page": null, "quote": null}
     }
   ],
   "administrations": [
     {
-      "name": "ALXN1840 15 mg daily",
-      "dose": "15 mg",
-      "frequency": "once daily",
+      "name": {"value": "ALXN1840 15 mg daily", "page": 4, "quote": "ALXN1840 15 mg once daily"},
+      "dose": {"value": "15 mg", "page": 4, "quote": "15 mg"},
+      "frequency": {"value": "once daily", "page": 4, "quote": "once daily"},
       "route": "Oral",
-      "duration": "24 weeks"
+      "duration": {"value": "24 weeks", "page": 4, "quote": "for 24 weeks"}
     },
     {
-      "name": "ALXN1840 30 mg daily",
-      "dose": "30 mg",
-      "frequency": "once daily",
+      "name": {"value": "ALXN1840 30 mg daily", "page": 4, "quote": "ALXN1840 30 mg once daily"},
+      "dose": {"value": "30 mg", "page": 4, "quote": "30 mg"},
+      "frequency": {"value": "once daily", "page": 4, "quote": "once daily"},
       "route": "Oral",
-      "duration": "After Day 29"
+      "duration": {"value": "After Day 29", "page": 4, "quote": "from Day 29 onward"}
     }
   ],
   "devices": []
@@ -126,7 +143,12 @@ Return a JSON object with this exact structure:
    - Forms: "Tablet", "Capsule", "Solution", "Injection", "Cream", "Patch"
 5. **Be precise with doses** - Include units (mg, mg/kg, mg/m2, etc.)
 6. **Only set strengthName when the protocol names the strength distinctly** - most protocols don't; leave it unset rather than fabricating a label
-7. **Return ONLY valid JSON** - no markdown, no explanations
+7. **Wrap every citable scalar field** - every field value you extract from the
+   protocol (not `id`/`instanceType`/`role`/`type`/`designation`/`route`/
+   `activeIngredients`) must be `{"value": ..., "page": ..., "quote": ...}` as shown
+   above. Use `page: null, quote: null` only when the value is a reasonable default,
+   not something the protocol states.
+8. **Return ONLY valid JSON** - no markdown, no explanations
 
 Now analyze the protocol content and extract the interventions:
 """

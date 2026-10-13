@@ -63,6 +63,7 @@ class AdvancedAgent(BaseExtractionAgent):
                 "data": amendment.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(amendment.id, {}),
             })
 
         for reason in data.amendment_reasons:
@@ -72,6 +73,7 @@ class AdvancedAgent(BaseExtractionAgent):
                 "data": reason.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(reason.id, {}),
             })
 
         if data.original_protocol_date:
@@ -81,6 +83,7 @@ class AdvancedAgent(BaseExtractionAgent):
                 "data": data.original_protocol_date,
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(data.original_protocol_date["id"], {}),
             })
 
         if data.geographic_scope:
@@ -90,6 +93,7 @@ class AdvancedAgent(BaseExtractionAgent):
                 "data": data.geographic_scope.to_dict(),
                 "confidence": 0.8,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(data.geographic_scope.id, {}),
             })
 
         for country in data.countries:
@@ -99,6 +103,7 @@ class AdvancedAgent(BaseExtractionAgent):
                 "data": country.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(country.id, {}),
             })
 
         for site in data.sites:

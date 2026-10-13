@@ -66,6 +66,25 @@ For each assessment, generate a structured BiomedicalConcept following CDISC USD
 
 ## Output Format
 
+### Citation requirement — read before producing output
+
+The activity names you were given come from the Schedule of Activities, not raw
+protocol text with page numbers, so citations here work slightly differently than
+in other extraction modules: for the fields you derive from your own clinical
+knowledge of the activity name (`name`, `label`, `synonyms`), wrap the value as:
+```json
+"fieldName": {{"value": <the actual value>, "page": null, "quote": "<the input activity line this was derived from>"}}
+```
+- `page` is always `null` here — these fields aren't tied to a specific protocol
+  page, only to the activity line you were given.
+- `quote` is the exact `activity` line (copied from the numbered list below) that
+  you based this value on — not a paraphrase.
+- Structural/classification/lookup fields (`id`, `activity`, `categoryName`,
+  `nciCode`, `nciDecode`, and every field inside `properties`) stay bare, exactly
+  as before — do NOT wrap these. In particular, do NOT invent a page or quote for
+  `nciCode`/`nciDecode` — those come from the lookup table above, not from reading
+  the protocol.
+
 ```json
 {{
   "categories": [
@@ -80,9 +99,9 @@ For each assessment, generate a structured BiomedicalConcept following CDISC USD
     {{
       "id": "bc_1",
       "activity": "Vital Signs (Supine Blood Pressure, Pulse Rate)",
-      "name": "Systolic Blood Pressure",
-      "label": "Systolic Blood Pressure Measurement",
-      "synonyms": ["SBP", "Systolic BP"],
+      "name": {{"value": "Systolic Blood Pressure", "page": null, "quote": "Vital Signs (Supine Blood Pressure, Pulse Rate)"}},
+      "label": {{"value": "Systolic Blood Pressure Measurement", "page": null, "quote": "Vital Signs (Supine Blood Pressure, Pulse Rate)"}},
+      "synonyms": {{"value": ["SBP", "Systolic BP"], "page": null, "quote": "Vital Signs (Supine Blood Pressure, Pulse Rate)"}},
       "nciCode": "C25298",
       "nciDecode": "Systolic Blood Pressure",
       "categoryName": "Vital Signs",
@@ -111,7 +130,8 @@ For each assessment, generate a structured BiomedicalConcept following CDISC USD
 2. Use null for nciCode if not known — do not guess codes
 3. Every BC must belong to exactly one category
 4. Include at least one property per BC (the primary result variable)
-5. Return ONLY valid JSON — no markdown, no explanations
+5. **Wrap `name`/`label`/`synonyms`** - each as `{{"value": ..., "page": null, "quote": "<the activity line>"}}` as shown above. Do NOT wrap `id`, `activity`, `categoryName`, `nciCode`, `nciDecode`, or anything inside `properties`.
+6. Return ONLY valid JSON — no markdown, no explanations
 
 Now generate BiomedicalConcepts for the following SoA activities:
 

@@ -14,6 +14,7 @@ from typing import List, Optional, Dict, Any
 from core.llm_client import call_llm
 from core.pdf_utils import extract_text_from_pages, get_page_count
 from core.usdm_types import generate_uuid
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     AdvancedData,
     StudyAmendment,
@@ -267,28 +268,30 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
     
     if raw is None:
         return AdvancedData()
-    
+
     amendments = []
     amendment_reasons = []
     countries = []
     sites = []
     geo_scope = None
-    
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
     # Process amendments - accept both 'amendments' and 'studyAmendments' keys
     amendments_raw = raw.get('amendments') or raw.get('studyAmendments') or []
     amend_idx = 0
     for amend in amendments_raw:
         if not isinstance(amend, dict):
             continue
-        
+
         amend_number = str(amend.get('number', ''))
-        
+
         # Skip "Original Protocol" - it's not an amendment
         if 'original' in amend_number.lower():
             continue
-        
+
         amend_idx += 1
-        
+        amend_id = amend.get('id', f"amend_{amend_idx}")
+
         # Process reasons
         reason_ids = []
         reasons_raw = amend.get('reasons') or amend.get('reasonIds') or []
@@ -317,12 +320,39 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
         if primary_reason == "Other" and not other_reason and isinstance(primary_raw, str):
             other_reason = primary_raw if primary_raw.strip().lower() != "other" else None
 
-        changes = [c for c in (amend.get('changes') or []) if isinstance(c, dict)]
+        # Unwrap + collect citations for the amendment-level citable fields
+        summary_raw = amend.get('summary')
+        effective_date_raw = amend.get('effectiveDate')
+        approval_date_raw = amend.get('approvalDate')
+        summary = _unwrap(summary_raw)
+        effective_date_str = _unwrap(effective_date_raw)
+        approval_date_str = _unwrap(approval_date_raw)
+        _collect_citation(citations, amend_id, 'summary', summary_raw)
+        _collect_citation(citations, amend_id, 'effectiveDate', effective_date_raw)
+        _collect_citation(citations, amend_id, 'approvalDate', approval_date_raw)
+
+        # Changes: unwrap sectionTitle/description/rationale, keep sectionNumber bare
+        changes = []
+        for c in (amend.get('changes') or []):
+            if not isinstance(c, dict):
+                continue
+            section_number = c.get('sectionNumber')
+            section_title_raw = c.get('sectionTitle')
+            description_raw = c.get('description')
+            rationale_raw = c.get('rationale')
+            change_id = f"{amend_id}_change_{len(changes)+1}"
+            _collect_citation(citations, change_id, 'sectionTitle', section_title_raw)
+            _collect_citation(citations, change_id, 'description', description_raw)
+            _collect_citation(citations, change_id, 'rationale', rationale_raw)
+            changes.append({
+                "sectionNumber": section_number,
+                "sectionTitle": _unwrap(section_title_raw),
+                "description": _unwrap(description_raw),
+                "rationale": _unwrap(rationale_raw),
+            })
 
         # Build dateValues list for this amendment
         date_values = []
-        effective_date_str = amend.get('effectiveDate')
-        approval_date_str = amend.get('approvalDate')
 
         if effective_date_str:
             date_values.append(_make_governance_date_dict(
@@ -342,9 +372,9 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
             ))
 
         amendments.append(StudyAmendment(
-            id=amend.get('id', f"amend_{amend_idx}"),
+            id=amend_id,
             number=amend_number,
-            summary=amend.get('summary'),
+            summary=summary,
             effective_date=effective_date_str,
             previous_version=amend.get('previousVersion'),
             new_version=amend.get('newVersion'),
@@ -355,26 +385,28 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
             other_reason=other_reason,
             changes=changes,
         ))
-    
+
     # Process geographic scope - also check for top-level 'countries' key
     geo_data = raw.get('geographicScope') or {}
     countries_raw = []
-    
+
     if isinstance(geo_data, dict) and geo_data:
         countries_raw = geo_data.get('countries') or []
-    
+
     # Also check for top-level countries array (USDM format)
     if not countries_raw:
         countries_raw = raw.get('countries') or []
-    
+
     country_ids = []
     for i, country in enumerate(countries_raw):
         if isinstance(country, dict):
             country_id = country.get('id', f"country_{i+1}")
             country_ids.append(country_id)
+            name_raw = country.get('name', f'Country {i+1}')
+            _collect_citation(citations, country_id, 'name', name_raw)
             countries.append(Country(
                 id=country_id,
-                name=country.get('name', f'Country {i+1}'),
+                name=_unwrap(name_raw, f'Country {i+1}'),
                 code=country.get('code'),
             ))
         elif isinstance(country, str):
@@ -384,9 +416,10 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
                 id=country_id,
                 name=country,
             ))
-    
+
     if isinstance(geo_data, dict) and geo_data:
-        
+        planned_sites_raw = geo_data.get('plannedSites')
+        _collect_citation(citations, 'geo_1', 'plannedSites', planned_sites_raw)
         geo_scope = GeographicScope(
             id="geo_1",
             name="Study Geographic Scope",
@@ -394,13 +427,13 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
             country_ids=country_ids,
             regions=geo_data.get('regions') or [],
         )
-    
+
     # Process sites
     sites_raw = raw.get('sites') or []
     for i, site in enumerate(sites_raw):
         if not isinstance(site, dict):
             continue
-        
+
         # Find country ID
         country_id = None
         site_country = site.get('country', '')
@@ -408,7 +441,7 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
             if c.name.lower() == site_country.lower():
                 country_id = c.id
                 break
-        
+
         sites.append(StudySite(
             id=f"site_{i+1}",
             name=site.get('name', f'Site {i+1}'),
@@ -416,8 +449,9 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
             country_id=country_id,
             city=site.get('city'),
         ))
-    
-    original_date = _to_iso_date(raw.get('originalProtocolDate'))
+
+    original_date_raw = raw.get('originalProtocolDate')
+    original_date = _to_iso_date(_unwrap(original_date_raw))
     original_protocol_date = None
     if original_date:
         original_protocol_date = _make_governance_date_dict(
@@ -430,6 +464,7 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
         original_protocol_date["description"] = "Date the original protocol version was issued (Document History)"
         # Staging key: attaches the date to the original document version
         original_protocol_date["documentVersionLabel"] = "Original"
+        _collect_citation(citations, "gd_original_protocol", "dateValue", original_date_raw)
 
     return AdvancedData(
         amendments=amendments,
@@ -438,6 +473,7 @@ def _build_advanced_data(raw: Dict[str, Any]) -> AdvancedData:
         countries=countries,
         sites=sites,
         original_protocol_date=original_protocol_date,
+        citations=citations,
     )
 
 

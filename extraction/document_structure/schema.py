@@ -121,7 +121,10 @@ class DocumentStructureData:
     content_references: List[DocumentContentReference] = field(default_factory=list)
     annotations: List[CommentAnnotation] = field(default_factory=list)
     document_versions: List[StudyDefinitionDocumentVersion] = field(default_factory=list)
-    
+
+    # Per-entity field citations: entity_id -> field_name -> {"page", "quote"}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "documentContentReferences": [r.to_dict() for r in self.content_references],

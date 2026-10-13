@@ -343,7 +343,10 @@ class StudyDesignData:
     
     # Elements (treatment periods within cells)
     elements: List[StudyElement] = field(default_factory=list)
-    
+
+    # Per-entity field citations: entity_id -> field_name -> {"page": int|None, "quote": str|None}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert to USDM-compatible dictionary structure."""
         result = {

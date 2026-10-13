@@ -13,6 +13,7 @@ from typing import List, Optional, Dict, Any
 
 from core.llm_client import call_llm
 from core.pdf_utils import extract_text_from_pages, get_page_count
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     SchedulingData,
     SchedulingResult,
@@ -185,84 +186,134 @@ def extract_scheduling(
             json_str = response
         
         raw_data = json.loads(json_str)
-        
+
+        citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
         # Parse timings
         timings = []
         for t in raw_data.get('timings', []):
+            timing_id = t.get('id', f"timing_{len(timings)+1}")
+            name_raw = t.get('name', '')
+            visit_raw = t.get('visit') or t.get('visitName')
+            rel_visit_raw = t.get('relativeToVisit') or t.get('relativeToVisitName')
+            value_raw = t.get('value')
+            value_min_raw = t.get('valueMin')
+            value_max_raw = t.get('valueMax')
+            window_lower_raw = t.get('windowLower')
+            window_upper_raw = t.get('windowUpper')
+
+            for field_name, field_raw in (
+                ('name', name_raw), ('visit', visit_raw), ('relativeToVisit', rel_visit_raw),
+                ('value', value_raw), ('valueMin', value_min_raw), ('valueMax', value_max_raw),
+                ('windowLower', window_lower_raw), ('windowUpper', window_upper_raw),
+            ):
+                _collect_citation(citations, timing_id, field_name, field_raw)
+
             timing = Timing(
-                id=t.get('id', f"timing_{len(timings)+1}"),
-                name=t.get('name', ''),
+                id=timing_id,
+                name=_unwrap(name_raw, ''),
                 timing_type=parse_timing_type(t.get('timingType')) or TimingType.AT,
-                value=t.get('value'),
-                value_min=t.get('valueMin'),
-                value_max=t.get('valueMax'),
+                value=_unwrap(value_raw),
+                value_min=_unwrap(value_min_raw),
+                value_max=_unwrap(value_max_raw),
                 unit=t.get('unit', 'days'),
                 relative_to=parse_relative_to(t.get('relativeTo')),
                 relative_to_timepoint_id=t.get('relativeToTimepointId'),
-                window_lower=t.get('windowLower'),
-                window_upper=t.get('windowUpper'),
-                visit_name=t.get('visit') or t.get('visitName'),
-                relative_to_visit_name=t.get('relativeToVisit') or t.get('relativeToVisitName'),
+                window_lower=_unwrap(window_lower_raw),
+                window_upper=_unwrap(window_upper_raw),
+                visit_name=_unwrap(visit_raw),
+                relative_to_visit_name=_unwrap(rel_visit_raw),
             )
             timings.append(timing)
-        
+
         # Parse conditions
         conditions = []
         for c in raw_data.get('conditions', []):
+            cond_id = c.get('id', f"cond_{len(conditions)+1}")
+            name_raw = c.get('name', '')
+            desc_raw = c.get('description')
+            text_raw = c.get('text')
+            for field_name, field_raw in (
+                ('name', name_raw), ('description', desc_raw), ('text', text_raw),
+            ):
+                _collect_citation(citations, cond_id, field_name, field_raw)
             condition = Condition(
-                id=c.get('id', f"cond_{len(conditions)+1}"),
-                name=c.get('name', ''),
-                description=c.get('description'),
-                text=c.get('text'),
+                id=cond_id,
+                name=_unwrap(name_raw, ''),
+                description=_unwrap(desc_raw),
+                text=_unwrap(text_raw),
             )
             conditions.append(condition)
-        
+
         # Parse transition rules
         transition_rules = []
         for tr in raw_data.get('transitionRules', []):
+            trans_id = tr.get('id', f"trans_{len(transition_rules)+1}")
+            name_raw = tr.get('name', '')
+            desc_raw = tr.get('description')
+            text_raw = tr.get('text')
+            for field_name, field_raw in (
+                ('name', name_raw), ('description', desc_raw), ('text', text_raw),
+            ):
+                _collect_citation(citations, trans_id, field_name, field_raw)
             rule = TransitionRule(
-                id=tr.get('id', f"trans_{len(transition_rules)+1}"),
-                name=tr.get('name', ''),
-                description=tr.get('description'),
+                id=trans_id,
+                name=_unwrap(name_raw, ''),
+                description=_unwrap(desc_raw),
                 transition_type=parse_transition_type(tr.get('transitionType')),
                 from_element_id=tr.get('fromElementId'),
                 to_element_id=tr.get('toElementId'),
                 condition_id=tr.get('conditionId'),
-                text=tr.get('text'),
+                text=_unwrap(text_raw),
             )
             transition_rules.append(rule)
-        
+
         # Parse schedule exits
         schedule_exits = []
         for e in raw_data.get('scheduleExits', []):
+            exit_id = e.get('id', f"exit_{len(schedule_exits)+1}")
+            name_raw = e.get('name', '')
+            desc_raw = e.get('description')
+            for field_name, field_raw in (
+                ('name', name_raw), ('description', desc_raw),
+            ):
+                _collect_citation(citations, exit_id, field_name, field_raw)
             exit_item = ScheduleTimelineExit(
-                id=e.get('id', f"exit_{len(schedule_exits)+1}"),
-                name=e.get('name', ''),
-                description=e.get('description'),
+                id=exit_id,
+                name=_unwrap(name_raw, ''),
+                description=_unwrap(desc_raw),
                 exit_type=e.get('exitType', 'Early Termination'),
                 condition_id=e.get('conditionId'),
             )
             schedule_exits.append(exit_item)
-        
+
         # Parse decision instances
         decision_instances = []
         for d in raw_data.get('decisionInstances', []):
+            dec_id = d.get('id', f"dec_{len(decision_instances)+1}")
+            name_raw = d.get('name', '')
+            desc_raw = d.get('description')
+            for field_name, field_raw in (
+                ('name', name_raw), ('description', desc_raw),
+            ):
+                _collect_citation(citations, dec_id, field_name, field_raw)
             decision = ScheduledDecisionInstance(
-                id=d.get('id', f"dec_{len(decision_instances)+1}"),
-                name=d.get('name', ''),
-                description=d.get('description'),
+                id=dec_id,
+                name=_unwrap(name_raw, ''),
+                description=_unwrap(desc_raw),
                 timepoint_id=d.get('timepointId', ''),
                 condition_ids=d.get('conditionIds', []),
                 default_transition_id=d.get('defaultTransitionId'),
             )
             decision_instances.append(decision)
-        
+
         data = SchedulingData(
             timings=timings,
             conditions=conditions,
             transition_rules=transition_rules,
             schedule_exits=schedule_exits,
             decision_instances=decision_instances,
+            citations=citations,
         )
         
         confidence = 0.0

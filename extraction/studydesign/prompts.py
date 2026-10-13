@@ -63,12 +63,32 @@ Sub-populations within the study (NOT dose levels):
 
 Return a JSON object with this exact structure:
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text (not a structural/
+classification field like `type`, `model`, `schema`, `maskedRoles`, `randomizationType`,
+`controlType`, `trialIntentTypes`, `stratificationFactors`, `therapeuticAreas`, or
+`isTitration`) MUST be written as an object with three keys instead of a bare value:
+```json
+"fieldName": {"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}
+```
+- `page` is the 0-indexed page number where you found this specific value (not the
+  whole section's page range).
+- `quote` must be copied verbatim from the protocol — not a paraphrase. If the value
+  is a reasonable default rather than something the protocol explicitly states, set
+  `quote` to `null` and `page` to `null`.
+- Classification fields chosen from a controlled vocabulary (`type`, `model`,
+  blinding `schema`, `maskedRoles`, `randomizationType`, `controlType`,
+  `trialIntentTypes`, `stratificationFactors`, `therapeuticAreas`, `isTitration`)
+  stay bare values, exactly as before — do NOT wrap these.
+
 ```json
 {
   "studyDesign": {
     "type": "Interventional",
     "model": "Single Group",
     "trialIntentTypes": ["Treatment"],
+    "description": {"value": "All participants receive ALXN1840 with dose titration", "page": 1, "quote": "All participants will receive ALXN1840 with dose titration from 15 mg to 30 mg"},
     "blinding": {
       "schema": "Open Label",
       "maskedRoles": []
@@ -83,31 +103,31 @@ Return a JSON object with this exact structure:
   },
   "arms": [
     {
-      "name": "ALXN1840 Treatment",
+      "name": {"value": "ALXN1840 Treatment", "page": 1, "quote": "ALXN1840 Treatment Arm"},
       "type": "Experimental Arm",
-      "description": "All participants receive ALXN1840 with dose titration from 15mg to 30mg",
+      "description": {"value": "All participants receive ALXN1840 with dose titration from 15mg to 30mg", "page": 1, "quote": "All participants will receive ALXN1840 with dose titration from 15 mg to 30 mg"},
       "isTitration": true,
       "doseEpochs": [
-        {"dose": "15 mg/day", "startDay": 1, "endDay": 28, "description": "Initial dose period"},
-        {"dose": "30 mg/day", "startDay": 29, "endDay": null, "description": "Titrated dose period"}
+        {"dose": {"value": "15 mg/day", "page": 1, "quote": "15 mg/day"}, "startDay": {"value": 1, "page": 1, "quote": "Day 1"}, "endDay": {"value": 28, "page": 1, "quote": "Day 28"}, "description": {"value": "Initial dose period", "page": 1, "quote": "initial 15 mg dose period"}},
+        {"dose": {"value": "30 mg/day", "page": 1, "quote": "30 mg/day"}, "startDay": {"value": 29, "page": 1, "quote": "Day 29"}, "endDay": {"value": null, "page": null, "quote": null}, "description": {"value": "Titrated dose period", "page": 1, "quote": "titrated to 30 mg thereafter"}}
       ]
     }
   ],
   "cohorts": [
     {
-      "name": "Treatment-naive",
-      "characteristic": "Participants who have not received prior WD therapy"
+      "name": {"value": "Treatment-naive", "page": 2, "quote": "treatment-naive participants"},
+      "characteristic": {"value": "Participants who have not received prior WD therapy", "page": 2, "quote": "participants who have not received prior Wilson disease therapy"}
     },
     {
-      "name": "Previously treated",
-      "characteristic": "Participants with prior chelator or zinc therapy"
+      "name": {"value": "Previously treated", "page": 2, "quote": "previously treated participants"},
+      "characteristic": {"value": "Participants with prior chelator or zinc therapy", "page": 2, "quote": "participants with prior chelator or zinc therapy"}
     }
   ],
   "epochs": [
-    {"name": "Screening", "description": "Up to 21 days"},
-    {"name": "15mg Treatment Period", "description": "Days 1-28, initial dose"},
-    {"name": "30mg Treatment Period", "description": "Day 29 onwards, titrated dose"},
-    {"name": "Follow-up", "description": "4 weeks after last dose"}
+    {"name": {"value": "Screening", "page": 1, "quote": "Screening Period"}, "description": {"value": "Up to 21 days", "page": 1, "quote": "up to 21 days"}},
+    {"name": {"value": "15mg Treatment Period", "page": 1, "quote": "15 mg Treatment Period"}, "description": {"value": "Days 1-28, initial dose", "page": 1, "quote": "Days 1 to 28"}},
+    {"name": {"value": "30mg Treatment Period", "page": 1, "quote": "30 mg Treatment Period"}, "description": {"value": "Day 29 onwards, titrated dose", "page": 1, "quote": "from Day 29 onward"}},
+    {"name": {"value": "Follow-up", "page": 1, "quote": "Follow-up Period"}, "description": {"value": "4 weeks after last dose", "page": 1, "quote": "4 weeks after the last dose"}}
   ]
 }
 ```
@@ -118,15 +138,15 @@ If the study randomizes subjects to DIFFERENT doses (not titration):
 {
   "arms": [
     {
-      "name": "Low Dose Arm",
-      "type": "Experimental Arm", 
-      "description": "Randomized to receive 15mg for entire study",
+      "name": {"value": "Low Dose Arm", "page": 1, "quote": "Low Dose Arm"},
+      "type": "Experimental Arm",
+      "description": {"value": "Randomized to receive 15mg for entire study", "page": 1, "quote": "randomized to receive 15 mg for the entire study"},
       "isTitration": false
     },
     {
-      "name": "High Dose Arm",
+      "name": {"value": "High Dose Arm", "page": 1, "quote": "High Dose Arm"},
       "type": "Experimental Arm",
-      "description": "Randomized to receive 30mg for entire study", 
+      "description": {"value": "Randomized to receive 30mg for entire study", "page": 1, "quote": "randomized to receive 30 mg for the entire study"},
       "isTitration": false
     }
   ]
@@ -140,7 +160,13 @@ If the study randomizes subjects to DIFFERENT doses (not titration):
 3. **Identify cohorts** - Sub-groups based on prior treatment, disease severity, etc.
 4. **Use standard terminology** - Use USDM-compliant codes where possible
 5. **CRITICAL: Detect titration** - If ALL subjects go through sequential doses, use ONE arm with isTitration=true
-6. **Return ONLY valid JSON** - no markdown, no explanations
+6. **Wrap every citable scalar field** - every field value you extract from the
+   protocol (not `type`/`model`/`schema`/`maskedRoles`/`randomizationType`/
+   `controlType`/`trialIntentTypes`/`stratificationFactors`/`therapeuticAreas`/
+   `isTitration`) must be `{"value": ..., "page": ..., "quote": ...}` as shown above.
+   Use `page: null, quote: null` only when the value is a reasonable default, not
+   something the protocol states.
+7. **Return ONLY valid JSON** - no markdown, no explanations
 
 Now analyze the protocol content and extract the study design:
 """

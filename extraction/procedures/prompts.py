@@ -47,15 +47,32 @@ PROCEDURES_USER_PROMPT = """Extract all Procedures, Medical Devices, and Drug In
 - If the protocol is silent on specimen retention, do not include this key at all —
   do not invent a statement
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text (not a structural field
+like `id`, `substanceId`, `scopeId`, `procedureType`, `deviceType`, or `role`) MUST be
+written as an object with three keys instead of a bare value:
+```json
+"fieldName": {{"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}}
+```
+- `page` is the 0-indexed page number where you found this specific value.
+- `quote` must be copied verbatim from the protocol — not a paraphrase. If you cannot
+  find a specific supporting quote, set `quote` to `null` and `page` to `null` rather
+  than guessing.
+- `id`, `substanceId`, `scopeId`, `procedureType`, `deviceType`, and `role` are
+  structural/linking fields and stay bare — do NOT wrap those. The nested `code`
+  object on a Procedure (CPT/SNOMED code, codeSystem, decode) is also structural
+  and stays bare.
+
 Return JSON in this exact format:
 ```json
 {{
   "procedures": [
     {{
       "id": "proc_1",
-      "name": "Venipuncture",
-      "label": "Blood Draw",
-      "description": "Collection of blood samples for laboratory analysis",
+      "name": {{"value": "Venipuncture", "page": 20, "quote": "Blood will be collected by venipuncture"}},
+      "label": {{"value": "Blood Draw", "page": 20, "quote": "Blood Draw"}},
+      "description": {{"value": "Collection of blood samples for laboratory analysis", "page": 20, "quote": "Blood will be collected by venipuncture for laboratory analysis"}},
       "procedureType": "Sampling",
       "code": {{
         "code": "36415",
@@ -67,25 +84,25 @@ Return JSON in this exact format:
   "medicalDevices": [
     {{
       "id": "dev_1",
-      "name": "Prefilled Syringe",
-      "label": "PFS",
-      "description": "Prefilled syringe for subcutaneous injection",
+      "name": {{"value": "Prefilled Syringe", "page": 25, "quote": "study drug will be administered via prefilled syringe"}},
+      "label": {{"value": "PFS", "page": 25, "quote": "PFS"}},
+      "description": {{"value": "Prefilled syringe for subcutaneous injection", "page": 25, "quote": "prefilled syringe for subcutaneous injection"}},
       "deviceType": "Drug Delivery Device",
-      "manufacturer": "Manufacturer Name",
-      "modelNumber": "Model-123"
+      "manufacturer": {{"value": "Manufacturer Name", "page": 25, "quote": "manufactured by Manufacturer Name"}},
+      "modelNumber": {{"value": "Model-123", "page": 25, "quote": "Model-123"}}
     }}
   ],
   "deviceIdentifiers": [
     {{
       "id": "dev_id_1",
-      "text": "UDI-12345",
+      "text": {{"value": "UDI-12345", "page": 25, "quote": "UDI: UDI-12345"}},
       "scopeId": "org_fda"
     }}
   ],
   "ingredients": [
     {{
       "id": "ing_1",
-      "name": "Drug Active Ingredient",
+      "name": {{"value": "Drug Active Ingredient", "page": 18, "quote": "active ingredient Drug Active Ingredient"}},
       "role": "Active",
       "substanceId": "subst_1"
     }}
@@ -93,21 +110,21 @@ Return JSON in this exact format:
   "strengths": [
     {{
       "id": "str_1",
-      "value": 100,
-      "unit": "mg",
-      "numeratorValue": 100,
-      "numeratorUnit": "mg",
-      "denominatorValue": 1,
-      "denominatorUnit": "mL"
+      "value": {{"value": 100, "page": 18, "quote": "100 mg/mL"}},
+      "unit": {{"value": "mg", "page": 18, "quote": "100 mg/mL"}},
+      "numeratorValue": {{"value": 100, "page": 18, "quote": "100 mg/mL"}},
+      "numeratorUnit": {{"value": "mg", "page": 18, "quote": "100 mg/mL"}},
+      "denominatorValue": {{"value": 1, "page": 18, "quote": "100 mg/mL"}},
+      "denominatorUnit": {{"value": "mL", "page": 18, "quote": "100 mg/mL"}}
     }}
   ],
   "biospecimenRetentions": [
     {{
       "id": "bior_1",
-      "name": "Retained Biospecimens for Future Research",
+      "name": {{"value": "Retained Biospecimens for Future Research", "page": 30, "quote": "Residual samples will be retained for future research"}},
       "isRetained": true,
-      "description": "Residual blood and tissue samples will be retained for up to 15 years for future exploratory research.",
-      "includesDNA": true
+      "description": {{"value": "Residual blood and tissue samples will be retained for up to 15 years for future exploratory research.", "page": 30, "quote": "Residual blood and tissue samples will be retained for up to 15 years for future exploratory research."}},
+      "includesDNA": {{"value": true, "page": 30, "quote": "samples may be used for genetic/DNA testing"}}
     }}
   ]
 }}
@@ -120,7 +137,12 @@ Valid ingredient role values: Active, Inactive, Adjuvant
 PROTOCOL TEXT:
 {protocol_text}
 
-Extract all procedures, devices, and ingredients mentioned. Include standard medical codes if identifiable."""
+Extract all procedures, devices, and ingredients mentioned. Include standard medical
+codes if identifiable. Wrap every citable scalar field as shown above (`name`,
+`label`, `description`, `manufacturer`, `modelNumber`, `text`, `value`, `unit`,
+`numeratorValue`, `numeratorUnit`, `denominatorValue`, `denominatorUnit`,
+`isRetained`, `includesDNA`); leave `id`, `substanceId`, `scopeId`, `procedureType`,
+`deviceType`, `role`, and the nested `code` object as bare values."""
 
 
 def get_procedures_prompt(protocol_text: str) -> str:

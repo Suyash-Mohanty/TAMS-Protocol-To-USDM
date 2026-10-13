@@ -160,6 +160,7 @@ class BaseExtractionAgent(BaseAgent):
                         confidence_score=entity_data.get("confidence", 0.0),
                         source_pages=entity_data.get("source_pages", []),
                         model_used=self._model_name,
+                        field_citations=entity_data.get("citations", {}),
                     ),
                 )
                 self._context_store.add_entity(entity)

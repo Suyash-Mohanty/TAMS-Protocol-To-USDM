@@ -60,6 +60,7 @@ class ProceduresAgent(BaseExtractionAgent):
                 "data": proc.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(proc.id, {}),
             })
 
         for dev in data.devices:
@@ -69,6 +70,7 @@ class ProceduresAgent(BaseExtractionAgent):
                 "data": dev.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(dev.id, {}),
             })
 
         for ing in data.ingredients:
@@ -78,6 +80,7 @@ class ProceduresAgent(BaseExtractionAgent):
                 "data": ing.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(ing.id, {}),
             })
 
         for s in data.strengths:
@@ -87,6 +90,7 @@ class ProceduresAgent(BaseExtractionAgent):
                 "data": s.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(s.id, {}),
             })
 
         for b in data.biospecimen_retentions:
@@ -96,6 +100,7 @@ class ProceduresAgent(BaseExtractionAgent):
                 "data": b.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(b.id, {}),
             })
 
         return {

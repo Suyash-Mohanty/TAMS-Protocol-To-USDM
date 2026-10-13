@@ -334,6 +334,9 @@ class SchedulingData:
     transition_rules: List[TransitionRule] = field(default_factory=list)
     schedule_exits: List[ScheduleTimelineExit] = field(default_factory=list)
     decision_instances: List[ScheduledDecisionInstance] = field(default_factory=list)
+
+    # Per-entity field citations: entity_id -> field_name -> {"page", "quote"}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
     
     def to_dict(self) -> Dict[str, Any]:
         return {

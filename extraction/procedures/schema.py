@@ -284,6 +284,9 @@ class ProceduresDevicesData:
     strengths: List[Strength] = field(default_factory=list)
     biospecimen_retentions: List[BiospecimenRetention] = field(default_factory=list)
 
+    # Per-entity field citations: entity_id -> field_name -> {"page", "quote"}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
+
     def to_dict(self) -> Dict[str, Any]:
         return {
             "procedures": [p.to_dict() for p in self.procedures],

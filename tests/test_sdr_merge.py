@@ -116,3 +116,29 @@ def test_text_helpers():
     assert not is_empty(False)
     assert similarity("Period 1", "Period 2") < 0.8
     assert similarity("GlucaGen", "GlucaGen (intramuscular glucagon)") >= 0.85
+
+
+def test_citations_follow_the_merged_ids(tmp_path):
+    import json
+    from merge import merge_files
+    sdr = _doc({"description": "SDR text", "rationale": "",
+                "indications": [_ind("I1", "Ulcerative colitis", description="")],
+                "activities": [_act("A1", "Consent")]})
+    ours = _doc({"description": "ours", "rationale": "Our rationale",
+                 "indications": [_ind("i1", "Ulcerative colitis", description="Moderate UC"), _ind("i2", "Obesity")],
+                 "activities": [_act("a1", "Consent"), _act("a2", "ECG")]})
+    sdr_path, ours_path = tmp_path / "sdr.json", tmp_path / "P_usdm.json"
+    sdr_path.write_text(json.dumps(sdr)); ours_path.write_text(json.dumps(ours))
+    cite = lambda: {"page": 3, "quote": "q"}
+    (tmp_path / "P_citations.json").write_text(json.dumps({"citations": {
+        "d": {"instanceType": "InterventionalStudyDesign", "fields": {"description": cite(), "rationale": cite()}},
+        "i1": {"instanceType": "Indication", "fields": {"name": cite(), "description": cite()}},
+        "i2": {"instanceType": "Indication", "fields": {"name": cite()}},
+        "a2": {"instanceType": "Activity", "fields": {"name": cite()}}}}))
+    merge_files(str(sdr_path), str(ours_path), str(tmp_path))
+    out = json.loads((tmp_path / "P_citations.json").read_text())["citations"]
+    assert set(out["d"]["fields"]) == {"rationale"}           # SDR's own description keeps no citation of ours
+    assert set(out["I1"]["fields"]) == {"description"}        # matched: re-keyed to the SDR id, filled field only
+    added = [k for k, v in out.items() if v["instanceType"] == "Indication" and k != "I1"]
+    assert len(added) == 1 and set(out[added[0]]["fields"]) == {"name"}
+    assert "a2" not in out                                    # activity not added to the SDR schedule

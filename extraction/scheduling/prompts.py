@@ -39,80 +39,100 @@ Only extract timings of scheduled visits and assessments. Do NOT extract eligibi
 - Study completion criteria
 - Protocol deviations leading to exit
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text (not a structural field
+like `id`, `timingType`, `relativeTo`, `unit`, `transitionType`, `exitType`,
+`conditionId`/`conditionIds`, `fromElementId`, `toElementId`, `timepointId`, or
+`defaultTransitionId`) MUST be written as an object with three keys instead of a
+bare value:
+```json
+"fieldName": {{"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}}
+```
+- `page` is the 0-indexed page where you found this specific value (not the whole
+  section's page range).
+- `quote` must be copied verbatim from the protocol — not a paraphrase.
+- If a value is a reasonable default rather than something the protocol states, set
+  `quote` and `page` to `null`.
+- Structural/linking/classification fields (`id`, `timingType`, `relativeTo`, `unit`,
+  `transitionType`, `exitType`, `conditionId`/`conditionIds`, `fromElementId`,
+  `toElementId`, `timepointId`, `defaultTransitionId`) stay bare, exactly as before —
+  do NOT wrap these.
+
 Return JSON in this exact format:
 ```json
 {{
   "timings": [
     {{
       "id": "timing_1",
-      "name": "Screening Window",
-      "visit": "Screening (Day -28 to -1)",
-      "relativeToVisit": "Day 1",
+      "name": {{"value": "Screening Window", "page": 12, "quote": "Screening Period (Day -28 to Day -1)"}},
+      "visit": {{"value": "Screening (Day -28 to -1)", "page": 12, "quote": "Screening (Day -28 to -1)"}},
+      "relativeToVisit": {{"value": "Day 1", "page": 12, "quote": "relative to Day 1 (randomization)"}},
       "timingType": "Within",
-      "value": 28,
+      "value": {{"value": 28, "page": 12, "quote": "within 28 days prior to randomization"}},
       "unit": "days",
       "relativeTo": "Randomization",
-      "windowLower": -28,
-      "windowUpper": -1
+      "windowLower": {{"value": -28, "page": 12, "quote": "Day -28 to Day -1"}},
+      "windowUpper": {{"value": -1, "page": 12, "quote": "Day -28 to Day -1"}}
     }},
     {{
       "id": "timing_2",
-      "name": "Week 4 Visit Window",
-      "visit": "Week 4",
-      "relativeToVisit": "Day 1",
+      "name": {{"value": "Week 4 Visit Window", "page": 14, "quote": "Visit 4 (Week 4 ± 3 days)"}},
+      "visit": {{"value": "Week 4", "page": 14, "quote": "Visit 4 (Week 4 ± 3 days)"}},
+      "relativeToVisit": {{"value": "Day 1", "page": 14, "quote": "relative to Day 1"}},
       "timingType": "At",
-      "value": 28,
+      "value": {{"value": 28, "page": 14, "quote": "Week 4 ± 3 days"}},
       "unit": "days",
       "relativeTo": "Randomization",
-      "windowLower": -3,
-      "windowUpper": 3
+      "windowLower": {{"value": -3, "page": 14, "quote": "Week 4 ± 3 days"}},
+      "windowUpper": {{"value": 3, "page": 14, "quote": "Week 4 ± 3 days"}}
     }}
   ],
   "conditions": [
     {{
       "id": "cond_1",
-      "name": "Response Criteria",
-      "description": "Criteria for determining treatment response",
-      "text": "50% reduction in primary endpoint from baseline"
+      "name": {{"value": "Response Criteria", "page": 20, "quote": "Response Criteria"}},
+      "description": {{"value": "Criteria for determining treatment response", "page": 20, "quote": "criteria for determining treatment response"}},
+      "text": {{"value": "50% reduction in primary endpoint from baseline", "page": 20, "quote": "a 50% reduction in the primary endpoint from baseline"}}
     }}
   ],
   "transitionRules": [
     {{
       "id": "trans_1",
-      "name": "Screen to Treatment Transition",
+      "name": {{"value": "Screen to Treatment Transition", "page": 15, "quote": "Transition from Screening to Treatment"}},
       "transitionType": "Epoch Transition",
       "fromElementId": "epoch_screening",
       "toElementId": "epoch_treatment",
-      "text": "Subject must meet all eligibility criteria"
+      "text": {{"value": "Subject must meet all eligibility criteria", "page": 15, "quote": "the subject must meet all eligibility criteria"}}
     }},
     {{
       "id": "trans_2",
-      "name": "Discontinuation for Safety",
+      "name": {{"value": "Discontinuation for Safety", "page": 22, "quote": "Discontinuation for Safety Reasons"}},
       "transitionType": "Discontinuation",
-      "text": "ALT > 5x ULN requires treatment discontinuation"
+      "text": {{"value": "ALT > 5x ULN requires treatment discontinuation", "page": 22, "quote": "ALT greater than 5x ULN requires discontinuation of study treatment"}}
     }}
   ],
   "scheduleExits": [
     {{
       "id": "exit_1",
-      "name": "Early Termination",
+      "name": {{"value": "Early Termination", "page": 25, "quote": "Early Termination Visit"}},
       "exitType": "Early Termination",
-      "description": "Subject may discontinue for any reason"
+      "description": {{"value": "Subject may discontinue for any reason", "page": 25, "quote": "a subject may discontinue from the study for any reason"}}
     }},
     {{
       "id": "exit_2",
-      "name": "Study Completion",
+      "name": {{"value": "Study Completion", "page": 26, "quote": "End of Study Visit"}},
       "exitType": "Completion",
-      "description": "Completion of all protocol-required visits"
+      "description": {{"value": "Completion of all protocol-required visits", "page": 26, "quote": "completion of all protocol-required visits"}}
     }}
   ],
   "decisionInstances": [
     {{
       "id": "dec_1",
-      "name": "Response Assessment Decision",
+      "name": {{"value": "Response Assessment Decision", "page": 18, "quote": "Response Assessment and Decision Point"}},
       "timepointId": "pt_week12",
       "conditionIds": ["cond_1"],
-      "description": "Decision point for response-based continuation"
+      "description": {{"value": "Decision point for response-based continuation", "page": 18, "quote": "a decision point for response-based continuation of treatment"}}
     }}
   ]
 }}
@@ -121,6 +141,16 @@ Return JSON in this exact format:
 Valid timingType values: Before, After, Within, At, Between
 Valid relativeTo values: Study Start, Randomization, First Dose, Last Dose, Previous Visit, Screening, Baseline, End of Treatment
 Valid transitionType values: Epoch Transition, Arm Transition, Discontinuation, Early Termination, Rescue Therapy, Dose Modification
+
+## Rules
+
+1. **Wrap every citable scalar field** - every value you extract from the protocol
+   (not `id`/`timingType`/`relativeTo`/`unit`/`transitionType`/`exitType`/
+   `conditionId`/`conditionIds`/`fromElementId`/`toElementId`/`timepointId`/
+   `defaultTransitionId`) must be `{{"value": ..., "page": ..., "quote": ...}}` as
+   shown above. Use `page: null, quote: null` only when the value is a reasonable
+   default, not something the protocol states.
+2. **Return ONLY valid JSON** - no markdown fences, no explanations
 
 PROTOCOL TEXT:
 {protocol_text}

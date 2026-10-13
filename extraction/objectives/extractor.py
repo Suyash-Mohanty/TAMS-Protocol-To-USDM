@@ -13,6 +13,7 @@ from typing import List, Optional, Dict, Any, Tuple
 
 from core.llm_client import call_llm
 from core.pdf_utils import extract_text_from_pages, get_page_count
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     ObjectivesData,
     Objective,
@@ -215,8 +216,9 @@ def extract_objectives_endpoints(
             )
             
             if phase2_response and phase2_response.get('estimands'):
-                estimands = _parse_estimands(phase2_response)
+                estimands, est_citations = _parse_estimands(phase2_response)
                 objectives_data.estimands = estimands
+                objectives_data.citations.update(est_citations)
                 logger.info(f"Phase 2 complete: {len(estimands)} estimands extracted")
             else:
                 logger.warning("Phase 2: No estimands extracted (non-fatal)")
@@ -342,16 +344,17 @@ def _parse_objectives_only(raw: Dict[str, Any]) -> Optional[ObjectivesData]:
     try:
         objectives = []
         endpoints = []
-        
+        citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
         primary_count = 0
         secondary_count = 0
         exploratory_count = 0
-        
+
         # Ensure raw is a dict
         if not isinstance(raw, dict):
             logger.error(f"Expected dict but got {type(raw).__name__}")
             return None
-        
+
         # Parse objectives with level codes
         for obj_data in raw.get('objectives', []):
             # Skip non-dict items
@@ -360,7 +363,7 @@ def _parse_objectives_only(raw: Dict[str, Any]) -> Optional[ObjectivesData]:
                 continue
             level_data = obj_data.get('level', {})
             level_code = level_data.get('code') if isinstance(level_data, dict) else (str(level_data) if level_data else '')
-            
+
             level = ObjectiveLevel.UNKNOWN
             if level_code:
                 if 'Primary' in level_code:
@@ -372,15 +375,23 @@ def _parse_objectives_only(raw: Dict[str, Any]) -> Optional[ObjectivesData]:
                 elif 'Exploratory' in level_code:
                     level = ObjectiveLevel.EXPLORATORY
                     exploratory_count += 1
-            
+
+            obj_id = obj_data.get('id', f"obj_{len(objectives)+1}")
+            name_raw = obj_data.get('name', '')
+            text_raw = obj_data.get('text', '')
+            name = _unwrap(name_raw, '')
+            text = _unwrap(text_raw, '')
+            _collect_citation(citations, obj_id, 'name', name_raw)
+            _collect_citation(citations, obj_id, 'text', text_raw)
+
             objectives.append(Objective(
-                id=obj_data.get('id', f"obj_{len(objectives)+1}"),
-                name=obj_data.get('name', ''),
-                text=obj_data.get('text', ''),
+                id=obj_id,
+                name=name,
+                text=text,
                 level=level,
                 endpoint_ids=obj_data.get('endpointIds', []),
             ))
-        
+
         # Parse endpoints with level codes
         for ep_data in raw.get('endpoints', []):
             # Skip non-dict items
@@ -389,7 +400,7 @@ def _parse_objectives_only(raw: Dict[str, Any]) -> Optional[ObjectivesData]:
                 continue
             level_data = ep_data.get('level', {})
             level_code = level_data.get('code') if isinstance(level_data, dict) else (str(level_data) if level_data else '')
-            
+
             level = EndpointLevel.UNKNOWN
             if level_code:
                 if 'Primary' in level_code:
@@ -398,37 +409,56 @@ def _parse_objectives_only(raw: Dict[str, Any]) -> Optional[ObjectivesData]:
                     level = EndpointLevel.SECONDARY
                 elif 'Exploratory' in level_code:
                     level = EndpointLevel.EXPLORATORY
-            
+
+            ep_id = ep_data.get('id', f"ep_{len(endpoints)+1}")
+            name_raw = ep_data.get('name', '')
+            text_raw = ep_data.get('text', '')
+            purpose_raw = ep_data.get('purpose')
+            name = _unwrap(name_raw, '')
+            text = _unwrap(text_raw, '')
+            purpose = _unwrap(purpose_raw)
+            _collect_citation(citations, ep_id, 'name', name_raw)
+            _collect_citation(citations, ep_id, 'text', text_raw)
+            _collect_citation(citations, ep_id, 'purpose', purpose_raw)
+
             endpoints.append(Endpoint(
-                id=ep_data.get('id', f"ep_{len(endpoints)+1}"),
-                name=ep_data.get('name', ''),
-                text=ep_data.get('text', ''),
+                id=ep_id,
+                name=name,
+                text=text,
                 level=level,
-                purpose=ep_data.get('purpose'),
+                purpose=purpose,
             ))
-        
+
         return ObjectivesData(
             objectives=objectives,
             endpoints=endpoints,
             estimands=[],  # Populated in Phase 2
+            citations=citations,
             primary_objectives_count=primary_count,
             secondary_objectives_count=secondary_count,
             exploratory_objectives_count=exploratory_count,
         )
-        
+
     except Exception as e:
         logger.error(f"Failed to parse objectives: {e}")
         return None
 
 
-def _parse_estimands(raw: Dict[str, Any]) -> List[Estimand]:
-    """Parse Phase 2 response (estimands only) - aligned with USDM 4.0."""
+def _parse_estimands(raw: Dict[str, Any]) -> Tuple[List[Estimand], Dict[str, Dict[str, Dict[str, Any]]]]:
+    """Parse Phase 2 response (estimands only) - aligned with USDM 4.0.
+
+    Returns (estimands, citations). Nested intercurrent events are cited
+    under their OWN id (not the parent estimand's), so citations from
+    different estimands/intercurrent events never collide.
+    """
     estimands = []
-    
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
     try:
         for est_data in raw.get('estimands', []):
             endpoint_id = est_data.get('endpointId')
-            
+            est_id = est_data.get('id', f"est_{len(estimands)+1}")
+
             # Parse intercurrent events - ensure at least one for USDM compliance
             ice_list = []
             for ie_data in est_data.get('intercurrentEvents', []):
@@ -436,16 +466,22 @@ def _parse_estimands(raw: Dict[str, Any]) -> List[Estimand]:
                     strategy_data = ie_data.get('strategy', {})
                     strategy_code = strategy_data.get('code', 'TreatmentPolicy') if isinstance(strategy_data, dict) else str(strategy_data)
                     strategy = _map_strategy(strategy_code)
-                    ice_text = ie_data.get('text') or ie_data.get('description') or ie_data.get('name', 'Intercurrent event')
+                    name_raw = ie_data.get('name', 'Intercurrent Event')
+                    text_raw = ie_data.get('text') or ie_data.get('description') or ie_data.get('name', 'Intercurrent event')
+                    desc_raw = ie_data.get('description')
+                    ice_id = ie_data.get('id', f"ice_{len(estimands)+1}_{len(ice_list)+1}")
+                    _collect_citation(citations, ice_id, 'name', name_raw)
+                    _collect_citation(citations, ice_id, 'text', text_raw)
+                    _collect_citation(citations, ice_id, 'description', desc_raw)
                     ice_list.append(IntercurrentEvent(
-                        id=ie_data.get('id', f"ice_{len(estimands)+1}_{len(ice_list)+1}"),
-                        name=ie_data.get('name', 'Intercurrent Event'),
-                        text=ice_text,
+                        id=ice_id,
+                        name=_unwrap(name_raw, 'Intercurrent Event'),
+                        text=_unwrap(text_raw, 'Intercurrent event'),
                         strategy=strategy,
-                        description=ie_data.get('description'),
+                        description=_unwrap(desc_raw),
                         label=ie_data.get('label'),
                     ))
-            
+
             # Add default intercurrent event if none provided (USDM requires at least 1)
             if not ice_list:
                 ice_list.append(IntercurrentEvent(
@@ -454,45 +490,61 @@ def _parse_estimands(raw: Dict[str, Any]) -> List[Estimand]:
                     text="Subject discontinues study treatment",
                     strategy=IntercurrentEventStrategy.TREATMENT_POLICY,
                 ))
-            
+
             # Population summary - combine population and analysis population
-            pop_text = est_data.get('populationSummary') or est_data.get('population', '')
-            analysis_pop = est_data.get('analysisPopulation', '')
+            pop_summary_raw = est_data.get('populationSummary') or est_data.get('population')
+            analysis_pop_raw = est_data.get('analysisPopulation')
+            pop_text = _unwrap(pop_summary_raw, '')
+            analysis_pop = _unwrap(analysis_pop_raw, '')
             if analysis_pop and analysis_pop not in pop_text:
                 pop_text = f"{pop_text} ({analysis_pop})" if pop_text else analysis_pop
             if not pop_text:
                 pop_text = 'Study population as defined by eligibility criteria'
-            
+
             # Extract intervention IDs - convert intervention names to IDs if needed
             intervention_ids = est_data.get('interventionIds', [])
             intervention_names = est_data.get('interventionNames', [])
-            treatment_desc = est_data.get('treatmentDescription') or est_data.get('treatment', '')
-            
+            treatment_raw = est_data.get('treatmentDescription') or est_data.get('treatment')
+            treatment_desc = _unwrap(treatment_raw, '')
+
             # If no intervention IDs but we have names, create placeholder IDs
             if not intervention_ids and intervention_names:
                 intervention_ids = [f"int_{i+1}" for i in range(len(intervention_names))]
-            
+
+            name_raw = est_data.get('name', '')
+            summary_measure_raw = est_data.get('summaryMeasure')
+            variable_raw = est_data.get('variableOfInterest')
+            desc_raw = est_data.get('description')
+
+            _collect_citation(citations, est_id, 'name', name_raw)
+            _collect_citation(citations, est_id, 'populationSummary', pop_summary_raw)
+            _collect_citation(citations, est_id, 'analysisPopulation', analysis_pop_raw)
+            _collect_citation(citations, est_id, 'treatmentDescription', treatment_raw)
+            _collect_citation(citations, est_id, 'summaryMeasure', summary_measure_raw)
+            _collect_citation(citations, est_id, 'variableOfInterest', variable_raw)
+            _collect_citation(citations, est_id, 'description', desc_raw)
+
             estimands.append(Estimand(
-                id=est_data.get('id', f"est_{len(estimands)+1}"),
-                name=est_data.get('name', ''),
+                id=est_id,
+                name=_unwrap(name_raw, ''),
                 label=est_data.get('label'),
-                description=est_data.get('description'),
+                description=_unwrap(desc_raw),
                 population_summary=pop_text,
                 analysis_population_id=est_data.get('analysisPopulationId'),
                 variable_of_interest_id=endpoint_id,
                 intervention_ids=intervention_ids,
                 intercurrent_events=ice_list,
-                summary_measure=est_data.get('summaryMeasure'),
+                summary_measure=_unwrap(summary_measure_raw),
                 treatment=treatment_desc,
                 analysis_population=analysis_pop,
-                variable_of_interest=est_data.get('variableOfInterest'),
+                variable_of_interest=_unwrap(variable_raw),
                 endpoint_id=endpoint_id,
             ))
-    
+
     except Exception as e:
         logger.error(f"Failed to parse estimands: {e}")
-    
-    return estimands
+
+    return estimands, citations
 
 
 def _repair_json(json_str: str) -> str:
@@ -920,6 +972,10 @@ def _resolve_analysis_populations(objectives_data: ObjectivesData) -> None:
     - Collects unique population names from estimand.analysis_population fields
     - Creates AnalysisPopulation objects and sets their IDs on each estimand
     - Populates objectives_data.analysis_populations in-place
+    - Carries over the citation already recorded for the owning estimand's
+      `analysisPopulation` field (if any) to the new AnalysisPopulation's own
+      id/`name`, so the derived entity has its own traceable citation rather
+      than sharing the estimand's entity_id.
 
     Short-level labels (ITT, PP, Safety, etc.) are inferred from the name.
     """
@@ -963,6 +1019,10 @@ def _resolve_analysis_populations(objectives_data: ObjectivesData) -> None:
                 description=f"Analysis population referenced by estimand: {est.name}",
                 level=level,
             ))
+            est_cite = objectives_data.citations.get(est.id, {}).get('analysisPopulation')
+            if est_cite:
+                objectives_data.citations.setdefault(ap_id, {})['name'] = dict(est_cite)
+
 
         # Backfill the estimand ID only when it wasn't already set to a real AP
         if not est.analysis_population_id or est.analysis_population_id.endswith("_pop"):

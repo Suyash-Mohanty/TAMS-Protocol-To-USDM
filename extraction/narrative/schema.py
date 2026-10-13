@@ -179,7 +179,10 @@ class NarrativeData:
     sections: List[NarrativeContent] = field(default_factory=list)
     items: List[NarrativeContentItem] = field(default_factory=list)
     abbreviations: List[Abbreviation] = field(default_factory=list)
-    
+
+    # Per-entity field citations: entity_id -> field_name -> {"page", "quote"}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert to USDM-compatible dictionary structure."""
         result = {

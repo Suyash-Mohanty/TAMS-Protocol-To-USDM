@@ -339,6 +339,8 @@ class AdvancedData:
     sites: List[StudySite] = field(default_factory=list)
     # GovernanceDate dict for the original protocol version's date (Document History)
     original_protocol_date: Optional[Dict[str, Any]] = None
+    # Per-entity field citations: entity_id -> field_name -> {"page", "quote"}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
     
     def to_dict(self) -> Dict[str, Any]:
         """Convert to USDM-compatible dictionary structure."""

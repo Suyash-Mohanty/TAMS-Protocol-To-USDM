@@ -13,6 +13,7 @@ from typing import List, Optional, Dict, Any, Tuple
 
 from core.llm_client import call_llm
 from core.pdf_utils import extract_text_from_pages, get_page_count
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     EligibilityData,
     EligibilityCriterion,
@@ -23,6 +24,7 @@ from .schema import (
 from .prompts import build_eligibility_extraction_prompt
 
 logger = logging.getLogger(__name__)
+
 
 
 @dataclass
@@ -437,51 +439,64 @@ def _parse_usdm_eligibility_format(raw: Dict[str, Any]) -> Optional[EligibilityD
     try:
         criterion_items = []
         criteria = []
-        
+        citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
         inclusion_count = 0
         exclusion_count = 0
         inc_prev_id = None
         exc_prev_id = None
-        
+
         # Build item lookup from eligibilityCriterionItems if present
         item_lookup = {}
         for item in raw.get('eligibilityCriterionItems', []):
             if isinstance(item, dict) and item.get('id'):
                 item_lookup[item['id']] = item
-        
+
         for crit_data in (raw.get('criteria') or raw.get('eligibilityCriteria') or []):
             if not isinstance(crit_data, dict):
                 continue
-            
+
             # Get category from code object
             category_data = crit_data.get('category', {})
             category_code = category_data.get('code', 'Inclusion') if isinstance(category_data, dict) else str(category_data)
-            
+
             is_inclusion = 'Inclusion' in category_code
             category = CriterionCategory.INCLUSION if is_inclusion else CriterionCategory.EXCLUSION
-            
+
             # Use provided ID or generate one
             crit_id = crit_data.get('id', f"ec_{len(criteria)+1}")
-            identifier = crit_data.get('identifier', f"[{len(criteria)+1}]")
-            name = crit_data.get('name', f"Criterion {len(criteria)+1}")
-            
+            identifier_raw = crit_data.get('identifier', f"[{len(criteria)+1}]")
+            identifier = _unwrap(identifier_raw, f"[{len(criteria)+1}]")
+            name_raw = crit_data.get('name', f"Criterion {len(criteria)+1}")
+            name = _unwrap(name_raw, f"Criterion {len(criteria)+1}")
+            _collect_citation(citations, crit_id, 'identifier', identifier_raw)
+            _collect_citation(citations, crit_id, 'name', name_raw)
+
             # Get text - either from criterion directly or from linked criterionItem
-            text = crit_data.get('text', '')
+            text_raw = crit_data.get('text', '')
+            text = _unwrap(text_raw, '')
             item_id = crit_data.get('criterionItemId')
-            
+            item_name_raw = None
+
             if not text and item_id and item_id in item_lookup:
                 # Get text from the linked criterion item
                 item_data = item_lookup[item_id]
-                text = item_data.get('text', '')
-                name = item_data.get('name', name)
-            
+                text_raw = item_data.get('text', '')
+                text = _unwrap(text_raw, '')
+                item_name_raw = item_data.get('name', name_raw)
+                name = _unwrap(item_name_raw, name)
+
             if not text:
                 continue
-            
+
             # Create criterion item
             if not item_id:
                 item_id = f"eci_{crit_id}"
-            
+
+            _collect_citation(citations, item_id, 'text', text_raw)
+            if item_name_raw is not None:
+                _collect_citation(citations, item_id, 'name', item_name_raw)
+
             criterion_items.append(EligibilityCriterionItem(
                 id=item_id,
                 name=name,
@@ -521,6 +536,8 @@ def _parse_usdm_eligibility_format(raw: Dict[str, Any]) -> Optional[EligibilityD
         population = None
         pop_data = raw.get('population')
         if isinstance(pop_data, dict) and pop_data:
+            pop_id = _unwrap(pop_data.get('id'), 'pop_1')
+
             sex_list = pop_data.get('sex') or pop_data.get('plannedSex') or []
             if isinstance(sex_list, str):
                 sex_list = [sex_list]
@@ -528,15 +545,32 @@ def _parse_usdm_eligibility_format(raw: Dict[str, Any]) -> Optional[EligibilityD
                 # plannedSex may be a list of Code objects ({"code": "Male", ...})
                 sex_list = [s.get('code', s) if isinstance(s, dict) else s for s in sex_list]
 
+            name_raw = pop_data.get('name', 'Study Population')
+            description_raw = pop_data.get('description')
+            healthy_raw = pop_data.get('includesHealthySubjects', False)
+            enrollment_raw = pop_data.get('plannedEnrollment') or pop_data.get('plannedEnrollmentNumber')
+            min_age_raw = pop_data.get('plannedMinimumAge') or pop_data.get('minimumAge')
+            max_age_raw = pop_data.get('plannedMaximumAge') or pop_data.get('maximumAge')
+            age_approx_raw = pop_data.get('plannedAgeIsApproximate')
+
+            for field_name, field_val in (
+                ('name', name_raw), ('description', description_raw),
+                ('includesHealthySubjects', healthy_raw),
+                ('plannedEnrollmentNumber', enrollment_raw),
+                ('plannedMinimumAge', min_age_raw), ('plannedMaximumAge', max_age_raw),
+                ('plannedAgeIsApproximate', age_approx_raw),
+            ):
+                _collect_citation(citations, pop_id, field_name, field_val)
+
             population = StudyDesignPopulation(
-                id=pop_data.get('id', 'pop_1'),
-                name=pop_data.get('name', 'Study Population'),
-                description=pop_data.get('description') or 'Target population defined by eligibility criteria',
-                includes_healthy_subjects=pop_data.get('includesHealthySubjects', False),
-                planned_enrollment_number=pop_data.get('plannedEnrollment') or pop_data.get('plannedEnrollmentNumber'),
-                planned_minimum_age=pop_data.get('plannedMinimumAge') or pop_data.get('minimumAge'),
-                planned_maximum_age=pop_data.get('plannedMaximumAge') or pop_data.get('maximumAge'),
-                planned_age_is_approximate=pop_data.get('plannedAgeIsApproximate'),
+                id=pop_id,
+                name=_unwrap(name_raw, 'Study Population'),
+                description=_unwrap(description_raw) or 'Target population defined by eligibility criteria',
+                includes_healthy_subjects=_unwrap(healthy_raw, False),
+                planned_enrollment_number=_unwrap(enrollment_raw),
+                planned_minimum_age=_unwrap(min_age_raw),
+                planned_maximum_age=_unwrap(max_age_raw),
+                planned_age_is_approximate=_unwrap(age_approx_raw),
                 planned_sex=sex_list if sex_list else None,
                 criterion_ids=[c.id for c in criteria],  # Link to all criteria
             )
@@ -548,13 +582,14 @@ def _parse_usdm_eligibility_format(raw: Dict[str, Any]) -> Optional[EligibilityD
                 description='Target population defined by eligibility criteria',
                 criterion_ids=[c.id for c in criteria],
             )
-        
+
         logger.info(f"Parsed USDM format: {inclusion_count} inclusion, {exclusion_count} exclusion criteria")
-        
+
         return EligibilityData(
             criteria=criteria,
             criterion_items=criterion_items,
             population=population,
+            citations=citations,
             inclusion_count=inclusion_count,
             exclusion_count=exclusion_count,
         )

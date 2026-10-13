@@ -13,6 +13,7 @@ from typing import List, Optional, Dict, Any
 
 from core.llm_client import call_llm
 from core.pdf_utils import extract_text_from_pages, get_page_count
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     DocumentStructureData,
     DocumentStructureResult,
@@ -233,47 +234,70 @@ def extract_document_structure(
         
         # Parse content references
         content_references = []
+        citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
         for r in raw_data.get('contentReferences', []):
+            ref_id = r.get('id', f"ref_{len(content_references)+1}")
+            name_raw = r.get('name', '')
+            section_title_raw = r.get('sectionTitle')
+            description_raw = r.get('description')
             ref = DocumentContentReference(
-                id=r.get('id', f"ref_{len(content_references)+1}"),
-                name=r.get('name', ''),
+                id=ref_id,
+                name=_unwrap(name_raw, ''),
                 section_number=r.get('sectionNumber'),
-                section_title=r.get('sectionTitle'),
+                section_title=_unwrap(section_title_raw),
                 page_number=r.get('pageNumber'),
                 target_id=r.get('targetId'),
-                description=r.get('description'),
+                description=_unwrap(description_raw),
             )
             content_references.append(ref)
-        
+            _collect_citation(citations, ref_id, 'name', name_raw)
+            _collect_citation(citations, ref_id, 'sectionTitle', section_title_raw)
+            _collect_citation(citations, ref_id, 'description', description_raw)
+
         # Parse annotations
         annotations = []
         for a in raw_data.get('annotations', []):
+            annot_id = a.get('id', f"annot_{len(annotations)+1}")
+            text_raw = a.get('text', '')
+            source_section_raw = a.get('sourceSection')
             annot = CommentAnnotation(
-                id=a.get('id', f"annot_{len(annotations)+1}"),
-                text=a.get('text', ''),
+                id=annot_id,
+                text=_unwrap(text_raw, ''),
                 annotation_type=parse_annotation_type(a.get('annotationType', 'Footnote')),
-                source_section=a.get('sourceSection'),
+                source_section=_unwrap(source_section_raw),
                 page_number=a.get('pageNumber'),
             )
             annotations.append(annot)
-        
+            _collect_citation(citations, annot_id, 'text', text_raw)
+            _collect_citation(citations, annot_id, 'sourceSection', source_section_raw)
+
         # Parse document versions
         document_versions = []
         for v in raw_data.get('documentVersions', []):
+            ver_id = v.get('id', f"ver_{len(document_versions)+1}")
+            version_number_raw = v.get('versionNumber', '1.0')
+            version_date_raw = v.get('versionDate')
+            description_raw = v.get('description')
+            amendment_number_raw = v.get('amendmentNumber')
             ver = StudyDefinitionDocumentVersion(
-                id=v.get('id', f"ver_{len(document_versions)+1}"),
-                version_number=v.get('versionNumber', '1.0'),
-                version_date=v.get('versionDate'),
+                id=ver_id,
+                version_number=_unwrap(version_number_raw, '1.0'),
+                version_date=_unwrap(version_date_raw),
                 status=v.get('status', 'Final'),
-                description=v.get('description'),
-                amendment_number=v.get('amendmentNumber'),
+                description=_unwrap(description_raw),
+                amendment_number=_unwrap(amendment_number_raw),
             )
             document_versions.append(ver)
-        
+            _collect_citation(citations, ver_id, 'version', version_number_raw)
+            _collect_citation(citations, ver_id, 'versionDate', version_date_raw)
+            _collect_citation(citations, ver_id, 'description', description_raw)
+            _collect_citation(citations, ver_id, 'amendmentNumber', amendment_number_raw)
+
         data = DocumentStructureData(
             content_references=content_references,
             annotations=annotations,
             document_versions=document_versions,
+            citations=citations,
         )
         
         confidence = min(1.0, (len(content_references) + len(annotations) + len(document_versions)) / 10)

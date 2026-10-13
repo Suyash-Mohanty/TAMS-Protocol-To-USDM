@@ -33,13 +33,29 @@ Extract ALL objectives and their associated endpoints. Output must conform to US
 
 ## USDM v4.0 Output Format
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text (not a structural field
+like `id`, `instanceType`, `endpointIds`, `level`, or `purpose`) MUST be written as an
+object with three keys instead of a bare value:
+```json
+"fieldName": {"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}
+```
+- `page` is the 0-indexed page where you found this specific value.
+- `quote` must be copied verbatim from the protocol — not a paraphrase. If the value
+  is a reasonable default rather than something the protocol explicitly states, set
+  `quote` to `null` and `page` to `null`.
+- `id`, `instanceType`, `endpointIds`, `level`, and `purpose` are structural/
+  classification fields — write these as bare values, exactly as before — do NOT
+  wrap these.
+
 ```json
 {
   "objectives": [
     {
       "id": "obj_1",
-      "name": "Primary Efficacy Objective",
-      "text": "To evaluate the efficacy of Drug X compared to placebo",
+      "name": {"value": "Primary Efficacy Objective", "page": 1, "quote": "Primary Objective"},
+      "text": {"value": "To evaluate the efficacy of Drug X compared to placebo", "page": 1, "quote": "To evaluate the efficacy of Drug X compared to placebo in reducing disease severity"},
       "level": {"code": "Primary", "codeSystem": "http://www.cdisc.org/USDM/objectiveLevel", "decode": "Primary Objective"},
       "endpointIds": ["ep_1"],
       "instanceType": "Objective"
@@ -48,8 +64,8 @@ Extract ALL objectives and their associated endpoints. Output must conform to US
   "endpoints": [
     {
       "id": "ep_1",
-      "name": "Primary Efficacy Endpoint",
-      "text": "Change from baseline in disease severity score at Week 12",
+      "name": {"value": "Primary Efficacy Endpoint", "page": 1, "quote": "Primary Endpoint"},
+      "text": {"value": "Change from baseline in disease severity score at Week 12", "page": 1, "quote": "Change from baseline in disease severity score at Week 12"},
       "level": {"code": "Primary", "codeSystem": "http://www.cdisc.org/USDM/endpointLevel", "decode": "Primary Endpoint"},
       "purpose": "Efficacy",
       "instanceType": "Endpoint"
@@ -73,7 +89,12 @@ Extract ALL objectives and their associated endpoints. Output must conform to US
 6. Be complete - extract ALL objectives and endpoints
 7. Each objective's `endpointIds` lists exactly the endpoints the protocol's objectives/endpoints table places beside that objective - an endpoint belongs to one objective unless the protocol repeats it
 8. Only endpoints stated in the protocol - never filler or placeholder entries (e.g. "Placeholder", "see ep_5 through ep_29")
-9. Return ONLY valid JSON - no markdown, no explanations
+9. **Wrap every citable scalar field** - every field value you extract from the
+   protocol (not `id`/`instanceType`/`endpointIds`/`level`/`purpose`) must be
+   `{"value": ..., "page": ..., "quote": ...}` as shown above. Use `page: null,
+   quote: null` only when the value is a reasonable default, not something the
+   protocol states.
+10. Return ONLY valid JSON - no markdown, no explanations
 
 Now extract objectives and endpoints from the protocol:
 """
@@ -106,31 +127,46 @@ An estimand precisely describes the treatment effect. Extract ALL FIVE attribute
 
 ## USDM 4.0 Required Output Format
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text (not a structural field
+like `id`, `instanceType`, `endpointId`, or `strategy`) MUST be written as an object
+with three keys instead of a bare value:
+```json
+"fieldName": {{"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}}
+```
+- `page` is the 0-indexed page where you found this specific value.
+- `quote` must be copied verbatim from the protocol — not a paraphrase. If the value
+  is a reasonable default rather than something the protocol explicitly states, set
+  `quote` to `null` and `page` to `null`.
+- `id`, `instanceType`, `endpointId`, and `strategy` are structural/classification
+  fields — write these as bare values, exactly as before — do NOT wrap these.
+
 ```json
 {{
   "estimands": [
     {{
       "id": "est_1",
-      "name": "Primary Efficacy Estimand",
-      "populationSummary": "Adult patients meeting eligibility criteria",
-      "analysisPopulation": "Intent-to-Treat (ITT) Population",
-      "treatmentDescription": "Drug X 100mg daily vs Placebo",
+      "name": {{"value": "Primary Efficacy Estimand", "page": 5, "quote": "primary estimand"}},
+      "populationSummary": {{"value": "Adult patients meeting eligibility criteria", "page": 5, "quote": "all randomized adult patients meeting eligibility criteria"}},
+      "analysisPopulation": {{"value": "Intent-to-Treat (ITT) Population", "page": 5, "quote": "Intent-to-Treat (ITT) Population"}},
+      "treatmentDescription": {{"value": "Drug X 100mg daily vs Placebo", "page": 5, "quote": "Drug X 100 mg once daily compared with placebo"}},
       "interventionNames": ["Drug X 100mg", "Placebo"],
-      "variableOfInterest": "Change from baseline in severity score at Week 12",
+      "variableOfInterest": {{"value": "Change from baseline in severity score at Week 12", "page": 5, "quote": "change from baseline in severity score at Week 12"}},
       "endpointId": "ep_1",
-      "summaryMeasure": "Difference in least squares means",
+      "summaryMeasure": {{"value": "Difference in least squares means", "page": 5, "quote": "difference in least-squares means"}},
       "intercurrentEvents": [
         {{
           "id": "ice_1",
-          "name": "Treatment discontinuation",
-          "text": "Subject discontinues study treatment before Week 12",
+          "name": {{"value": "Treatment discontinuation", "page": 5, "quote": "treatment discontinuation"}},
+          "text": {{"value": "Subject discontinues study treatment before Week 12", "page": 5, "quote": "subjects who discontinue study treatment before Week 12"}},
           "strategy": "Treatment Policy",
           "instanceType": "IntercurrentEvent"
         }},
         {{
           "id": "ice_2",
-          "name": "Use of rescue medication",
-          "text": "Subject uses prohibited rescue medication",
+          "name": {{"value": "Use of rescue medication", "page": 5, "quote": "use of rescue medication"}},
+          "text": {{"value": "Subject uses prohibited rescue medication", "page": 5, "quote": "subjects who use prohibited rescue medication"}},
           "strategy": "Hypothetical",
           "instanceType": "IntercurrentEvent"
         }}
@@ -149,7 +185,12 @@ An estimand precisely describes the treatment effect. Extract ALL FIVE attribute
 5. **MUST include interventionNames** - list of intervention names being compared
 6. Extract at least one estimand for each primary endpoint
 7. Include common intercurrent events (discontinuation, rescue medication) even if not explicit
-8. Return ONLY valid JSON
+8. **Wrap every citable scalar field** - every field value you extract from the
+   protocol (not `id`/`instanceType`/`endpointId`/`strategy`) must be
+   `{{"value": ..., "page": ..., "quote": ...}}` as shown above. Use `page: null,
+   quote: null` only when the value is a reasonable default, not something the
+   protocol states.
+9. Return ONLY valid JSON
 
 Now extract estimands from the protocol:
 """

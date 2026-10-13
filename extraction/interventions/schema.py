@@ -368,7 +368,10 @@ class InterventionsData:
     administrations: List[Administration] = field(default_factory=list)
     substances: List[Substance] = field(default_factory=list)
     devices: List[MedicalDevice] = field(default_factory=list)
-    
+
+    # Per-entity field citations: entity_id -> field_name -> {"page": int|None, "quote": str|None}
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
+
     def to_dict(self) -> Dict[str, Any]:
         """Convert to USDM-compatible dictionary structure."""
         return {

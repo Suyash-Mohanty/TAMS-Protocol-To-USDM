@@ -60,6 +60,7 @@ class SchedulingAgent(BaseExtractionAgent):
                 "data": t.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(t.id, {}),
             })
 
         for c in data.conditions:
@@ -69,6 +70,7 @@ class SchedulingAgent(BaseExtractionAgent):
                 "data": c.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(c.id, {}),
             })
 
         for tr in data.transition_rules:
@@ -78,6 +80,7 @@ class SchedulingAgent(BaseExtractionAgent):
                 "data": tr.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(tr.id, {}),
             })
 
         for ex in data.schedule_exits:
@@ -87,6 +90,7 @@ class SchedulingAgent(BaseExtractionAgent):
                 "data": ex.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(ex.id, {}),
             })
 
         for d in data.decision_instances:
@@ -96,6 +100,7 @@ class SchedulingAgent(BaseExtractionAgent):
                 "data": d.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(d.id, {}),
             })
 
         return {

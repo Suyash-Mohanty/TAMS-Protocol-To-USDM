@@ -404,7 +404,62 @@ def convert_provenance_to_uuids(
     # Copy metadata unchanged
     if 'metadata' in provenance_data:
         result['metadata'] = provenance_data['metadata'].copy()
-    
+
+    return result
+
+
+def convert_citations_to_uuids(citations_data: dict, id_map: dict) -> dict:
+    """
+    Convert the per-field citations sidecar's entity-id keys to final UUIDs,
+    using the same id_map produced by convert_ids_to_uuids.
+
+    citations_data is {"generated_at": ..., "citations": {entity_id:
+    {"instanceType": ..., "fields": {field_name: {"page", "quote"}}}}}. Only
+    the top-level entity-id keys are remapped — everything under them
+    (instanceType, field names, {page, quote} values) is untouched. Entities
+    with no mapped UUID (e.g. dropped during placement) are skipped rather
+    than kept under their stale internal id, since nothing in the final USDM
+    would ever match it.
+
+    Two source entity_ids can land on the same final UUID — e.g.
+    "study_phase_1" (whose Code object gets wrapped and nested under
+    studyDesigns[0].studyPhase.standardCode) can coincidentally share a
+    final id with another entity depending on how placement unfolds, and
+    "study_metadata_1" is deliberately pointed at its owning StudyVersion's
+    id in agents/pipeline.py since it is never placed as its own entity.
+    When ids collide, `fields` are merged (not overwritten) so no citation
+    is silently lost; instanceType from whichever entity is seen first is
+    kept — in the common case the colliding entries agree on it, but if
+    they ever don't, keeping the first is a deliberate "don't lose data"
+    choice over trying to decide which is more "correct".
+
+    Args:
+        citations_data: Original citations dict from ProvenanceAgent's
+            citations_generate task.
+        id_map: ID mapping from convert_ids_to_uuids {simple_id: uuid}.
+
+    Returns:
+        New citations dict with entity-id keys converted to UUIDs.
+    """
+    if not citations_data or not id_map:
+        return citations_data
+
+    original = citations_data.get('citations', {})
+    converted: dict = {}
+    for entity_id, entity_citation in original.items():
+        uuid_val = id_map.get(entity_id)
+        if not uuid_val:
+            continue
+        if uuid_val in converted:
+            converted[uuid_val]['fields'].update(entity_citation.get('fields', {}))
+        else:
+            converted[uuid_val] = {
+                'instanceType': entity_citation.get('instanceType'),
+                'fields': dict(entity_citation.get('fields', {})),
+            }
+
+    result = dict(citations_data)
+    result['citations'] = converted
     return result
 
 

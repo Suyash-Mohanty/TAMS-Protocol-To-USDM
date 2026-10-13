@@ -60,6 +60,7 @@ class DocStructureAgent(BaseExtractionAgent):
                 "data": ref.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(ref.id, {}),
             })
 
         for annot in data.annotations:
@@ -69,6 +70,7 @@ class DocStructureAgent(BaseExtractionAgent):
                 "data": annot.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(annot.id, {}),
             })
 
         for ver in data.document_versions:
@@ -78,6 +80,7 @@ class DocStructureAgent(BaseExtractionAgent):
                 "data": ver.to_dict(),
                 "confidence": result.confidence,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(ver.id, {}),
             })
 
         return {

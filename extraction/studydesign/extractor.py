@@ -13,6 +13,7 @@ from typing import List, Optional, Dict, Any, Tuple
 
 from core.llm_client import call_llm
 from core.pdf_utils import extract_text_from_pages, get_page_count
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     StudyDesignData,
     InterventionalStudyDesign,
@@ -288,13 +289,14 @@ def _parse_design_response(raw: Dict[str, Any]) -> Optional[StudyDesignData]:
         cohorts = []
         cells = []
         epochs = []
-        
+        citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
         # Process arms - accept both 'arms' and 'studyArms' keys
         arm_list = raw.get('arms', []) or raw.get('studyArms', [])
         for i, arm_data in enumerate(arm_list):
             if not isinstance(arm_data, dict):
                 continue
-            
+
             # Handle type as string or code object - use empty string if not extracted
             arm_type_data = arm_data.get('type')
             if isinstance(arm_type_data, dict):
@@ -304,56 +306,95 @@ def _parse_design_response(raw: Dict[str, Any]) -> Optional[StudyDesignData]:
             else:
                 arm_type_str = ''
             arm_type = _map_arm_type(arm_type_str) if arm_type_str else None
-            
+
+            arm_id = arm_data.get('id', f"arm_{i+1}")
+            name_raw = arm_data.get('name', f'Arm {i+1}')
+            desc_raw = arm_data.get('description')
+            name = _unwrap(name_raw, f'Arm {i+1}')
+            description = _unwrap(desc_raw)
+            _collect_citation(citations, arm_id, 'name', name_raw)
+            _collect_citation(citations, arm_id, 'description', desc_raw)
+
             # Parse titration info
             is_titration = arm_data.get('isTitration', False)
             dose_epochs = []
             if is_titration and arm_data.get('doseEpochs'):
-                for de_data in arm_data.get('doseEpochs', []):
+                for de_idx, de_data in enumerate(arm_data.get('doseEpochs', [])):
                     if isinstance(de_data, dict):
+                        de_dose_raw = de_data.get('dose', '')
+                        de_start_raw = de_data.get('startDay')
+                        de_end_raw = de_data.get('endDay')
+                        de_desc_raw = de_data.get('description')
+                        # Dose epochs have no own id in the schema; key citations
+                        # on the owning arm's id with a per-epoch field suffix so
+                        # entries from different dose epochs don't collide.
+                        de_key = f"{arm_id}_doseEpoch_{de_idx+1}"
+                        _collect_citation(citations, de_key, 'dose', de_dose_raw)
+                        _collect_citation(citations, de_key, 'startDay', de_start_raw)
+                        _collect_citation(citations, de_key, 'endDay', de_end_raw)
+                        _collect_citation(citations, de_key, 'description', de_desc_raw)
                         dose_epochs.append(DoseEpoch(
-                            dose=de_data.get('dose', ''),
-                            start_day=de_data.get('startDay'),
-                            end_day=de_data.get('endDay'),
-                            description=de_data.get('description'),
+                            dose=_unwrap(de_dose_raw, ''),
+                            start_day=_unwrap(de_start_raw),
+                            end_day=_unwrap(de_end_raw),
+                            description=_unwrap(de_desc_raw),
                         ))
-            
+
             arms.append(StudyArm(
-                id=arm_data.get('id', f"arm_{i+1}"),
-                name=arm_data.get('name', f'Arm {i+1}'),
-                description=arm_data.get('description'),
+                id=arm_id,
+                name=name,
+                description=description,
                 arm_type=arm_type,
                 is_titration=is_titration,
                 dose_epochs=dose_epochs,
             ))
-        
+
         # Process cohorts - accept both 'cohorts' and 'studyCohorts' keys
         cohort_list = raw.get('cohorts', []) or raw.get('studyCohorts', [])
         for i, cohort_data in enumerate(cohort_list):
             if not isinstance(cohort_data, dict):
                 continue
-                
+
+            cohort_id = cohort_data.get('id', f"cohort_{i+1}")
+            name_raw = cohort_data.get('name', f'Cohort {i+1}')
+            desc_raw = cohort_data.get('description')
+            char_raw = cohort_data.get('characteristic')
+            name = _unwrap(name_raw, f'Cohort {i+1}')
+            description = _unwrap(desc_raw)
+            characteristic = _unwrap(char_raw)
+            _collect_citation(citations, cohort_id, 'name', name_raw)
+            _collect_citation(citations, cohort_id, 'description', desc_raw)
+            _collect_citation(citations, cohort_id, 'characteristic', char_raw)
+
             cohorts.append(StudyCohort(
-                id=cohort_data.get('id', f"cohort_{i+1}"),
-                name=cohort_data.get('name', f'Cohort {i+1}'),
-                description=cohort_data.get('description'),
-                characteristic=cohort_data.get('characteristic'),
+                id=cohort_id,
+                name=name,
+                description=description,
+                characteristic=characteristic,
             ))
-        
+
         # Process epochs - accept both 'epochs' and 'studyEpochs' keys
         epoch_list = raw.get('epochs', []) or raw.get('studyEpochs', [])
         for i, epoch_data in enumerate(epoch_list):
             if isinstance(epoch_data, dict):
+                epoch_id = epoch_data.get('id', f"epoch_{i+1}")
+                name_raw = epoch_data.get('name', f'Epoch {i+1}')
+                desc_raw = epoch_data.get('description')
+                name = _unwrap(name_raw, f'Epoch {i+1}')
+                description = _unwrap(desc_raw)
+                _collect_citation(citations, epoch_id, 'name', name_raw)
+                _collect_citation(citations, epoch_id, 'description', desc_raw)
                 epochs.append({
-                    'id': epoch_data.get('id', f"epoch_{i+1}"),
-                    'name': epoch_data.get('name', f'Epoch {i+1}'),
-                    'description': epoch_data.get('description'),
+                    'id': epoch_id,
+                    'name': name,
+                    'description': description,
                 })
-        
+
         # Process study design
         study_design = None
         design_data = raw.get('studyDesign', {})
         if isinstance(design_data, dict):
+            design_id = "sd_1"
             # Blinding - use None if not extracted (don't inject 'Open Label')
             blinding = None
             blinding_data = design_data.get('blinding', {})
@@ -364,7 +405,7 @@ def _parse_design_response(raw: Dict[str, Any]) -> Optional[StudyDesignData]:
                 masked_roles = blinding_data.get('maskedRoles', [])
             else:
                 masked_roles = []
-            
+
             # Randomization - use None if not extracted (don't inject 'Non-Randomized')
             randomization = None
             allocation = None
@@ -378,22 +419,26 @@ def _parse_design_response(raw: Dict[str, Any]) -> Optional[StudyDesignData]:
                 if ratio:
                     allocation = AllocationRatio(ratio=str(ratio))
                 stratification = rand_data.get('stratificationFactors', [])
-            
+
             # Control type
             control = None
             control_str = design_data.get('controlType')
             if control_str:
                 control = _map_control_type(control_str)
-            
+
             # Trial intent types
             intent_types = design_data.get('trialIntentTypes', [])
             if not isinstance(intent_types, list):
                 intent_types = [intent_types] if intent_types else []
-            
+
+            desc_raw = design_data.get('description')
+            description = _unwrap(desc_raw)
+            _collect_citation(citations, design_id, 'description', desc_raw)
+
             study_design = InterventionalStudyDesign(
-                id="sd_1",
+                id=design_id,
                 name="Study Design",
-                description=design_data.get('description'),
+                description=description,
                 trial_intent_types=intent_types,
                 trial_type=design_data.get('type') or '',  # Empty if not extracted
                 blinding_schema=blinding,
@@ -407,7 +452,7 @@ def _parse_design_response(raw: Dict[str, Any]) -> Optional[StudyDesignData]:
                 therapeutic_areas=design_data.get('therapeuticAreas', []),
                 model=design_data.get('model') or design_data.get('interventionModel'),
             )
-        
+
         # Generate cells and elements from arms × epochs if epochs provided
         cell_counter = 1
         elements = []
@@ -415,7 +460,7 @@ def _parse_design_response(raw: Dict[str, Any]) -> Optional[StudyDesignData]:
             for epoch in epochs:
                 epoch_id = epoch.get('id', f"epoch_{cell_counter}")
                 epoch_name = epoch.get('name', f'Epoch {cell_counter}')
-                
+
                 # Create a StudyElement for this cell (treatment period)
                 element_id = f"elem_{cell_counter}"
                 element = StudyElement(
@@ -424,7 +469,7 @@ def _parse_design_response(raw: Dict[str, Any]) -> Optional[StudyDesignData]:
                     description=f"Treatment period for {arm.name} during {epoch_name}",
                 )
                 elements.append(element)
-                
+
                 # Create cell with reference to the element
                 cells.append(StudyCell(
                     id=f"cell_{cell_counter}",
@@ -433,15 +478,16 @@ def _parse_design_response(raw: Dict[str, Any]) -> Optional[StudyDesignData]:
                     element_ids=[element_id],
                 ))
                 cell_counter += 1
-        
+
         return StudyDesignData(
             study_design=study_design,
             arms=arms,
             cells=cells,
             cohorts=cohorts,
             elements=elements,
+            citations=citations,
         )
-        
+
     except Exception as e:
         logger.error(f"Failed to parse design response: {e}")
         return None

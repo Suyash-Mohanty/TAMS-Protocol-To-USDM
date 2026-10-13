@@ -13,6 +13,7 @@ from typing import List, Optional, Dict, Any
 
 from core.llm_client import call_llm
 from core.pdf_utils import extract_text_from_pages, get_page_count
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     ProceduresDevicesData,
     ProceduresDevicesResult,
@@ -231,83 +232,130 @@ def extract_procedures_devices(
         
         # Parse procedures
         procedures = []
+        citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
         for p in raw_data.get('procedures', []):
+            proc_id = p.get('id', f"proc_{len(procedures)+1}")
+            name_raw = p.get('name', '')
+            label_raw = p.get('label')
+            description_raw = p.get('description')
             proc = Procedure(
-                id=p.get('id', f"proc_{len(procedures)+1}"),
-                name=p.get('name', ''),
-                label=p.get('label'),
-                description=p.get('description'),
+                id=proc_id,
+                name=_unwrap(name_raw, ''),
+                label=_unwrap(label_raw),
+                description=_unwrap(description_raw),
                 procedure_type=parse_procedure_type(p.get('procedureType')),
                 code=p.get('code'),
             )
             procedures.append(proc)
-        
+            _collect_citation(citations, proc_id, 'name', name_raw)
+            _collect_citation(citations, proc_id, 'label', label_raw)
+            _collect_citation(citations, proc_id, 'description', description_raw)
+
         # Parse medical devices
         devices = []
         for d in raw_data.get('medicalDevices', []):
+            dev_id = d.get('id', f"dev_{len(devices)+1}")
+            name_raw = d.get('name', '')
+            label_raw = d.get('label')
+            description_raw = d.get('description')
+            manufacturer_raw = d.get('manufacturer')
+            model_number_raw = d.get('modelNumber')
             device = MedicalDevice(
-                id=d.get('id', f"dev_{len(devices)+1}"),
-                name=d.get('name', ''),
-                label=d.get('label'),
-                description=d.get('description'),
+                id=dev_id,
+                name=_unwrap(name_raw, ''),
+                label=_unwrap(label_raw),
+                description=_unwrap(description_raw),
                 device_type=parse_device_type(d.get('deviceType')),
-                manufacturer=d.get('manufacturer'),
-                model_number=d.get('modelNumber'),
+                manufacturer=_unwrap(manufacturer_raw),
+                model_number=_unwrap(model_number_raw),
             )
             devices.append(device)
-        
+            _collect_citation(citations, dev_id, 'name', name_raw)
+            _collect_citation(citations, dev_id, 'label', label_raw)
+            _collect_citation(citations, dev_id, 'description', description_raw)
+            _collect_citation(citations, dev_id, 'manufacturer', manufacturer_raw)
+            _collect_citation(citations, dev_id, 'modelNumber', model_number_raw)
+
         # Parse device identifiers
         device_identifiers = []
         for di in raw_data.get('deviceIdentifiers', []):
+            did_id = di.get('id', f"dev_id_{len(device_identifiers)+1}")
+            text_raw = di.get('text', '')
             identifier = MedicalDeviceIdentifier(
-                id=di.get('id', f"dev_id_{len(device_identifiers)+1}"),
-                text=di.get('text', ''),
+                id=did_id,
+                text=_unwrap(text_raw, ''),
                 scope_id=di.get('scopeId'),
             )
             device_identifiers.append(identifier)
-        
+            _collect_citation(citations, did_id, 'text', text_raw)
+
         # Parse ingredients - use empty string for role if not extracted
         ingredients = []
         for i in raw_data.get('ingredients', []):
+            ing_id = i.get('id', f"ing_{len(ingredients)+1}")
+            name_raw = i.get('name', '')
             ing = Ingredient(
-                id=i.get('id', f"ing_{len(ingredients)+1}"),
-                name=i.get('name', ''),
+                id=ing_id,
+                name=_unwrap(name_raw, ''),
                 role=i.get('role') or '',  # Empty if not extracted, don't inject 'Active'
                 substance_id=i.get('substanceId'),
             )
             ingredients.append(ing)
-        
+            _collect_citation(citations, ing_id, 'name', name_raw)
+
         # Parse strengths
         strengths = []
         for s in raw_data.get('strengths', []):
+            str_id = s.get('id', f"str_{len(strengths)+1}")
+            value_raw = s.get('value', 0)
+            unit_raw = s.get('unit', '')
+            num_val_raw = s.get('numeratorValue')
+            num_unit_raw = s.get('numeratorUnit')
+            den_val_raw = s.get('denominatorValue')
+            den_unit_raw = s.get('denominatorUnit')
             strength = Strength(
-                id=s.get('id', f"str_{len(strengths)+1}"),
-                value=s.get('value', 0),
-                unit=s.get('unit', ''),
-                numerator_value=s.get('numeratorValue'),
-                numerator_unit=s.get('numeratorUnit'),
-                denominator_value=s.get('denominatorValue'),
-                denominator_unit=s.get('denominatorUnit'),
+                id=str_id,
+                value=_unwrap(value_raw, 0),
+                unit=_unwrap(unit_raw, ''),
+                numerator_value=_unwrap(num_val_raw),
+                numerator_unit=_unwrap(num_unit_raw),
+                denominator_value=_unwrap(den_val_raw),
+                denominator_unit=_unwrap(den_unit_raw),
             )
             strengths.append(strength)
+            _collect_citation(citations, str_id, 'value', value_raw)
+            _collect_citation(citations, str_id, 'unit', unit_raw)
+            _collect_citation(citations, str_id, 'numeratorValue', num_val_raw)
+            _collect_citation(citations, str_id, 'numeratorUnit', num_unit_raw)
+            _collect_citation(citations, str_id, 'denominatorValue', den_val_raw)
+            _collect_citation(citations, str_id, 'denominatorUnit', den_unit_raw)
 
         # Parse biospecimen retentions — isRetained has no safe default to
         # fabricate, so skip (log) entries missing it rather than guessing.
         biospecimen_retentions = []
         for b in raw_data.get('biospecimenRetentions', []):
-            if not isinstance(b, dict) or 'isRetained' not in b or b.get('isRetained') is None:
+            if not isinstance(b, dict) or 'isRetained' not in b or _unwrap(b.get('isRetained')) is None:
                 logger.warning(
                     "Skipping biospecimenRetention entry with no isRetained value: %r", b,
                 )
                 continue
+            bior_id = b.get('id', f"bior_{len(biospecimen_retentions)+1}")
+            name_raw = b.get('name', 'Biospecimen Retention')
+            is_retained_raw = b.get('isRetained')
+            description_raw = b.get('description')
+            includes_dna_raw = b.get('includesDNA')
             biospecimen_retentions.append(BiospecimenRetention(
-                id=b.get('id', f"bior_{len(biospecimen_retentions)+1}"),
-                name=b.get('name', 'Biospecimen Retention'),
-                is_retained=bool(b.get('isRetained')),
+                id=bior_id,
+                name=_unwrap(name_raw, 'Biospecimen Retention'),
+                is_retained=bool(_unwrap(is_retained_raw)),
                 label=b.get('label'),
-                description=b.get('description'),
-                includes_dna=b.get('includesDNA'),
+                description=_unwrap(description_raw),
+                includes_dna=_unwrap(includes_dna_raw),
             ))
+            _collect_citation(citations, bior_id, 'name', name_raw)
+            _collect_citation(citations, bior_id, 'isRetained', is_retained_raw)
+            _collect_citation(citations, bior_id, 'description', description_raw)
+            _collect_citation(citations, bior_id, 'includesDNA', includes_dna_raw)
 
         data = ProceduresDevicesData(
             procedures=procedures,
@@ -316,6 +364,7 @@ def extract_procedures_devices(
             ingredients=ingredients,
             strengths=strengths,
             biospecimen_retentions=biospecimen_retentions,
+            citations=citations,
         )
         
         # Calculate confidence

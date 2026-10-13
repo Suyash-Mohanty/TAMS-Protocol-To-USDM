@@ -1,0 +1,1311 @@
+{
+  "agent_id": "advanced_agent",
+  "timestamp": "2026-10-13T12:13:06.340239",
+  "confidence": 0.85,
+  "entity_count": 10,
+  "entities": [
+    {
+      "id": "amend_1",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_1",
+        "number": "a",
+        "name": "Amendment a",
+        "scope": {
+          "id": "af603d92-d4c0-428e-80ff-dd86867cf71d",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "f5883e56-aa3d-438a-8621-ff834d91f330",
+          "code": {
+            "id": "c1619b50-9994-4ece-bcb9-276c44c355ab",
+            "code": "C207612",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Regulatory Agency Request To Amend",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "fcd5a144-e025-4f67-803d-98b0a198a8be",
+            "type": {
+              "id": "0baeb0da-fa1b-424b-81bb-f0b21828907e",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "For consistency with prior mirikizumab studies, the inclusion criteria [12b] is updated with the following maximum baseline liver enzyme levels: alanine aminotransferase (ALT) and aspartate aminotransferase (AST) ≤2 x ULN alkaline phosphatase (ALP) ≤1.5 x ULN, and total bilirubin level (TBL) ≤1.5 x ULN. To specify that any participant who experiences serious or severe GI AEs that are consistent with worsening of UC and do not improve with the recommendations for management of intolerable GI symptoms related to tirzepatide will be evaluated for UC disease worsening. To clarify that every symptom-directed examination will also include an examination of the heart, lungs, abdomen, neurological system, thyroid, and visual examination of the skin, consistent with the existing text in the schedule of activities under \"Complete Physical Examination.\" To add acute kidney injury as an AESI to the protocol. To include pregnancy testing every 4 weeks. This can include home urine pregnancy testing. To update that follow-up information for pregnancy outcomes for participant and neonate will be collected until termination of the pregnancy or for at least 12 months post-delivery.",
+        "effectiveDate": "2025-04-17",
+        "dateValues": [
+          {
+            "id": "gd_amend_1_eff",
+            "name": "Amendment a Effective Date",
+            "dateValue": "2025-04-17",
+            "geographicScopes": [],
+            "type": {
+              "id": "b1f6e59b-7736-4dea-9934-c085c241435d",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "secondaryReasons": [
+          {
+            "id": "3f87c47d-625f-41a3-858c-92e8d94fccee",
+            "code": {
+              "id": "7639d257-4676-432e-905c-75df636b659a",
+              "code": "C207603",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Inconsistency and/or Error In The Protocol",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyAmendmentReason"
+          },
+          {
+            "id": "7563e95c-184b-4bec-af6d-86466fa2062d",
+            "code": {
+              "id": "ee77b747-b6e2-4e35-ada2-169f2d93cd16",
+              "code": "C207609",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "New Safety Information Available",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyAmendmentReason"
+          }
+        ],
+        "changes": [
+          {
+            "id": "5a9c962b-8312-4b1f-9241-19c563332a70",
+            "name": "Section 1.1 Synopsis",
+            "summary": "Footnote a (mirikizumab): added the first sentence to read \"Mirikizumab is authorized in EU for the treatment of UC.\"",
+            "rationale": "Mirikizumab is approved for treatment of UC in the EU",
+            "changedSections": [
+              {
+                "id": "1a71ab3e-6914-4a50-af83-328078063f82",
+                "sectionNumber": "1.1",
+                "sectionTitle": "Synopsis",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "5fea35fb-614b-48dc-b49f-184c0f57bc3f",
+            "name": "Section 6.1 Study Intervention(s) Administered",
+            "summary": "Added a sentence \"In this study, clinical trial material will be used for mirikizumab\"",
+            "rationale": "Clarification on why it is classified as \"Authorized and not used according to EU authorization\"",
+            "changedSections": [
+              {
+                "id": "8453dcf1-659c-4230-8ae2-e416525c4d63",
+                "sectionNumber": "6.1",
+                "sectionTitle": "Study Intervention(s) Administered",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "89db24b6-a08b-41f5-93be-203caa5c5393",
+            "name": "Section 1.1 Synopsis",
+            "summary": "Authorized as defined by EU Clinical Trial Regulation row, Tirzepatide column: revised to read \"Authorized and not used according to EU authorizationb\"",
+            "rationale": "Per addition of footnote 'b'",
+            "changedSections": [
+              {
+                "id": "f3651968-8927-4bfa-8387-6bf2e391bc86",
+                "sectionNumber": "1.1",
+                "sectionTitle": "Synopsis",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "70a47263-b1ca-43ea-afde-05d0005a7d31",
+            "name": "Section 1.1 Synopsis",
+            "summary": "Footnote 'b' added: \"Tirzepatide is authorized in EU for the treatment of T2DM and for weight management, including weight loss and weight maintenance, in patients with obesity or overweight with at least one weight-related comorbid condition. In this study, clinical trial material will be used for tirzepatide.\"",
+            "rationale": "Clarification on why it is classified as \"Authorized and not used according to EU authorization\"",
+            "changedSections": [
+              {
+                "id": "bf9154e6-4612-41dc-aec1-dc1198549dfd",
+                "sectionNumber": "1.1",
+                "sectionTitle": "Synopsis",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "583a5e12-4446-4203-a191-8a6700890f5c",
+            "name": "Section 8.3.2.1 Participants Who Become Pregnant",
+            "summary": "Updated follow-up period for pregnancy outcomes from \"6 to 8 weeks\" to \"until termination of the pregnancy or for at least 12 months post-delivery\"",
+            "rationale": "To align with the FDA's, recommendations for follow-up period to determine outcome of pregnancy",
+            "changedSections": [
+              {
+                "id": "bb3eeb89-f6e4-46cc-8e11-e6d0ee9ab25a",
+                "sectionNumber": "8.3.2.1",
+                "sectionTitle": "Participants Who Become Pregnant",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "9526109a-14f4-4e8a-8785-97a299ce8fef",
+            "name": "Section 8.3.3 Adverse Events of Special Interest",
+            "summary": "Included new Section 8.3.3.12. to include acute kidney injury as an AESI",
+            "rationale": "As per the FDA's request, changes made to align with tirzepatide label Warnings and Precautions section",
+            "changedSections": [
+              {
+                "id": "c96981aa-b4d6-4767-9b74-8edd57731b85",
+                "sectionNumber": "8.3.3",
+                "sectionTitle": "Adverse Events of Special Interest",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "d8a8b895-e9dd-4ced-a706-79bc65c29a5c",
+            "name": "Section 9 Statistical Considerations",
+            "summary": "Updated the wording of the first sentence from \"first participant visit\" to \"first unblinding\"",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "0221f742-8730-4c16-8cf6-2a91af86e7af",
+                "sectionNumber": "9",
+                "sectionTitle": "Statistical Considerations",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "2c0d7505-a0e9-4fe6-8b25-77bba590bddc",
+            "name": "Section 10.2 Appendix 2: Clinical Laboratory Tests",
+            "summary": "Updated comment in Micronutrient panels row to read from \"For collecting samples in case of suspected malnutrition…\" to \"For collecting samples at risk of malnutrition…\"",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "804bfe20-b000-4045-a988-087905ba70fe",
+                "sectionNumber": "10.2",
+                "sectionTitle": "Appendix 2: Clinical Laboratory Tests",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "dff0c483-fd91-4750-99d9-d2fe420cf27f",
+            "name": "Section 10.2 Appendix 2: Clinical Laboratory Tests",
+            "summary": "In Urine pregnancy row: added a comment stating that, \"For telehealth visits home pregnancy test will be performed\"",
+            "rationale": "To align with the FDA recommendations",
+            "changedSections": [
+              {
+                "id": "83387ab8-a5a4-4c68-8753-99834706101b",
+                "sectionNumber": "10.2",
+                "sectionTitle": "Appendix 2: Clinical Laboratory Tests",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "fbb1985e-40f7-4d03-a88c-1b9dc7ad845e",
+            "name": "Section 10.2 Appendix 2: Clinical Laboratory Tests",
+            "summary": "In Pharmacokinetic samples row: added a comment stating that \"Results will not be provided to the investigative sites\"",
+            "rationale": "Correction",
+            "changedSections": [
+              {
+                "id": "10c22203-ec22-41e6-890c-51b2fbc3dca6",
+                "sectionNumber": "10.2",
+                "sectionTitle": "Appendix 2: Clinical Laboratory Tests",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "1ee241be-c829-4e34-b87c-c4e57764cd6d",
+            "name": "Section 10.2 Appendix 2: Clinical Laboratory Tests",
+            "summary": "In Fecal calprotectin row: Deleted comment \"Results will not be provided to the investigative sites\"",
+            "rationale": "Correction",
+            "changedSections": [
+              {
+                "id": "b5c94f8e-99d5-448c-ac84-e42cedd084a7",
+                "sectionNumber": "10.2",
+                "sectionTitle": "Appendix 2: Clinical Laboratory Tests",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "19e71ca9-cfed-4500-a3af-4b986cb837b0",
+            "name": "Section 10.6 Appendix 6",
+            "summary": "Added footnote providing cross-reference to assessment of disease worsening provided in Section 6.9.6.",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "37552d93-7336-415e-ad02-e955cb422774",
+                "sectionNumber": "10.6",
+                "sectionTitle": "Appendix 6",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "4374b42d-245e-4cd4-8ba3-524b98b2f7c3",
+            "name": "Section Multiple Throughout protocol",
+            "summary": "Minor editorial and formatting changes",
+            "rationale": "For consistency and editorial corrections",
+            "changedSections": [
+              {
+                "id": "6c4357ac-d908-48eb-9f04-b2adc22625da",
+                "sectionNumber": "Multiple",
+                "sectionTitle": "Throughout protocol",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "Original Protocol",
+        "newVersion": "a"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {
+        "summary": {
+          "page": 179,
+          "quote": "For consistency with prior mirikizumab studies, the inclusion criteria [12b] is updated with the following maximum baseline liver enzyme levels: alanine aminotransferase (ALT) and aspartate aminotransferase (AST) ≤2 x ULN alkaline phosphatase (ALP) ≤1.5 x ULN, and total bilirubin level (TBL) ≤1.5 x ULN. To specify that any participant who experiences serious or severe GI AEs that are consistent with worsening of UC and do not improve with the recommendations for management of intolerable GI symptoms related to tirzepatide will be evaluated for UC disease worsening. To clarify that every symptom-directed examination will also include an examination of the heart, lungs, abdomen, neurological system, thyroid, and visual examination of the skin, consistent with the existing text in the schedule of activities under \"Complete Physical Examination.\" To add acute kidney injury as an AESI to the protocol. To include pregnancy testing every 4 weeks. This can include home urine pregnancy testing. To update that follow-up information for pregnancy outcomes for participant and neonate will be collected until termination of the pregnancy or for at least 12 months post-delivery."
+        },
+        "effectiveDate": {
+          "page": 179,
+          "quote": "Amendment [a]: (17 Apr 2025)"
+        }
+      }
+    },
+    {
+      "id": "amend_2",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_2",
+        "number": "b",
+        "name": "Amendment b",
+        "scope": {
+          "id": "8a17b698-68cf-472b-9adb-143b29d222a2",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "44bb8b0d-87d4-493a-a704-78f264e5d954",
+          "code": {
+            "id": "0398b6e2-f5b7-4e3a-9084-effa17dd662b",
+            "code": "C207612",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Regulatory Agency Request To Amend",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "256052b5-a382-4861-9666-76865542a88a",
+            "type": {
+              "id": "e11b8da2-e38f-4b68-9f97-8616f49c2c4a",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The overall rationale for the amendment is to update the protocol based on response provided to assessment RFIs on the EU Part I dossier.",
+        "effectiveDate": "2025-07-31",
+        "dateValues": [
+          {
+            "id": "gd_amend_2_eff",
+            "name": "Amendment b Effective Date",
+            "dateValue": "2025-07-31",
+            "geographicScopes": [],
+            "type": {
+              "id": "bf262fed-07d5-431a-9be9-18c3b75f926f",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "secondaryReasons": [
+          {
+            "id": "2bdb8728-83f1-4131-8f42-ed251162850a",
+            "code": {
+              "id": "0da07654-3423-4358-83d4-78af50751fbd",
+              "code": "C207603",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Inconsistency and/or Error In The Protocol",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyAmendmentReason"
+          }
+        ],
+        "changes": [
+          {
+            "id": "c7673580-bf20-41c8-976d-1321317723e1",
+            "name": "Section 1.3 Schedule of Activities (SoA)",
+            "summary": "Added Dosing diary review and return for unscheduled visit",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "f979fc11-36b3-4f97-9838-ad6dbf8ea043",
+                "sectionNumber": "1.3",
+                "sectionTitle": "Schedule of Activities (SoA)",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "4480d6ae-ba87-4f64-933c-5568a29336ae",
+            "name": "Section 2.3.1.2 Study Procedures",
+            "summary": "Updated table header as per original protocol",
+            "rationale": "Correction of inadvertent deletions",
+            "changedSections": [
+              {
+                "id": "52ea82f9-4d2f-4108-93ad-58bab9f32d8a",
+                "sectionNumber": "2.3.1.2",
+                "sectionTitle": "Study Procedures",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "cebf796b-05b2-47f1-b573-8d872f6f6c6d",
+            "name": "Section 4.2 Scientific Rationale for Study Design",
+            "summary": "Updated procedure for collection of race and ethnicity information",
+            "rationale": "To clarify self-reporting process for collection of race and ethnicity",
+            "changedSections": [
+              {
+                "id": "5042fe76-5f21-4493-b333-3e2263bb54f2",
+                "sectionNumber": "4.2",
+                "sectionTitle": "Scientific Rationale for Study Design",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "9bad35c3-fb3f-4fca-924b-db1f75761b14",
+            "name": "Section 9.5 Sample Size Determination",
+            "summary": "Added details of assumptions used in sample size calculation.",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "9d96b94d-5112-4883-be26-ba856250bd5e",
+                "sectionNumber": "9.5",
+                "sectionTitle": "Sample Size Determination",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "eaab8d58-15c7-4301-b46b-a732b32c1680",
+            "name": "Section 10.9 Appendix 9: Standardized Protocols for the Measurement of Height, Weight, Waist Circumference, BMI, and Vital Signs",
+            "summary": "Updated correct link for calculation of BMI with amputation or limb loss",
+            "rationale": "Correction",
+            "changedSections": [
+              {
+                "id": "a9af4674-03a2-4301-af93-04344251f7dd",
+                "sectionNumber": "10.9",
+                "sectionTitle": "Appendix 9: Standardized Protocols for the Measurement of Height, Weight, Waist Circumference, BMI, and Vital Signs",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "5ac3cc36-16fb-465d-9624-d9bf5f38c855",
+            "name": "Section Multiple Throughout protocol",
+            "summary": "Minor editorial and formatting changes",
+            "rationale": "For consistency and editorial corrections",
+            "changedSections": [
+              {
+                "id": "fd8198a4-5fcf-46b0-afd6-b56f58c6e29d",
+                "sectionNumber": "Multiple",
+                "sectionTitle": "Throughout protocol",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "a",
+        "newVersion": "b"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {
+        "summary": {
+          "page": 182,
+          "quote": "The overall rationale for the amendment is to update the protocol based on response provided to assessment RFIs on the EU Part I dossier."
+        },
+        "effectiveDate": {
+          "page": 3,
+          "quote": "Amendment b 31-Jul-2025"
+        }
+      }
+    },
+    {
+      "id": "amend_3",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_3",
+        "number": "c",
+        "name": "Amendment c",
+        "scope": {
+          "id": "0e02f430-253e-4a5e-90a1-4c7d7e457429",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "8de3af57-c19e-4424-9381-7d67865af54d",
+          "code": {
+            "id": "ac6037c6-68bb-4abe-8cfa-f45af144b01f",
+            "code": "C207612",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Regulatory Agency Request To Amend",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "8d2afdb7-b5cd-4d0f-bdc0-c9fa80da30c0",
+            "type": {
+              "id": "341e1c5d-9280-4d01-83fe-e3213ab113f2",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "The main reason for this amendment is to address regulatory feedback.",
+        "effectiveDate": "2025-08-08",
+        "dateValues": [
+          {
+            "id": "gd_amend_3_eff",
+            "name": "Amendment c Effective Date",
+            "dateValue": "2025-08-08",
+            "geographicScopes": [],
+            "type": {
+              "id": "5c5f7465-6ce7-4651-bd0c-f4b26bc2a7b0",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "changes": [
+          {
+            "id": "d7af3dbc-9074-4639-aad9-98ffe18f61bf",
+            "name": "Section 4.2 Scientific Rationale for Study Design",
+            "summary": "Added a new subsection, \"Justification for use of placebo\".",
+            "rationale": "Per regulatory request to add justification for the use of placebo.",
+            "changedSections": [
+              {
+                "id": "8845a337-4b31-4330-838a-0cab924ad33d",
+                "sectionNumber": "4.2",
+                "sectionTitle": "Scientific Rationale for Study Design",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "b5b78234-1701-4e4f-97b5-bc1d0add57e9",
+            "name": "Section 7.1.1 Permanent Discontinuation of Study Intervention",
+            "summary": "Deleted the following text and moved it to Section 10.1.9: \"The emergence of an unacceptable risk to participants, a negative shift in the risk-benefit assessment as assessed by the DMC and/or sponsor, or a formal request from a concerned regulatory authority, or ethics committee.\"",
+            "rationale": "The main reason for this amendment is to address regulatory feedback.",
+            "changedSections": [
+              {
+                "id": "18bcc52a-e8fa-41ca-903a-328ddf70c31d",
+                "sectionNumber": "7.1.1",
+                "sectionTitle": "Permanent Discontinuation of Study Intervention",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "3a478122-3622-4d83-b1b6-5e95d5746a8f",
+            "name": "Section 10.1.9 Study and Site Start and Closure",
+            "summary": "Added under \"Study or site termination\": Additional reasons that could or should lead to trial discontinuation or termination include: the emergence of an unacceptable risk to participants, a negative shift in the risk-benefit assessment as assessed by the DMC and/or sponsor, or a formal request from a concerned regulatory authority or ethics committee.",
+            "rationale": "Per regulatory request, to clarify the criteria for trial termination.",
+            "changedSections": [
+              {
+                "id": "51c1ecc9-9405-44e5-a926-70ee2696a59b",
+                "sectionNumber": "10.1.9",
+                "sectionTitle": "Study and Site Start and Closure",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "b",
+        "newVersion": "c"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {
+        "summary": {
+          "page": 184,
+          "quote": "The main reason for this amendment is to address regulatory feedback."
+        },
+        "effectiveDate": {
+          "page": 184,
+          "quote": "Amendment [c] (08 Aug 2025)"
+        }
+      }
+    },
+    {
+      "id": "amend_4",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_4",
+        "number": "d",
+        "name": "Amendment d",
+        "scope": {
+          "id": "5c9ef0b3-38a4-4562-b6c1-96015f0ba23f",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "0de059a0-a8bd-432b-9a34-d96eb68f88b2",
+          "code": {
+            "id": "85e6b80c-e5d8-4de8-b3ec-7de27316e57e",
+            "code": "C207603",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Inconsistency and/or Error In The Protocol",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "472a291f-9de3-42c3-b071-6933e4a21c1f",
+            "type": {
+              "id": "10aadb2b-edbd-4d87-bd89-e4b9b6d629d4",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "Amendment d to the protocol",
+        "effectiveDate": "2025-09-10",
+        "dateValues": [
+          {
+            "id": "gd_amend_4_eff",
+            "name": "Amendment d Effective Date",
+            "dateValue": "2025-09-10",
+            "geographicScopes": [],
+            "type": {
+              "id": "e36e90cf-ef1c-448c-b3dd-0e37f0563203",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "changes": [
+          {
+            "id": "3e9d1f26-5c2e-4f79-8ad8-10bc34730434",
+            "name": "Section 10.14.2.2 Hungary",
+            "summary": "Updated text to describe administration and evaluation of C-SSRS as below. \"The C-SSRS scale will be administered by a psychiatrist or clinical psychologist with demonstrated expertise in the administration of the scale and assessment of suicidal ideation\"",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "dd82cb33-d12f-4bbc-b8fa-e3345d5d559c",
+                "sectionNumber": "10.14.2.2",
+                "sectionTitle": "Hungary",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "c",
+        "newVersion": "d"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {
+        "effectiveDate": {
+          "page": 184,
+          "quote": "Amendment [d] (10 Sep 2025)"
+        }
+      }
+    },
+    {
+      "id": "amend_5",
+      "entity_type": "study_amendment",
+      "data": {
+        "id": "amend_5",
+        "number": "e",
+        "name": "Amendment e",
+        "scope": {
+          "id": "69a4a670-1d84-4e1e-895b-183424e5443f",
+          "code": "Global",
+          "codeSystem": "USDM",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Global",
+          "instanceType": "Code"
+        },
+        "primaryReason": {
+          "id": "d031207e-acbb-499d-919d-c21da37e4148",
+          "code": {
+            "id": "785fb746-6c0b-45d6-8b7b-4c0333eabeeb",
+            "code": "C207612",
+            "codeSystem": "http://www.cdisc.org",
+            "codeSystemVersion": "2024-09-27",
+            "decode": "Regulatory Agency Request To Amend",
+            "instanceType": "Code"
+          },
+          "instanceType": "StudyAmendmentReason"
+        },
+        "geographicScopes": [
+          {
+            "id": "842c986b-dc36-438a-bc96-f4f359f60499",
+            "type": {
+              "id": "b6fb9113-a355-4569-9322-89a108e475c6",
+              "code": "Global",
+              "codeSystem": "USDM",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Global",
+              "instanceType": "Code"
+            },
+            "instanceType": "GeographicScope"
+          }
+        ],
+        "instanceType": "StudyAmendment",
+        "summary": "This amendment is considered to be substantial. The amendment is considered to be substantial because it is likely to have a significant impact on the safety or the rights of the study participants",
+        "effectiveDate": "2025-11-04",
+        "dateValues": [
+          {
+            "id": "gd_amend_5_eff",
+            "name": "Amendment e Effective Date",
+            "dateValue": "2025-11-04",
+            "geographicScopes": [],
+            "type": {
+              "id": "23cab588-b973-4b02-b96d-e8b963f5818f",
+              "code": "C215663",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Effective Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          },
+          {
+            "id": "gd_amend_5_app",
+            "name": "Amendment e Approval Date",
+            "dateValue": "2025-11-04",
+            "geographicScopes": [],
+            "type": {
+              "id": "21e596bf-df61-470e-8408-d31a211de91f",
+              "code": "C71476",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Approval Date",
+              "instanceType": "Code"
+            },
+            "instanceType": "GovernanceDate"
+          }
+        ],
+        "secondaryReasons": [
+          {
+            "id": "0b2146d8-4efb-441f-bba0-28eae7326cab",
+            "code": {
+              "id": "cd4533ef-d144-4689-8f42-ee032e306b42",
+              "code": "C207603",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "Inconsistency and/or Error In The Protocol",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyAmendmentReason"
+          },
+          {
+            "id": "ea8b682e-55dd-42eb-8cba-e550abab429d",
+            "code": {
+              "id": "892a21b3-27b0-4818-a10e-72289806b91b",
+              "code": "C207609",
+              "codeSystem": "http://www.cdisc.org",
+              "codeSystemVersion": "2024-09-27",
+              "decode": "New Safety Information Available",
+              "instanceType": "Code"
+            },
+            "instanceType": "StudyAmendmentReason"
+          }
+        ],
+        "changes": [
+          {
+            "id": "7dd99058-52a9-45ea-acc7-98356370ea95",
+            "name": "Section Multiple Section 1.1 Synopsis, Section 3 Objectives, Endpoints and Estimands, Section 8.1 Efficacy Assessments, Section 9.1 Statistical Hypotheses, Section 9.3.3 Secondary Endpoints/Estimands Analysis",
+            "summary": "Replaced \"mucosal healing\" with \"histologic-endoscopic mucosal improvement plus absence of neutrophils\" consistently.",
+            "rationale": "Updates as per regulatory feedback.",
+            "changedSections": [
+              {
+                "id": "f228d34f-647e-4f33-b392-899e855c0c75",
+                "sectionNumber": "Multiple",
+                "sectionTitle": "Section 1.1 Synopsis, Section 3 Objectives, Endpoints and Estimands, Section 8.1 Efficacy Assessments, Section 9.1 Statistical Hypotheses, Section 9.3.3 Secondary Endpoints/Estimands Analysis",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "8b9d322b-7a72-481a-87ed-3de403400174",
+            "name": "Section 1.3 Schedule of Activities (SoA)",
+            "summary": "Review and reinforcement of diet, exercise, and lifestyle goals - screening visit removed",
+            "rationale": "For clarification of lifestyle goals by site staff.",
+            "changedSections": [
+              {
+                "id": "ea1a164b-f9a9-4ddf-a170-2f0e1b519de8",
+                "sectionNumber": "1.3",
+                "sectionTitle": "Schedule of Activities (SoA)",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "5a7f4413-3b0c-41e5-9e36-b9752461a50f",
+            "name": "Section 1.3 Schedule of Activities (SoA)",
+            "summary": "Added Hematology and Clinical Chemistry testing for Visit 7",
+            "rationale": "Correction",
+            "changedSections": [
+              {
+                "id": "9c0e63ea-3f46-42fa-bdbe-8db039986d1d",
+                "sectionNumber": "1.3",
+                "sectionTitle": "Schedule of Activities (SoA)",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "dfa63d00-e836-4f36-bec7-6a409bda00e4",
+            "name": "Section 1.3 Schedule of Activities (SoA)",
+            "summary": "Deleted mMS review at Visits 8, 15, and ED.",
+            "rationale": "Correction. These visits are not required for protocol-related activities. The only site review of the mMS required is at Visit 2.",
+            "changedSections": [
+              {
+                "id": "3b8b6994-332c-439b-bec7-94b92913e50d",
+                "sectionNumber": "1.3",
+                "sectionTitle": "Schedule of Activities (SoA)",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "3107a518-44f3-4c43-a7a8-c0b069249774",
+            "name": "Section 2.3.1 Risk Assessment",
+            "summary": "Added risk for assessment for gallbladder disease in tirzepatide",
+            "rationale": "Updated risk description in alignment with Section 8.2.14.",
+            "changedSections": [
+              {
+                "id": "6d48d79e-ae02-427b-8180-99ed03819b78",
+                "sectionNumber": "2.3.1",
+                "sectionTitle": "Risk Assessment",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "cd93f39e-8d07-47c7-a8c0-0f283ea17533",
+            "name": "Section 3 Objectives, Endpoints, and Estimands",
+            "summary": "Change in the exploratory endpoint from \"Baseline visceral fat index at Week 0 and visceral fat index at Week 52\" to \"Change in percentage of visceral fat mass of total body mass from baseline to Week 52.\"",
+            "rationale": "To correct the measurement of baseline visceral fat mass.",
+            "changedSections": [
+              {
+                "id": "36b135ab-e92e-432f-8aa1-84ed5f01579a",
+                "sectionNumber": "3",
+                "sectionTitle": "Objectives, Endpoints, and Estimands",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "56ae58cc-eb7f-438e-a830-f85ff04d13ea",
+            "name": "Section 5.1 Inclusion Criteria",
+            "summary": "Added the following wording to Inclusion Criterion 4: \"history of UC for greater than or equal to 8 years.\"",
+            "rationale": "Patients with UC should undergo colorectal cancer surveillance starting at 8 years after disease onset, as they are at higher risk of developing colorectal cancer. This timing allows for optimal prevention and early detection of colorectal cancer or dysplasia.",
+            "changedSections": [
+              {
+                "id": "9ba00a77-3bef-45ae-bb4b-325636f96f9a",
+                "sectionNumber": "5.1",
+                "sectionTitle": "Inclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "3d3fb65f-7c13-4115-aee8-34166a5bc528",
+            "name": "Section 5.1 Inclusion Criteria",
+            "summary": "Removed the following wording from Inclusion Criterion 11: \"The prescribed dose has been stable for at least 2 weeks before the screening colonoscopy.\" Moved the following wording to the end of the paragraph: See Section 6.9.5 for instructions on tapering of oral corticosteroid therapy.\"",
+            "rationale": "Deletion of duplicate text.",
+            "changedSections": [
+              {
+                "id": "c7afc6ae-787e-44dc-8f2f-b60e999832d0",
+                "sectionNumber": "5.1",
+                "sectionTitle": "Inclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "ac3e9654-ea29-46fd-bdd7-f3a9b18e29da",
+            "name": "Section 5.2 Exclusion Criteria",
+            "summary": "Removed wording \"significant active or\" from Exclusion Criterion 34.",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "f827062c-679a-476e-91fe-27103b844feb",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "648a116d-f762-4730-81e6-5aaa60e42b96",
+            "name": "Section 5.2 Exclusion Criteria",
+            "summary": "Removed note regarding marijuana use from Exclusion Criterion 35.",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "eaf67c61-e48e-42e9-b85c-799d02e63ec3",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "a71ba192-d7a4-418c-9153-a8fee67126f3",
+            "name": "Section 5.2 Exclusion Criteria",
+            "summary": "In Exclusion Criterion 50 for IV corticosteroids replaced \"2 weeks prior to the screening colonoscopy\" with \"2 weeks prior to the screening colonoscopy and throughout screening\"",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "271ecd39-670e-452c-a520-ea2dce711301",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "9d75bc13-b6ae-4863-b7e8-fc6372e1edd6",
+            "name": "Section 5.2 Exclusion Criteria",
+            "summary": "Removed word \"prior\" from Exclusion Criterion 53.",
+            "rationale": "Clarification",
+            "changedSections": [
+              {
+                "id": "158db9ee-5f4c-4217-9836-70f2d21cb78f",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "c8386740-29d3-4452-910a-5b4c7f22578c",
+            "name": "Section 5.2 Exclusion Criteria",
+            "summary": "Added Exclusion Criterion 61 \"Have abnormal 12-lead electrocardiogram (ECG) that, in the opinion of the investigator or sponsor, increases the risks associated with participating in the study\".",
+            "rationale": "Added per regulatory feedback.",
+            "changedSections": [
+              {
+                "id": "1d49ffe8-8484-4f2f-bfe2-d5217fcd5e6a",
+                "sectionNumber": "5.2",
+                "sectionTitle": "Exclusion Criteria",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "2d7c176f-df9b-4cc4-bdf8-abf830fc796b",
+            "name": "Section 6.7 Continued Access to Study Intervention after the End of the Study",
+            "summary": "Added additional details for continued access to study interventions and schedule of activity.",
+            "rationale": "Changes made to include flexibility to continued access and provide additional information on continued access.",
+            "changedSections": [
+              {
+                "id": "31b2d9a7-87af-45f2-81bd-ca8ebf506fee",
+                "sectionNumber": "6.7",
+                "sectionTitle": "Continued Access to Study Intervention after the End of the Study",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          },
+          {
+            "id": "fb0cdfd1-ef5d-4b86-90ba-c2b96568817b",
+            "name": "Section 8.1.1.1 mMS",
+            "summary": "Changed FDA guidance from 2022 to 2016.",
+            "rationale": "Correction",
+            "changedSections": [
+              {
+                "id": "1ef97624-ba3d-42d0-967f-cb43d91135ae",
+                "sectionNumber": "8.1.1.1",
+                "sectionTitle": "mMS",
+                "appliesToId": "",
+                "instanceType": "DocumentContentReference"
+              }
+            ],
+            "instanceType": "StudyChange"
+          }
+        ],
+        "previousVersion": "d",
+        "newVersion": "e"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {
+        "summary": {
+          "page": 3,
+          "quote": "This amendment is considered to be substantial. The amendment is considered to be substantial because it is likely to have a significant impact on the safety or the rights of the study participants"
+        },
+        "effectiveDate": {
+          "page": 1,
+          "quote": "Approved on 04 Nov 2025 GMT"
+        },
+        "approvalDate": {
+          "page": 1,
+          "quote": "Approved on 04 Nov 2025 GMT"
+        }
+      }
+    },
+    {
+      "id": "gd_original_protocol",
+      "entity_type": "governance_date",
+      "data": {
+        "id": "gd_original_protocol",
+        "name": "Original Protocol Issued Date",
+        "dateValue": "2025-02-04",
+        "geographicScopes": [],
+        "type": {
+          "id": "00de5416-3cdc-4487-8386-e4aaea88ab42",
+          "code": "C215664",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2024-09-27",
+          "decode": "Issued Date",
+          "instanceType": "Code"
+        },
+        "instanceType": "GovernanceDate",
+        "description": "Date the original protocol version was issued (Document History)",
+        "documentVersionLabel": "Original"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {
+        "dateValue": {
+          "page": 3,
+          "quote": "Original Protocol 04-Feb-2025"
+        }
+      }
+    },
+    {
+      "id": "geo_1",
+      "entity_type": "geographic_scope",
+      "data": {
+        "id": "geo_1",
+        "name": "Study Geographic Scope",
+        "scopeType": "Global",
+        "instanceType": "GeographicScope",
+        "countryIds": [
+          "country_1",
+          "country_2",
+          "country_3"
+        ],
+        "regions": [
+          "European Union"
+        ]
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {}
+    },
+    {
+      "id": "country_1",
+      "entity_type": "country",
+      "data": {
+        "id": "country_1",
+        "name": "United States",
+        "instanceType": "Country",
+        "code": "US"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {
+        "name": {
+          "page": 1,
+          "quote": "Indianapolis, Indiana, USA 46285"
+        }
+      }
+    },
+    {
+      "id": "country_2",
+      "entity_type": "country",
+      "data": {
+        "id": "country_2",
+        "name": "Brazil",
+        "instanceType": "Country",
+        "code": "BR"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {
+        "name": {
+          "page": 9,
+          "quote": "Brazil"
+        }
+      }
+    },
+    {
+      "id": "country_3",
+      "entity_type": "country",
+      "data": {
+        "id": "country_3",
+        "name": "European Union",
+        "instanceType": "Country"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        8,
+        178,
+        181,
+        183,
+        184
+      ],
+      "citations": {
+        "name": {
+          "page": 9,
+          "quote": "European Union"
+        }
+      }
+    }
+  ],
+  "advanced_summary": {
+    "amendment_count": 5,
+    "country_count": 3,
+    "site_count": 0,
+    "has_geographic_scope": true
+  }
+}

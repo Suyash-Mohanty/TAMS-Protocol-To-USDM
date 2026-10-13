@@ -15,6 +15,18 @@ Extract abbreviations from:
 2. **In-text definitions** - First use with expansion in parentheses
 3. **Common clinical abbreviations** - ECG, BP, HbA1c, etc.
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text MUST be written as an
+object with three keys instead of a bare value:
+```json
+"fieldName": {"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}
+```
+- `page` is the 0-indexed page number where you found this specific value.
+- `quote` must be copied verbatim from the protocol — not a paraphrase. If you cannot
+  find a specific supporting quote, set `quote` to `null` and `page` to `null` rather
+  than guessing.
+
 ## Output Format
 
 Return a JSON object with this exact structure:
@@ -23,16 +35,16 @@ Return a JSON object with this exact structure:
 {
   "abbreviations": [
     {
-      "abbreviation": "ECG",
-      "expansion": "Electrocardiogram"
+      "abbreviation": {"value": "ECG", "page": 7, "quote": "ECG Electrocardiogram"},
+      "expansion": {"value": "Electrocardiogram", "page": 7, "quote": "ECG Electrocardiogram"}
     },
     {
-      "abbreviation": "HbA1c",
-      "expansion": "Glycated Hemoglobin"
+      "abbreviation": {"value": "HbA1c", "page": 7, "quote": "HbA1c Glycated Hemoglobin"},
+      "expansion": {"value": "Glycated Hemoglobin", "page": 7, "quote": "HbA1c Glycated Hemoglobin"}
     },
     {
-      "abbreviation": "ICF",
-      "expansion": "Informed Consent Form"
+      "abbreviation": {"value": "ICF", "page": 7, "quote": "ICF Informed Consent Form"},
+      "expansion": {"value": "Informed Consent Form", "page": 7, "quote": "ICF Informed Consent Form"}
     }
   ]
 }
@@ -44,7 +56,9 @@ Return a JSON object with this exact structure:
 2. **Include all abbreviations** - Even common ones like BP, HR, etc.
 3. **Handle variations** - "ECG/EKG" should be separate entries
 4. **Case sensitive** - Preserve original case (HbA1c not HBAIC)
-5. **Return ONLY valid JSON** - no markdown, no explanations
+5. **Wrap every citable scalar field** - both `abbreviation` and `expansion` must be
+   `{"value": ..., "page": ..., "quote": ...}` as shown above.
+6. **Return ONLY valid JSON** - no markdown, no explanations
 
 Now analyze the protocol content and extract the abbreviations:
 """
@@ -69,6 +83,21 @@ For each section extract:
 - Section title
 - Section type (Synopsis, Objectives, Study Design, Eligibility, Treatment, etc.)
 
+### Citation requirement — read before producing output
+
+Every scalar field whose value comes from the protocol text (not a structural field
+like `number` or `type`) MUST be written as an object with three keys instead of a
+bare value:
+```json
+"fieldName": {"value": <the actual value>, "page": <0-indexed page number>, "quote": "<exact sentence or phrase from the protocol that states this value>"}
+```
+- `page` is the 0-indexed page number where you found this specific value.
+- `quote` must be copied verbatim from the protocol — not a paraphrase. If you cannot
+  find a specific supporting quote (e.g. a section title taken straight from the TOC
+  with no distinctive sentence), set `quote` to `null` and `page` to `null` rather
+  than guessing.
+- `number` and `type` are structural/linking fields and stay bare — do NOT wrap those.
+
 ## Output Format
 
 Return a JSON object with this exact structure:
@@ -76,30 +105,30 @@ Return a JSON object with this exact structure:
 ```json
 {
   "document": {
-    "title": "A Phase 2, Open-Label Study...",
-    "version": "3.0",
-    "versionDate": "2020-06-15",
-    "language": "English",
-    "templateName": "Sponsor"
+    "title": {"value": "A Phase 2, Open-Label Study...", "page": 0, "quote": "A Phase 2, Open-Label Study of..."},
+    "version": {"value": "3.0", "page": 0, "quote": "Version 3.0"},
+    "versionDate": {"value": "2020-06-15", "page": 0, "quote": "15 June 2020"},
+    "language": {"value": "English", "page": null, "quote": null},
+    "templateName": {"value": "Sponsor", "page": 0, "quote": "Sponsor Protocol Template"}
   },
   "sections": [
     {
       "number": "1",
-      "title": "Introduction",
+      "title": {"value": "Introduction", "page": 2, "quote": "1. INTRODUCTION"},
       "type": "Introduction"
     },
     {
       "number": "2",
-      "title": "Study Objectives",
+      "title": {"value": "Study Objectives", "page": 3, "quote": "2. STUDY OBJECTIVES"},
       "type": "Objectives"
     },
     {
       "number": "3",
-      "title": "Study Design",
+      "title": {"value": "Study Design", "page": 4, "quote": "3. STUDY DESIGN"},
       "type": "Study Design",
       "subsections": [
-        {"number": "3.1", "title": "Overview of Study Design"},
-        {"number": "3.2", "title": "Rationale for Study Design"}
+        {"number": "3.1", "title": {"value": "Overview of Study Design", "page": 4, "quote": "3.1. Overview of Study Design"}},
+        {"number": "3.2", "title": {"value": "Rationale for Study Design", "page": 5, "quote": "3.2. Rationale for Study Design"}}
       ]
     }
   ]
@@ -129,7 +158,11 @@ Use these standard types:
 1. **Extract from TOC** - Use table of contents if available
 2. **Include all levels** - Main sections and subsections
 3. **Preserve numbering** - Keep original section numbers
-4. **Return ONLY valid JSON** - no markdown, no explanations
+4. **Wrap every citable scalar field** - every field value you extract from the
+   protocol (not `number`/`type`) must be `{"value": ..., "page": ..., "quote": ...}`
+   as shown above. Use `page: null, quote: null` only when no specific supporting
+   quote is available.
+5. **Return ONLY valid JSON** - no markdown, no explanations
 
 Now analyze the protocol content and extract the structure:
 """

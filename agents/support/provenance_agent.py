@@ -19,6 +19,56 @@ from agents.base import AgentCapabilities, AgentResult, AgentState, AgentTask, B
 logger = logging.getLogger(__name__)
 
 
+def _remap_population_age_citations(
+    field_citations: Dict[str, Dict[str, Any]],
+    raw_min_age: Optional[str],
+    raw_max_age: Optional[str],
+) -> Dict[str, Dict[str, Any]]:
+    """Reconcile StudyDesignPopulation age citations with how the USDM
+    generator actually places this entity.
+
+    usdm_generator_agent.py's _place_entity() strips plannedMinimumAge /
+    plannedMaximumAge / plannedAgeIsApproximate from the final entity and
+    replaces them with a synthesized plannedAge Range — but only when BOTH
+    bounds parse as valid ISO 8601 durations (_build_planned_age_range);
+    otherwise neither the staging keys nor a Range survive. A citation keyed
+    by the staging field name would then point at a field that doesn't
+    exist in the final USDM, so:
+    - if the real extracted values actually parse (same check the generator
+      itself uses), move the citations under a nested plannedAge.minValue /
+      plannedAge.maxValue shape matching the final Range's own structure;
+    - otherwise, drop them rather than leave them pointing at a dead field.
+    Any other field's citation (name, includesHealthySubjects, ...) passes
+    through unchanged.
+    """
+    if not field_citations:
+        return field_citations
+
+    min_cite = field_citations.get("plannedMinimumAge")
+    max_cite = field_citations.get("plannedMaximumAge")
+    approx_cite = field_citations.get("plannedAgeIsApproximate")
+    if not (min_cite or max_cite or approx_cite):
+        return field_citations
+
+    remapped = {k: v for k, v in field_citations.items()
+                if k not in ("plannedMinimumAge", "plannedMaximumAge", "plannedAgeIsApproximate")}
+
+    from agents.support.usdm_generator_agent import _parse_age_duration
+    will_synthesize = bool(_parse_age_duration(raw_min_age) and _parse_age_duration(raw_max_age))
+
+    if will_synthesize:
+        planned_age: Dict[str, Any] = {}
+        if min_cite:
+            planned_age["minValue"] = min_cite
+        if max_cite:
+            planned_age["maxValue"] = max_cite
+        if approx_cite:
+            planned_age["isApproximate"] = approx_cite
+        remapped["plannedAge"] = planned_age
+
+    return remapped
+
+
 @dataclass
 class ProvenanceRecord:
     """Provenance record for a single USDM entity."""
@@ -32,6 +82,8 @@ class ProvenanceRecord:
     extraction_timestamp: str = ""
     parent_entity_id: Optional[str] = None
     contributing_agents: List[str] = field(default_factory=list)
+    # Per-field citations: field_name -> {"page": int|None, "quote": str|None}
+    field_citations: Dict[str, Dict[str, Any]] = field(default_factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -45,6 +97,7 @@ class ProvenanceRecord:
             "extraction_timestamp": self.extraction_timestamp,
             "parent_entity_id": self.parent_entity_id,
             "contributing_agents": self.contributing_agents,
+            "field_citations": self.field_citations,
         }
 
 
@@ -155,6 +208,8 @@ class ProvenanceAgent(BaseAgent):
         Task types:
         - "provenance_generate": Generate full provenance JSON
         - "provenance_query": Query provenance for specific entities
+        - "citations_generate": Generate the per-field citations sidecar JSON
+          (page + verbatim quote per attribute, where extractors provide it)
 
         Input data:
         - output_path (str, optional): Path to write provenance JSON
@@ -170,6 +225,8 @@ class ProvenanceAgent(BaseAgent):
         try:
             if task.task_type == "provenance_query":
                 return self._handle_query(task)
+            if task.task_type == "citations_generate":
+                return self._handle_citations_generate(task)
             return self._handle_generate(task)
         except Exception as e:
             self._logger.error(f"[{self.agent_id}] Provenance generation failed: {e}")
@@ -248,9 +305,82 @@ class ProvenanceAgent(BaseAgent):
             },
         )
 
+    def _handle_citations_generate(self, task: AgentTask) -> AgentResult:
+        """Generate the per-field citations sidecar JSON.
+
+        Separate from provenance_generate's whole-entity output: this is
+        keyed by entity id (internal, pre-UUID at this point) -> {instanceType,
+        fields: {field_name -> {"page", "quote"}}}, including only
+        entities/fields that actually have a citation (most entity types
+        don't populate this yet - it's populated per-module as the
+        {value, page, quote} prompt pattern is rolled out, starting with
+        eligibility). instanceType is included so a reader can identify
+        which USDM entity (e.g. "EligibilityCriterionItem") a UUID refers to
+        without having to search the final USDM file first.
+        """
+        records = self._collect_provenance()
+
+        # Entity types whose raw data dict never carries its own
+        # instanceType, because usdm_generator_agent.py's placement either
+        # (a) injects it downstream onto a bare Code object ("study_phase",
+        # see StudyPhase.to_dict() in extraction/metadata/schema.py), or (b)
+        # merges the data directly onto fields of another real entity
+        # instead of placing it standalone ("metadata" -> StudyVersion.name/
+        # description/versionIdentifier, via _place_metadata()). Report the
+        # real instanceType of what the data ends up as/inside, not the
+        # internal entity_type tag.
+        _ENTITY_TYPE_TO_INSTANCE_TYPE = {
+            "study_phase": "Code",
+            "metadata": "StudyVersion",
+        }
+
+        citations: Dict[str, Dict[str, Any]] = {}
+        for r in records:
+            field_citations = r.field_citations
+            entity = self._context_store.get_entity(r.entity_id)
+            raw_data = entity.data if entity else {}
+            if r.entity_type == "study_population" and field_citations:
+                field_citations = _remap_population_age_citations(
+                    field_citations,
+                    raw_data.get("plannedMinimumAge"),
+                    raw_data.get("plannedMaximumAge"),
+                )
+            if field_citations:
+                instance_type = (
+                    raw_data.get("instanceType")
+                    or _ENTITY_TYPE_TO_INSTANCE_TYPE.get(r.entity_type)
+                    or r.entity_type
+                )
+                citations[r.entity_id] = {
+                    "instanceType": instance_type,
+                    "fields": field_citations,
+                }
+
+        citations_json = {
+            "generated_at": datetime.now().isoformat(),
+            "citations": citations,
+        }
+
+        output_path = task.input_data.get("output_path")
+        if output_path:
+            os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
+            with open(output_path, "w", encoding="utf-8") as f:
+                json.dump(citations_json, f, indent=2, ensure_ascii=False)
+
+        return AgentResult(
+            task_id=task.task_id, agent_id=self.agent_id,
+            success=True,
+            data={
+                "citations": citations_json,
+                "output_path": output_path,
+                "entity_count": len(citations),
+            },
+            confidence_score=1.0,
+        )
+
     def _populate_entities(self, provenance_json: dict, output_dir: str) -> None:
         """Populate entities section with {uuid: name} mappings from USDM data.
-        
+
         The web UI needs this to resolve cell UUIDs to display names for
         encounters and activities in the SOA table.
         """
@@ -350,6 +480,7 @@ class ProvenanceAgent(BaseAgent):
                 extraction_timestamp=prov.extraction_timestamp.isoformat() if prov else "",
                 parent_entity_id=prov.parent_entity_id if prov else None,
                 contributing_agents=contributing,
+                field_citations=prov.field_citations if prov else {},
             )
             records.append(record)
 

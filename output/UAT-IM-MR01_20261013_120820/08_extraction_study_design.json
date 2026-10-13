@@ -1,0 +1,1065 @@
+{
+  "agent_id": "studydesign_agent",
+  "timestamp": "2026-10-13T12:12:36.969417",
+  "confidence": 0.85,
+  "entity_count": 27,
+  "entities": [
+    {
+      "id": "sd_1",
+      "entity_type": "study_design",
+      "data": {
+        "id": "sd_1",
+        "name": "Study Design",
+        "instanceType": "InterventionalStudyDesign",
+        "description": "Phase 3b, randomized, multicenter study to assess the efficacy and safety of mirikizumab and placebo compared with mirikizumab concomitantly administered with tirzepatide at the MTD (up to 15 mg) in adult participants with moderately to severely active UC and obesity, or overweight and in the presence of at least 1 weight-related comorbid condition",
+        "rationale": "Study rationale Concomitant administration of mirikizumab and tirzepatide in patients with UC with obesity or overweight is expected to improve gastroenterologic and/or metabolic outcomes compared with treatment with mirikizumab and placebo. Sample size Approximately 350 participants who meet entry criteria will be randomly assigned at Visit 2 in a 1:1 ratio to either the  mirikizumab and placebo treatment arm, or  mirikizumab and tirzepatide at the MTD (up to 15 mg) concomitant administration treatment arm. Refer to Section 9.5 for the rationale for the sample size. Choice of primary endpoint The multi-component primary endpoint at Week 52 includes clinical remission and at least 10% weight reduction. Clinical remission Clinical remission, as defined in Section 8.1, was chosen based on regulatory guidance from FDA (2016) and EMA (2018). Both recommend a composite endpoint for both symptomatic and endoscopic remission. At least 10% weight reduction A body weight reduction of at least 5% is considered the threshold for clinically meaningful effect on the basis of improvement in metabolic health. Greater weight reductions yield additional clinical benefits and may be required for improvement in certain weight-related",
+        "model": {
+          "id": "431fefbd-bb30-436a-807b-ff83e02ddfda",
+          "code": "C82639",
+          "decode": "PARALLEL",
+          "codeSystem": "http://www.cdisc.org",
+          "codeSystemVersion": "2026-03-27",
+          "instanceType": "Code"
+        },
+        "trialIntentTypes": [
+          {
+            "code": "Treatment",
+            "codeSystem": "USDM",
+            "decode": "Treatment"
+          }
+        ],
+        "trialType": {
+          "code": "Interventional",
+          "codeSystem": "USDM",
+          "decode": "Interventional"
+        },
+        "blindingSchema": {
+          "code": "Double Blind",
+          "codeSystem": "USDM",
+          "decode": "Double Blind"
+        },
+        "maskedRoles": [
+          "Subject",
+          "Investigator"
+        ],
+        "randomizationType": {
+          "code": "Randomized",
+          "codeSystem": "USDM",
+          "decode": "Randomized"
+        },
+        "allocationRatio": {
+          "ratio": "{'value': '1:1', 'page': 13, 'quote': 'Approximately 350 participants will be randomly assigned to mirikizumab and placebo or mirikizumab and tirzepatide used concomitantly, in a 1:1 randomization ratio.'}"
+        },
+        "controlType": {
+          "code": "Placebo Control",
+          "codeSystem": "USDM",
+          "decode": "Placebo Control"
+        },
+        "armIds": [
+          "arm_1",
+          "arm_2"
+        ],
+        "therapeuticAreas": [
+          "Gastroenterology",
+          "Immunology",
+          "Metabolic Disease"
+        ]
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "citations": {
+        "description": {
+          "page": 12,
+          "quote": "Study AMCD is a Phase 3b, randomized, multicenter study to assess the efficacy and safety of mirikizumab and placebo compared with mirikizumab concomitantly administered with tirzepatide at the MTD (up to 15 mg) in adult participants with moderately to severely active UC and obesity, or overweight and in the presence of at least 1 weight-related comorbid condition."
+        }
+      }
+    },
+    {
+      "id": "arm_1",
+      "entity_type": "study_arm",
+      "data": {
+        "id": "arm_1",
+        "name": "Mirikizumab + Tirzepatide",
+        "type": {
+          "code": "Experimental Arm",
+          "codeSystem": "USDM",
+          "decode": "Experimental Arm"
+        },
+        "instanceType": "StudyArm",
+        "description": "Mirikizumab administered IV at 300 mg at Weeks 0, 4, and 8 (induction), then SC 200 mg Q4W from Week 12 (maintenance), concomitantly with tirzepatide dose escalation from 2.5 mg up to 15 mg QW SC",
+        "extensionAttributes": [
+          {
+            "url": "x-titration",
+            "valueString": "true"
+          },
+          {
+            "url": "x-doseEpochs",
+            "valueString": "[{'dose': '2.5 mg QW SC (tirzepatide)', 'startDay': 1, 'description': 'Initial tirzepatide dose; escalation per Section 6.1.4'}, {'dose': '5 mg QW SC (tirzepatide)', 'description': 'Tirzepatide dose escalation step'}, {'dose': '7.5 mg QW SC (tirzepatide)', 'description': 'Tirzepatide dose escalation step'}, {'dose': '10 mg QW SC (tirzepatide)', 'description': 'Tirzepatide dose escalation step'}, {'dose': '12.5 mg QW SC (tirzepatide)', 'description': 'Tirzepatide dose escalation step'}, {'dose': '15 mg QW SC (tirzepatide) — MTD', 'description': 'Maximum tolerated dose of tirzepatide'}]"
+          }
+        ]
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "citations": {
+        "name": {
+          "page": 12,
+          "quote": "mirikizumab concomitantly administered with tirzepatide at the MTD (up to 15 mg)"
+        },
+        "description": {
+          "page": 14,
+          "quote": "300 mg at Weeks 0, 4, and 8 … 200 mg Q4W starting at Week 12, given as 2 consecutive injections of 100 mg each … All doses QW: 2.5 mg, 5 mg, 7.5 mg, 10 mg, 12.5 mg, 15 mg"
+        }
+      }
+    },
+    {
+      "id": "arm_2",
+      "entity_type": "study_arm",
+      "data": {
+        "id": "arm_2",
+        "name": "Mirikizumab + Placebo",
+        "type": {
+          "code": "Placebo Comparator Arm",
+          "codeSystem": "USDM",
+          "decode": "Placebo Comparator Arm"
+        },
+        "instanceType": "StudyArm",
+        "description": "Mirikizumab administered IV at 300 mg at Weeks 0, 4, and 8 (induction), then SC 200 mg Q4W from Week 12 (maintenance), concomitantly with placebo to match tirzepatide administered QW SC"
+      },
+      "confidence": 0.85,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "citations": {
+        "name": {
+          "page": 12,
+          "quote": "mirikizumab and placebo"
+        },
+        "description": {
+          "page": 14,
+          "quote": "Placebo to match tirzepatide … QW"
+        }
+      }
+    },
+    {
+      "id": "cell_1",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_1",
+        "armId": "arm_1",
+        "epochId": "epoch_1",
+        "elementIds": [
+          "elem_1"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_2",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_2",
+        "armId": "arm_1",
+        "epochId": "epoch_2",
+        "elementIds": [
+          "elem_2"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_3",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_3",
+        "armId": "arm_1",
+        "epochId": "epoch_3",
+        "elementIds": [
+          "elem_3"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_4",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_4",
+        "armId": "arm_1",
+        "epochId": "epoch_4",
+        "elementIds": [
+          "elem_4"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_5",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_5",
+        "armId": "arm_1",
+        "epochId": "epoch_5",
+        "elementIds": [
+          "elem_5"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_6",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_6",
+        "armId": "arm_1",
+        "epochId": "epoch_6",
+        "elementIds": [
+          "elem_6"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_7",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_7",
+        "armId": "arm_2",
+        "epochId": "epoch_1",
+        "elementIds": [
+          "elem_7"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_8",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_8",
+        "armId": "arm_2",
+        "epochId": "epoch_2",
+        "elementIds": [
+          "elem_8"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_9",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_9",
+        "armId": "arm_2",
+        "epochId": "epoch_3",
+        "elementIds": [
+          "elem_9"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_10",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_10",
+        "armId": "arm_2",
+        "epochId": "epoch_4",
+        "elementIds": [
+          "elem_10"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_11",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_11",
+        "armId": "arm_2",
+        "epochId": "epoch_5",
+        "elementIds": [
+          "elem_11"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "cell_12",
+      "entity_type": "study_cell",
+      "data": {
+        "id": "cell_12",
+        "armId": "arm_2",
+        "epochId": "epoch_6",
+        "elementIds": [
+          "elem_12"
+        ],
+        "instanceType": "StudyCell"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_1",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_1",
+        "name": "Mirikizumab + Tirzepatide - Screening",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Tirzepatide during Screening"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_2",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_2",
+        "name": "Mirikizumab + Tirzepatide - Induction and Dose Escalation",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Tirzepatide during Induction and Dose Escalation"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_3",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_3",
+        "name": "Mirikizumab + Tirzepatide - Maintenance Treatment",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Tirzepatide during Maintenance Treatment"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_4",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_4",
+        "name": "Mirikizumab + Tirzepatide - Safety Follow-up",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Tirzepatide during Safety Follow-up"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_5",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_5",
+        "name": "Mirikizumab + Tirzepatide - Early Discontinuation",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Tirzepatide during Early Discontinuation"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_6",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_6",
+        "name": "Mirikizumab + Tirzepatide - Unscheduled Visit",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Tirzepatide during Unscheduled Visit"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_7",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_7",
+        "name": "Mirikizumab + Placebo - Screening",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Placebo during Screening"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_8",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_8",
+        "name": "Mirikizumab + Placebo - Induction and Dose Escalation",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Placebo during Induction and Dose Escalation"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_9",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_9",
+        "name": "Mirikizumab + Placebo - Maintenance Treatment",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Placebo during Maintenance Treatment"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_10",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_10",
+        "name": "Mirikizumab + Placebo - Safety Follow-up",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Placebo during Safety Follow-up"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_11",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_11",
+        "name": "Mirikizumab + Placebo - Early Discontinuation",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Placebo during Early Discontinuation"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    },
+    {
+      "id": "elem_12",
+      "entity_type": "study_element",
+      "data": {
+        "id": "elem_12",
+        "name": "Mirikizumab + Placebo - Unscheduled Visit",
+        "instanceType": "StudyElement",
+        "description": "Treatment period for Mirikizumab + Placebo during Unscheduled Visit"
+      },
+      "confidence": 0.8,
+      "source_pages": [
+        4,
+        5,
+        6,
+        7,
+        11,
+        12,
+        13,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    }
+  ],
+  "design_summary": {
+    "arm_count": 2,
+    "cohort_count": 0,
+    "cell_count": 12
+  }
+}

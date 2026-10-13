@@ -78,6 +78,7 @@ class StudyDesignAgent(BaseExtractionAgent):
                 "data": data.study_design.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(data.study_design.id, {}),
             })
 
         # Arms
@@ -88,6 +89,7 @@ class StudyDesignAgent(BaseExtractionAgent):
                 "data": arm.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(arm.id, {}),
             })
 
         # Cohorts
@@ -98,6 +100,7 @@ class StudyDesignAgent(BaseExtractionAgent):
                 "data": cohort.to_dict(),
                 "confidence": 0.8,
                 "source_pages": result.pages_used,
+                "citations": data.citations.get(cohort.id, {}),
             })
 
         # Cells

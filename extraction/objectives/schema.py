@@ -288,7 +288,13 @@ class ObjectivesData:
     endpoints: List[Endpoint] = field(default_factory=list)
     estimands: List[Estimand] = field(default_factory=list)
     analysis_populations: List[AnalysisPopulation] = field(default_factory=list)
-    
+
+    # Per-entity field citations: entity_id -> field_name -> {"page": int|None, "quote": str|None}
+    # Nested entities (endpoints, estimands, intercurrent events, analysis
+    # populations) are each keyed by their OWN id, not their parent's, so
+    # citations from different nesting levels never collide.
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=dict)
+
     # Summary counts
     primary_objectives_count: int = 0
     secondary_objectives_count: int = 0

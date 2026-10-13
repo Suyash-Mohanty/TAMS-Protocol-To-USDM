@@ -66,6 +66,7 @@ class MetadataAgent(BaseExtractionAgent):
                 "data": title.to_dict(),
                 "confidence": 0.9,
                 "source_pages": result.pages_used,
+                "citations": md.citations.get(title.id, {}),
             })
 
         # Identifiers
@@ -76,6 +77,7 @@ class MetadataAgent(BaseExtractionAgent):
                 "data": ident.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": md.citations.get(ident.id, {}),
             })
 
         # Organizations
@@ -86,6 +88,7 @@ class MetadataAgent(BaseExtractionAgent):
                 "data": org.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": md.citations.get(org.id, {}),
             })
 
         # Roles
@@ -96,6 +99,7 @@ class MetadataAgent(BaseExtractionAgent):
                 "data": role.to_dict(),
                 "confidence": 0.8,
                 "source_pages": result.pages_used,
+                "citations": md.citations.get(role.id, {}),
             })
 
         # Indications
@@ -106,6 +110,7 @@ class MetadataAgent(BaseExtractionAgent):
                 "data": ind.to_dict(),
                 "confidence": 0.85,
                 "source_pages": result.pages_used,
+                "citations": md.citations.get(ind.id, {}),
             })
 
         # Study phase
@@ -116,6 +121,7 @@ class MetadataAgent(BaseExtractionAgent):
                 "data": md.study_phase.to_dict(),
                 "confidence": 0.9,
                 "source_pages": result.pages_used,
+                "citations": md.citations.get("study_phase", {}),
             })
 
         # Governance dates (protocol version/approval/effective dates)
@@ -142,6 +148,7 @@ class MetadataAgent(BaseExtractionAgent):
             },
             "confidence": 0.9,
             "source_pages": result.pages_used,
+            "citations": md.citations.get("protocol_version", {}),
         })
 
         return {

@@ -13,6 +13,7 @@ from typing import List, Optional, Dict, Any
 
 from core.llm_client import call_llm
 from core.pdf_utils import extract_text_from_pages, get_page_count
+from ..citations import unwrap as _unwrap, collect_citation as _collect_citation
 from .schema import (
     NarrativeData,
     NarrativeContent,
@@ -519,25 +520,31 @@ def _build_narrative_data(
     document_raw: Optional[Dict],
 ) -> NarrativeData:
     """Build NarrativeData from raw extraction results.
-    
+
     Handles both legacy format and new USDM-compliant format.
     """
-    
+    citations: Dict[str, Dict[str, Dict[str, Any]]] = {}
+
     # Process abbreviations - accept multiple key names
     abbreviations = []
     for i, abbr in enumerate(abbreviations_raw):
         if isinstance(abbr, dict):
             # Accept multiple key variations
-            abbrev_text = abbr.get('abbreviation') or abbr.get('abbreviatedText') or abbr.get('text')
-            expand_text = abbr.get('expansion') or abbr.get('expandedText') or abbr.get('definition')
-            
+            abbrev_raw = abbr.get('abbreviation') or abbr.get('abbreviatedText') or abbr.get('text')
+            expand_raw = abbr.get('expansion') or abbr.get('expandedText') or abbr.get('definition')
+            abbrev_text = _unwrap(abbrev_raw)
+            expand_text = _unwrap(expand_raw)
+
             if abbrev_text and expand_text:
+                abbr_id = abbr.get('id', f"abbr_{i+1}")
                 abbreviations.append(Abbreviation(
-                    id=abbr.get('id', f"abbr_{i+1}"),
+                    id=abbr_id,
                     abbreviated_text=abbrev_text,
                     expanded_text=expand_text,
                 ))
-    
+                _collect_citation(citations, abbr_id, 'abbreviatedText', abbrev_raw)
+                _collect_citation(citations, abbr_id, 'expandedText', expand_raw)
+
     # Process sections - accept multiple key names
     sections = []
     items = []
@@ -549,50 +556,73 @@ def _build_narrative_data(
         # Use provided ID or generate one
         section_id = sec.get('id', f"nc_{i+1}")
 
-        # Process subsections
+        # Process subsections - each subsection is its own NarrativeContentItem
+        # entity, with its own citation entry (not collapsed into the parent).
         child_ids = []
         for j, sub in enumerate(sec.get('subsections', [])):
             if isinstance(sub, dict):
                 item_id = f"nci_{i+1}_{j+1}"
                 child_ids.append(item_id)
+                title_raw = sub.get('title', f'Section {sub.get("number", "")}')
+                title = _unwrap(title_raw, f'Section {sub.get("number", "")}')
                 items.append(NarrativeContentItem(
                     id=item_id,
-                    name=sub.get('title', f'Section {sub.get("number", "")}'),
+                    name=title,
                     text="",  # Text not extracted in this phase
                     section_number=sub.get('number'),
-                    section_title=sub.get('title'),
+                    section_title=title,
                     order=j,
                 ))
-        
+                _collect_citation(citations, item_id, 'name', title_raw)
+                _collect_citation(citations, item_id, 'sectionTitle', title_raw)
+
         section_type = _map_section_type(sec.get('type', 'Other'))
-        
+
+        title_raw = sec.get('title', f'Section {sec.get("number", "")}')
+        title = _unwrap(title_raw, f'Section {sec.get("number", "")}')
+
         sections.append(NarrativeContent(
             id=section_id,
-            name=sec.get('title', f'Section {sec.get("number", "")}'),
+            name=title,
             section_number=sec.get('number'),
-            section_title=sec.get('title'),
+            section_title=title,
             section_type=section_type,
             child_ids=child_ids,
             order=i,
         ))
-    
+        _collect_citation(citations, section_id, 'name', title_raw)
+        _collect_citation(citations, section_id, 'sectionTitle', title_raw)
+
     # Process document
     document = None
     if document_raw and isinstance(document_raw, dict):
+        doc_id = "sdd_1"
+        title_raw = document_raw.get('title', 'Clinical Protocol')
+        version_raw = document_raw.get('version')
+        version_date_raw = document_raw.get('versionDate')
+        language_raw = document_raw.get('language') or 'en'
+        template_raw = document_raw.get('templateName')
+
         document = StudyDefinitionDocument(
-            id="sdd_1",
-            name=document_raw.get('title', 'Clinical Protocol'),
-            version=document_raw.get('version'),
-            version_date=document_raw.get('versionDate'),
-            language=document_raw.get('language') or 'en',
-            template_name=document_raw.get('templateName'),
+            id=doc_id,
+            name=_unwrap(title_raw, 'Clinical Protocol'),
+            version=_unwrap(version_raw),
+            version_date=_unwrap(version_date_raw),
+            language=_unwrap(language_raw) or 'en',
+            template_name=_unwrap(template_raw),
         )
-    
+        _collect_citation(citations, doc_id, 'name', title_raw)
+        _collect_citation(citations, doc_id, 'version', version_raw)
+        _collect_citation(citations, doc_id, 'versionDate', version_date_raw)
+        _collect_citation(citations, doc_id, 'language', language_raw)
+        _collect_citation(citations, doc_id, 'templateName', template_raw)
+
     return NarrativeData(
         document=document,
         sections=sections,
         items=items,
         abbreviations=abbreviations,
+        citations=citations,
     )
 
 
